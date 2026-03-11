@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALTENCOA 11 — 2026</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Merriweather:wght@700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root {
+    /* Color system */
+    --accent:        #7ED957;
+    --accent-600:    #9BE564;
+    --accent-500:    #7ED957;
+    --accent-400:    #5cb832;
+    --bg-dark:       #0b2210;
+    --bg-darker:     #092010;
+    --bg-card:       rgba(255,255,255,0.05);
+    --border:        rgba(255,255,255,0.12);
+    --text-light:    rgba(255,255,255,0.90);
+    --text-muted:    rgba(255,255,255,0.45);
+    --muted-dark:    #778877;
+    --bg-light:      #f0f4ef;
+
+    /* Typography */
+    --font-sans:     'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    --font-display:  'Bebas Neue', system-ui, sans-serif;
+    --font-serif:    'Merriweather', Georgia, 'Times New Roman', serif;
+    --fs-base:       16px;
+    --fs-scale-lg:   clamp(26px, 4vw, 46px);
+    --fs-scale-md:   clamp(14px, 1.5vw, 18px);
+
+    /* Layout tokens */
+    --gutter:                20px;
+    --section-vertical-pad:  80px;
+    --container-max-width:   1100px;
+    --container-medium:      900px;
+    --container-narrow:      700px;
+    --card-radius:           10px;
+
+    /* UI tokens */
+    --shadow-strong: 0 16px 48px rgba(0,0,0,0.18);
+    --shadow-soft:   0 6px 20px rgba(94,184,50,0.12);
+
+    /* ── Important Dates ── */
+    --date-early:    "July 31, 2026";
+    --date-abstract: "August 15, 2026";
+    --date-event:    "October 5–9, 2026";
+  }
+
+  body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    font-size: var(--fs-base);
+    color: var(--text-light);
+    background: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(38%) saturate(1.4) hue-rotate(80deg);
+  }
+
+  .bg1 { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee'); animation: fade1 20s infinite; }
+  .bg2 { background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e'); animation: fade2 20s infinite; }
+  .bg3 { background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470'); animation: fade3 20s infinite; }
+  .bg4 { background-image: url('https://images.unsplash.com/photo-1491553895911-0055eca6402d'); animation: fade4 20s infinite; }
+
+  @keyframes fade1 { 0%,25%{opacity:1} 26%,100%{opacity:0} }
+  @keyframes fade2 { 0%,25%{opacity:0} 26%,50%{opacity:1} 51%,100%{opacity:0} }
+  @keyframes fade3 { 0%,50%{opacity:0} 51%,75%{opacity:1} 76%,100%{opacity:0} }
+  @keyframes fade4 { 0%,75%{opacity:0} 76%,100%{opacity:1} }
+
+  .green-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 80, 20, 0.45);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+    width: 100%;
+    max-width: var(--container-medium);
+    margin: 0 auto;
+  }
+
+  .hero-subtitle {
+    letter-spacing: 4px;
+    font-size: clamp(10px, 1.5vw, 14px);
+    color: #9BE564;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 12vw, 120px);
+    line-height: 1;
+    letter-spacing: 2px;
+    color: white;
+  }
+
+  .hero-title .green { color: #7ED957; }
+
+  .hero-year {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--accent-500);
+    letter-spacing: 6px;
+    margin: 10px 0;
+  }
+
+  .hero-topics {
+    font-size: clamp(13px, 1.8vw, 18px);
+    font-style: italic;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+  }
+
+  .hero-date {
+    font-size: clamp(12px, 1.5vw, 15px);
+    margin-bottom: 32px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-register {
+    background: #7ED957;
+    color: #0a2a00;
+    border: none;
+    padding: clamp(12px,2vw,15px) clamp(28px,4vw,42px);
+    font-size: clamp(14px,1.6vw,16px);
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-register:hover {
+    background: #9BE564;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(126,217,87,0.4);
+  }
+
+  .btn-announcement {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.7);
+    padding: clamp(12px,2vw,15px) clamp(28px,4vw,42px);
+    font-size: clamp(14px,1.6vw,16px);
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-announcement:hover {
+    border-color: #7ED957;
+    color: #7ED957;
+    transform: translateY(-2px);
+  }
+
+  /* ── ABOUT SECTION ── */
+  .about-section {
+    background: #f0f4ef;
+    padding: 80px 20px 90px;
+    text-align: center;
+  }
+
+  .about-inner {
+    max-width: var(--container-medium);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .about-label {
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5cb832;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .about-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 18px;
+  }
+
+  .about-heading .green { color: #5cb832; }
+
+  .about-desc {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: #556055;
+    line-height: 1.85;
+    max-width: 620px;
+    margin: 0 auto 52px;
+  }
+
+  /* Two-column layout */
+  .about-grid {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  /* Poster */
+  .poster-col {
+    flex: 0 0 auto;
+  }
+
+  .poster-card {
+    width: clamp(160px, 22vw, 200px);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-strong);
+    background: #1a2a14;
+  }
+
+  .poster-card img {
+    width: 100%;
+    display: block;
+    filter: hue-rotate(80deg) saturate(1.2) brightness(0.85);
+  }
+
+  .poster-card-label {
+    padding: 12px 14px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #9BE564;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #0e1f0a;
+  }
+
+  /* Info column */
+  .info-col {
+    flex: 1;
+    min-width: 280px;
+    max-width: 540px;
+  }
+
+  .research-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 16px;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .area-card {
+    background: white;
+    border: 1px solid #d8e8d0;
+    border-radius: 8px;
+    padding: 13px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: #2a3a24;
+    font-weight: 600;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .area-card:hover {
+    box-shadow: 0 4px 16px rgba(94,184,50,0.14);
+    border-color: #9BE564;
+  }
+
+  .area-icon {
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid #c0dca8;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #5cb832;
+    flex-shrink: 0;
+    background: #f4fbf0;
+  }
+
+  .organizer-box {
+    background: white;
+    border: 1px solid #d8e8d0;
+    border-radius: calc(var(--card-radius) - 2px);
+    padding: 18px 20px;
+  }
+
+  .org-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #1a2a14;
+    margin-bottom: 8px;
+  }
+
+  .org-details {
+    font-size: 13px;
+    color: #778877;
+    line-height: 1.75;
+  }
+
+  .org-details a {
+    color: #5cb832;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn-register, .btn-announcement { width: 230px; text-align: center; }
+    .areas-grid { grid-template-columns: 1fr; }
+    .about-grid { flex-direction: column; align-items: center; }
+    .info-col { text-align: center; }
+    .area-card { justify-content: center; }
+    .organizer-box { text-align: center; }
+    .research-heading { text-align: center; }
+  }
+   /* ── SECTION ── */
+  .committee-section {
+    background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-darker) 40%, #112e14 100%);
+    padding: var(--section-vertical-pad) var(--gutter) calc(var(--section-vertical-pad) + 10px);
+    text-align: center;
+    color: white;
+    min-height: 80vh;
+  }
+
+  .committee-inner {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .section-label {
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #7ED957;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4.5vw, 46px);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 14px;
+  }
+
+  .section-heading .green { color: #7ED957; }
+
+  .section-desc {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 50px;
+    font-style: italic;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(12px, 1.4vw, 14px);
+    font-weight: 600;
+    padding: 10px 20px 14px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .tab-btn:hover {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .tab-btn.active {
+    color: white;
+    border-bottom-color: #7ED957;
+    background: rgba(126,217,87,0.08);
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* ── MEMBER LIST ── */
+  .members-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: flex; flex-direction: column; gap: 10px; }
+
+  .member-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, border-color 0.2s;
+    text-align: left;
+  }
+
+  .member-card:hover {
+    background: rgba(126,217,87,0.07);
+    border-color: rgba(126,217,87,0.25);
+  }
+
+  /* Avatar */
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a7a1e, var(--accent-500));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0a2a00;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .member-name {
+    font-size: clamp(13px, 1.5vw, 15px);
+    font-weight: 700;
+    color: white;
+  }
+
+  .member-institution {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: #7ED957;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .member-location {
+    font-size: clamp(11px, 1.3vw, 13px);
+    color: rgba(255,255,255,0.45);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .member-card {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      gap: 8px 12px;
+    }
+    .avatar { grid-row: 1 / 3; }
+    .member-institution { text-align: left; }
+    .member-location { grid-column: 2; text-align: left; }
+    .tab-btn { padding: 8px 14px 10px; font-size: 12px; }
+  }
+/*-------------------------------------------*/
+  .reg-section {
+    background: linear-gradient(160deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #0e2a14 100%);
+    padding: var(--section-vertical-pad) var(--gutter) calc(var(--section-vertical-pad) + 10px);
+    color: white;
+    min-height: 80vh;
+  }
+
+  .reg-inner {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .section-label {
+    text-align: center;
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: clamp(28px, 4.5vw, 46px);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 48px;
+  }
+
+  .section-heading .green { color: var(--accent); }
+
+  /* Two-column layout */
+  .reg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── LEFT COLUMN ── */
+  .reg-pitch {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .pitch-text {
+    font-size: clamp(14px, 1.6vw, 16px);
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+  }
+
+  /* Benefits list */
+  .benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .benefits li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: rgba(255,255,255,0.80);
+  }
+
+  .benefit-icon {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* Dates card */
+  .dates-card {
+    background: rgba(126,217,87,0.06);
+    border: 1px solid rgba(126,217,87,0.22);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+
+  .dates-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .dates-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .dates-list li {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  .dates-list strong {
+    color: white;
+    font-weight: 700;
+  }
+
+  /* ── RIGHT COLUMN — FORM ── */
+  .reg-form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--card-radius) + 4px);
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Field wrapper */
+  .field {
+    position: relative;
+  }
+
+  .field-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 15px;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 14px 14px 42px;
+    font-family: var(--font-sans);
+    font-size: clamp(13px, 1.3vw, 14px);
+    color: white;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field input::placeholder { color: var(--text-muted); }
+
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--accent);
+    background: rgba(126,217,87,0.06);
+  }
+
+  /* Select arrow */
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237ED957' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .field select option {
+    background: #0b2210;
+    color: white;
+  }
+
+  /* Submit button */
+  .btn-submit {
+    background: var(--accent-500);
+    color: #0a2a00;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: var(--font-sans);
+    font-size: clamp(14px, 1.5vw, 16px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover {
+    background: #9BE564;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(126,217,87,0.35);
+  }
+
+  .btn-submit .arrow { font-size: 18px; }
+
+  /* Success message (hidden by default) */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: none; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .reg-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+/* ── SECTION ── */
+  .discover-section {
+    background: #eef2ee;
+    padding: 80px 24px 90px;
+    text-align: center;
+    color: #1a2a14;
+  }
+
+  .discover-inner {
+    max-width: var(--container-medium);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .section-label {
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5cb832;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .section-heading {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 10px;
+  }
+
+  .section-heading .green { color: #5cb832; }
+
+  .section-desc {
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: #778877;
+    font-style: italic;
+    margin-bottom: 44px;
+  }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .photo-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    cursor: default;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Gradient overlay */
+  .photo-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    padding: 18px 20px;
+    text-align: left;
+    color: white;
+  }
+
+  .photo-label strong {
+    display: block;
+    font-size: clamp(14px, 1.8vw, 18px);
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 3px;
+  }
+
+  .photo-label span {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+  }
+
+  /* ── INFO CARDS ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .info-card {
+    background: white;
+    border: 1px solid #dce8d4;
+    border-radius: 10px;
+    padding: 22px 16px 20px;
+    text-align: center;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .info-card:hover {
+    box-shadow: 0 6px 20px rgba(94,184,50,0.12);
+    border-color: #b0d898;
+  }
+
+  .info-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+    color: #5cb832;
+  }
+
+  .info-card h4 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(12px, 1.3vw, 14px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .info-card p {
+    font-size: clamp(11px, 1.1vw, 12.5px);
+    color: #778877;
+    line-height: 1.65;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .photo-grid { grid-template-columns: 1fr; }
+    .info-grid  { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 400px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+
+  /* ══ FOOTER ══ */
+  .footer {
+    background: linear-gradient(160deg, #092010 0%, #0b2210 60%, #0e2a14 100%);
+    color: white;
+    padding: 70px 24px 0;
+  }
+
+  .footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ── TOP ROW: 3 columns ── */
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.4fr;
+    gap: 48px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Brand column */
+  .brand-col {}
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .logo-badge {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #3a7a1e, #7ED957);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #0a2a00;
+    font-weight: 900;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: white;
+    line-height: 1;
+  }
+
+  .brand-name .green { color: #7ED957; }
+
+  .brand-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    max-width: 320px;
+    font-style: italic;
+  }
+
+  /* Links & Contact columns */
+  .footer-col-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7ED957;
+    margin-bottom: 18px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links li a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .footer-links li a::before {
+    content: '→';
+    font-size: 11px;
+    color: #5cb832;
+    opacity: 0.7;
+  }
+
+  .footer-links li a:hover { color: #9BE564; }
+
+  /* Contact items */
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  .contact-icon {
+    color: #7ED957;
+    font-size: 15px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .contact-item a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item a:hover { color: #9BE564; }
+
+  /* ── SPONSORS ROW ── */
+  .footer-sponsors {
+    padding: 44px 0 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+
+  .sponsors-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 28px;
+  }
+
+  .sponsors-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px 48px;
+  }
+
+  /* Sponsor placeholder — replace img src with real logos */
+  .sponsor-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    filter: brightness(0) invert(1);
+  }
+
+  .sponsor-item:hover { opacity: 0.9; }
+
+  .sponsor-item img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Text fallback for sponsors without logo */
+  .sponsor-text {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .sponsor-text:hover { opacity: 1; }
+
+  /* ── BOTTOM BAR ── */
+  .footer-bottom {
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-bottom p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom a:hover { color: #7ED957; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .brand-desc { max-width: 100%; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="bg bg1"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="bg bg4"></div>
+    <div class="green-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-subtitle">Universidad de Nariño — San Juan de Pasto, Colombia</div>
+      <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span></div>
+      <div class="hero-year">— 2026 —</div>
+      <div class="hero-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica</div>
+      <div class="hero-date">📅 October 5 – 9, 2026 &nbsp;&nbsp; 📍 San Juan de Pasto, Nariño, Colombia</div>
+      <div class="hero-buttons">
+        <a href="#reg-section" class="btn-register">Register Now</a>
+        <a href="#" class="btn-announcement">First Announcement</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="about-section">
+    <div class="about-inner">
+
+      <div class="about-label">First Announcement</div>
+      <h2 class="about-heading">About the <span class="green">Event</span></h2>
+      <p class="about-desc">
+        ALTENCOA (Álgebra, Lógica, Teoría de Números, Combinatoria y sus Aplicaciones) es un
+        evento académico internacional organizado por el Departamento de Matemáticas y
+        Estadística de la Universidad de Nariño, reuniendo a investigadores de diversas áreas
+        de las matemáticas.
+      </p>
+
+      <div class="about-grid">
+
+        <!-- Poster -->
+        <div class="poster-col">
+          <div class="poster-card">
+            <img data-img="poster"
+              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+              alt="ALTENCOA11 2026 Poster"
+            />
+            <div class="poster-card-label">ALTENCOA11 · 2026</div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-col">
+          <div class="research-heading">Research Areas</div>
+
+          <div class="areas-grid">
+            <div class="area-card"><div class="area-icon">∑</div> Álgebra</div>
+            <div class="area-card"><div class="area-icon">ℕ</div> Teoría de Números</div>
+            <div class="area-card"><div class="area-icon">∧</div> Combinatoria</div>
+            <div class="area-card"><div class="area-icon">◈</div> Aplicaciones</div>
+            <div class="area-card"><div class="area-icon">△</div> Geometría Algebraica</div>
+            <div class="area-card"><div class="area-icon">⊕</div> Análisis de Datos y Sistemas Complejos</div>
+          </div>
+
+          <div class="organizer-box">
+            <div class="org-title">Organized by</div>
+            <div class="org-details">
+              Departamento de Matemáticas y Estadística<br>
+              Universidad de Nariño<br>
+              San Juan de Pasto, Nariño, Colombia<br>
+              e-mail: <a href="mailto:altencoa@udenar.edu.co">altencoa@udenar.edu.co</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<section class="committee-section">
+  <div class="committee-inner">
+
+    <div class="section-label">Committees</div>
+    <h2 class="section-heading"><span class="green">Scientific</span>  <span class="green">Committee</span></h2>
+    <p class="section-desc">Distinguished researchers from around the world leading each area</p>
+
+    <!-- Tabs container (rendered by JS) -->
+    <div id="committee-tabs" class="tabs" role="tablist" aria-label="Committee areas"></div>
+
+    <!-- Panels container (rendered by JS) -->
+    <div id="committee-panels"></div>
+
+  </div>
+</section>
+
+
+<section id="reg-section" class="reg-section">
+  <div class="reg-inner">
+
+    <div class="section-label">Registration</div>
+    <h2 class="section-heading"> <span class="green">Reserve Your </span><span class="green">Spot</span></h2>
+
+    <div class="reg-grid">
+
+      <!-- ── LEFT: Info ── -->
+      <div class="reg-pitch">
+
+        <p class="pitch-text">
+          Join mathematicians, researchers, and academics from over
+          30 countries at one of the most important algebra and
+          number theory events in Latin America.
+        </p>
+
+        <!-- Benefits — add/remove items freely -->
+        <ul class="benefits">
+          <li><span class="benefit-icon">✓</span> Access to all talks, workshops and sessions</li>
+          <li><span class="benefit-icon">✓</span> Official event certificate</li>
+          <li><span class="benefit-icon">✓</span> Conference proceedings &amp; digital materials</li>
+          <li><span class="benefit-icon">✓</span> International networking opportunities</li>
+          <li><span class="benefit-icon">✓</span> Post-event recordings access</li>
+        </ul>
+
+        <!-- Important Dates — edit dates here -->
+        <div class="dates-card">
+          <div class="dates-title">Important Dates</div>
+          <ul class="dates-list">
+            <li>Early registration deadline: <strong>July 31, 2026</strong></li>
+            <li>Abstract submission: <strong>August 15, 2026</strong></li>
+            <li>Event: <strong>October 5–9, 2026</strong></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT: Form ── -->
+      <!--
+        ╔══════════════════════════════════════════════════════════════╗
+        ║  GOOGLE FORMS INTEGRATION                                    ║
+        ║  1. Create your Google Form                                  ║
+        ║  2. Get the pre-filled link: "Get pre-filled link"          ║
+        ║  3. Copy each field's "entry.XXXXXXXX" name                 ║
+        ║  4. Replace the `name` attributes below with those values   ║
+        ║  5. Set action="" to your Google Form action URL            ║
+        ║     (Forms URL ending in /formResponse)                     ║
+        ╚══════════════════════════════════════════════════════════════╝
+      -->
+      <div class="reg-form-card">
+        <form
+          id="reg-form"
+          action="YOUR_GOOGLE_FORM_ACTION_URL_HERE"
+          method="POST"
+          target="hidden-iframe"
+          onsubmit="handleSubmit(event)"
+        >
+
+          <!-- Full Name — Google Forms name: entry.XXXXXXXXX -->
+          <div class="field">
+            <span class="field-icon">👤</span>
+            <input
+              type="text"
+              name="entry.XXXXXXXXX"
+              placeholder="Full name *"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <!-- Email — Google Forms name: entry.XXXXXXXXX -->
+          <div class="field">
+            <span class="field-icon">✉</span>
+            <input
+              type="email"
+              name="entry.XXXXXXXXX"
+              placeholder="Email address *"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <!-- Institution — Google Forms name: entry.XXXXXXXXX -->
+          <div class="field">
+            <span class="field-icon">🏛</span>
+            <input
+              type="text"
+              name="entry.XXXXXXXXX"
+              placeholder="Institution / University *"
+              required
+              autocomplete="organization"
+            />
+          </div>
+
+          <!-- Participant Type — Google Forms name: entry.XXXXXXXXX -->
+          <div class="field">
+            <span class="field-icon">🎓</span>
+            <select name="entry.XXXXXXXXX" required>
+              <option value="" disabled selected>Participant type *</option>
+              <option value="Professor">Professor / Researcher</option>
+              <option value="PhD Student">PhD Student</option>
+              <option value="Master Student">Master Student</option>
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Independent">Independent Researcher</option>
+            </select>
+          </div>
+
+          <!-- Research Area — Google Forms name: entry.XXXXXXXXX -->
+          <div class="field">
+            <span class="field-icon">📐</span>
+            <select name="entry.XXXXXXXXX" required>
+              <option value="" disabled selected>Research area of interest *</option>
+              <option value="Algebra">Algebra</option>
+              <option value="Number Theory">Number Theory</option>
+              <option value="Combinatorics">Combinatorics</option>
+              <option value="Applications">Applications</option>
+              <option value="Algebraic Geometry">Algebraic Geometry</option>
+              <option value="Data Analysis">Data Analysis &amp; Complex Systems</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            Register Now <span class="arrow">→</span>
+          </button>
+
+        </form>
+
+        <!-- Success message shown after submit -->
+        <div class="success-msg" id="success-msg">
+          ✅ Registration received! We'll be in touch shortly.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="discover-section">
+  <div class="discover-inner">
+
+    <div class="section-label">Discover</div>
+    <h2 class="section-heading">Pasto — <span class="green">Nariño</span></h2>
+    <p class="section-desc">A land of mountains, culture, and academic excellence in southern Colombia</p>
+
+    <!-- Photo cards -->
+    <div class="photo-grid">
+
+      <div class="photo-card">
+        <img data-img="photo1"
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+          alt="San Juan de Pasto"
+          loading="lazy"
+        />
+        <div class="photo-label">
+          <strong>San Juan de Pasto</strong>
+          <span>Capital de Nariño, Colombia</span>
+        </div>
+      </div>
+
+      <div class="photo-card">
+        <img data-img="photo2"
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+          alt="Universidad de Nariño"
+          loading="lazy"
+        />
+        <div class="photo-label">
+          <strong>Universidad de Nariño</strong>
+          <span>Sede del evento ALTENCOA11</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Info cards -->
+    <div class="info-grid">
+
+      <div class="info-card">
+        <span class="info-icon">🏔</span>
+        <h4>Volcán Galeras</h4>
+        <p>One of Colombia's most active volcanoes, offering breathtaking views from the city of Pasto at 2,927m above sea level.</p>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">🎓</span>
+        <h4>Universidad de Nariño</h4>
+        <p>Founded in 1904, it is the main public university in southern Colombia, with a strong tradition in mathematics and sciences.</p>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">📍</span>
+        <h4>San Juan de Pasto</h4>
+        <p>Known as "La Ciudad Sorpresa de Nariño", Pasto is the capital of Nariño, famous for its colonial architecture and cultural heritage.</p>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">🍽</span>
+        <h4>Gastronomía Nariñense</h4>
+        <p>Discover unique regional cuisine including cuy, empanadas de añejo, and the traditional hervidos — a warm welcome for every visitor.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+
+    <!-- ── TOP: Brand · Links · Contact ── -->
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="brand-col">
+        <div class="brand-logo">
+          <img style="width: 40px;" id="footer" alt="logo" loading="lazy">
+          <div class="brand-name">ALTENCOA<span class="green">11</span></div>
+        </div>
+        <p class="brand-desc">
+          Álgebra, Lógica, Teoría de Números, Combinatoria y sus Aplicaciones.
+          Un evento académico internacional en la Universidad de Nariño.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Announcement</a></li>
+          <li><a href="#">Committees</a></li>
+          <li><a href="#">Registration</a></li>
+          <li><a href="#">Nariño</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="contact-items">
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <a href="mailto:altencoa@udenar.edu.co">altencoa@udenar.edu.co</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <a href="mailto:matematicas@udenar.edu.co">matematicas@udenar.edu.co</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <span>+57 (2) 7311449</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <span>Universidad de Nariño,<br>San Juan de Pasto, Colombia</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── SPONSORS ── -->
+    <div class="footer-sponsors">
+      <div class="sponsors-label">Apoyan</div>
+      <div class="sponsors-row">
+
+        <!--
+          Para agregar logos reales:
+          <div class="sponsor-item">
+            <img src="URL_DEL_LOGO" alt="Nombre del patrocinador" />
+          </div>
+
+          Por ahora se muestran nombres como placeholder:
+        -->
+
+        <div class="sponsor-text">Universidad de Nariño</div>
+        <div class="sponsor-text">Colciencias</div>
+        <div class="sponsor-text">MinCiencias</div>
+        <div class="sponsor-text">SBMAC</div>
+        <div class="sponsor-text">RedCLARA</div>
+
+      </div>
+    </div>
+
+    <!-- ── BOTTOM BAR ── -->
+    <div class="footer-bottom">
+      <p>
+        © 2026 ALTENCOA11 — Universidad de Nariño. All rights reserved.
+        &nbsp;·&nbsp;
+        <a href="#">Privacy Policy</a>
+        &nbsp;·&nbsp;
+        <a href="#">Contact</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+const logo = "https://github.com/ChristianSalazar12/altencoa11/blob/f96e8cd049a0aa453a9dacb316aaee38f4f34966/assets/img/altenua.png?raw=true"
+document.getElementById('footer').src = logo;
+
+
+  function switchTab(btn, panelId) {
+    // Deactivate all tabs & panels
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+    // Activate clicked
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('panel-' + panelId);
+    if (panel) panel.classList.add('active');
+  }
+
+  // Committee data (arrays) to make section scalable and maintainable
+  const committees = [
+    {
+      id: 'algebra',
+      label: 'Algebra',
+      members: [
+        { initials: 'JS', name: 'Dr. John Smith', institution: 'MIT', location: 'Cambridge, USA' },
+        { initials: 'LG', name: 'Dra. Laura García', institution: 'Universidad de los Andes', location: 'Bogotá, Colombia' },
+        { initials: 'PD', name: 'Dr. Pierre Dubois', institution: 'Université Paris-Saclay', location: 'Paris, France' },
+        { initials: 'MR', name: 'Dra. María Rodríguez', institution: 'Universidad Nacional de Colombia', location: 'Bogotá, Colombia' }
+      ]
+    },
+    {
+      id: 'number',
+      label: 'Number Theory',
+      members: [
+        { initials: 'AK', name: 'Prof. Akira Kimura', institution: 'University of Tokyo', location: 'Tokyo, Japan' },
+        { initials: 'HM', name: 'Dr. Hans Müller', institution: 'Universität Bonn', location: 'Bonn, Germany' },
+        { initials: 'SC', name: 'Dra. Sofia Castro', institution: 'Universidad de Chile', location: 'Santiago, Chile' }
+      ]
+    },
+    {
+      id: 'comb',
+      label: 'Combinatorics',
+      members: [
+        { initials: 'RV', name: 'Dr. Roberto Vargas', institution: 'IMPA', location: 'Río de Janeiro, Brazil' },
+        { initials: 'EP', name: 'Dra. Elena Petrov', institution: 'Moscow State University', location: 'Moscow, Russia' },
+        { initials: 'CT', name: 'Prof. Carlos Torres', institution: 'Universidad de Nariño', location: 'Pasto, Colombia' }
+      ]
+    },
+    {
+      id: 'apps',
+      label: 'Applications',
+      members: [
+        { initials: 'NL', name: 'Dra. Nathalie Laurent', institution: 'École Polytechnique', location: 'Palaiseau, France' },
+        { initials: 'JP', name: 'Dr. Jorge Parra', institution: 'Universidad del Valle', location: 'Cali, Colombia' },
+        { initials: 'WC', name: 'Prof. Wei Chen', institution: 'Peking University', location: 'Beijing, China' }
+      ]
+    },
+    {
+      id: 'invited',
+      label: 'Invited Area',
+      members: [
+        { initials: 'AM', name: 'Dr. Alejandro Mora', institution: 'Universidad de Antioquia', location: 'Medellín, Colombia' },
+        { initials: 'IB', name: 'Dra. Isabela Braga', institution: 'Universidade de São Paulo', location: 'São Paulo, Brazil' }
+      ]
+    },
+    {
+      id: 'data',
+      label: 'Data Analysis & Complex Systems',
+      members: [
+        { initials: 'DH', name: 'Prof. Diana Herrera', institution: 'Universidad Nacional', location: 'Bogotá, Colombia' },
+        { initials: 'TS', name: 'Dr. Thomas Schreiber', institution: 'TU Berlin', location: 'Berlin, Germany' },
+        { initials: 'YN', name: 'Dra. Yuki Nakamura', institution: 'Kyoto University', location: 'Kyoto, Japan' }
+      ]
+    }
+  ];
+
+  function createMemberCard(m) {
+    const card = document.createElement('div');
+    card.className = 'member-card';
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
+    card.appendChild(avatar);
+
+    const name = document.createElement('div');
+    name.className = 'member-name';
+    name.textContent = m.name;
+    card.appendChild(name);
+
+    const inst = document.createElement('div');
+    inst.className = 'member-institution';
+    inst.textContent = m.institution;
+    card.appendChild(inst);
+
+    const loc = document.createElement('div');
+    loc.className = 'member-location';
+    loc.textContent = m.location;
+    card.appendChild(loc);
+
+    return card;
+  }
+
+  function renderCommittees() {
+    const tabs = document.getElementById('committee-tabs');
+    const panelsContainer = document.getElementById('committee-panels');
+    tabs.innerHTML = '';
+    panelsContainer.innerHTML = '';
+
+    committees.forEach((c, idx) => {
+      // Tab button
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (idx===0 ? ' active' : '');
+      btn.setAttribute('role','tab');
+      btn.setAttribute('aria-selected', idx===0 ? 'true' : 'false');
+      btn.textContent = c.label;
+      btn.addEventListener('click', () => switchTab(btn, c.id));
+      tabs.appendChild(btn);
+
+      // Panel
+      const panel = document.createElement('div');
+      panel.id = 'panel-' + c.id;
+      panel.className = 'tab-panel' + (idx===0 ? ' active' : '');
+     
+
+      c.members.forEach(m => panel.appendChild(createMemberCard(m)));
+
+      panelsContainer.appendChild(panel);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => renderCommittees());
+  
+</script>
+
+</body>
+</html>
