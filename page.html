@@ -264,7 +264,7 @@
   .poster-card img {
     width: 100%;
     display: block;
-    filter: hue-rotate(80deg) saturate(1.2) brightness(0.85);
+   
   }
 
   .poster-card-label {
@@ -653,6 +653,7 @@
     border: 1px solid var(--border);
     border-radius: calc(var(--card-radius) + 4px);
     padding: 26px 22px;
+  
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -661,6 +662,7 @@
   /* Field wrapper */
   .field {
     position: relative;
+    margin-top: 5px;
   }
 
   .field-icon {
@@ -1152,10 +1154,10 @@
       <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span></div>
       <div class="hero-year">— 2026 —</div>
       <div class="hero-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica</div>
-      <div class="hero-date">📅 October 5 – 9, 2026 &nbsp;&nbsp; 📍 San Juan de Pasto, Nariño, Colombia</div>
+      <div class="hero-date">📅 5 – 9 de octubre de 2026 &nbsp;&nbsp; 📍 San Juan de Pasto, Nariño, Colombia</div>
       <div class="hero-buttons">
-        <a href="#reg-section" class="btn-register">Register Now</a>
-        <a href="#" class="btn-announcement">First Announcement</a>
+        <a href="#reg-section" class="btn-register">Regístrate ahora</a>
+        <a href="#" class="btn-announcement">Primera convocatoria</a>
       </div>
     </div>
   </section>
@@ -1164,8 +1166,8 @@
   <section class="about-section">
     <div class="about-inner">
 
-      <div class="about-label">First Announcement</div>
-      <h2 class="about-heading">About the <span class="green">Event</span></h2>
+      <div class="about-label">Primera convocatoria</div>
+      <h2 class="about-heading">Acerca del <span class="green">evento</span></h2>
       <p class="about-desc">
         ALTENCOA (Álgebra, Lógica, Teoría de Números, Combinatoria y sus Aplicaciones) es un
         evento académico internacional organizado por el Departamento de Matemáticas y
@@ -1178,9 +1180,8 @@
         <!-- Poster -->
         <div class="poster-col">
           <div class="poster-card">
-            <img data-img="poster"
-              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
-              alt="ALTENCOA11 2026 Poster"
+            <img id="posterAbout"
+              alt="ALTENCOA11 2026 Poster" loading="lazy"
             />
             <div class="poster-card-label">ALTENCOA11 · 2026</div>
           </div>
@@ -1217,9 +1218,9 @@
 <section class="committee-section">
   <div class="committee-inner">
 
-    <div class="section-label">Committees</div>
-    <h2 class="section-heading"><span class="green">Scientific</span>  <span class="green">Committee</span></h2>
-    <p class="section-desc">Distinguished researchers from around the world leading each area</p>
+    <div class="section-label">Comités</div>
+    <h2 class="section-heading"><span class="green">Comité</span> <span class="green">Científico</span></h2>
+    <p class="section-desc">Investigadores destacados de todo el mundo liderando cada área</p>
 
     <!-- Tabs container (rendered by JS) -->
     <div id="committee-tabs" class="tabs" role="tablist" aria-label="Committee areas"></div>
@@ -1234,8 +1235,8 @@
 <section id="reg-section" class="reg-section">
   <div class="reg-inner">
 
-    <div class="section-label">Registration</div>
-    <h2 class="section-heading"> <span class="green">Reserve Your </span><span class="green">Spot</span></h2>
+    <div class="section-label">Inscripción</div>
+    <h2 class="section-heading"> <span class="green">Reserva </span><span class="green">tu cupo</span></h2>
 
     <div class="reg-grid">
 
@@ -1243,27 +1244,27 @@
       <div class="reg-pitch">
 
         <p class="pitch-text">
-          Join mathematicians, researchers, and academics from over
-          30 countries at one of the most important algebra and
-          number theory events in Latin America.
+          Únete a matemáticos, investigadores y académicos de más de
+          30 países en uno de los eventos más importantes de álgebra
+          y teoría de números en América Latina.
         </p>
 
         <!-- Benefits — add/remove items freely -->
         <ul class="benefits">
-          <li><span class="benefit-icon">✓</span> Access to all talks, workshops and sessions</li>
-          <li><span class="benefit-icon">✓</span> Official event certificate</li>
-          <li><span class="benefit-icon">✓</span> Conference proceedings &amp; digital materials</li>
-          <li><span class="benefit-icon">✓</span> International networking opportunities</li>
-          <li><span class="benefit-icon">✓</span> Post-event recordings access</li>
+          <li><span class="benefit-icon">✓</span> Acceso a todas las conferencias, talleres y sesiones</li>
+          <li><span class="benefit-icon">✓</span> Certificado oficial del evento</li>
+          <li><span class="benefit-icon">✓</span> Actas del congreso y materiales digitales</li>
+          <li><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
+          <li><span class="benefit-icon">✓</span> Acceso a grabaciones posteriores al evento</li>
         </ul>
 
         <!-- Important Dates — edit dates here -->
         <div class="dates-card">
-          <div class="dates-title">Important Dates</div>
+          <div class="dates-title">Fechas importantes</div>
           <ul class="dates-list">
-            <li>Early registration deadline: <strong>July 31, 2026</strong></li>
-            <li>Abstract submission: <strong>August 15, 2026</strong></li>
-            <li>Event: <strong>October 5–9, 2026</strong></li>
+            <li>Fecha límite de registro anticipado: <strong>31 de julio de 2026</strong></li>
+            <li>Envío de resúmenes: <strong>15 de agosto de 2026</strong></li>
+            <li>Evento: <strong>5–9 de octubre de 2026</strong></li>
           </ul>
         </div>
 
@@ -1296,7 +1297,7 @@
             <input
               type="text"
               name="entry.XXXXXXXXX"
-              placeholder="Full name *"
+              placeholder="Nombre completo *"
               required
               autocomplete="name"
             />
@@ -1308,7 +1309,7 @@
             <input
               type="email"
               name="entry.XXXXXXXXX"
-              placeholder="Email address *"
+              placeholder="Correo electrónico *"
               required
               autocomplete="email"
             />
@@ -1320,7 +1321,7 @@
             <input
               type="text"
               name="entry.XXXXXXXXX"
-              placeholder="Institution / University *"
+              placeholder="Institución / Universidad *"
               required
               autocomplete="organization"
             />
@@ -1330,12 +1331,12 @@
           <div class="field">
             <span class="field-icon">🎓</span>
             <select name="entry.XXXXXXXXX" required>
-              <option value="" disabled selected>Participant type *</option>
-              <option value="Professor">Professor / Researcher</option>
-              <option value="PhD Student">PhD Student</option>
-              <option value="Master Student">Master Student</option>
-              <option value="Undergraduate">Undergraduate</option>
-              <option value="Independent">Independent Researcher</option>
+              <option value="" disabled selected>Tipo de participante *</option>
+              <option value="Professor">Profesor / Investigador</option>
+              <option value="PhD Student">Estudiante de Doctorado</option>
+              <option value="Master Student">Estudiante de Maestría</option>
+              <option value="Undergraduate">Estudiante de Pregrado</option>
+              <option value="Independent">Investigador independiente</option>
             </select>
           </div>
 
@@ -1343,25 +1344,25 @@
           <div class="field">
             <span class="field-icon">📐</span>
             <select name="entry.XXXXXXXXX" required>
-              <option value="" disabled selected>Research area of interest *</option>
-              <option value="Algebra">Algebra</option>
-              <option value="Number Theory">Number Theory</option>
-              <option value="Combinatorics">Combinatorics</option>
-              <option value="Applications">Applications</option>
-              <option value="Algebraic Geometry">Algebraic Geometry</option>
-              <option value="Data Analysis">Data Analysis &amp; Complex Systems</option>
+              <option value="" disabled selected>Área de investigación *</option>
+              <option value="Algebra">Álgebra</option>
+              <option value="Number Theory">Teoría de Números</option>
+              <option value="Combinatorics">Combinatoria</option>
+              <option value="Applications">Aplicaciones</option>
+              <option value="Algebraic Geometry">Geometría algebraica</option>
+              <option value="Data Analysis">Análisis de Datos y Sistemas Complejos</option>
             </select>
           </div>
 
           <button type="submit" class="btn-submit">
-            Register Now <span class="arrow">→</span>
+            Registrarse <span class="arrow">→</span>
           </button>
 
         </form>
 
         <!-- Success message shown after submit -->
         <div class="success-msg" id="success-msg">
-          ✅ Registration received! We'll be in touch shortly.
+          ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
         </div>
       </div>
 
@@ -1373,9 +1374,9 @@
 <section class="discover-section">
   <div class="discover-inner">
 
-    <div class="section-label">Discover</div>
+    <div class="section-label">Descubre</div>
     <h2 class="section-heading">Pasto — <span class="green">Nariño</span></h2>
-    <p class="section-desc">A land of mountains, culture, and academic excellence in southern Colombia</p>
+    <p class="section-desc">Una tierra de montañas, cultura y excelencia académica en el sur de Colombia</p>
 
     <!-- Photo cards -->
     <div class="photo-grid">
@@ -1412,25 +1413,25 @@
       <div class="info-card">
         <span class="info-icon">🏔</span>
         <h4>Volcán Galeras</h4>
-        <p>One of Colombia's most active volcanoes, offering breathtaking views from the city of Pasto at 2,927m above sea level.</p>
+        <p>Uno de los volcanes más activos de Colombia, con vistas impresionantes desde la ciudad de Pasto a 2.927 m sobre el nivel del mar.</p>
       </div>
 
       <div class="info-card">
         <span class="info-icon">🎓</span>
         <h4>Universidad de Nariño</h4>
-        <p>Founded in 1904, it is the main public university in southern Colombia, with a strong tradition in mathematics and sciences.</p>
+        <p>Fundada en 1904, es la principal universidad pública del sur de Colombia, con una sólida tradición en matemáticas y ciencias.</p>
       </div>
 
       <div class="info-card">
         <span class="info-icon">📍</span>
         <h4>San Juan de Pasto</h4>
-        <p>Known as "La Ciudad Sorpresa de Nariño", Pasto is the capital of Nariño, famous for its colonial architecture and cultural heritage.</p>
+        <p>Conocida como "La Ciudad Sorpresa de Nariño", Pasto es la capital de Nariño, famosa por su arquitectura colonial y patrimonio cultural.</p>
       </div>
 
       <div class="info-card">
         <span class="info-icon">🍽</span>
         <h4>Gastronomía Nariñense</h4>
-        <p>Discover unique regional cuisine including cuy, empanadas de añejo, and the traditional hervidos — a warm welcome for every visitor.</p>
+        <p>Descubre la gastronomía regional única, incluyendo cuy, empanadas de añejo y los tradicionales hervidos — una cálida bienvenida para cada visitante.</p>
       </div>
 
     </div>
@@ -1458,19 +1459,19 @@
 
       <!-- Quick Links -->
       <div>
-        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-col-title">Enlaces rápidos</div>
         <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Announcement</a></li>
-          <li><a href="#">Committees</a></li>
-          <li><a href="#">Registration</a></li>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Convocatoria</a></li>
+          <li><a href="#">Comités</a></li>
+          <li><a href="#">Inscripción</a></li>
           <li><a href="#">Nariño</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
       <div>
-        <div class="footer-col-title">Contact</div>
+        <div class="footer-col-title">Contacto</div>
         <div class="contact-items">
           <div class="contact-item">
             <span class="contact-icon">✉</span>
@@ -1504,11 +1505,11 @@
     <!-- ── BOTTOM BAR ── -->
     <div class="footer-bottom">
       <p>
-        © 2026 ALTENCOA11 — Universidad de Nariño. All rights reserved.
+        © 2026 ALTENCOA11 — Universidad de Nariño. Todos los derechos reservados.
         &nbsp;·&nbsp;
-        <a href="#">Privacy Policy</a>
+        <a href="#">Política de privacidad</a>
         &nbsp;·&nbsp;
-        <a href="#">Contact</a>
+        <a href="#">Contacto</a>
       </p>
     </div>
 
@@ -1522,6 +1523,9 @@ document.getElementById('footer').src = logo;
 
 const apoyan = "https://raw.githubusercontent.com/ChristianSalazar12/altencoa11/refs/heads/develop/assets/img/Apoyan.png?raw=true"
 document.getElementById('apoyan').src = apoyan;
+
+const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773245121/Poster_ALTENCOA11-2026-convertido-a-peque%C3%B1o_lb5ohn.jpg"
+document.getElementById('posterAbout').src = posterAboutImg;
 
 
   function switchTab(btn, panelId) {
@@ -1539,60 +1543,59 @@ document.getElementById('apoyan').src = apoyan;
     if (panel) panel.classList.add('active');
   }
 
-  // Committee data (arrays) to make section scalable and maintainable
+  // Committee data (updated)
   const committees = [
     {
       id: 'algebra',
       label: 'Algebra',
       members: [
-        { initials: 'JS', name: 'Dr. John Smith', institution: 'MIT', location: 'Cambridge, USA' },
-        { initials: 'LG', name: 'Dra. Laura García', institution: 'Universidad de los Andes', location: 'Bogotá, Colombia' },
-        { initials: 'PD', name: 'Dr. Pierre Dubois', institution: 'Université Paris-Saclay', location: 'Paris, France' },
-        { initials: 'MR', name: 'Dra. María Rodríguez', institution: 'Universidad Nacional de Colombia', location: 'Bogotá, Colombia' }
+        { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
+        { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
+        { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
       ]
     },
     {
       id: 'number',
       label: 'Number Theory',
       members: [
-        { initials: 'AK', name: 'Prof. Akira Kimura', institution: 'University of Tokyo', location: 'Tokyo, Japan' },
-        { initials: 'HM', name: 'Dr. Hans Müller', institution: 'Universität Bonn', location: 'Bonn, Germany' },
-        { initials: 'SC', name: 'Dra. Sofia Castro', institution: 'Universidad de Chile', location: 'Santiago, Chile' }
+        { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
+        { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
+        { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
       ]
     },
     {
       id: 'comb',
       label: 'Combinatorics',
       members: [
-        { initials: 'RV', name: 'Dr. Roberto Vargas', institution: 'IMPA', location: 'Río de Janeiro, Brazil' },
-        { initials: 'EP', name: 'Dra. Elena Petrov', institution: 'Moscow State University', location: 'Moscow, Russia' },
-        { initials: 'CT', name: 'Prof. Carlos Torres', institution: 'Universidad de Nariño', location: 'Pasto, Colombia' }
+        { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
+        { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
+        { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
       ]
     },
     {
       id: 'apps',
       label: 'Applications',
       members: [
-        { initials: 'NL', name: 'Dra. Nathalie Laurent', institution: 'École Polytechnique', location: 'Palaiseau, France' },
-        { initials: 'JP', name: 'Dr. Jorge Parra', institution: 'Universidad del Valle', location: 'Cali, Colombia' },
-        { initials: 'WC', name: 'Prof. Wei Chen', institution: 'Peking University', location: 'Beijing, China' }
+        { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
+        { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
       ]
     },
     {
-      id: 'invited',
-      label: 'Invited Area',
+      id: 'alg-geom',
+      label: 'Algebraic Geometry',
       members: [
-        { initials: 'AM', name: 'Dr. Alejandro Mora', institution: 'Universidad de Antioquia', location: 'Medellín, Colombia' },
-        { initials: 'IB', name: 'Dra. Isabela Braga', institution: 'Universidade de São Paulo', location: 'São Paulo, Brazil' }
+        { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
+        { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
+        { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
       ]
     },
     {
       id: 'data',
       label: 'Data Analysis & Complex Systems',
       members: [
-        { initials: 'DH', name: 'Prof. Diana Herrera', institution: 'Universidad Nacional', location: 'Bogotá, Colombia' },
-        { initials: 'TS', name: 'Dr. Thomas Schreiber', institution: 'TU Berlin', location: 'Berlin, Germany' },
-        { initials: 'YN', name: 'Dra. Yuki Nakamura', institution: 'Kyoto University', location: 'Kyoto, Japan' }
+        { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
+        { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
+        { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'Francia' }
       ]
     }
   ];
