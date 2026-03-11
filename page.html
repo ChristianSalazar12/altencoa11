@@ -938,7 +938,7 @@
   }
 
   /* Brand column */
-  .brand-col {}
+
 
   .brand-logo {
     display: flex;
@@ -1085,9 +1085,8 @@
   .sponsor-item:hover { opacity: 0.9; }
 
   .sponsor-item img {
-    height: 36px;
-    width: auto;
-    object-fit: contain;
+    height: 56px;
+    width: 900px;
     display: block;
   }
 
@@ -1497,24 +1496,9 @@
     <!-- ── SPONSORS ── -->
     <div class="footer-sponsors">
       <div class="sponsors-label">Apoyan</div>
-      <div class="sponsors-row">
-
-        <!--
-          Para agregar logos reales:
-          <div class="sponsor-item">
-            <img src="URL_DEL_LOGO" alt="Nombre del patrocinador" />
+          <div class="">
+            <img style="width:100%;" id="apoyan" alt="Nombre del patrocinador" loading="lazy"/>
           </div>
-
-          Por ahora se muestran nombres como placeholder:
-        -->
-
-        <div class="sponsor-text">Universidad de Nariño</div>
-        <div class="sponsor-text">Colciencias</div>
-        <div class="sponsor-text">MinCiencias</div>
-        <div class="sponsor-text">SBMAC</div>
-        <div class="sponsor-text">RedCLARA</div>
-
-      </div>
     </div>
 
     <!-- ── BOTTOM BAR ── -->
@@ -1535,6 +1519,9 @@
 <script>
 const logo = "https://github.com/ChristianSalazar12/altencoa11/blob/f96e8cd049a0aa453a9dacb316aaee38f4f34966/assets/img/altenua.png?raw=true"
 document.getElementById('footer').src = logo;
+
+const apoyan = "https://raw.githubusercontent.com/ChristianSalazar12/altencoa11/refs/heads/develop/assets/img/Apoyan.png?raw=true"
+document.getElementById('apoyan').src = apoyan;
 
 
   function switchTab(btn, panelId) {
