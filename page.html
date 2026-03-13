@@ -79,13 +79,13 @@
     inset: 0;
     background-size: cover;
     background-position: center;
-    filter: brightness(38%) saturate(1.4) hue-rotate(80deg);
+    filter: brightness(58%) saturate(1.1) hue-rotate(20deg);
   }
 
-  .bg1 { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee'); animation: fade1 20s infinite; }
-  .bg2 { background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e'); animation: fade2 20s infinite; }
-  .bg3 { background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470'); animation: fade3 20s infinite; }
-  .bg4 { background-image: url('https://images.unsplash.com/photo-1491553895911-0055eca6402d'); animation: fade4 20s infinite; }
+  .bg1 { background-image: url('https://www.udenar.edu.co/recursos/wp-content/uploads/2016/11/foto-facien.jpg'); animation: fade1 20s infinite; }
+  .bg2 { background-image: url('https://www.udenar.edu.co/recursos/wp-content/uploads/2020/04/estudiantes-udenar-01.jpg'); animation: fade2 20s infinite; }
+  .bg3 { background-image: url('https://lh3.googleusercontent.com/p/AF1QipNPDTY-Mtt4QkxkIbv_8pyIb2az8q9IfJ-Cy2to=s680-w680-h510-rwhttps://images.unsplash.com/photo-1501785888041-af3ef285b470'); animation: fade3 20s infinite; }
+  .bg4 { background-image: url('https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg'); animation: fade4 20s infinite; }
 
   @keyframes fade1 { 0%,25%{opacity:1} 26%,100%{opacity:0} }
   @keyframes fade2 { 0%,25%{opacity:0} 26%,50%{opacity:1} 51%,100%{opacity:0} }
@@ -123,6 +123,7 @@
     line-height: 1;
     letter-spacing: 2px;
     color: white;
+    white-space: nowrap;
   }
 
   .hero-title .green { color: #7ED957; }
@@ -133,6 +134,16 @@
     color: var(--accent-500);
     letter-spacing: 6px;
     margin: 10px 0;
+  }
+
+  /* Inline year when placed inside the title to prevent wrapping */
+  .hero-year-inline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--accent-500);
+    letter-spacing: 6px;
+    margin-left: 8px;
+    vertical-align: middle;
   }
 
   .hero-topics {
@@ -254,7 +265,7 @@
   }
 
   .poster-card {
-    width: clamp(160px, 22vw, 200px);
+    width: clamp(400px, 22vw, 250px);
     border-radius: var(--card-radius);
     overflow: hidden;
     box-shadow: var(--shadow-strong);
@@ -364,11 +375,19 @@
     .hero-buttons { flex-direction: column; align-items: center; }
     .btn-register, .btn-announcement { width: 230px; text-align: center; }
     .areas-grid { grid-template-columns: 1fr; }
-    .about-grid { flex-direction: column; align-items: center; }
+    .about-grid { flex-direction: column; align-items: center; gap: 20px; }
     .info-col { text-align: center; }
     .area-card { justify-content: center; }
     .organizer-box { text-align: center; }
     .research-heading { text-align: center; }
+
+    /* About section responsive tweaks */
+    .about-inner { padding: 0 12px; }
+    .about-desc { max-width: 100%; padding: 0 6px; text-align: center; }
+    .poster-col { display: flex; justify-content: center; width: 100%; }
+    .poster-card { width: 100%; max-width: 420px; }
+    .poster-card img { width: 100%; height: auto; aspect-ratio: auto; display: block; }
+    .poster-card-label { text-align: center; }
   }
    /* ── SECTION ── */
   .committee-section {
@@ -487,7 +506,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     color: #0a2a00;
     flex-shrink: 0;
@@ -864,6 +883,20 @@
     font-style: italic;
   }
 
+  .photo-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background 0.15s, transform 0.12s;
+  }
+  .photo-more:hover { background: rgba(126,217,87,0.95); color: #0a2a00; transform: translateY(-2px); }
+
   /* ── INFO CARDS ── */
   .info-grid {
     display: grid;
@@ -1151,12 +1184,11 @@
 
     <div class="hero-content">
       <div class="hero-subtitle">Universidad de Nariño — San Juan de Pasto, Colombia</div>
-      <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span></div>
-      <div class="hero-year">— 2026 —</div>
+      <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span><span class="hero-year-inline"> — 2026 —</span></div>
       <div class="hero-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica</div>
       <div class="hero-date">📅 5 – 9 de octubre de 2026 &nbsp;&nbsp; 📍 San Juan de Pasto, Nariño, Colombia</div>
       <div class="hero-buttons">
-        <a href="#reg-section" class="btn-register">Regístrate ahora</a>
+        <a href="#reg-section" class="btn-register" title="Ir a Inscripción" aria-label="Ir a la sección de inscripción" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Regístrate ahora</a>
         <a href="#" class="btn-announcement">Primera convocatoria</a>
       </div>
     </div>
@@ -1168,11 +1200,7 @@
 
       <div class="about-label">Primera convocatoria</div>
       <h2 class="about-heading">Acerca del <span class="green">evento</span></h2>
-      <p class="about-desc">
-        ALTENCOA (Álgebra, Lógica, Teoría de Números, Combinatoria y sus Aplicaciones) es un
-        evento académico internacional organizado por el Departamento de Matemáticas y
-        Estadística de la Universidad de Nariño, reuniendo a investigadores de diversas áreas
-        de las matemáticas.
+      <p id="aboutText" class="about-desc">
       </p>
 
       <div class="about-grid">
@@ -1285,83 +1313,74 @@
       <div class="reg-form-card">
         <form
           id="reg-form"
-          action="YOUR_GOOGLE_FORM_ACTION_URL_HERE"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
           method="POST"
           target="hidden-iframe"
           onsubmit="handleSubmit(event)"
         >
 
-          <!-- Full Name — Google Forms name: entry.XXXXXXXXX -->
+          <!-- Nombre -->
           <div class="field">
             <span class="field-icon">👤</span>
-            <input
-              type="text"
-              name="entry.XXXXXXXXX"
-              placeholder="Nombre completo *"
-              required
-              autocomplete="name"
-            />
+            <input type="text" name="entry.1503609734" placeholder="Nombre completo *" required autocomplete="given-name"/>
           </div>
-
-          <!-- Email — Google Forms name: entry.XXXXXXXXX -->
+ 
+          <!-- Apellido -->
+          <div class="field">
+            <span class="field-icon">👤</span>
+            <input type="text" name="entry.1479821263" placeholder="Apellido *" required autocomplete="family-name"/>
+          </div>
+ 
+          <!-- Email -->
           <div class="field">
             <span class="field-icon">✉</span>
-            <input
-              type="email"
-              name="entry.XXXXXXXXX"
-              placeholder="Correo electrónico *"
-              required
-              autocomplete="email"
-            />
+            <input type="email" name="entry.200075436" placeholder="Correo electrónico *" required autocomplete="email"/>
           </div>
-
-          <!-- Institution — Google Forms name: entry.XXXXXXXXX -->
+ 
+          <!-- Institución -->
           <div class="field">
             <span class="field-icon">🏛</span>
-            <input
-              type="text"
-              name="entry.XXXXXXXXX"
-              placeholder="Institución / Universidad *"
-              required
-              autocomplete="organization"
-            />
+            <input type="text" name="entry.895542888" placeholder="Institución / Universidad *" required autocomplete="organization"/>
           </div>
-
-          <!-- Participant Type — Google Forms name: entry.XXXXXXXXX -->
+ 
+          <!-- País -->
           <div class="field">
-            <span class="field-icon">🎓</span>
-            <select name="entry.XXXXXXXXX" required>
+            <span class="field-icon">🌎</span>
+            <input type="text" name="entry.1803685710" placeholder="País *" required autocomplete="country-name"/>
+          </div>
+ 
+          <!-- Tipo de Participante -->
+          <div class="field">
+            <span class="field-icon">👥</span>
+            <select name="entry.921372150" required>
               <option value="" disabled selected>Tipo de participante *</option>
-              <option value="Professor">Profesor / Investigador</option>
-              <option value="PhD Student">Estudiante de Doctorado</option>
-              <option value="Master Student">Estudiante de Maestría</option>
-              <option value="Undergraduate">Estudiante de Pregrado</option>
-              <option value="Independent">Investigador independiente</option>
+              <option value="Estudiante de Pregrado Udenar">Estudiante de Pregrado Udenar</option>
+              <option value="Estudiante de Pregrado">Estudiante de Pregrado</option>
+              <option value="Estudiante de Postgrado">Estudiante de Postgrado</option>
+              <option value="Docente Universitario">Docente Universitario</option>
+              <option value="Docente">Docente</option>
+              <option value="Otro">Otro</option>
             </select>
           </div>
-
-          <!-- Research Area — Google Forms name: entry.XXXXXXXXX -->
+ 
+          <!-- Tipo de Participación -->
           <div class="field">
-            <span class="field-icon">📐</span>
-            <select name="entry.XXXXXXXXX" required>
-              <option value="" disabled selected>Área de investigación *</option>
-              <option value="Algebra">Álgebra</option>
-              <option value="Number Theory">Teoría de Números</option>
-              <option value="Combinatorics">Combinatoria</option>
-              <option value="Applications">Aplicaciones</option>
-              <option value="Algebraic Geometry">Geometría algebraica</option>
-              <option value="Data Analysis">Análisis de Datos y Sistemas Complejos</option>
+            <span class="field-icon">📊</span>
+            <select name="entry.323207977" required>
+              <option value="" disabled selected>Tipo de participación *</option>
+              <option value="asistente">Asistente</option>
+              <option value="ponente">Ponente</option>
+              <option value="poster">Póster</option>
             </select>
           </div>
-
-          <button type="submit" class="btn-submit">
+        
+          <button type="submit" class="btn-submit" id="submit-btn">
             Registrarse <span class="arrow">→</span>
           </button>
 
         </form>
 
-        <!-- Success message shown after submit -->
-        <div class="success-msg" id="success-msg">
+         <div class="success-msg" id="success-msg">
           ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
         </div>
       </div>
@@ -1383,25 +1402,27 @@
 
       <div class="photo-card">
         <img data-img="photo1"
-          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+          src="https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
           alt="San Juan de Pasto"
           loading="lazy"
         />
         <div class="photo-label">
           <strong>San Juan de Pasto</strong>
           <span>Capital de Nariño, Colombia</span>
+          <a class="photo-more" href="https://aventurecolombia.com/es/que-hacer-en-pasto/" target="_blank" rel="noopener noreferrer">Saber más</a>
         </div>
       </div>
 
       <div class="photo-card">
         <img data-img="photo2"
-          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+          src="https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
           alt="Universidad de Nariño"
           loading="lazy"
         />
         <div class="photo-label">
           <strong>Universidad de Nariño</strong>
           <span>Sede del evento ALTENCOA11</span>
+          <a class="photo-more" href="https://www.udenar.edu.co/resena-historica/" target="_blank" rel="noopener noreferrer">Saber más</a>
         </div>
       </div>
 
@@ -1518,14 +1539,17 @@
 
 
 <script>
-const logo = "https://github.com/ChristianSalazar12/altencoa11/blob/f96e8cd049a0aa453a9dacb316aaee38f4f34966/assets/img/altenua.png?raw=true"
+const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
 document.getElementById('footer').src = logo;
 
 const apoyan = "https://raw.githubusercontent.com/ChristianSalazar12/altencoa11/refs/heads/develop/assets/img/Apoyan.png?raw=true"
 document.getElementById('apoyan').src = apoyan;
 
-const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773245121/Poster_ALTENCOA11-2026-convertido-a-peque%C3%B1o_lb5ohn.jpg"
+const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773409588/postermejorado_ivnwp1.png"
 document.getElementById('posterAbout').src = posterAboutImg;
+
+const descriptionEvent="El grupo de investigación ALTENUA: Álgebra, Teoría de Números y Aplicaciones tiene el gusto de convocar a la onceava versión del Encuentro internacional de Álgebra, Teoría de Números, Combinatoria y Aplicaciones ALTENCOA11-2026, que tendrá lugar en la Universidad de Nariño, Pasto, Colombia, entre el 5 y el 9 de octubre de 2026."
+document.getElementById('aboutText').textContent = descriptionEvent;
 
 
   function switchTab(btn, panelId) {
@@ -1600,13 +1624,52 @@ document.getElementById('posterAbout').src = posterAboutImg;
     }
   ];
 
+  // Robust flag resolver: map names → ISO2, generate emoji, and search inside strings
+  (function(){
+    const countryNameToCode = {
+      'brasil': 'BR', 'brazil': 'BR',
+      'colombia': 'CO',
+      'méxico': 'MX', 'mexico': 'MX',
+      'chile': 'CL',
+      'estados unidos': 'US', 'usa': 'US', 'united states': 'US',
+      'francia': 'FR', 'france': 'FR',
+      'argentina': 'AR', 'perú': 'PE', 'peru': 'PE', 'ecuador': 'EC',
+      'venezuela': 'VE', 'uruguay': 'UY', 'paraguay': 'PY', 'bolivia': 'BO',
+      'méxico ': 'MX'
+    };
+
+    function isoToEmoji(iso) {
+      if (!iso || iso.length !== 2) return '';
+      return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+    }
+
+    window.getFlag = function(input) {
+      if (!input) return '';
+      const s = String(input).toLowerCase().trim();
+      // Direct exact key
+      if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
+      // Search for known country names inside the string
+      for (const name in countryNameToCode) {
+        if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
+      }
+      // Try simple heuristics: look for country-like words at end (e.g., ", Brasil")
+      const parts = s.split(/[,\-\/]/).map(p=>p.trim());
+      for (let i = parts.length-1; i >= 0; --i) {
+        const p = parts[i];
+        if (countryNameToCode[p]) return isoToEmoji(countryNameToCode[p]);
+      }
+      return '';
+    };
+  })();
+
   function createMemberCard(m) {
     const card = document.createElement('div');
     card.className = 'member-card';
 
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
-    avatar.textContent = m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
+    const flag = getFlag(m.location || m.institution);
+    avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
     card.appendChild(avatar);
 
     const name = document.createElement('div');
@@ -1656,6 +1719,18 @@ document.getElementById('posterAbout').src = posterAboutImg;
   }
 
   document.addEventListener('DOMContentLoaded', () => renderCommittees());
+
+  function handleSubmit(e) {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+ 
+    // Give the iframe time to receive the response, then show success
+    setTimeout(function () {
+      document.getElementById('reg-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }, 1800);
+  }
   
 </script>
 
