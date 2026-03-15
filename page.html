@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALTENCOA 11 — 2026</title>
+  <title>ALTENCOA 11 — Encuentro 2026</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Merriweather:wght@700&display=swap');
 
@@ -82,10 +82,10 @@
     filter: brightness(58%) saturate(1.1) hue-rotate(20deg);
   }
 
-  .bg1 { background-image: url('https://www.udenar.edu.co/recursos/wp-content/uploads/2016/11/foto-facien.jpg'); animation: fade1 20s infinite; }
-  .bg2 { background-image: url('https://www.udenar.edu.co/recursos/wp-content/uploads/2020/04/estudiantes-udenar-01.jpg'); animation: fade2 20s infinite; }
-  .bg3 { background-image: url('https://lh3.googleusercontent.com/p/AF1QipNPDTY-Mtt4QkxkIbv_8pyIb2az8q9IfJ-Cy2to=s680-w680-h510-rwhttps://images.unsplash.com/photo-1501785888041-af3ef285b470'); animation: fade3 20s infinite; }
-  .bg4 { background-image: url('https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg'); animation: fade4 20s infinite; }
+  .bg1 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773506396/_CMB1602_pili0z.png'); animation: fade1 20s infinite; }
+  .bg2 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773584439/_CMB8345__kmt9v4.webp'); animation: fade2 20s infinite; }
+  .bg3 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773506291/_CMB1647_bhkxpl.png'); animation: fade3 20s infinite; }
+  .bg4 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773506266/_CMB1663_vuewja.png'); animation: fade4 20s infinite; }
 
   @keyframes fade1 { 0%,25%{opacity:1} 26%,100%{opacity:0} }
   @keyframes fade2 { 0%,25%{opacity:0} 26%,50%{opacity:1} 51%,100%{opacity:0} }
@@ -147,17 +147,62 @@
   }
 
   .hero-topics {
-    font-size: clamp(13px, 1.8vw, 18px);
+    font-size: clamp(16px, 2.4vw, 22px);
     font-style: italic;
-    margin-bottom: 20px;
-    color: rgba(255,255,255,0.9);
+    margin-bottom: 18px;
+    color: rgba(255,255,255,0.95);
     line-height: 1.6;
   }
 
   .hero-date {
-    font-size: clamp(12px, 1.5vw, 15px);
-    margin-bottom: 32px;
-    color: rgba(255,255,255,0.85);
+    font-size: clamp(14px, 1.8vw, 16px);
+    margin-bottom: 24px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Prominent date / place card inside hero */
+  .hero-meta {
+    margin-top: 8px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .date-card {
+    background: rgba(0,0,0,0.44);
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 260px;
+    min-width: 220px;
+    max-width: 360px;
+  }
+
+  .date-card .date-main {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 4vw, 34px);
+    color: var(--accent-500);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .date-card .date-sub {
+    font-size: clamp(13px, 1.6vw, 15px);
+    color: rgba(255,255,255,0.95);
+    margin-top: 6px;
+  }
+
+  .date-card .location {
+    font-size: clamp(12px, 1.4vw, 14px);
+    color: rgba(255,255,255,0.9);
+    margin-top: 8px;
+    text-align: center;
   }
 
   .hero-buttons {
@@ -165,6 +210,7 @@
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 20px;
   }
 
   .btn-register {
@@ -245,7 +291,7 @@
     font-size: clamp(13px, 1.5vw, 15px);
     color: #556055;
     line-height: 1.85;
-    max-width: 620px;
+   
     margin: 0 auto 52px;
   }
 
@@ -265,7 +311,7 @@
   }
 
   .poster-card {
-    width: clamp(400px, 22vw, 250px);
+    width: clamp(420px, 22vw, 250px);
     border-radius: var(--card-radius);
     overflow: hidden;
     box-shadow: var(--shadow-strong);
@@ -349,6 +395,52 @@
     border: 1px solid #d8e8d0;
     border-radius: calc(var(--card-radius) - 2px);
     padding: 18px 20px;
+  }
+
+  /* Map card in About section */
+  .map-card {
+    margin-top: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: var(--shadow-strong);
+    border: 1px solid #e6efe0;
+    color: #1a2a14;
+  }
+
+  .map-card .dates-title { padding: 12px 16px; background: #f4fbf0; color: #2a3a24; font-weight:700; }
+  .map-frame { width: 100%; height: 100px; }
+  .map-frame iframe { width: 100%; height: 100%; border: 0; display:block; }
+
+  /* Benefits two-column grid */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 18px;
+    align-items: start;
+    margin-top: 8px;
+  }
+
+  .benefits-col { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+
+  @media (max-width: 720px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+    .map-frame { height: 180px; }
+  }
+
+  /* Reduce hero title on small screens so year remains visible */
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(32px, 9vw, 56px); white-space: normal; line-height: 1.05; }
+    .hero-year-inline { font-size: clamp(16px, 5vw, 26px); display: inline-block; margin-left: 6px; vertical-align: baseline; }
+  }
+
+  /* Tarifas grid: 3 columns on desktop, stack on mobile */
+  .tarif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+  .tarif-column { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px; }
+  .tarif-col-title { font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 8px; }
+
+  @media (max-width: 980px) {
+    .tarif-grid { grid-template-columns: 1fr; }
   }
 
   .org-title {
@@ -584,8 +676,8 @@
   /* Two-column layout */
   .reg-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 24px;
     align-items: start;
   }
 
@@ -640,6 +732,85 @@
     padding: 20px 22px;
   }
 
+  /* Wrapper for registration info boxes: dates, deadlines, tariffs */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .info-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px;
+    color: rgba(255,255,255,0.95);
+  }
+
+  /* Collapsible tarifas card */
+  .collapsible-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .collapsible-toggle:focus { outline: 2px solid rgba(126,217,87,0.18); border-radius: 6px; }
+
+  .collapsible-toggle .dates-title { margin-bottom: 0; }
+
+  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; }
+
+  .info-box .collapsible-content {
+    display: flex;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
+    opacity: 0;
+    padding-top: 0;
+  }
+
+  .info-box.open .collapsible-content {
+    max-height: 900px;
+    opacity: 1;
+    padding-top: 12px;
+  }
+
+  .info-box.open .collapsible-toggle .chev { transform: rotate(90deg); }
+
+  .info-box .tarifas-note { font-size:12px; color: rgba(255,255,255,0.9); margin-top:8px; }
+
+  /* Make the third box (tarifas) span full width under the first two */
+  .info-cards .info-box:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .info-box .dates-title { color: var(--accent); margin-bottom: 8px; }
+
+  .info-box ul { margin: 0; padding-left: 16px; }
+
+  @media (max-width: 980px) {
+    .info-cards { grid-template-columns: 1fr; }
+  }
+
+  /* Small styling for cost estimate shown in form */
+  .cost-estimate {
+    margin-top: 12px;
+    font-weight: 700;
+    color: var(--accent-500);
+    background: rgba(126,217,87,0.06);
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(126,217,87,0.14);
+  }
+
   .dates-title {
     font-size: 13px;
     font-weight: 700;
@@ -659,7 +830,13 @@
     font-size: clamp(12px, 1.3vw, 13px);
     color: rgba(255,255,255,0.65);
     line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .tarif-label { flex: 1 1 auto; color: rgba(255,255,255,0.75); }
+  .tarif-price { flex: 0 0 auto; margin-left: 12px; color: rgba(255,255,255,0.95); }
 
   .dates-list strong {
     color: white;
@@ -1185,8 +1362,25 @@
     <div class="hero-content">
       <div class="hero-subtitle">Universidad de Nariño — San Juan de Pasto, Colombia</div>
       <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span><span class="hero-year-inline"> — 2026 —</span></div>
-      <div class="hero-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica</div>
-      <div class="hero-date">📅 5 – 9 de octubre de 2026 &nbsp;&nbsp; 📍 San Juan de Pasto, Nariño, Colombia</div>
+      <div class="hero-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica · Análisis de Datos y Sistemas Complejos
+      </div>
+
+      <div class="hero-meta">
+        <div class="date-card" role="group" aria-label="Fechas principales">
+          <div class="date-main">5–9 Oct 2026</div>
+          <div class="date-sub">Conferencias, talleres y pósters</div>
+          <div class="location">San Juan de Pasto, Nariño — Colombia</div>
+        </div>
+
+        <div class="date-card" role="group" aria-label="Fechas clave">
+          <div class="date-sub" style="font-weight:800; opacity:0.95; font-size: 18px;">Fechas clave</div>
+          <ul style="list-style:none; padding:8px 0 0; margin:0; font-size:15px; color:rgba(255,255,255,0.9); text-align:left;">
+            <li><strong>Registro anticipado:</strong> 31 de julio de 2026</li>
+            <li><strong>Envío de resúmenes:</strong> 15 de agosto de 2026</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="hero-buttons">
         <a href="#reg-section" class="btn-register" title="Ir a Inscripción" aria-label="Ir a la sección de inscripción" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Regístrate ahora</a>
         <a href="#" class="btn-announcement">Primera convocatoria</a>
@@ -1200,6 +1394,7 @@
 
       <div class="about-label">Primera convocatoria</div>
       <h2 class="about-heading">Acerca del <span class="green">evento</span></h2>
+      <!-- Description text (rendered by JS) -->
       <p id="aboutText" class="about-desc">
       </p>
 
@@ -1209,7 +1404,7 @@
         <div class="poster-col">
           <div class="poster-card">
             <img id="posterAbout"
-              alt="ALTENCOA11 2026 Poster" loading="lazy"
+              alt="Póster ALTENCOA11 2026" loading="lazy"
             />
             <div class="poster-card-label">ALTENCOA11 · 2026</div>
           </div>
@@ -1217,7 +1412,7 @@
 
         <!-- Info -->
         <div class="info-col">
-          <div class="research-heading">Research Areas</div>
+          <div class="research-heading">Áreas de investigación</div>
 
           <div class="areas-grid">
             <div class="area-card"><div class="area-icon">∑</div> Álgebra</div>
@@ -1229,13 +1424,21 @@
           </div>
 
           <div class="organizer-box">
-            <div class="org-title">Organized by</div>
+            <div class="org-title">Organizado por</div>
             <div class="org-details">
               Departamento de Matemáticas y Estadística<br>
               Universidad de Nariño<br>
               San Juan de Pasto, Nariño, Colombia<br>
-              e-mail: <a href="mailto:altencoa@udenar.edu.co">altencoa@udenar.edu.co</a>
+              e-mail: <span id="email" class="about-label"> </span>
             </div>
+          </div>
+          
+          <div class="map-card" aria-label="Mapa de la ubicación">
+            <div class="dates-title">Ubicación</div>
+            <div class="map-frame">
+              <iframe src="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa: Dirección"></iframe>
+            </div>
+            <p style="padding:12px 16px; margin:0;">Dirección: Dirección X — <a href="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
           </div>
         </div>
 
@@ -1251,7 +1454,7 @@
     <p class="section-desc">Investigadores destacados de todo el mundo liderando cada área</p>
 
     <!-- Tabs container (rendered by JS) -->
-    <div id="committee-tabs" class="tabs" role="tablist" aria-label="Committee areas"></div>
+    <div id="committee-tabs" class="tabs" role="tablist" aria-label="Áreas del comité"></div>
 
     <!-- Panels container (rendered by JS) -->
     <div id="committee-panels"></div>
@@ -1278,112 +1481,136 @@
         </p>
 
         <!-- Benefits — add/remove items freely -->
-        <ul class="benefits">
-          <li><span class="benefit-icon">✓</span> Acceso a todas las conferencias, talleres y sesiones</li>
-          <li><span class="benefit-icon">✓</span> Certificado oficial del evento</li>
-          <li><span class="benefit-icon">✓</span> Actas del congreso y materiales digitales</li>
-          <li><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
-          <li><span class="benefit-icon">✓</span> Acceso a grabaciones posteriores al evento</li>
-        </ul>
-
-        <!-- Important Dates — edit dates here -->
-        <div class="dates-card">
-          <div class="dates-title">Fechas importantes</div>
-          <ul class="dates-list">
-            <li>Fecha límite de registro anticipado: <strong>31 de julio de 2026</strong></li>
-            <li>Envío de resúmenes: <strong>15 de agosto de 2026</strong></li>
-            <li>Evento: <strong>5–9 de octubre de 2026</strong></li>
+        <div class="benefits-grid">
+          <ul class="benefits-col">
+            <li><span class="benefit-icon">✓</span> Acceso a todas las conferencias, talleres y sesiones</li>
+            <li><span class="benefit-icon">✓</span> Certificado oficial del evento</li>
+            <li><span class="benefit-icon">✓</span> Actas del congreso y materiales digitales</li>
+          </ul>
+          <ul class="benefits-col">
+            <li><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
+            <li><span class="benefit-icon">✓</span> Acceso a grabaciones posteriores al evento</li>
           </ul>
         </div>
 
-      </div>
+        <!-- Important Dates, Deadlines, and Rates grouped into three boxes -->
+        <div class="info-cards">
+          <div class="info-box" role="group" aria-label="Fechas importantes">
+            <div class="dates-title">Fechas importantes</div>
+            <ul class="dates-list">
+              <li><strong>Envío de ponencias y pósters / Recepción de propuestas:</strong> 16 de febrero al 8 de mayo</li>
+              <li><strong>Aceptación de propuestas:</strong> 29 de mayo</li>
+              <li><strong>Evento:</strong> 5–9 de octubre de 2026</li>
+            </ul>
+          </div>
 
-      <!-- ── RIGHT: Form ── -->
-      <!--
-        ╔══════════════════════════════════════════════════════════════╗
-        ║  GOOGLE FORMS INTEGRATION                                    ║
-        ║  1. Create your Google Form                                  ║
-        ║  2. Get the pre-filled link: "Get pre-filled link"          ║
-        ║  3. Copy each field's "entry.XXXXXXXX" name                 ║
-        ║  4. Replace the `name` attributes below with those values   ║
-        ║  5. Set action="" to your Google Form action URL            ║
-        ║     (Forms URL ending in /formResponse)                     ║
-        ╚══════════════════════════════════════════════════════════════╝
-      -->
-      <div class="reg-form-card">
-        <form
-          id="reg-form"
-          action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
-          method="POST"
-          target="hidden-iframe"
-          onsubmit="handleSubmit(event)"
-        >
+          <div class="info-box" role="group" aria-label="Costos y plazos">
+            <div class="dates-title">Costos y plazos</div>
+            <ul class="dates-list">
+              <li><strong>Límite de pago con descuento:</strong> 21 de agosto</li>
+              <li><strong>Límite de pago para expositores:</strong> 4 de septiembre *</li>
+              <li><strong>Límite de pago para asistentes:</strong> 18 de septiembre</li>
+            </ul>
+          </div>
 
-          <!-- Nombre -->
-          <div class="field">
-            <span class="field-icon">👤</span>
-            <input type="text" name="entry.1503609734" placeholder="Nombre completo *" required autocomplete="given-name"/>
-          </div>
- 
-          <!-- Apellido -->
-          <div class="field">
-            <span class="field-icon">👤</span>
-            <input type="text" name="entry.1479821263" placeholder="Apellido *" required autocomplete="family-name"/>
-          </div>
- 
-          <!-- Email -->
-          <div class="field">
-            <span class="field-icon">✉</span>
-            <input type="email" name="entry.200075436" placeholder="Correo electrónico *" required autocomplete="email"/>
-          </div>
- 
-          <!-- Institución -->
-          <div class="field">
-            <span class="field-icon">🏛</span>
-            <input type="text" name="entry.895542888" placeholder="Institución / Universidad *" required autocomplete="organization"/>
-          </div>
- 
-          <!-- País -->
-          <div class="field">
-            <span class="field-icon">🌎</span>
-            <input type="text" name="entry.1803685710" placeholder="País *" required autocomplete="country-name"/>
-          </div>
- 
-          <!-- Tipo de Participante -->
-          <div class="field">
-            <span class="field-icon">👥</span>
-            <select name="entry.921372150" required>
-              <option value="" disabled selected>Tipo de participante *</option>
-              <option value="Estudiante de Pregrado Udenar">Estudiante de Pregrado Udenar</option>
-              <option value="Estudiante de Pregrado">Estudiante de Pregrado</option>
-              <option value="Estudiante de Postgrado">Estudiante de Postgrado</option>
-              <option value="Docente Universitario">Docente Universitario</option>
-              <option value="Docente">Docente</option>
-              <option value="Otro">Otro</option>
-            </select>
-          </div>
- 
-          <!-- Tipo de Participación -->
-          <div class="field">
-            <span class="field-icon">📊</span>
-            <select name="entry.323207977" required>
-              <option value="" disabled selected>Tipo de participación *</option>
-              <option value="asistente">Asistente</option>
-              <option value="ponente">Ponente</option>
-              <option value="poster">Póster</option>
-            </select>
-          </div>
-        
-          <button type="submit" class="btn-submit" id="submit-btn">
-            Registrarse <span class="arrow">→</span>
-          </button>
+          <div class="info-box info-box-collapsible" role="group" aria-label="Tarifas" id="tarifas-box">
+            <button class="collapsible-toggle" aria-expanded="false" aria-controls="tarifas-content">
+              <div class="dates-title">Tarifas</div>
+              <span class="chev" aria-hidden="true">▸</span>
+            </button>
 
-        </form>
-
-         <div class="success-msg" id="success-msg">
-          ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
+            <div id="tarifas-content" style="max-height: 270px;" class="collapsible-content" hidden>
+            </div>
+            <div id="tarifas-mention" class="dates-list" hidden></div>
+           
+          </div>
         </div>
+        <!-- Insert the registration form here so it appears below benefits and info boxes -->
+        <div class="reg-form-card">
+          <form
+            id="reg-form"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
+            method="POST"
+            target="hidden-iframe"
+            onsubmit="handleSubmit(event)"
+          >
+
+            <!-- Nombre -->
+            <div class="field">
+              <span class="field-icon">👤</span>
+              <input type="text" name="entry.1503609734" placeholder="Nombre completo *" required autocomplete="given-name"/>
+            </div>
+   
+            <!-- Apellido -->
+            <div class="field">
+              <span class="field-icon">👤</span>
+              <input type="text" name="entry.1479821263" placeholder="Apellido *" required autocomplete="family-name"/>
+            </div>
+
+            <!-- Documento -->
+            <div class="field">
+              <span class="field-icon">ID</span>
+              <input type="text" name="entry.1479821263" placeholder="Documento *" required autocomplete="family-name"/>
+            </div>
+   
+            <!-- Email -->
+            <div class="field">
+              <span class="field-icon">✉</span>
+              <input type="email" name="entry.200075436" placeholder="Correo electrónico *" required autocomplete="email"/>
+            </div>
+   
+            <!-- Institución -->
+            <div class="field">
+              <span class="field-icon">🏛</span>
+              <input type="text" name="entry.895542888" placeholder="Institución / Universidad *" required autocomplete="organization"/>
+            </div>
+   
+            <!-- País -->
+            <div class="field">
+              <span class="field-icon">🌎</span>
+              <input type="text" name="entry.1803685710" placeholder="País *" required autocomplete="country-name"/>
+            </div>
+   
+            <!-- Tipo de Participante -->
+            <div class="field">
+              <span class="field-icon">👥</span>
+              <select name="entry.921372150" required>
+                <option value="" disabled selected>Tipo de participante *</option>
+                <option value="Estudiante de Pregrado Udenar">Estudiante de Pregrado Udenar</option>
+                <option value="Estudiante de Pregrado">Estudiante de Pregrado</option>
+                <option value="Estudiante de Postgrado">Estudiante de Postgrado</option>
+                <option value="Docente Universitario">Docente Universitario</option>
+                <option value="Docente">Docente</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+   
+            <!-- Tipo de Participación -->
+            <div class="field">
+              <span class="field-icon">📊</span>
+              <select name="entry.323207977" required>
+                <option value="" disabled selected>Tipo de participación *</option>
+                <option value="asistente">Asistente</option>
+                <option value="ponente">Ponente</option>
+                <option value="poster">Póster</option>
+              </select>
+            </div>
+            
+            <div id="cost-estimate" class="cost-estimate" aria-live="polite">Costo estimado: —</div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">
+              Registrarse <span class="arrow">→</span>
+            </button>
+
+          </form>
+
+           <div class="success-msg" id="success-msg">
+            ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
+          </div>
+        </div>
+
       </div>
+      <!-- Form moved below benefits and info boxes to appear last in column -->
 
     </div>
   </div>
@@ -1496,7 +1723,7 @@
         <div class="contact-items">
           <div class="contact-item">
             <span class="contact-icon">✉</span>
-            <a href="mailto:altencoa@udenar.edu.co">altencoa@udenar.edu.co</a>
+            <a href="altenua@udenar.edu.co">altenua@udenar.edu.co</a>
           </div>
           <div class="contact-item">
             <span class="contact-icon">✉</span>
@@ -1540,16 +1767,49 @@
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
-document.getElementById('footer').src = logo;
-
 const apoyan = "https://raw.githubusercontent.com/ChristianSalazar12/altencoa11/refs/heads/develop/assets/img/Apoyan.png?raw=true"
+const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773590091/Poster_ALTENCOA11-2026_best_gz6cvq.webp"
+const email = "altenua@udenar.edu.co"
+
+
+document.getElementById('footer').src = logo;
 document.getElementById('apoyan').src = apoyan;
-
-const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773409588/postermejorado_ivnwp1.png"
 document.getElementById('posterAbout').src = posterAboutImg;
+document.getElementById('email').textContent = email;
 
-const descriptionEvent="El grupo de investigación ALTENUA: Álgebra, Teoría de Números y Aplicaciones tiene el gusto de convocar a la onceava versión del Encuentro internacional de Álgebra, Teoría de Números, Combinatoria y Aplicaciones ALTENCOA11-2026, que tendrá lugar en la Universidad de Nariño, Pasto, Colombia, entre el 5 y el 9 de octubre de 2026."
+const descriptionEvent="El grupo de investigación ALTENUA: Álgebra, Teoría de Números y Aplicaciones tiene el gusto de convocar a la onceava versión del Encuentro internacional de Álgebra, Teoría de Números, Combinatoria y Aplicaciones ALTENCOA11-2026, que tendrá lugar en la Universidad de Nariño, Pasto, Colombia, entre el 5 y el 9 de octubre de 2026. Los encuentros ALTENCOA tienen como propósito fomentar el Álgebra, la Teoría de Números, la Combinatoria y las Aplicaciones en Colombia. El evento proporcionará un excelente espacio para la difusión de resultados de investigación, ideas nuevas y experiencias en las áreas mencionadas. "
 document.getElementById('aboutText').textContent = descriptionEvent;
+
+  // Make the 'Tarifas' info-box collapsible: hidden by default, expand on click
+  document.addEventListener('DOMContentLoaded', function(){
+    const tarifasBox = document.getElementById('tarifas-box');
+    if (!tarifasBox) return;
+    const toggle = tarifasBox.querySelector('.collapsible-toggle');
+    const content = document.getElementById('tarifas-content');
+    // ensure initial state
+    if (content) {
+      content.style.maxHeight = '0px';
+      content.hidden = true;
+    }
+    toggle.addEventListener('click', function(e){
+      e.preventDefault();
+      const isOpen = tarifasBox.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (!content) return;
+      if (isOpen) {
+        content.hidden = false;
+        // allow next frame so transition runs
+        requestAnimationFrame(()=>{
+          content.style.maxHeight = content.scrollHeight + 'px';
+        });
+      } else {
+        // collapse
+        content.style.maxHeight = '0px';
+        // hide after transition
+        setTimeout(()=> content.hidden = true, 360);
+      }
+    });
+  });
 
 
   function switchTab(btn, panelId) {
@@ -1571,7 +1831,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   const committees = [
     {
       id: 'algebra',
-      label: 'Algebra',
+      label: 'Álgebra',
       members: [
         { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
         { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
@@ -1580,7 +1840,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     },
     {
       id: 'number',
-      label: 'Number Theory',
+      label: 'Teoría de Números',
       members: [
         { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
         { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
@@ -1589,7 +1849,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     },
     {
       id: 'comb',
-      label: 'Combinatorics',
+      label: 'Combinatoria',
       members: [
         { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
         { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
@@ -1598,7 +1858,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     },
     {
       id: 'apps',
-      label: 'Applications',
+      label: 'Aplicaciones',
       members: [
         { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
         { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
@@ -1606,7 +1866,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     },
     {
       id: 'alg-geom',
-      label: 'Algebraic Geometry',
+      label: 'Geometría Algebraica',
       members: [
         { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
         { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
@@ -1615,7 +1875,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     },
     {
       id: 'data',
-      label: 'Data Analysis & Complex Systems',
+      label: 'Análisis de Datos y Sistemas Complejos',
       members: [
         { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
         { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
@@ -1682,10 +1942,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     inst.textContent = m.institution;
     card.appendChild(inst);
 
-    const loc = document.createElement('div');
-    loc.className = 'member-location';
-    loc.textContent = m.location;
-    card.appendChild(loc);
+ 
 
     return card;
   }
@@ -1719,6 +1976,106 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   }
 
   document.addEventListener('DOMContentLoaded', () => renderCommittees());
+
+  // Price estimator and tarifas rendering driven from a central `costos` object
+  (function(){
+    const costos = {
+      asistentes: {
+        'Estudiante de Pregrado Udenar': 50000,
+        'Estudiante de Postgrado': 335000,
+        'Estudiante de Pregrado': 100000,
+        'Docente Universitario': 400000,
+        'Docente': 120000,
+        'Otro': 450000
+      },
+      ponentes: {
+        'Estudiante de Pregrado Udenar': 45000,
+        'Estudiante de Postgrado': 301500,
+        'Estudiante de Pregrado': 90000,
+        'Docente Universitario': 360000,
+        'Docente': 108000,
+        'Otro': 405000
+      },
+      sin_descuento: {
+        'Estudiante de Pregrado Udenar': 100000,
+        'Estudiante de Postgrado': 370000,
+        'Estudiante de Pregrado': 120000,
+        'Docente Universitario': 500000,
+        'Docente': 140000,
+        'Otro': 500000
+      }
+    };
+
+    function formatCurrency(n){
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    function getRoleKey() {
+      const partSel = document.querySelector('select[name="entry.323207977"]');
+      if(!partSel) return 'asistentes';
+      const v = partSel.value || '';
+      // Treat 'ponente' and 'poster' as ponentes; otherwise asistentes
+      if (v.toLowerCase().indexOf('ponente') !== -1 || v.toLowerCase().indexOf('poster') !== -1) return 'ponentes';
+      return 'asistentes';
+    }
+
+    function updateEstimate() {
+      const sel = document.querySelector('select[name="entry.921372150"]');
+      const el = document.getElementById('cost-estimate');
+      if(!sel || !el) return;
+      const participant = sel.value;
+      if(!participant) {
+        el.textContent = 'Costo estimado: —';
+        return;
+      }
+      const roleKey = getRoleKey();
+      const price = (costos[roleKey] || {})[participant];
+      const full = (costos.sin_descuento || {})[participant];
+      if (price != null) {
+        const fullText = full ? ` (Precio sin descuento: $${formatCurrency(full)})` : '';
+        el.textContent = `Costo estimado: $${formatCurrency(price)}${fullText} — No se realizará ningún cargo ahora`;
+      } else {
+        el.textContent = 'Costo estimado: Consulte las tarifas';
+      }
+    }
+
+    function renderTarifas() {
+      const container = document.getElementById('tarifas-content');
+      const containerf = document.getElementById('tarifas-mention');
+      if(!container) return;
+      // build HTML: Asistentes, Ponentes, Precios sin descuento — list items show label and price inline
+      const createListFrom = (obj) => {
+        let html = '<ul class="dates-list">';
+        for (const key of Object.keys(obj)) {
+          html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
+        }
+        html += '</ul>';
+        return html;
+      };
+      const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento.';
+
+      let html = '';
+      // Grid with three columns: Asistentes | Ponentes | Precios sin descuento
+      html += '<div class="tarif-grid">';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Asistentes</div>` + createListFrom(costos.asistentes) + '</div>';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes</div>` + createListFrom(costos.ponentes) + '</div>';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>` + createListFrom(costos.sin_descuento) + '</div>';
+      html += '</div>';
+
+      container.innerHTML = html;
+      if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const sel = document.querySelector('select[name="entry.921372150"]');
+      const partSel = document.querySelector('select[name="entry.323207977"]');
+      if(sel) sel.addEventListener('change', updateEstimate);
+      if(partSel) partSel.addEventListener('change', updateEstimate);
+      // initialize
+      updateEstimate();
+      renderTarifas();
+    });
+  })();
 
   function handleSubmit(e) {
     const btn = document.getElementById('submit-btn');
