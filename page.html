@@ -443,6 +443,13 @@
     .tarif-grid { grid-template-columns: 1fr; }
   }
 
+  /* Ensure green sections can host absolute SVG decoration */
+  .committee-section, .reg-section { position: relative; }
+
+  /* Decorative pi SVG for green sections */
+  .section-with-pi { position: relative; overflow: visible; }
+  .pi-decor { position: absolute; right: -30px; top: 8px; width: 160px; height: 160px; opacity: 0.06; pointer-events: none; transform: rotate(-6deg); }
+
   .org-title {
     font-weight: 700;
     font-size: 13px;
@@ -714,6 +721,7 @@
   .benefit-icon {
     width: 22px;
     height: 22px;
+    margin-right:10px;
     border: 2px solid var(--accent);
     border-radius: 50%;
     display: flex;
@@ -1436,9 +1444,9 @@
           <div class="map-card" aria-label="Mapa de la ubicación">
             <div class="dates-title">Ubicación</div>
             <div class="map-frame">
-              <iframe src="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa: Dirección"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127644.69493195027!2d-77.43772785664062!3d1.2315202000000134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed38ec693925f%3A0x1af234a076b0cf7!2sUniversidad%20de%20Nari%C3%B1o!5e0!3m2!1ses!2sco!4v1773610150622!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <p style="padding:12px 16px; margin:0;">Dirección: Dirección X — <a href="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
+            <p style="padding:12px 16px; margin:0;">Universidad de Nariño — <a href="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
           </div>
         </div>
 
@@ -1468,63 +1476,29 @@
 
     <div class="section-label">Inscripción</div>
     <h2 class="section-heading"> <span class="green">Reserva </span><span class="green">tu cupo</span></h2>
-
     <div class="reg-grid">
-
       <!-- ── LEFT: Info ── -->
       <div class="reg-pitch">
-
         <p class="pitch-text">
           Únete a matemáticos, investigadores y académicos de más de
           30 países en uno de los eventos más importantes de álgebra
           y teoría de números en América Latina.
         </p>
-
         <!-- Benefits — add/remove items freely -->
         <div class="benefits-grid">
           <ul class="benefits-col">
-            <li><span class="benefit-icon">✓</span> Acceso a todas las conferencias, talleres y sesiones</li>
-            <li><span class="benefit-icon">✓</span> Certificado oficial del evento</li>
-            <li><span class="benefit-icon">✓</span> Actas del congreso y materiales digitales</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Acceso a todas las conferencias, talleres y sesiones</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Certificado oficial del evento</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Actas del congreso y materiales digitales</li>
           </ul>
           <ul class="benefits-col">
-            <li><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
-            <li><span class="benefit-icon">✓</span> Acceso a grabaciones posteriores al evento</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Acceso a grabaciones posteriores al evento</li>
           </ul>
         </div>
 
-        <!-- Important Dates, Deadlines, and Rates grouped into three boxes -->
-        <div class="info-cards">
-          <div class="info-box" role="group" aria-label="Fechas importantes">
-            <div class="dates-title">Fechas importantes</div>
-            <ul class="dates-list">
-              <li><strong>Envío de ponencias y pósters / Recepción de propuestas:</strong> 16 de febrero al 8 de mayo</li>
-              <li><strong>Aceptación de propuestas:</strong> 29 de mayo</li>
-              <li><strong>Evento:</strong> 5–9 de octubre de 2026</li>
-            </ul>
-          </div>
-
-          <div class="info-box" role="group" aria-label="Costos y plazos">
-            <div class="dates-title">Costos y plazos</div>
-            <ul class="dates-list">
-              <li><strong>Límite de pago con descuento:</strong> 21 de agosto</li>
-              <li><strong>Límite de pago para expositores:</strong> 4 de septiembre *</li>
-              <li><strong>Límite de pago para asistentes:</strong> 18 de septiembre</li>
-            </ul>
-          </div>
-
-          <div class="info-box info-box-collapsible" role="group" aria-label="Tarifas" id="tarifas-box">
-            <button class="collapsible-toggle" aria-expanded="false" aria-controls="tarifas-content">
-              <div class="dates-title">Tarifas</div>
-              <span class="chev" aria-hidden="true">▸</span>
-            </button>
-
-            <div id="tarifas-content" style="max-height: 270px;" class="collapsible-content" hidden>
-            </div>
-            <div id="tarifas-mention" class="dates-list" hidden></div>
-           
-          </div>
-        </div>
+        <!-- Important Dates, Deadlines, and Rates: rendered from JS data -->
+        <div id="info-cards" class="info-cards"></div>
         <!-- Insert the registration form here so it appears below benefits and info boxes -->
         <div class="reg-form-card">
           <form
@@ -1780,35 +1754,34 @@ document.getElementById('email').textContent = email;
 const descriptionEvent="El grupo de investigación ALTENUA: Álgebra, Teoría de Números y Aplicaciones tiene el gusto de convocar a la onceava versión del Encuentro internacional de Álgebra, Teoría de Números, Combinatoria y Aplicaciones ALTENCOA11-2026, que tendrá lugar en la Universidad de Nariño, Pasto, Colombia, entre el 5 y el 9 de octubre de 2026. Los encuentros ALTENCOA tienen como propósito fomentar el Álgebra, la Teoría de Números, la Combinatoria y las Aplicaciones en Colombia. El evento proporcionará un excelente espacio para la difusión de resultados de investigación, ideas nuevas y experiencias en las áreas mencionadas. "
 document.getElementById('aboutText').textContent = descriptionEvent;
 
-  // Make the 'Tarifas' info-box collapsible: hidden by default, expand on click
-  document.addEventListener('DOMContentLoaded', function(){
+  // Collapsible behavior for 'Tarifas' (initialization waits for info cards to be rendered)
+  function initTarifasCollapsible(){
     const tarifasBox = document.getElementById('tarifas-box');
     if (!tarifasBox) return;
     const toggle = tarifasBox.querySelector('.collapsible-toggle');
     const content = document.getElementById('tarifas-content');
+    if (!toggle || !content) return;
     // ensure initial state
-    if (content) {
-      content.style.maxHeight = '0px';
-      content.hidden = true;
-    }
+    content.style.maxHeight = '0px';
+    content.hidden = true;
     toggle.addEventListener('click', function(e){
       e.preventDefault();
       const isOpen = tarifasBox.classList.toggle('open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      if (!content) return;
       if (isOpen) {
         content.hidden = false;
-        // allow next frame so transition runs
-        requestAnimationFrame(()=>{
-          content.style.maxHeight = content.scrollHeight + 'px';
-        });
+        requestAnimationFrame(()=>{ content.style.maxHeight = content.scrollHeight + 'px'; });
       } else {
-        // collapse
         content.style.maxHeight = '0px';
-        // hide after transition
         setTimeout(()=> content.hidden = true, 360);
       }
     });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // if info-cards already present, init immediately; otherwise wait for event
+    if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+    else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
   });
 
 
@@ -1883,6 +1856,81 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       ]
     }
   ];
+
+    // Data-driven info-cards for the registration section. Modify these objects to change content.
+    const infoCards = [
+      {
+        id: 'fechas',
+        title: 'Fechas importantes',
+        items: [
+          { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 8 de mayo' },
+          { label: 'Aceptación de propuestas', value: '29 de mayo' },
+          { label: 'Evento', value: '5–9 de octubre de 2026' }
+        ]
+      },
+      {
+        id: 'costos-plazos',
+        title: 'Costos y plazos',
+        items: [
+          { label: 'Límite de pago con descuento', value: '21 de agosto' },
+          { label: 'Límite de pago para expositores', value: '4 de septiembre *' },
+          { label: 'Límite de pago para asistentes', value: '18 de septiembre' }
+        ]
+      },
+      {
+        id: 'tarifas',
+        title: 'Tarifas',
+        type: 'tarifas'
+      }
+    ];
+
+    function renderInfoCards(){
+      const container = document.getElementById('info-cards');
+      if (!container) return;
+      container.innerHTML = '';
+      infoCards.forEach(card => {
+        const box = document.createElement('div');
+        box.className = 'info-box';
+        box.setAttribute('role','group');
+        box.setAttribute('aria-label', card.title);
+        if (card.type === 'tarifas') {
+          box.classList.add('info-box-collapsible');
+          box.id = 'tarifas-box';
+          const btn = document.createElement('button');
+          btn.className = 'collapsible-toggle';
+          btn.setAttribute('aria-expanded','false');
+          btn.setAttribute('aria-controls','tarifas-content');
+          btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
+          box.appendChild(btn);
+          const content = document.createElement('div');
+          content.id = 'tarifas-content';
+          content.className = 'collapsible-content';
+          content.hidden = true;
+          box.appendChild(content);
+          const mention = document.createElement('div');
+          mention.id = 'tarifas-mention';
+          mention.className = 'dates-list';
+          mention.hidden = true;
+          box.appendChild(mention);
+        } else {
+          const title = document.createElement('div');
+          title.className = 'dates-title';
+          title.textContent = card.title;
+          box.appendChild(title);
+          const ul = document.createElement('ul');
+          ul.className = 'dates-list';
+          card.items.forEach(it => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
+            ul.appendChild(li);
+          });
+          box.appendChild(ul);
+        }
+        container.appendChild(box);
+      });
+      // Notify other code that info cards are ready
+      document.dispatchEvent(new Event('infoCardsReady'));
+    }
 
   // Robust flag resolver: map names → ISO2, generate emoji, and search inside strings
   (function(){
@@ -2067,6 +2115,10 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     }
 
     document.addEventListener('DOMContentLoaded', function(){
+      // render dynamic info-cards first (creates tarifas DOM)
+      renderInfoCards();
+      // insert subtle decorative SVGs in green sections
+      insertPiDecor();
       const sel = document.querySelector('select[name="entry.921372150"]');
       const partSel = document.querySelector('select[name="entry.323207977"]');
       if(sel) sel.addEventListener('change', updateEstimate);
@@ -2076,6 +2128,26 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       renderTarifas();
     });
   })();
+
+    // Insert subtle pi-shaped SVG decorations into green sections
+    function insertPiDecor(){
+      const svgMarkup = `
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+            <path d="M18 30 C18 16, 38 12, 38 30" />
+            <path d="M62 30 C62 16, 82 12, 82 30" />
+            <path d="M18 30 L82 30" />
+          </g>
+          <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
+        </svg>`;
+      document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
+        if (sec.querySelector('.pi-decor')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'pi-decor';
+        wrapper.innerHTML = svgMarkup;
+        sec.appendChild(wrapper);
+      });
+    }
 
   function handleSubmit(e) {
     const btn = document.getElementById('submit-btn');
