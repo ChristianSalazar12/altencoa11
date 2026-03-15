@@ -2129,26 +2129,6 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     });
   })();
 
-    // Insert subtle pi-shaped SVG decorations into green sections
-    function insertPiDecor(){
-      const svgMarkup = `
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
-            <path d="M18 30 C18 16, 38 12, 38 30" />
-            <path d="M62 30 C62 16, 82 12, 82 30" />
-            <path d="M18 30 L82 30" />
-          </g>
-          <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
-        </svg>`;
-      document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
-        if (sec.querySelector('.pi-decor')) return;
-        const wrapper = document.createElement('div');
-        wrapper.className = 'pi-decor';
-        wrapper.innerHTML = svgMarkup;
-        sec.appendChild(wrapper);
-      });
-    }
-
   function handleSubmit(e) {
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
