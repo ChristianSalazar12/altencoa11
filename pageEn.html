@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALTENCOA 11 — Conference 2026</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Merriweather:wght@700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root {
+    /* Color system */
+    --accent:        #7ED957;
+    --accent-600:    #9BE564;
+    --accent-500:    #7ED957;
+    --accent-400:    #5cb832;
+    --bg-dark:       #0b2210;
+    --bg-darker:     #092010;
+    --bg-card:       rgba(255,255,255,0.05);
+    --border:        rgba(255,255,255,0.12);
+    --text-light:    rgba(255,255,255,0.90);
+    --text-muted:    rgba(255,255,255,0.45);
+    --muted-dark:    #778877;
+    --bg-light:      #f0f4ef;
+
+    /* Typography */
+    --font-sans:     'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    --font-display:  'Bebas Neue', system-ui, sans-serif;
+    --font-serif:    'Merriweather', Georgia, 'Times New Roman', serif;
+    --fs-base:       16px;
+    --fs-scale-lg:   clamp(26px, 4vw, 46px);
+    --fs-scale-md:   clamp(14px, 1.5vw, 18px);
+
+    /* Layout tokens */
+    --gutter:                20px;
+    --section-vertical-pad:  80px;
+    --container-max-width:   1100px;
+    --container-medium:      900px;
+    --container-narrow:      700px;
+    --card-radius:           10px;
+
+    /* UI tokens */
+    --shadow-strong: 0 16px 48px rgba(0,0,0,0.18);
+    --shadow-soft:   0 6px 20px rgba(94,184,50,0.12);
+
+    /* ── Important Dates ── */
+    --date-early:    "July 31, 2026";
+    --date-abstract: "August 15, 2026";
+    --date-event:    "October 5–9, 2026";
+  }
+
+  body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    font-size: var(--fs-base);
+    color: var(--text-light);
+    background: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(58%) saturate(1.1) hue-rotate(20deg);
+  }
+
+  .bg1 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773506396/_CMB1602_pili0z.png'); animation: fade1 20s infinite; }
+  .bg2 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773584439/_CMB8345__kmt9v4.webp'); animation: fade2 20s infinite; }
+  .bg3 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773506291/_CMB1647_bhkxpl.png'); animation: fade3 20s infinite; }
+  .bg4 { background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1773506266/_CMB1663_vuewja.png'); animation: fade4 20s infinite; }
+
+  @keyframes fade1 { 0%,25%{opacity:1} 26%,100%{opacity:0} }
+  @keyframes fade2 { 0%,25%{opacity:0} 26%,50%{opacity:1} 51%,100%{opacity:0} }
+  @keyframes fade3 { 0%,50%{opacity:0} 51%,75%{opacity:1} 76%,100%{opacity:0} }
+  @keyframes fade4 { 0%,75%{opacity:0} 76%,100%{opacity:1} }
+
+  .green-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 80, 20, 0.45);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+    width: 100%;
+    max-width: var(--container-medium);
+    margin: 0 auto;
+  }
+
+  .hero-subtitle {
+    letter-spacing: 4px;
+    font-size: clamp(10px, 1.5vw, 14px);
+    color: #9BE564;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 12vw, 120px);
+    line-height: 1;
+    letter-spacing: 2px;
+    color: white;
+    white-space: nowrap;
+  }
+
+  .hero-title .green { color: #7ED957; }
+
+  .hero-year {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--accent-500);
+    letter-spacing: 6px;
+    margin: 10px 0;
+  }
+
+  /* Inline year when placed inside the title to prevent wrapping */
+  .hero-year-inline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--accent-500);
+    letter-spacing: 6px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .hero-topics {
+    font-size: clamp(16px, 2.4vw, 22px);
+    font-style: italic;
+    margin-bottom: 18px;
+    color: rgba(255,255,255,0.95);
+    line-height: 1.6;
+  }
+
+  .hero-date {
+    font-size: clamp(14px, 1.8vw, 16px);
+    margin-bottom: 24px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Prominent date / place card inside hero */
+  .hero-meta {
+    margin-top: 8px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .date-card {
+    background: rgba(0,0,0,0.44);
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 260px;
+    min-width: 220px;
+    max-width: 360px;
+  }
+
+  .date-card .date-main {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 4vw, 34px);
+    color: var(--accent-500);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .date-card .date-sub {
+    font-size: clamp(13px, 1.6vw, 15px);
+    color: rgba(255,255,255,0.95);
+    margin-top: 6px;
+  }
+
+  .date-card .location {
+    font-size: clamp(12px, 1.4vw, 14px);
+    color: rgba(255,255,255,0.9);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .btn-register {
+    background: #7ED957;
+    color: #0a2a00;
+    border: none;
+    padding: clamp(12px,2vw,15px) clamp(28px,4vw,42px);
+    font-size: clamp(14px,1.6vw,16px);
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-register:hover {
+    background: #9BE564;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(126,217,87,0.4);
+  }
+
+  .btn-announcement {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.7);
+    padding: clamp(12px,2vw,15px) clamp(28px,4vw,42px);
+    font-size: clamp(14px,1.6vw,16px);
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-announcement:hover {
+    border-color: #7ED957;
+    color: #7ED957;
+    transform: translateY(-2px);
+  }
+
+  /* ── ABOUT SECTION ── */
+  .about-section {
+    background: #f0f4ef;
+    padding: 80px 20px 90px;
+    text-align: center;
+  }
+
+  .about-inner {
+    max-width: var(--container-medium);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .about-label {
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5cb832;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .about-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 18px;
+  }
+
+  .about-heading .green { color: #5cb832; }
+
+  .about-desc {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: #556055;
+      line-height: 1.85;
+      text-align: justify;
+      margin: 0 auto 52px;
+  }
+
+  /* Two-column layout */
+  .about-grid {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  /* Poster */
+  .poster-col {
+    flex: 0 0 auto;
+  }
+
+  .poster-card {
+    width: clamp(420px, 22vw, 250px);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-strong);
+    background: #1a2a14;
+  }
+
+  .poster-card img {
+    width: 100%;
+    display: block;
+   
+  }
+
+  .poster-card-label {
+    padding: 12px 14px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #9BE564;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #0e1f0a;
+  }
+
+  /* Info column */
+  .info-col {
+    flex: 1;
+    min-width: 280px;
+    max-width: 540px;
+  }
+
+  .research-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 16px;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .area-card {
+    background: white;
+    border: 1px solid #d8e8d0;
+    border-radius: 8px;
+    padding: 13px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: #2a3a24;
+    font-weight: 600;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .area-card:hover {
+    box-shadow: 0 4px 16px rgba(94,184,50,0.14);
+    border-color: #9BE564;
+  }
+
+  .area-icon {
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid #c0dca8;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #5cb832;
+    flex-shrink: 0;
+    background: #f4fbf0;
+  }
+
+  .organizer-box {
+    background: white;
+    border: 1px solid #d8e8d0;
+    border-radius: calc(var(--card-radius) - 2px);
+    padding: 18px 20px;
+  }
+
+  /* Map card in About section */
+  .map-card {
+    margin-top: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: var(--shadow-strong);
+    border: 1px solid #e6efe0;
+    color: #1a2a14;
+  }
+
+  .map-card .dates-title { padding: 12px 16px; background: #f4fbf0; color: #2a3a24; font-weight:700; }
+  .map-frame { width: 100%; height: 100px; }
+  .map-frame iframe { width: 100%; height: 100%; border: 0; display:block; }
+
+  /* Benefits two-column grid */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 18px;
+    align-items: start;
+    margin-top: 8px;
+  }
+
+  .benefits-col { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+
+  @media (max-width: 720px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+    .map-frame { height: 180px; }
+  }
+
+  /* Reduce hero title on small screens so year remains visible */
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(32px, 9vw, 56px); white-space: normal; line-height: 1.05; }
+    .hero-year-inline { font-size: clamp(16px, 5vw, 26px); display: inline-block; margin-left: 6px; vertical-align: baseline; }
+  }
+
+  /* Tarifas grid: 3 columns on desktop, stack on mobile */
+  .tarif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+  .tarif-column { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px; }
+  .tarif-col-title { font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 8px; }
+
+  @media (max-width: 980px) {
+    .tarif-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Ensure green sections can host absolute SVG decoration */
+  .committee-section, .reg-section { position: relative; }
+
+  /* Decorative pi SVG for green sections */
+  .section-with-pi { position: relative; overflow: visible; }
+  .pi-decor { position: absolute; right: -30px; top: 8px; width: 160px; height: 160px; opacity: 0.06; pointer-events: none; transform: rotate(-6deg); }
+
+  .org-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #1a2a14;
+    margin-bottom: 8px;
+  }
+
+  .org-details {
+    font-size: 13px;
+    color: #778877;
+    line-height: 1.75;
+  }
+
+  .org-details a {
+    color: #5cb832;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn-register, .btn-announcement { width: 230px; text-align: center; }
+    .areas-grid { grid-template-columns: 1fr; }
+    .about-grid { flex-direction: column; align-items: center; gap: 20px; }
+    .info-col { text-align: center; }
+    .areas-grid { grid-template-columns: 1fr; }
+    .area-card { justify-content: center; }
+    .area-card .area-label { display: inline-block; text-align: left; margin-left: 8px; }
+    .organizer-box { text-align: center; }
+    .research-heading { text-align: center; }
+
+    /* About section responsive tweaks */
+    .about-inner { padding: 0 12px; }
+    .about-desc { max-width: 100%; padding: 0 6px; text-align: justify; }
+    .poster-col { display: flex; justify-content: center; width: 100%; }
+    .poster-card { width: 100%; max-width: 420px; }
+    .poster-card img { width: 100%; height: auto; aspect-ratio: auto; display: block; }
+    .poster-card-label { text-align: center; }
+  }
+   /* ── SECTION ── */
+  .committee-section {
+    background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-darker) 40%, #112e14 100%);
+    padding: var(--section-vertical-pad) var(--gutter) calc(var(--section-vertical-pad) + 10px);
+    text-align: center;
+    color: white;
+    min-height: 80vh;
+  }
+
+  .committee-inner {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .section-label {
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #7ED957;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4.5vw, 46px);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 14px;
+  }
+
+  .section-heading .green { color: #7ED957; }
+
+  .section-desc {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 50px;
+    font-style: italic;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(12px, 1.4vw, 14px);
+    font-weight: 600;
+    padding: 10px 20px 14px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .tab-btn:hover {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .tab-btn.active {
+    color: white;
+    border-bottom-color: #7ED957;
+    background: rgba(126,217,87,0.08);
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* ── MEMBER LIST ── */
+  .members-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: flex; flex-direction: column; gap: 10px; }
+
+  .member-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--card-radius);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, border-color 0.2s;
+    text-align: left;
+  }
+
+  .member-card:hover {
+    background: rgba(126,217,87,0.07);
+    border-color: rgba(126,217,87,0.25);
+  }
+
+  /* Avatar */
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a7a1e, var(--accent-500));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0a2a00;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .member-name {
+    font-size: clamp(13px, 1.5vw, 15px);
+    font-weight: 700;
+    color: white;
+  }
+
+  .member-institution {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: #7ED957;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .member-location {
+    font-size: clamp(11px, 1.3vw, 13px);
+    color: rgba(255,255,255,0.45);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .member-card {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      gap: 8px 12px;
+    }
+    .avatar { grid-row: 1 / 3; }
+    .member-institution { text-align: left; }
+    .member-location { grid-column: 2; text-align: left; }
+    .tab-btn { padding: 8px 14px 10px; font-size: 12px; }
+  }
+/*-------------------------------------------*/
+  .reg-section {
+    background: linear-gradient(160deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #0e2a14 100%);
+    padding: var(--section-vertical-pad) var(--gutter) calc(var(--section-vertical-pad) + 10px);
+    color: white;
+    min-height: 80vh;
+  }
+
+  .reg-inner {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .section-label {
+    text-align: center;
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: clamp(28px, 4.5vw, 46px);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 48px;
+  }
+
+  .section-heading .green { color: var(--accent); }
+
+  /* Two-column layout */
+  .reg-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ── LEFT COLUMN ── */
+  .reg-pitch {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .pitch-text {
+    font-size: clamp(14px, 1.6vw, 16px);
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+  }
+
+  /* Benefits list */
+  .benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .benefits li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: rgba(255,255,255,0.80);
+  }
+
+  .benefit-icon {
+    width: 22px;
+    height: 22px;
+    margin-right:10px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* Dates card */
+  .dates-card {
+    background: rgba(126,217,87,0.06);
+    border: 1px solid rgba(126,217,87,0.22);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+
+  /* Wrapper for registration info boxes: dates, deadlines, tariffs */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .info-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px;
+    color: rgba(255,255,255,0.95);
+  }
+
+  /* Collapsible tarifas card */
+  .collapsible-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .collapsible-toggle:focus { outline: 2px solid rgba(126,217,87,0.18); border-radius: 6px; }
+
+  .collapsible-toggle .dates-title { margin-bottom: 0; }
+
+  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; }
+
+  .info-box .collapsible-content {
+    display: flex;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
+    opacity: 0;
+    padding-top: 0;
+  }
+
+  .info-box.open .collapsible-content {
+    max-height: 900px;
+    opacity: 1;
+    padding-top: 12px;
+  }
+
+  .info-box.open .collapsible-toggle .chev { transform: rotate(90deg); }
+
+  .info-box .tarifas-note { font-size:12px; color: rgba(255,255,255,0.9); margin-top:8px; }
+
+  /* Make the third box (tarifas) span full width under the first two */
+  .info-cards .info-box:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .info-box .dates-title { color: var(--accent); margin-bottom: 8px; }
+
+  .info-box ul { margin: 0; padding-left: 16px; }
+
+  @media (max-width: 980px) {
+    .info-cards { grid-template-columns: 1fr; }
+  }
+
+  /* Small styling for cost estimate shown in form */
+  .cost-estimate {
+    margin-top: 12px;
+    font-weight: 700;
+    color: var(--accent-500);
+    background: rgba(126,217,87,0.06);
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(126,217,87,0.14);
+  }
+
+  .dates-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .dates-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .dates-list li {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tarif-label { flex: 1 1 auto; color: rgba(255,255,255,0.75); }
+  .tarif-price { flex: 0 0 auto; margin-left: 12px; color: rgba(255,255,255,0.95); }
+
+  .dates-list strong {
+    color: white;
+    font-weight: 700;
+  }
+
+  /* ── RIGHT COLUMN — FORM ── */
+  .reg-form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--card-radius) + 4px);
+    padding: 26px 22px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Field wrapper */
+  .field {
+    position: relative;
+    margin-top: 5px;
+  }
+
+  .field-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 15px;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 14px 14px 42px;
+    font-family: var(--font-sans);
+    font-size: clamp(13px, 1.3vw, 14px);
+    color: white;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field input::placeholder { color: var(--text-muted); }
+
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--accent);
+    background: rgba(126,217,87,0.06);
+  }
+
+  /* Select arrow */
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237ED957' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .field select option {
+    background: #0b2210;
+    color: white;
+  }
+
+  /* Submit button */
+  .btn-submit {
+    background: var(--accent-500);
+    color: #0a2a00;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: var(--font-sans);
+    font-size: clamp(14px, 1.5vw, 16px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover {
+    background: #9BE564;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(126,217,87,0.35);
+  }
+
+  .btn-submit .arrow { font-size: 18px; }
+
+  /* Form actions: fallback link + submit button on one row */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .btn-fallback {
+    color: var(--accent-500);
+    font-weight: 700;
+    text-decoration: underline;
+    background: transparent;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .form-actions { flex-direction: column; align-items: stretch; }
+    .btn-fallback { text-align: center; }
+  }
+
+  /* Success message (hidden by default) */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: none; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .reg-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+/* ── SECTION ── */
+  .discover-section {
+    background: #eef2ee;
+    padding: 80px 24px 90px;
+    text-align: center;
+    color: #1a2a14;
+  }
+
+  .discover-inner {
+    max-width: var(--container-medium);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .section-label {
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5cb832;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .section-heading {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 10px;
+  }
+
+  .section-heading .green { color: #5cb832; }
+
+  .section-desc {
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: #778877;
+    font-style: italic;
+    margin-bottom: 44px;
+  }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .photo-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    cursor: default;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Gradient overlay */
+  .photo-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    padding: 18px 20px;
+    text-align: left;
+    color: white;
+  }
+
+  .photo-label strong {
+    display: block;
+    font-size: clamp(14px, 1.8vw, 18px);
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 3px;
+  }
+
+  .photo-label span {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+  }
+
+  .photo-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background 0.15s, transform 0.12s;
+  }
+  .photo-more:hover { background: rgba(126,217,87,0.95); color: #0a2a00; transform: translateY(-2px); }
+
+  /* ── INFO CARDS ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .info-card {
+    background: white;
+    border: 1px solid #dce8d4;
+    border-radius: 10px;
+    padding: 22px 16px 20px;
+    text-align: center;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .info-card:hover {
+    box-shadow: 0 6px 20px rgba(94,184,50,0.12);
+    border-color: #b0d898;
+  }
+
+  .info-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+    color: #5cb832;
+  }
+
+  .info-card h4 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(12px, 1.3vw, 14px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .info-card p {
+    font-size: clamp(11px, 1.1vw, 12.5px);
+    color: #778877;
+    line-height: 1.65;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .photo-grid { grid-template-columns: 1fr; }
+    .info-grid  { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 400px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+
+  /* ══ FOOTER ══ */
+  .footer {
+    background: linear-gradient(160deg, #092010 0%, #0b2210 60%, #0e2a14 100%);
+    color: white;
+    padding: 70px 24px 0;
+  }
+
+  .footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ── TOP ROW: 3 columns ── */
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.4fr;
+    gap: 48px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Brand column */
+
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .logo-badge {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #3a7a1e, #7ED957);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #0a2a00;
+    font-weight: 900;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: white;
+    line-height: 1;
+  }
+
+  .brand-name .green { color: #7ED957; }
+
+  .brand-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    max-width: 320px;
+    font-style: italic;
+  }
+
+  /* Links & Contact columns */
+  .footer-col-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7ED957;
+    margin-bottom: 18px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links li a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .footer-links li a::before {
+    content: '→';
+    font-size: 11px;
+    color: #5cb832;
+    opacity: 0.7;
+  }
+
+  .footer-links li a:hover { color: #9BE564; }
+
+  /* Contact items */
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  .contact-icon {
+    color: #7ED957;
+    font-size: 15px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .contact-item a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item a:hover { color: #9BE564; }
+
+  /* ── SPONSORS ROW ── */
+  .footer-sponsors {
+    padding: 44px 0 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+
+  .sponsors-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 28px;
+  }
+
+  .sponsors-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px 48px;
+  }
+
+  /* Sponsor placeholder — replace img src with real logos */
+  .sponsor-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    filter: brightness(0) invert(1);
+  }
+
+  .sponsor-item:hover { opacity: 0.9; }
+
+  .sponsor-item img {
+    height: 56px;
+    width: 900px;
+    display: block;
+  }
+
+  /* Text fallback for sponsors without logo */
+  .sponsor-text {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .sponsor-text:hover { opacity: 1; }
+
+  /* ── BOTTOM BAR ── */
+  .footer-bottom {
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-bottom p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom a:hover { color: #7ED957; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .brand-desc { max-width: 100%; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="bg bg1"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="bg bg4"></div>
+    <div class="green-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-subtitle">University of Nariño — San Juan de Pasto, Colombia</div>
+      <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span><span class="hero-year-inline"> — 2026 —</span></div>
+      <div class="hero-topics">Algebra · Number Theory · Combinatorics · Applications · Algebraic Geometry · Data Analysis & Complex Systems
+      </div>
+
+      <div class="hero-meta">
+        <div class="date-card" role="group" aria-label="Main dates">
+          <div class="date-main">5–9 Oct 2026</div>
+          <div class="date-sub">Talks, workshops and posters</div>
+          <div class="location">San Juan de Pasto, Nariño — Colombia</div>
+        </div>
+
+        <div class="date-card" role="group" aria-label="Key dates">
+          <div class="date-sub" style="font-weight:800; opacity:0.95; font-size: 18px;">Key dates</div>
+          <ul style="list-style:none; padding:8px 0 0; margin:0; font-size:15px; color:rgba(255,255,255,0.9); text-align:left;">
+            <li><strong>Early registration:</strong> 31 July 2026</li>
+            <li><strong>Abstract submission:</strong> 15 August 2026</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="#reg-section" class="btn-register" title="Go to Registration" aria-label="Go to the registration section" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Register now</a>
+        <a href="#" class="btn-announcement">Call for papers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="about-section">
+    <div class="about-inner">
+
+    <div class="about-label">Call for papers</div>
+    <h2 class="about-heading">About the <span class="green">event</span></h2>
+      <!-- Description text (rendered by JS) -->
+      <p id="aboutText" class="about-desc">
+      </p>
+
+      <div class="about-grid">
+
+        <!-- Poster -->
+        <div class="poster-col">
+          <div class="poster-card">
+            <img id="posterAbout"
+              alt="ALTENCOA11 poster 2026" loading="lazy"
+            />
+            <div class="poster-card-label">ALTENCOA11 · 2026</div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-col">
+          <div class="research-heading">Research areas</div>
+
+          <div class="areas-grid">
+            <div class="area-card"><div class="area-icon">∑</div><span class="area-label">Algebra</span></div>
+            <div class="area-card"><div class="area-icon">ℕ</div><span class="area-label">Number Theory</span></div>
+            <div class="area-card"><div class="area-icon">∧</div><span class="area-label">Combinatorics</span></div>
+            <div class="area-card"><div class="area-icon">◈</div><span class="area-label">Applications</span></div>
+            <div class="area-card"><div class="area-icon">△</div><span class="area-label">Geometría Algebraica</span></div>
+            <div class="area-card"><div class="area-icon">⊕</div><span class="area-label">Análisis de Datos y Sistemas Complejos</span></div>
+          </div>
+
+          <div class="organizer-box">
+            <div class="org-title">Organized by</div>
+                <div class="org-details">
+                    Department of Mathematics and Statistics<br>
+                    University of Nariño<br>
+                    San Juan de Pasto, Nariño, Colombia<br>
+                    e-mail: <span id="email" class="about-label"></span>
+                </div>
+            </div>
+          
+        <div class="map-card" aria-label="Mapa de la ubicación">
+            <div class="dates-title">Location  </div>
+            <div class="map-frame">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127644.69493195027!2d-77.43772785664062!3d1.2315202000000134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed38ec693925f%3A0x1af234a076b0cf7!2sUniversidad%20de%20Nari%C3%B1o!5e0!3m2!1ses!2sco!4v1773610150622!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p style="padding:12px 16px; margin:0;"> University of Nariño —  <a href="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" target="_blank" rel="noopener">Open in Google Maps</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<section class="committee-section">
+  <div class="committee-inner">
+
+    <div class="section-label">Committees</div>
+    <h2 class="section-heading"><span class="green">Scientific</span> <span class="green">Committee</span></h2>
+    <p class="section-desc">Leading researchers from around the world heading each area</p>
+
+    <!-- Tabs container (rendered by JS) -->
+    <div id="committee-tabs" class="tabs" role="tablist" aria-label="Committee areas"></div>
+
+    <!-- Panels container (rendered by JS) -->
+    <div id="committee-panels"></div>
+
+  </div>
+</section>
+
+
+<section id="reg-section" class="reg-section">
+  <div class="reg-inner">
+
+    <div class="section-label">Registration</div>
+    <h2 class="section-heading"> <span class="green">Reserve</span> <span class="green">your spot</span></h2>
+    <div class="reg-grid">
+      <!-- ── LEFT: Info ── -->
+      <div class="reg-pitch">
+        <p class="pitch-text">
+          Join mathematicians, researchers and academics from over
+          30 countries at one of the most important algebra
+          and number theory gatherings in Latin America.
+        </p>
+        <!-- Benefits — add/remove items freely -->
+        <div class="benefits-grid">
+          <ul class="benefits-col">
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Access to all talks, workshops and sessions</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Official event certificate</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Proceedings and digital materials</li>
+          </ul>
+          <ul class="benefits-col">
+            <li style="display: flex;"><span class="benefit-icon">✓</span> International networking opportunities</li>
+            <li style="display: flex;"><span class="benefit-icon">✓</span> Access to post-event recordings</li>
+          </ul>
+        </div>
+
+        <!-- Important Dates, Deadlines, and Rates: rendered from JS data -->
+        <div id="info-cards" class="info-cards"></div>
+        <!-- Insert the registration form here so it appears below benefits and info boxes -->
+        <div class="reg-form-card">
+          <form
+            id="reg-form"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
+            method="POST"
+            target="hidden-iframe"
+            onsubmit="handleSubmit(event)"
+          >
+
+            <!-- Full name -->
+            <div class="field">
+              <span class="field-icon">👤</span>
+              <input type="text" name="entry.1503609734" placeholder="Full name *" required autocomplete="given-name"/>
+            </div>
+   
+            <!-- Last name -->
+            <div class="field">
+              <span class="field-icon">👤</span>
+              <input type="text" name="entry.1479821263" placeholder="Last name *" required autocomplete="family-name"/>
+            </div>
+
+            <!-- ID document -->
+            <div class="field">
+              <span class="field-icon">ID</span>
+              <input type="text" name="entry.1479821263" placeholder="ID / Document *" required autocomplete="family-name"/>
+            </div>
+   
+            <!-- Email -->
+            <div class="field">
+              <span class="field-icon">✉</span>
+              <input type="email" name="entry.200075436" placeholder="Email address *" required autocomplete="email"/>
+            </div>
+   
+            <!-- Institution -->
+            <div class="field">
+              <span class="field-icon">🏛</span>
+              <input type="text" name="entry.895542888" placeholder="Institution / University *" required autocomplete="organization"/>
+            </div>
+   
+            <!-- Country -->
+            <div class="field">
+              <span class="field-icon">🌎</span>
+              <input type="text" name="entry.1803685710" placeholder="Country *" required autocomplete="country-name"/>
+            </div>
+   
+            <!-- Tipo de Participante -->
+            <div class="field">
+              <span class="field-icon">👥</span>
+              <select name="entry.921372150" required>
+                <option value="" disabled selected>Participant type *</option>
+                <option value="Undergraduate student Udenar">Undergraduate student (Udenar)</option>
+                <option value="Undergraduate student">Undergraduate student</option>
+                <option value="Graduate student">Graduate student</option>
+                <option value="University faculty">University faculty</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+   
+            <!-- Tipo de Participación -->
+            <div class="field">
+              <span class="field-icon">📊</span>
+              <select name="entry.323207977" required>
+                <option value="" disabled selected>Participation type *</option>
+                <option value="attendee">Attendee</option>
+                <option value="speaker">Speaker</option>
+                <option value="poster">Poster</option>
+              </select>
+            </div>
+            
+            <div id="cost-estimate" class="cost-estimate" aria-live="polite">Estimated cost: —</div>
+
+            <div class="form-actions">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform" target="_blank" rel="noopener noreferrer" class="btn-fallback">OPEN GOOGLE FORM</a>
+              <button type="submit" class="btn-submit" id="submit-btn">
+                Register <span class="arrow">→</span>
+              </button>
+            </div>
+
+          </form>
+
+           <div class="success-msg" id="success-msg">
+            ✅ Registration received! We will contact you soon.
+          </div>
+        </div>
+
+      </div>
+      <!-- Form moved below benefits and info boxes to appear last in column -->
+
+    </div>
+  </div>
+</section>
+
+
+<section class="discover-section">
+  <div class="discover-inner">
+
+    <div class="section-label">Discover</div>
+    <h2 class="section-heading">Pasto — <span class="green">Nariño</span></h2>
+    <p class="section-desc">A land of mountains, culture, and academic excellence in southern Colombia</p>
+
+    <!-- Photo cards -->
+    <div class="photo-grid">
+
+      <div class="photo-card">
+        <img data-img="photo1"
+          id="imgPasto"
+          alt="San Juan de Pasto"
+          loading="lazy"
+        />
+        <div class="photo-label">
+          <strong>San Juan de Pasto</strong>
+          <span>Capital of Nariño, Colombia</span>
+          <a class="photo-more" href="https://aventurecolombia.com/es/que-hacer-en-pasto/" target="_blank" rel="noopener noreferrer">Learn more</a>
+        </div>
+      </div>
+
+      <div class="photo-card">
+        <img data-img="photo2"
+          id="imgUdenar"
+          alt="University of Nariño"
+          loading="lazy"
+        />
+        <div class="photo-label">
+          <strong>University of Nariño</strong>
+          <span>Venue of the ALTENCOA11 event</span>
+          <a class="photo-more" href="https://www.udenar.edu.co/resena-historica/" target="_blank" rel="noopener noreferrer">Learn more</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Info cards -->
+    <div class="info-grid">
+
+      <div class="info-card">
+        <span class="info-icon">🏔</span>
+        <h4>Galeras Volcano</h4>
+        <p>One of the most active volcanoes in Colombia, offering impressive views from the city of Pasto at 2,927 meters above sea level.</p>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">🎓</span>
+        <h4>University of Nariño</h4>
+        <p>Founded in 1904, it is the main public university in southern Colombia, with a strong tradition in mathematics and sciences.</p>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">📍</span>
+        <h4>San Juan de Pasto</h4>
+        <p>Known as "The Surprise City of Nariño", Pasto is the capital of Nariño, recognized for its colonial architecture and cultural heritage.</p>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">🍽</span>
+        <h4>Nariño Cuisine</h4>
+        <p>Discover the region's unique cuisine, including cuy, aged empanadas, and traditional stews — a warm welcome for every visitor.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+
+    <!-- ── TOP: Brand · Links · Contact ── -->
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="brand-col">
+        <div class="brand-logo">
+          <img style="width: 40px;" id="footer" alt="logo" loading="lazy">
+          <div class="brand-name">ALTENCOA<span class="green">11</span></div>
+        </div>
+        <p class="brand-desc">
+          Algebra, Logic, Number Theory, Combinatorics and their Applications.
+          An international academic event at the University of Nariño.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Call for Papers</a></li>
+          <li><a href="#">Committees</a></li>
+          <li><a href="#">Registration</a></li>
+          <li><a href="#">Nariño</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="contact-items">
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <a href="altenua@udenar.edu.co">altenua@udenar.edu.co</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <a href="mailto:matematicas@udenar.edu.co">matematicas@udenar.edu.co</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <span>+57 (2) 7311449</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <span>Universidad de Nariño,<br>San Juan de Pasto, Colombia</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── SPONSORS ── -->
+    <div class="footer-sponsors">
+      <div class="sponsors-label">Supported by</div>
+          <div class="">
+            <img style="width:100%;" id="apoyan" alt="Sponsor name" loading="lazy"/>
+          </div>
+    </div>
+
+    <!-- ── BOTTOM BAR ── -->
+    <div class="footer-bottom">
+      <p>
+        © 2026 ALTENCOA11 — University of Nariño. All rights reserved.
+        &nbsp;·&nbsp;
+        <a href="#">Privacy policy</a>
+        &nbsp;·&nbsp;
+        <a href="#">Contact</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
+const apoyan = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773671455/Apoyan_batcheditor_fotor_p2u9jy.webp"
+const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773590091/Poster_ALTENCOA11-2026_best_gz6cvq.webp"
+const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
+const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
+const email = "altenua@udenar.edu.co"
+
+
+document.getElementById('footer').src = logo;
+document.getElementById('apoyan').src = apoyan;
+document.getElementById('posterAbout').src = posterAboutImg;
+document.getElementById('imgPasto').src = imgPasto;
+document.getElementById('email').textContent = email;
+document.getElementById('imgUdenar').src = imgUdenar;
+
+const descriptionEvent="The research group ALTENUA: Álgebra, Teoría de Números y Aplicaciones is pleased to announce the eleventh edition of the International Meeting on Algebra, Number Theory, Combinatorics and Applications ALTENCOA11-2026,  which will take place at the University of Nariño, Pasto, Colombia, from October 5 to 9, 2026.The ALTENCOA meetings aim to promote Algebra, Number Theory, Combinatorics, and Applications in Colombia. The event will provide an excellent space for the dissemination of research results, new ideas, and experiences in the aforementioned areas."
+document.getElementById('aboutText').textContent = descriptionEvent;
+
+  // Collapsible behavior for 'Tarifas' (initialization waits for info cards to be rendered)
+  function initTarifasCollapsible(){
+    const tarifasBox = document.getElementById('tarifas-box');
+    if (!tarifasBox) return;
+    const toggle = tarifasBox.querySelector('.collapsible-toggle');
+    const content = document.getElementById('tarifas-content');
+    if (!toggle || !content) return;
+    // ensure initial state
+    content.style.maxHeight = '0px';
+    content.hidden = true;
+    toggle.addEventListener('click', function(e){
+      e.preventDefault();
+      const isOpen = tarifasBox.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        content.hidden = false;
+        requestAnimationFrame(()=>{ content.style.maxHeight = content.scrollHeight + 'px'; });
+      } else {
+        content.style.maxHeight = '0px';
+        setTimeout(()=> content.hidden = true, 360);
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // if info-cards already present, init immediately; otherwise wait for event
+    if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+    else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+  });
+
+
+  function switchTab(btn, panelId) {
+    // Deactivate all tabs & panels
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+    // Activate clicked
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('panel-' + panelId);
+    if (panel) panel.classList.add('active');
+  }
+
+  // Committee data (updated)
+  const committees = [
+    {
+      id: 'algebra',
+      label: 'Algebra',
+      members: [
+        { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brazil' },
+        { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brazil' },
+        { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'number',
+      label: 'Number Theory',
+      members: [
+        { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'Mexico' },
+        { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
+        { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'comb',
+      label: 'Combinatorics',
+      members: [
+        { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'Mexico' },
+        { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
+        { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'apps',
+      label: 'Applications',
+      members: [
+        { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
+        { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'alg-geom',
+      label: 'Algebraic Geometry',
+      members: [
+        { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brazil' },
+        { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brazil' },
+        { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'data',
+      label: 'Data Analysis and Complex Systems',
+      members: [
+        { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brazil' },
+        { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brazil' },
+        { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'France' }
+      ]
+    }
+  ];
+
+    // Data-driven info-cards for the registration section. Modify these objects to change content.
+    const infoCards = [
+      {
+        id: 'fechas',
+        title: 'Important dates',
+        items: [
+          { label: 'Submission of talks and posters / Proposal submission', value: '16 Feb – 8 May' },
+          { label: 'Acceptance of proposals', value: '29 May' },
+          { label: 'Event', value: '5–9 October 2026' }
+        ]
+      },
+      {
+        id: 'costos-plazos',
+        title: 'Costs & Deadlines',
+        items: [
+          { label: 'Discounted payment deadline', value: '21 August' },
+          { label: 'Speakers payment deadline', value: '4 September *' },
+          { label: 'Attendees payment deadline', value: '18 September' }
+        ]
+      },
+      {
+        id: 'tarifas',
+        title: 'Fees',
+        type: 'tarifas'
+      }
+    ];
+
+    function renderInfoCards(){
+      const container = document.getElementById('info-cards');
+      if (!container) return;
+      container.innerHTML = '';
+      infoCards.forEach(card => {
+        const box = document.createElement('div');
+        box.className = 'info-box';
+        box.setAttribute('role','group');
+        box.setAttribute('aria-label', card.title);
+        if (card.type === 'tarifas') {
+          box.classList.add('info-box-collapsible');
+          box.id = 'tarifas-box';
+          const btn = document.createElement('button');
+          btn.className = 'collapsible-toggle';
+          btn.setAttribute('aria-expanded','false');
+          btn.setAttribute('aria-controls','tarifas-content');
+          btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
+          box.appendChild(btn);
+          const content = document.createElement('div');
+          content.id = 'tarifas-content';
+          content.className = 'collapsible-content';
+          content.hidden = true;
+          box.appendChild(content);
+          const mention = document.createElement('div');
+          mention.id = 'tarifas-mention';
+          mention.className = 'dates-list';
+          mention.hidden = true;
+          box.appendChild(mention);
+        } else {
+          const title = document.createElement('div');
+          title.className = 'dates-title';
+          title.textContent = card.title;
+          box.appendChild(title);
+          const ul = document.createElement('ul');
+          ul.className = 'dates-list';
+          card.items.forEach(it => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
+            ul.appendChild(li);
+          });
+          box.appendChild(ul);
+        }
+        container.appendChild(box);
+      });
+      // Notify other code that info cards are ready
+      document.dispatchEvent(new Event('infoCardsReady'));
+    }
+
+  // Robust flag resolver: map names → ISO2, generate emoji, and search inside strings
+  (function(){
+    const countryNameToCode = {
+      'brasil': 'BR', 'brazil': 'BR',
+      'colombia': 'CO',
+      'méxico': 'MX', 'mexico': 'MX',
+      'chile': 'CL',
+      'estados unidos': 'US', 'usa': 'US', 'united states': 'US',
+      'francia': 'FR', 'france': 'FR',
+      'argentina': 'AR', 'perú': 'PE', 'peru': 'PE', 'ecuador': 'EC',
+      'venezuela': 'VE', 'uruguay': 'UY', 'paraguay': 'PY', 'bolivia': 'BO',
+      'méxico ': 'MX'
+    };
+
+    function isoToEmoji(iso) {
+      if (!iso || iso.length !== 2) return '';
+      return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+    }
+
+    window.getFlag = function(input) {
+      if (!input) return '';
+      const s = String(input).toLowerCase().trim();
+      // Direct exact key
+      if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
+      // Search for known country names inside the string
+      for (const name in countryNameToCode) {
+        if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
+      }
+      // Try simple heuristics: look for country-like words at end (e.g., ", Brasil")
+      const parts = s.split(/[,\-\/]/).map(p=>p.trim());
+      for (let i = parts.length-1; i >= 0; --i) {
+        const p = parts[i];
+        if (countryNameToCode[p]) return isoToEmoji(countryNameToCode[p]);
+      }
+      return '';
+    };
+  })();
+
+  function createMemberCard(m) {
+    const card = document.createElement('div');
+    card.className = 'member-card';
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    const flag = getFlag(m.location || m.institution);
+    avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
+    card.appendChild(avatar);
+
+    const name = document.createElement('div');
+    name.className = 'member-name';
+    name.textContent = m.name;
+    card.appendChild(name);
+
+    const inst = document.createElement('div');
+    inst.className = 'member-institution';
+    inst.textContent = m.institution;
+    card.appendChild(inst);
+
+ 
+
+    return card;
+  }
+
+  function renderCommittees() {
+    const tabs = document.getElementById('committee-tabs');
+    const panelsContainer = document.getElementById('committee-panels');
+    tabs.innerHTML = '';
+    panelsContainer.innerHTML = '';
+
+    committees.forEach((c, idx) => {
+      // Tab button
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (idx===0 ? ' active' : '');
+      btn.setAttribute('role','tab');
+      btn.setAttribute('aria-selected', idx===0 ? 'true' : 'false');
+      btn.textContent = c.label;
+      btn.addEventListener('click', () => switchTab(btn, c.id));
+      tabs.appendChild(btn);
+
+      // Panel
+      const panel = document.createElement('div');
+      panel.id = 'panel-' + c.id;
+      panel.className = 'tab-panel' + (idx===0 ? ' active' : '');
+     
+
+      c.members.forEach(m => panel.appendChild(createMemberCard(m)));
+
+      panelsContainer.appendChild(panel);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => renderCommittees());
+
+  // Price estimator and tarifas rendering driven from a central `costos` object
+  (function(){
+    const costos = {
+      asistentes: {
+        'Udenar Undergraduate Student': 50000,
+      'Postgraduate Student': 335000,
+      'Undergraduate Student': 100000,
+      'University Professor': 400000,
+      'Teacher': 120000,
+      'Other': 450000
+      },
+      ponentes: {
+        'Udenar Undergraduate Student': 45000,
+      'Postgraduate Student': 301500,
+      'Undergraduate Student': 90000,
+      'University Professor': 360000,
+      'Teacher': 108000,
+      'Other': 405000
+      },
+      sin_descuento: {
+       'Udenar Undergraduate Student': 100000,
+      'Postgraduate Student': 370000,
+      'Undergraduate Student': 120000,
+      'University Professor': 500000,
+      'Teacher': 140000,
+      'Other': 500000
+      }
+    };
+
+    function formatCurrency(n){
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    function getRoleKey() {
+      const partSel = document.querySelector('select[name="entry.323207977"]');
+      if(!partSel) return 'asistentes';
+      const v = partSel.value || '';
+      // Treat 'ponente' and 'poster' as ponentes; otherwise asistentes
+      // treat both Spanish and English input keywords for robustness
+      const vl = v.toLowerCase();
+      if (vl.indexOf('ponente') !== -1 || vl.indexOf('poster') !== -1 || vl.indexOf('speaker') !== -1) return 'ponentes';
+      return 'asistentes';
+    }
+
+    function updateEstimate() {
+      const sel = document.querySelector('select[name="entry.921372150"]');
+      const el = document.getElementById('cost-estimate');
+      if(!sel || !el) return;
+      const participant = sel.value;
+      if(!participant) {
+        el.textContent = 'Estimated cost: —';
+        return;
+      }
+      const roleKey = getRoleKey();
+      const price = (costos[roleKey] || {})[participant];
+      const full = (costos.sin_descuento || {})[participant];
+      if (price != null) {
+        const fullText = full ? ` (Precio sin descuento: $${formatCurrency(full)})` : '';
+        el.textContent = `Estimated cost: $${formatCurrency(price)}${fullText} — No charge will be made now`;
+      } else {
+        el.textContent = 'Estimated cost: Check the fees';
+      }
+    }
+
+    function renderTarifas() {
+      const container = document.getElementById('tarifas-content');
+      const containerf = document.getElementById('tarifas-mention');
+      if(!container) return;
+      // build HTML: Asistentes, Ponentes, Precios sin descuento — list items show label and price inline
+      const createListFrom = (obj) => {
+        let html = '<ul class="dates-list">';
+        for (const key of Object.keys(obj)) {
+          html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
+        }
+        html += '</ul>';
+        return html;
+      };
+      const mentionText = 'Discounted prices apply for payments made before 21 August 2026. After this date, regular (non-discounted) fees will apply.';
+
+      let html = '';
+      // Grid with three columns: Attendees | Speakers | Regular prices
+      html += '<div class="tarif-grid">';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Attendees</div>` + createListFrom(costos.asistentes) + '</div>';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Speakers</div>` + createListFrom(costos.ponentes) + '</div>';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Regular prices</div>` + createListFrom(costos.sin_descuento) + '</div>';
+      html += '</div>';
+
+      container.innerHTML = html;
+      if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      // render dynamic info-cards first (creates tarifas DOM)
+      renderInfoCards();
+      // insert subtle decorative SVGs in green sections
+      insertPiDecor();
+      const sel = document.querySelector('select[name="entry.921372150"]');
+      const partSel = document.querySelector('select[name="entry.323207977"]');
+      if(sel) sel.addEventListener('change', updateEstimate);
+      if(partSel) partSel.addEventListener('change', updateEstimate);
+      // initialize
+      updateEstimate();
+      renderTarifas();
+    });
+  })();
+
+    // Insert subtle pi-shaped SVG decorations into green sections
+    function insertPiDecor(){
+      const svgMarkup = `
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+            <path d="M18 30 C18 16, 38 12, 38 30" />
+            <path d="M62 30 C62 16, 82 12, 82 30" />
+            <path d="M18 30 L82 30" />
+          </g>
+          <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
+        </svg>`;
+      document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
+        if (sec.querySelector('.pi-decor')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'pi-decor';
+        wrapper.innerHTML = svgMarkup;
+        sec.appendChild(wrapper);
+      });
+    }
+
+  function handleSubmit(e) {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+ 
+    // Give the iframe time to receive the response, then show success
+    setTimeout(function () {
+      document.getElementById('reg-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }, 1800);
+  }
+  
+</script>
+
+</body>
+</html>
