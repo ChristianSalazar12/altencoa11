@@ -290,9 +290,9 @@
   .about-desc {
     font-size: clamp(13px, 1.5vw, 15px);
     color: #556055;
-    line-height: 1.85;
-   
-    margin: 0 auto 52px;
+      line-height: 1.85;
+      text-align: justify;
+      margin: 0 auto 52px;
   }
 
   /* Two-column layout */
@@ -476,13 +476,15 @@
     .areas-grid { grid-template-columns: 1fr; }
     .about-grid { flex-direction: column; align-items: center; gap: 20px; }
     .info-col { text-align: center; }
+    .areas-grid { grid-template-columns: 1fr; }
     .area-card { justify-content: center; }
+    .area-card .area-label { display: inline-block; text-align: left; margin-left: 8px; }
     .organizer-box { text-align: center; }
     .research-heading { text-align: center; }
 
     /* About section responsive tweaks */
     .about-inner { padding: 0 12px; }
-    .about-desc { max-width: 100%; padding: 0 6px; text-align: center; }
+    .about-desc { max-width: 100%; padding: 0 6px; text-align: justify; }
     .poster-col { display: flex; justify-content: center; width: 100%; }
     .poster-card { width: 100%; max-width: 420px; }
     .poster-card img { width: 100%; height: auto; aspect-ratio: auto; display: block; }
@@ -1423,12 +1425,12 @@
           <div class="research-heading">Áreas de investigación</div>
 
           <div class="areas-grid">
-            <div class="area-card"><div class="area-icon">∑</div> Álgebra</div>
-            <div class="area-card"><div class="area-icon">ℕ</div> Teoría de Números</div>
-            <div class="area-card"><div class="area-icon">∧</div> Combinatoria</div>
-            <div class="area-card"><div class="area-icon">◈</div> Aplicaciones</div>
-            <div class="area-card"><div class="area-icon">△</div> Geometría Algebraica</div>
-            <div class="area-card"><div class="area-icon">⊕</div> Análisis de Datos y Sistemas Complejos</div>
+            <div class="area-card"><div class="area-icon">∑</div><span class="area-label">Álgebra</span></div>
+            <div class="area-card"><div class="area-icon">ℕ</div><span class="area-label">Teoría de Números</span></div>
+            <div class="area-card"><div class="area-icon">∧</div><span class="area-label">Combinatoria</span></div>
+            <div class="area-card"><div class="area-icon">◈</div><span class="area-label">Aplicaciones</span></div>
+            <div class="area-card"><div class="area-icon">△</div><span class="area-label">Geometría Algebraica</span></div>
+            <div class="area-card"><div class="area-icon">⊕</div><span class="area-label">Análisis de Datos y Sistemas Complejos</span></div>
           </div>
 
           <div class="organizer-box">
@@ -1603,7 +1605,8 @@
 
       <div class="photo-card">
         <img data-img="photo1"
-          src="https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
+          id="imgPasto"
+         
           alt="San Juan de Pasto"
           loading="lazy"
         />
@@ -1616,7 +1619,7 @@
 
       <div class="photo-card">
         <img data-img="photo2"
-          src="https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
+          id="imgUdenar"
           alt="Universidad de Nariño"
           loading="lazy"
         />
@@ -1741,15 +1744,19 @@
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
-const apoyan = "https://raw.githubusercontent.com/ChristianSalazar12/altencoa11/refs/heads/develop/assets/img/Apoyan.png?raw=true"
+const apoyan = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773671455/Apoyan_batcheditor_fotor_p2u9jy.webp"
 const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773590091/Poster_ALTENCOA11-2026_best_gz6cvq.webp"
+const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
+const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
 const email = "altenua@udenar.edu.co"
 
 
 document.getElementById('footer').src = logo;
 document.getElementById('apoyan').src = apoyan;
 document.getElementById('posterAbout').src = posterAboutImg;
+document.getElementById('imgPasto').src = imgPasto;
 document.getElementById('email').textContent = email;
+document.getElementById('imgUdenar').src = imgUdenar;
 
 const descriptionEvent="El grupo de investigación ALTENUA: Álgebra, Teoría de Números y Aplicaciones tiene el gusto de convocar a la onceava versión del Encuentro internacional de Álgebra, Teoría de Números, Combinatoria y Aplicaciones ALTENCOA11-2026, que tendrá lugar en la Universidad de Nariño, Pasto, Colombia, entre el 5 y el 9 de octubre de 2026. Los encuentros ALTENCOA tienen como propósito fomentar el Álgebra, la Teoría de Números, la Combinatoria y las Aplicaciones en Colombia. El evento proporcionará un excelente espacio para la difusión de resultados de investigación, ideas nuevas y experiencias en las áreas mencionadas. "
 document.getElementById('aboutText').textContent = descriptionEvent;
