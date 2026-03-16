@@ -948,6 +948,31 @@
 
   .btn-submit .arrow { font-size: 18px; }
 
+  /* Form actions: fallback link + submit button on one row */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .btn-fallback {
+    color: var(--accent-500);
+    font-weight: 700;
+    text-decoration: underline;
+    background: transparent;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .form-actions { flex-direction: column; align-items: stretch; }
+    .btn-fallback { text-align: center; }
+  }
+
   /* Success message (hidden by default) */
   .success-msg {
     display: none;
@@ -1574,9 +1599,12 @@
             
             <div id="cost-estimate" class="cost-estimate" aria-live="polite">Costo estimado: —</div>
 
-            <button type="submit" class="btn-submit" id="submit-btn">
-              Registrarse <span class="arrow">→</span>
-            </button>
+            <div class="form-actions">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform" target="_blank" rel="noopener noreferrer" class="btn-fallback">INTENTAR CON FORMULARIO DE GOOGLE</a>
+              <button type="submit" class="btn-submit" id="submit-btn">
+                Registrarse <span class="arrow">→</span>
+              </button>
+            </div>
 
           </form>
 
