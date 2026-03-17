@@ -1529,85 +1529,85 @@
         <!-- Insert the registration form here so it appears below benefits and info boxes -->
         <div class="reg-form-card">
           <form
-            id="reg-form"
-            action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
-            method="POST"
-            target="hidden-iframe"
-            onsubmit="handleSubmit(event)"
-          >
+  id="reg-form"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
+  method="POST"
+  target="hidden-iframe"
+  onsubmit="handleSubmit(event)"
+>
 
-            <!-- Full name -->
-            <div class="field">
-              <span class="field-icon">👤</span>
-              <input type="text" name="entry.1503609734" placeholder="Full name *" required autocomplete="given-name"/>
-            </div>
-   
-            <!-- Last name -->
-            <div class="field">
-              <span class="field-icon">👤</span>
-              <input type="text" name="entry.1479821263" placeholder="Last name *" required autocomplete="family-name"/>
-            </div>
+  <!-- Full name -->
+  <div class="field">
+    <span class="field-icon">👤</span>
+    <input type="text" name="entry.1503609734" placeholder="Full name *" required autocomplete="given-name"/>
+  </div>
 
-            <!-- ID document -->
-            <div class="field">
-              <span class="field-icon">ID</span>
-              <input type="text" name="entry.1479821263" placeholder="ID / Document *" required autocomplete="family-name"/>
-            </div>
-   
-            <!-- Email -->
-            <div class="field">
-              <span class="field-icon">✉</span>
-              <input type="email" name="entry.200075436" placeholder="Email address *" required autocomplete="email"/>
-            </div>
-   
-            <!-- Institution -->
-            <div class="field">
-              <span class="field-icon">🏛</span>
-              <input type="text" name="entry.895542888" placeholder="Institution / University *" required autocomplete="organization"/>
-            </div>
-   
-            <!-- Country -->
-            <div class="field">
-              <span class="field-icon">🌎</span>
-              <input type="text" name="entry.1803685710" placeholder="Country *" required autocomplete="country-name"/>
-            </div>
-   
-            <!-- Tipo de Participante -->
-            <div class="field">
-              <span class="field-icon">👥</span>
-              <select name="entry.921372150" required>
-                <option value="" disabled selected>Participant type *</option>
-                <option value="Undergraduate student Udenar">Undergraduate student (Udenar)</option>
-                <option value="Undergraduate student">Undergraduate student</option>
-                <option value="Graduate student">Graduate student</option>
-                <option value="University faculty">University faculty</option>
-                <option value="Faculty">Faculty</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-   
-            <!-- Tipo de Participación -->
-            <div class="field">
-              <span class="field-icon">📊</span>
-              <select name="entry.323207977" required>
-                <option value="" disabled selected>Participation type *</option>
-                <option value="attendee">Attendee</option>
-                <option value="speaker">Speaker</option>
-                <option value="poster">Poster</option>
-              </select>
-            </div>
-            
-            <div id="cost-estimate" class="cost-estimate" aria-live="polite">Estimated cost: —</div>
+  <!-- Last name -->
+  <div class="field">
+    <span class="field-icon">👤</span>
+    <input type="text" name="entry.1479821263" placeholder="Last name *" required autocomplete="family-name"/>
+  </div>
 
-            <div class="form-actions">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform" target="_blank" rel="noopener noreferrer" class="btn-fallback">OPEN GOOGLE FORM</a>
-              <button type="submit" class="btn-submit" id="submit-btn">
-                Register <span class="arrow">→</span>
-              </button>
-            </div>
+  <!-- ID document ← entry corregido -->
+  <div class="field">
+    <span class="field-icon">ID</span>
+    <input type="text" name="entry.1223149995" placeholder="ID / Document *" required/>
+  </div>
 
-          </form>
+  <!-- Email -->
+  <div class="field">
+    <span class="field-icon">✉</span>
+    <input type="email" name="entry.200075436" placeholder="Email address *" required autocomplete="email"/>
+  </div>
 
+  <!-- Institution -->
+  <div class="field">
+    <span class="field-icon">🏛</span>
+    <input type="text" name="entry.895542888" placeholder="Institution / University *" required autocomplete="organization"/>
+  </div>
+
+  <!-- Country -->
+  <div class="field">
+    <span class="field-icon">🌎</span>
+    <input type="text" name="entry.1803685710" placeholder="Country *" required autocomplete="country-name"/>
+  </div>
+
+  <!-- Participant type -->
+  <div class="field">
+    <span class="field-icon">👥</span>
+   <select name="entry.921372150" required>
+  <option value="" disabled selected>Participant type *</option>
+  <option value="Udenar Undergraduate Student">Undergraduate student (Udenar)</option>
+  <option value="Undergraduate Student">Undergraduate student</option>
+  <option value="Postgraduate Student">Graduate student</option>
+  <option value="University Professor">University faculty</option>
+  <option value="Teacher">Faculty</option>
+  <option value="Other">Other</option>
+</select>
+  </div>
+
+  <!-- Participation type -->
+  <div class="field">
+    <span class="field-icon">📊</span>
+    <select name="entry.323207977" required>
+      <option value="" disabled selected>Participation type *</option>
+      <option value="asistentes">Attendee</option>
+      <option value="ponente">Speaker</option>
+      <option value="poster">Poster</option>
+    </select>
+  </div>
+
+  <div id="cost-estimate" class="cost-estimate" aria-live="polite">Estimated cost: —</div>
+
+  <div class="form-actions">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform"
+       target="_blank" rel="noopener noreferrer" class="btn-fallback">OPEN GOOGLE FORM</a>
+    <button type="submit" class="btn-submit" id="submit-btn">
+      Register <span class="arrow">→</span>
+    </button>
+  </div>
+
+</form>
            <div class="success-msg" id="success-msg">
             ✅ Registration received! We will contact you soon.
           </div>
@@ -1897,7 +1897,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
         id: 'fechas',
         title: 'Important dates',
         items: [
-          { label: 'Submission of talks and posters / Proposal submission', value: '16 Feb – 8 May' },
+          { label: 'Submission of talks and posters / Deadline for submission', value: '16 Feb – 8 May' },
           { label: 'Acceptance of proposals', value: '29 May' },
           { label: 'Event', value: '5–9 October 2026' }
         ]
@@ -1906,9 +1906,9 @@ document.getElementById('aboutText').textContent = descriptionEvent;
         id: 'costos-plazos',
         title: 'Costs & Deadlines',
         items: [
-          { label: 'Discounted payment deadline', value: '21 August' },
-          { label: 'Speakers payment deadline', value: '4 September *' },
-          { label: 'Attendees payment deadline', value: '18 September' }
+          { label: 'Payment deadline with discount', value: '21 August' },
+          { label: 'Payment deadline for speakers', value: '4 September *' },
+          { label: 'Payment deadline for participants', value: '18 September' }
         ]
       },
       {
@@ -2116,8 +2116,8 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       const price = (costos[roleKey] || {})[participant];
       const full = (costos.sin_descuento || {})[participant];
       if (price != null) {
-        const fullText = full ? ` (Precio sin descuento: $${formatCurrency(full)})` : '';
-        el.textContent = `Estimated cost: $${formatCurrency(price)}${fullText} — No charge will be made now`;
+        const fullText = full ? ` (Price without discount: $${formatCurrency(full)})` : '';
+        el.textContent = `Estimated cost: $${formatCurrency(price)}${fullText} — No charges will be made now`;
       } else {
         el.textContent = 'Estimated cost: Check the fees';
       }
