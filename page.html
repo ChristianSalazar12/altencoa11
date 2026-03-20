@@ -2243,7 +2243,7 @@
           <div id="assistant-instructions" class="pm-status" hidden aria-live="polite">
             ✅ Registro exitoso. Sigue estos pasos para generar tu recibo y completar el proceso:
             <ol style="margin: 10px 0 0; padding-left: 20px; color: rgba(255,255,255,0.92); font-weight: 700;">
-              <li>Ir al enlace del recibo: <a href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245" target="_blank" rel="noopener noreferrer">ci.udenar.edu.co (id=245)</a>.</li>
+              <li>Ir al enlace del recibo: <a href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245" target="_blank" rel="noopener noreferrer" style="color: #5cb832;"">GENERAR RECIBO DE PAGO</a>.</li>
               <li>Marcar la opción de <strong>asistentes</strong>.</li>
               <li>Ingresar sus datos.</li>
               <li>Confirmar que los datos sean correctos, guardar y seguir las instrucciones del recibo para cancelar su inscripción. Luego los esperamos en el evento.</li>
@@ -3191,63 +3191,69 @@ function handleSubmit(e) {
   const btn = document.getElementById('submit-btn');
   if (btn) { btn.disabled = true; btn.textContent = 'Abriendo…'; }
 
+  const FORM_PREFILL_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform';
+  const params = new URLSearchParams();
+  params.set('usp', 'pp_url');
+
+  // Campos base del formulario principal
+  form.querySelectorAll('input[name], select[name]').forEach(el => {
+    if (el.name && el.value) params.set(el.name, el.value.trim());
+  });
+
   if (isAsistente) {
-    // Construir URL con todos los campos del form pre-rellenados
-    // buildPrefillURL ya existe en el scope del IIFE de pricing
-    // Llamamos directamente con los extras de N/A para ponencia
-    const FORM_PREFILL_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform';
+    // Campos de ponencia → N/A para asistentes
+    params.set('entry.323207977',  'N/A');
+    params.set('entry.2104614869', 'N/A');
+    params.set('entry.1781353138', 'N/A');
+    params.set('entry.2069271964', 'N/A');
+  } else {
+    // Ponente/póster → recuperar datos guardados del modal
+    const area     = document.getElementById('ponencia-area-hidden')     ? document.getElementById('ponencia-area-hidden').value     : '';
+    const titulo   = document.getElementById('ponencia-titulo-hidden')   ? document.getElementById('ponencia-titulo-hidden').value   : '';
+    const keywords = document.getElementById('ponencia-keywords-hidden') ? document.getElementById('ponencia-keywords-hidden').value : '';
+    const resumen  = document.getElementById('ponencia-resumen-hidden')  ? document.getElementById('ponencia-resumen-hidden').value  : '';
 
-    const params = new URLSearchParams();
-    params.set('usp', 'pp_url');
+    params.set('entry.323207977',  area);
+    params.set('entry.2104614869', titulo);
+    params.set('entry.2069271964', keywords);
+    params.set('entry.1781353138', resumen);
+  }
 
-    // Todos los campos del form
-    form.querySelectorAll('input[name], select[name]').forEach(el => {
-      if (el.name && el.value) params.set(el.name, el.value.trim());
-    });
+  const prefillURL = `${FORM_PREFILL_BASE}?${params.toString()}`;
 
-    // Campos de ponencia con N/A para no dejar vacíos
-    params.set('entry.323207977', 'N/A'); // area
-    params.set('entry.2104614869', 'N/A'); // titulo
-    params.set('entry.1781353138', 'N/A'); // resumen
-    params.set('entry.2069271964', 'N/A'); // keywords
+  // Abrir Google Form en nueva pestaña con todo pre-rellenado
+  window.open(prefillURL, '_blank', 'noopener');
 
-    const prefillURL = `${FORM_PREFILL_BASE}?${params.toString()}`;
+  // Mostrar mensaje en la página
+  const regFormEl             = document.getElementById('reg-form');
+  const successMsg            = document.getElementById('success-msg');
+  const assistantInstructions = document.getElementById('assistant-instructions');
 
-    // Abrir Google Form en nueva pestaña con todo pre-rellenado
-    window.open(prefillURL, '_blank', 'noopener');
+  if (regFormEl) regFormEl.style.display = 'none';
 
-    // Mostrar éxito en la página
-    const regFormEl             = document.getElementById('reg-form');
-    const successMsg            = document.getElementById('success-msg');
-    const assistantInstructions = document.getElementById('assistant-instructions');
-
-    if (regFormEl) regFormEl.style.display = 'none';
-
+  if (isAsistente) {
     if (successMsg) {
       successMsg.style.display = 'block';
       successMsg.innerHTML =
         '✅ Tus datos están pre-rellenados en el formulario de Google.<br>' +
-        '<strong>Último paso:</strong> haz clic en <strong>"Enviar"</strong> en la pestaña que se acaba de abrir para confirmar tu registro.<br><br>' +
+        '<strong>Último paso:</strong> revisa tus datos y haz clic en <strong>"Enviar"</strong> en la pestaña que se acaba de abrir para confirmar tu registro.<br><br>' +
         `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
           ↗ Abrir de nuevo si se cerró la pestaña
         </a>`;
     }
-
     if (assistantInstructions) assistantInstructions.hidden = false;
 
   } else {
-    // Ponente/póster sin PDF: submit al iframe (ya guardó datos en modal)
-    form.submit();
-
-    setTimeout(function () {
-      const regFormEl             = document.getElementById('reg-form');
-      const successMsg            = document.getElementById('success-msg');
-      const assistantInstructions = document.getElementById('assistant-instructions');
-
-      if (regFormEl)  regFormEl.style.display  = 'none';
-      if (successMsg) successMsg.style.display = 'block';
-      if (assistantInstructions) assistantInstructions.hidden = true;
-    }, 1800);
+    if (successMsg) {
+      successMsg.style.display = 'block';
+      successMsg.innerHTML =
+        '✅ Tus datos y resumen están pre-rellenados en el formulario de Google.<br>' +
+        '<strong>Último paso:</strong> verifica tus datos, sube el <strong>PDF de tu resumen</strong> y haz clic en <strong>"Enviar"</strong> en la pestaña que se acaba de abrir.<br><br>' +
+        `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
+          ↗ Abrir de nuevo si se cerró la pestaña
+        </a>`;
+    }
+    if (assistantInstructions) assistantInstructions.hidden = false;
   }
 }
 
