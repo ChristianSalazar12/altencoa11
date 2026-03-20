@@ -311,7 +311,7 @@
   }
 
   .poster-card {
-    width: clamp(420px, 22vw, 250px);
+    width: clamp(380px, 22vw, 290px);
     border-radius: var(--card-radius);
     overflow: hidden;
     box-shadow: var(--shadow-strong);
@@ -340,6 +340,267 @@
     min-width: 280px;
     max-width: 540px;
   }
+  /* ── VIDEO BUTTON ── */
+.video-btn {
+   display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0e1f0a;
+  border: 1px solid rgba(126,217,87,0.25);
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-decoration: none;
+  margin-top: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, background 0.3s;
+
+  /* Pulso de brillo en el borde */
+  animation: btn-pulse 2.8s ease-in-out infinite;
+}
+@keyframes btn-pulse {
+  0%   { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
+  50%  { box-shadow: 0 0 14px 4px rgba(126,217,87,0.28); border-color: rgba(126,217,87,0.70); }
+  100% { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
+}
+/* Barrido de luz de izquierda a derecha */
+.video-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(126,217,87,0.13) 50%,
+    transparent 100%
+  );
+  animation: btn-sweep 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btn-sweep {
+  0%   { left: -75%; opacity: 0; }
+  20%  { opacity: 1; }
+  60%  { left: 125%; opacity: 0; }
+  100% { left: 125%; opacity: 0; }
+}
+
+.video-btn:hover {
+  border-color: rgba(126,217,87,0.85) !important;
+  background: #122a0d;
+  animation: none;
+  box-shadow: 0 0 22px 6px rgba(126,217,87,0.30);
+}
+.video-btn:hover::before {
+  animation: none;
+}
+
+/* Icono */
+.video-btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(126,217,87,0.12);
+  border: 1px solid rgba(126,217,87,0.30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+  animation: icon-ping 2.8s ease-in-out infinite;
+}
+
+@keyframes icon-ping {
+  0%,100% { box-shadow: 0 0 0 0 rgba(126,217,87,0.0); }
+  50%      { box-shadow: 0 0 0 5px rgba(126,217,87,0.18); }
+}
+
+.video-btn:hover .video-btn-icon {
+  background: rgba(126,217,87,0.25);
+  transform: scale(1.08);
+  animation: none;
+  box-shadow: none;
+}
+
+.video-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.video-btn-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.video-btn-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.50);
+  line-height: 1.3;
+}
+/*--------------------------modal video--------------------------------*/
+/* ══ VIDEO MODAL ══ */
+.vmodal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(5, 20, 5, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: vfadeIn 0.25s ease;
+}
+
+.vmodal-backdrop.open {
+  display: flex;
+}
+
+@keyframes vfadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.vmodal-box {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b1f08;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  animation: vslideUp 0.28s ease;
+}
+
+@keyframes vslideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Preview thumbnail */
+.vmodal-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  overflow: hidden;
+  background: #040f03;
+}
+
+.vmodal-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  filter: brightness(0.75);
+}
+
+.vmodal-preview:hover .vmodal-thumb {
+  transform: scale(1.03);
+  filter: brightness(0.6);
+}
+
+/* Play button */
+.vmodal-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(126,217,87,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.2s;
+  box-shadow: 0 0 0 12px rgba(126,217,87,0.18);
+}
+
+.vmodal-preview:hover .vmodal-play-btn {
+  transform: translate(-50%, -60%) scale(1.1);
+  background: #9BE564;
+}
+
+/* Label sobre la thumbnail */
+.vmodal-preview-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 20px 18px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vmodal-preview-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.vmodal-preview-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Iframe player */
+.vmodal-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.vmodal-player iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Botón cerrar */
+.vmodal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  z-index: 10;
+  line-height: 1;
+}
+
+.vmodal-close:hover {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+@media (max-width: 500px) {
+  .vmodal-play-btn { width: 52px; height: 52px; }
+  .vmodal-preview-title { font-size: 14px; }
+}
+
+/* ── RESEARCH AREAS ── */
 
   .research-heading {
     font-family: var(--font-serif);
@@ -370,6 +631,21 @@
     transition: box-shadow 0.2s, border-color 0.2s;
     cursor: default;
   }
+    .area-card-invited {
+    background: white;
+    border: 1px solid #d8e8d0;
+    border-radius: 8px;
+    padding: 13px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: #2a3a24;
+    font-weight: 600;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+    margin-bottom: 10px;
+  }
 
   .area-card:hover {
     box-shadow: 0 4px 16px rgba(94,184,50,0.14);
@@ -389,6 +665,7 @@
     flex-shrink: 0;
     background: #f4fbf0;
   }
+ 
 
   .organizer-box {
     background: white;
@@ -411,6 +688,8 @@
   .map-card .dates-title { padding: 12px 16px; background: #f4fbf0; color: #2a3a24; font-weight:700; }
   .map-frame { width: 100%; height: 100px; }
   .map-frame iframe { width: 100%; height: 100%; border: 0; display:block; }
+
+  /*-------------------------------------------------*/
 
   /* Benefits two-column grid */
   .benefits-grid {
@@ -1569,6 +1848,18 @@
             />
             <div class="poster-card-label">ALTENCOA11 · 2026</div>
           </div>
+        
+<a href="#" class="video-btn" onclick="openVideoModal(event)">
+  <div class="video-btn-icon">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <polygon points="3,1 13,7 3,13" fill="#7ED957"/>
+    </svg>
+  </div>
+  <div class="video-btn-text">
+    <span class="video-btn-title">Ver video del evento</span>
+    <span class="video-btn-sub">Conoce más sobre ALTENCOA</span>
+  </div>
+</a>
         </div>
 
         <!-- Info -->
@@ -1584,7 +1875,7 @@
            
           </div>
           <div class="research-heading">Área Invitada</div>
-          <div class="area-card"><div class="area-icon">⊕</div><span class="area-label">Análisis de Datos y Sistemas Complejos</span></div>
+          <div class="area-card-invited"><div class="area-icon">⊕</div><span class="area-label">Análisis de Datos y Sistemas Complejos</span></div>
 
           <div class="organizer-box">
             <div class="org-title">Organizado por</div>
@@ -1911,6 +2202,45 @@
 
   </div>
 </footer>
+
+<!-- ══ VIDEO MODAL ══ -->
+<div id="video-modal" class="vmodal-backdrop" onclick="closeVideoModal(event)">
+  <div class="vmodal-box">
+
+    <!-- Thumbnail preview visible antes de reproducir -->
+    <div class="vmodal-preview" id="vmodal-preview" onclick="playVideo()">
+      <img
+        src="https://img.youtube.com/vi/K9W4TbtyZCg/maxresdefault.jpg"
+        alt="Vista previa del video"
+        class="vmodal-thumb"
+      />
+      <div class="vmodal-play-btn">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <polygon points="6,3 19,11 6,19" fill="white"/>
+        </svg>
+      </div>
+      <div class="vmodal-preview-label">
+        <span class="vmodal-preview-title">ALTENCOA 11 · 2026</span>
+        <span class="vmodal-preview-sub">Haz clic para reproducir</span>
+      </div>
+    </div>
+
+    <!-- iframe oculto hasta que el usuario da play -->
+    <div class="vmodal-player" id="vmodal-player" style="display:none;">
+      <iframe
+        id="vmodal-iframe"
+        src=""
+        title="Video ALTENCOA11"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- Botón cerrar -->
+    <button class="vmodal-close" onclick="closeVideoModal()" aria-label="Cerrar video">✕</button>
+  </div>
+</div>
 
 
 <script>
@@ -2400,6 +2730,38 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       `<img class="carousel-logo" src="${s.src}" alt="${s.alt}" loading="lazy" />`
     ).join('');
   })();
+
+  /* ══ VIDEO MODAL ══ */
+const VIDEO_URL = 'https://www.youtube.com/embed/K9W4TbtyZCg';
+
+function openVideoModal(e) {
+  if (e) e.preventDefault();
+  // Reset to preview state each time
+  document.getElementById('vmodal-preview').style.display = 'block';
+  document.getElementById('vmodal-player').style.display  = 'none';
+  document.getElementById('vmodal-iframe').src = '';
+  document.getElementById('video-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal(e) {
+  // Click en el backdrop (fuera del box) cierra
+  if (e && e.target !== document.getElementById('video-modal')) return;
+  document.getElementById('vmodal-iframe').src = '';
+  document.getElementById('video-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function playVideo() {
+  document.getElementById('vmodal-preview').style.display = 'none';
+  document.getElementById('vmodal-player').style.display  = 'block';
+  document.getElementById('vmodal-iframe').src = VIDEO_URL + '?autoplay=1&rel=0';
+}
+
+// Cerrar con Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeVideoModal();
+});
   
 </script>
 
