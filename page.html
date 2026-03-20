@@ -2270,7 +2270,8 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   // Collapsible behavior for 'Tarifas' (initialization waits for info cards to be rendered)
   function initTarifasCollapsible(){
     const tarifasBox = document.getElementById('tarifas-box');
-    if (!tarifasBox) return;
+    if (!tarifasBox || tarifasBox.dataset.tarifasCollapsibleInit === '1') return;
+    tarifasBox.dataset.tarifasCollapsibleInit = '1';
     const toggle = tarifasBox.querySelector('.collapsible-toggle');
     const content = document.getElementById('tarifas-content');
     if (!toggle || !content) return;
@@ -2621,17 +2622,26 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
+    function regForm() {
+      return document.getElementById('reg-form');
+    }
+
+    /** @returns {'asistentes'|'ponentes'|null} null si aún no eligieron tipo de participación */
     function getRoleKey() {
-      const partSel = document.querySelector('select[name="entry.323207977"]');
-      if(!partSel) return 'asistentes';
-      const v = partSel.value || '';
-      // Treat 'ponente' and 'poster' as ponentes; otherwise asistentes
-      if (v.toLowerCase().indexOf('ponente') !== -1 || v.toLowerCase().indexOf('poster') !== -1) return 'ponentes';
+      const form = regForm();
+      const partSel = form && form.querySelector('select[name="entry.323207977"]');
+      if (!partSel || !partSel.value) return null;
+      const v = partSel.value;
+      if (v === 'asistentes') return 'asistentes';
+      if (v === 'ponente' || v === 'poster') return 'ponentes';
+      const lower = v.toLowerCase();
+      if (lower.includes('ponente') || lower.includes('poster')) return 'ponentes';
       return 'asistentes';
     }
 
     function updateEstimate() {
-      const sel = document.querySelector('select[name="entry.921372150"]');
+      const form = regForm();
+      const sel = form && form.querySelector('select[name="entry.921372150"]');
       const el = document.getElementById('cost-estimate');
       if(!sel || !el) return;
       const participant = sel.value;
@@ -2640,6 +2650,10 @@ document.getElementById('aboutText').textContent = descriptionEvent;
         return;
       }
       const roleKey = getRoleKey();
+      if (roleKey == null) {
+        el.textContent = 'Costo estimado: seleccione el tipo de participación';
+        return;
+      }
       const price = (costos[roleKey] || {})[participant];
       const full = (costos.sin_descuento || {})[participant];
       if (price != null) {
@@ -2677,21 +2691,46 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
     }
 
-    document.addEventListener('DOMContentLoaded', function(){
+    function initPricing() {
       // render dynamic info-cards first (creates tarifas DOM)
       renderInfoCards();
       // insert subtle decorative SVGs in green sections
       insertPiDecor();
-      const sel = document.querySelector('select[name="entry.921372150"]');
-      const partSel = document.querySelector('select[name="entry.323207977"]');
+      const form = regForm();
+      const sel = form && form.querySelector('select[name="entry.921372150"]');
+      const partSel = form && form.querySelector('select[name="entry.323207977"]');
       if(sel) sel.addEventListener('change', updateEstimate);
       if(partSel) partSel.addEventListener('change', updateEstimate);
-      // initialize
       updateEstimate();
       renderTarifas();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPricing);
+    } else {
+      initPricing();
+    }
   })();
 
+  // Insert subtle pi-shaped SVG decorations into green sections
+  function insertPiDecor(){
+    const svgMarkup = `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+          <path d="M18 30 C18 16, 38 12, 38 30" />
+          <path d="M62 30 C62 16, 82 12, 82 30" />
+          <path d="M18 30 L82 30" />
+        </g>
+        <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
+      </svg>`;
+    document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
+      if (sec.querySelector('.pi-decor')) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'pi-decor';
+      wrapper.innerHTML = svgMarkup;
+      sec.appendChild(wrapper);
+    });
+  }
 
   function handleSubmit(e) {
     const btn = document.getElementById('submit-btn');
