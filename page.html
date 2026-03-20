@@ -600,6 +600,122 @@
   .vmodal-preview-title { font-size: 14px; }
 }
 
+/*--------------------------modal ponencia--------------------------*/
+.pm-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  background: rgba(5, 20, 5, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 20px;
+  align-items:center;
+  justify-content:center;
+}
+.pm-backdrop.open{ display:flex; }
+.pm-box{
+  width:100%;
+  max-width: 760px;
+  border-radius: 14px;
+  overflow:hidden;
+  background: #0b1f08;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  color: white;
+}
+.pm-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  padding: 18px 18px 10px;
+  gap: 12px;
+}
+.pm-title{
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 20px;
+  color: white;
+  margin: 0;
+}
+.pm-subtitle{
+  margin-top: 6px;
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.pm-close{
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink:0;
+}
+.pm-close:hover{ background: rgba(255,255,255,0.15); color: white; }
+.pm-body{
+  padding: 0 18px 18px;
+  max-height: calc(100vh - 160px);
+  overflow:auto;
+}
+.pm-body .field{ margin-top: 0; }
+.pm-box .field input,
+.pm-box .field select{
+  padding-left: 42px;
+}
+.pm-keywords-grid input{
+  padding-left: 14px !important;
+}
+.pm-box textarea{
+  width:100%;
+  min-height: 120px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: white;
+  outline:none;
+  resize: vertical;
+}
+.pm-box textarea::placeholder{ color: var(--text-muted); }
+.pm-keywords-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.pm-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap: 12px;
+  margin-top: 14px;
+}
+.pm-error{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 120, 120, 0.28);
+  background: rgba(255, 120, 120, 0.08);
+  color: rgba(255,255,255,0.9);
+  font-size: 13px;
+}
+.pm-status{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(126,217,87,0.22);
+  background: rgba(126,217,87,0.06);
+  color: rgba(255,255,255,0.92);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 /* ── RESEARCH AREAS ── */
 
   .research-heading {
@@ -2037,7 +2153,88 @@
             </div>
             
             <div id="cost-estimate" class="cost-estimate" aria-live="polite">Costo estimado: —</div>
+            
+            <!-- Modal / estado para ponencia / póster -->
+            <div id="ponencia-status" class="pm-status" hidden aria-live="polite"></div>
 
+            <div id="ponencia-modal" class="pm-backdrop" aria-hidden="true">
+              <div class="pm-box" role="dialog" aria-modal="true" aria-labelledby="ponencia-modal-title">
+                <div class="pm-header">
+                  <div>
+                    <div id="ponencia-modal-title" class="pm-title">Datos para ponencia o póster</div>
+                    <div class="pm-subtitle">Completa la información para continuar con tu inscripción.</div>
+                  </div>
+                  <button type="button" class="pm-close" id="ponencia-close-btn" aria-label="Cerrar">✕</button>
+                </div>
+
+                <div class="pm-body">
+                  <div class="field" style="margin-top:0;">
+                    <span class="field-icon">⬇️</span>
+                    <a id="ponencia-download-link" class="btn-fallback" href="#" target="_blank" rel="noopener noreferrer">Descargar formato del resumen (pendiente)</a>
+                  </div>
+
+                  <div class="field">
+                    <span class="field-icon">🧩</span>
+                    <select id="ponencia-area-input" required>
+                      <option value="" disabled selected>Selecciona el área *</option>
+                      <option value="Álgebra">Álgebra</option>
+                      <option value="Teoría de Números">Teoría de Números</option>
+                      <option value="Combinatoria">Combinatoria</option>
+                      <option value="Aplicaciones">Aplicaciones</option>
+                      <option value="Geometría Algebraica">Geometría Algebraica</option>
+                      <option value="Análisis de Datos y Sistemas Complejos">Análisis de Datos y Sistemas Complejos</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <span class="field-icon">🏷️</span>
+                    <input id="ponencia-titulo-input" type="text" placeholder="Título de la ponencia / póster *" required autocomplete="off"/>
+                  </div>
+
+                  <div class="field">
+                    <span class="field-icon">📄</span>
+                    <input id="ponencia-pdf-input" type="file" accept="application/pdf" aria-describedby="ponencia-pdf-help"/>
+                    <div id="ponencia-pdf-help" style="font-size:12px; color: rgba(255,255,255,0.7); margin-top:6px; padding-left:14px;">
+                      Si no logras subir el PDF, pega el resumen en el campo de abajo.
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div style="padding-left:14px; margin-bottom:8px; color: rgba(255,255,255,0.9); font-weight: 700; font-size: 13px;">
+                      Palabras clave (3) *
+                    </div>
+                    <div class="pm-keywords-grid">
+                      <input id="ponencia-k1-input" type="text" placeholder="Palabra 1" required autocomplete="off"/>
+                      <input id="ponencia-k2-input" type="text" placeholder="Palabra 2" required autocomplete="off"/>
+                      <input id="ponencia-k3-input" type="text" placeholder="Palabra 3" required autocomplete="off"/>
+                    </div>
+                  </div>
+
+                  <div class="field" style="margin-top: 10px;">
+                    <div style="padding-left:14px; margin-bottom:8px; color: rgba(255,255,255,0.9); font-weight: 700; font-size: 13px;">
+                      Resumen (texto) *
+                    </div>
+                    <textarea id="ponencia-resumen-text-input" placeholder="Pega el resumen aquí. Si subiste el PDF, este campo puede quedar vacío (según tu caso)."></textarea>
+                  </div>
+
+                  <div id="ponencia-modal-error" class="pm-error" hidden></div>
+                  <div id="ponencia-modal-help" style="margin-top: 8px; color: rgba(255,255,255,0.7); font-size: 12px;">
+                    Nota: al guardar, estos datos se copian a campos ocultos del formulario.
+                  </div>
+                </div>
+
+                <div class="pm-actions">
+                  <button type="button" class="btn-submit" id="ponencia-save-btn">Guardar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Campos ocultos para ponencia (se completan al guardar el modal) -->
+            <input type="hidden" id="ponencia-area-hidden" data-ponencia-field="area" />
+            <input type="hidden" id="ponencia-titulo-hidden" data-ponencia-field="titulo" />
+            <input type="hidden" id="ponencia-keywords-hidden" data-ponencia-field="keywords" />
+            <input type="hidden" id="ponencia-resumen-hidden" data-ponencia-field="resumen" />
+    
             <div class="form-actions">
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform" target="_blank" rel="noopener noreferrer" class="btn-fallback">INTENTAR CON FORMULARIO DE GOOGLE</a>
               <button type="submit" class="btn-submit" id="submit-btn">
@@ -2049,6 +2246,16 @@
 
            <div class="success-msg" id="success-msg">
             ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
+          </div>
+
+          <div id="assistant-instructions" class="pm-status" hidden aria-live="polite">
+            ✅ Registro exitoso. Sigue estos pasos para generar tu recibo y completar el proceso:
+            <ol style="margin: 10px 0 0; padding-left: 20px; color: rgba(255,255,255,0.92); font-weight: 700;">
+              <li>Ir al enlace del recibo: <a href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245" target="_blank" rel="noopener noreferrer">ci.udenar.edu.co (id=245)</a>.</li>
+              <li>Marcar la opción de <strong>asistentes</strong>.</li>
+              <li>Ingresar sus datos.</li>
+              <li>Confirmar que los datos sean correctos, guardar y seguir las instrucciones del recibo para cancelar su inscripción. Luego los esperamos en el evento.</li>
+            </ol>
           </div>
         </div>
 
@@ -2701,6 +2908,237 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       const partSel = form && form.querySelector('select[name="entry.323207977"]');
       if(sel) sel.addEventListener('change', updateEstimate);
       if(partSel) partSel.addEventListener('change', updateEstimate);
+
+      // Ponencia / póster: habilitar modal y bloquear el submit hasta "Guardar"
+      if (partSel && !window.ponenciaGateInitialized) {
+        window.ponenciaGateInitialized = true;
+        window.ponenciaGate = window.ponenciaGate || { saved: false, lastParticipationType: null };
+
+        const submitBtn = document.getElementById('submit-btn');
+        const statusEl = document.getElementById('ponencia-status');
+
+        const modal = document.getElementById('ponencia-modal');
+        const closeBtn = document.getElementById('ponencia-close-btn');
+        const saveBtn = document.getElementById('ponencia-save-btn');
+        const errorEl = document.getElementById('ponencia-modal-error');
+
+        const areaInput = document.getElementById('ponencia-area-input');
+        const tituloInput = document.getElementById('ponencia-titulo-input');
+        const pdfInput = document.getElementById('ponencia-pdf-input');
+        const k1Input = document.getElementById('ponencia-k1-input');
+        const k2Input = document.getElementById('ponencia-k2-input');
+        const k3Input = document.getElementById('ponencia-k3-input');
+        const resumenTextInput = document.getElementById('ponencia-resumen-text-input');
+
+        const hiddenArea = document.getElementById('ponencia-area-hidden');
+        const hiddenTitulo = document.getElementById('ponencia-titulo-hidden');
+        const hiddenKeywords = document.getElementById('ponencia-keywords-hidden');
+        const hiddenResumen = document.getElementById('ponencia-resumen-hidden');
+
+        // TODO: reemplaza estos entry.xxxxxx con los IDs reales de tu Google Form
+        const PONENCIA_ENTRY_IDS = {
+          area: '',
+          titulo: '',
+          keywords: '',
+          resumen: '',
+          pdf: '',
+        };
+
+        function setSubmitEnabled(enabled) {
+          if(!submitBtn) return;
+          submitBtn.disabled = !enabled;
+        }
+
+        function openModal() {
+          if(!modal) return;
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+          if(!modal) return;
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          if(errorEl) errorEl.hidden = true;
+        }
+
+        window.openPonenciaModal = openModal;
+        window.closePonenciaModal = closeModal;
+
+        function clearErrors() {
+          if(errorEl) {
+            errorEl.textContent = '';
+            errorEl.hidden = true;
+          }
+        }
+
+        function showError(msg) {
+          if(!errorEl) return;
+          errorEl.textContent = msg;
+          errorEl.hidden = false;
+        }
+
+        function resetPonenciaForm(keepAreaType) {
+          window.ponenciaGate.saved = false;
+          window.ponenciaGate.lastParticipationType = null;
+
+          if(statusEl) statusEl.hidden = true;
+          if(saveBtn) saveBtn.disabled = false;
+
+          clearErrors();
+
+          // Habilitar inputs de texto
+          [areaInput, tituloInput, k1Input, k2Input, k3Input, resumenTextInput].forEach(el => {
+            if(el) el.disabled = false;
+          });
+          if(pdfInput) {
+            pdfInput.style.pointerEvents = '';
+            pdfInput.tabIndex = 0;
+          }
+
+          // Limpiar valores
+          if(keepAreaType) {
+            // no-op
+          }
+          if(areaInput) areaInput.value = '';
+          if(tituloInput) tituloInput.value = '';
+          if(k1Input) k1Input.value = '';
+          if(k2Input) k2Input.value = '';
+          if(k3Input) k3Input.value = '';
+          if(resumenTextInput) resumenTextInput.value = '';
+          if(pdfInput) pdfInput.value = '';
+
+          // Limpiar campos ocultos
+          if(hiddenArea) hiddenArea.value = '';
+          if(hiddenTitulo) hiddenTitulo.value = '';
+          if(hiddenKeywords) hiddenKeywords.value = '';
+          if(hiddenResumen) hiddenResumen.value = '';
+
+          // Asegurar que hidden inputs no queden con name vacío
+          // (se setean al guardar)
+        }
+
+        function lockPonenciaInputs() {
+          [areaInput, tituloInput, k1Input, k2Input, k3Input, resumenTextInput].forEach(el => {
+            if(el) el.disabled = true;
+          });
+          // Evitar que el usuario cambie el archivo sin deshabilitarlo para que pueda enviarse con el formulario.
+          if(pdfInput) {
+            pdfInput.style.pointerEvents = 'none';
+            pdfInput.tabIndex = -1;
+          }
+          if(saveBtn) saveBtn.disabled = true;
+        }
+
+        function validatePonencia() {
+          const area = areaInput ? areaInput.value : '';
+          const titulo = tituloInput ? tituloInput.value.trim() : '';
+          const k1 = k1Input ? k1Input.value.trim() : '';
+          const k2 = k2Input ? k2Input.value.trim() : '';
+          const k3 = k3Input ? k3Input.value.trim() : '';
+          const resumen = resumenTextInput ? resumenTextInput.value.trim() : '';
+          const pdfOk = !!(pdfInput && pdfInput.files && pdfInput.files.length);
+
+          if(!area) return 'Selecciona el área para tu resumen.';
+          if(!titulo) return 'Ingresa el título de tu ponencia o póster.';
+          if(!k1 || !k2 || !k3) return 'Ingresa tus 3 palabras clave.';
+
+          // Texto obligatorio solo si no se subió el PDF
+          if(!pdfOk && !resumen) return 'Debes subir un PDF o pegar el resumen en texto.';
+          return null;
+        }
+
+        function setPonenciaHiddenNamesIfConfigured() {
+          if(!hiddenArea || !hiddenTitulo || !hiddenKeywords || !hiddenResumen) return;
+
+          if(PONENCIA_ENTRY_IDS.area) hiddenArea.name = PONENCIA_ENTRY_IDS.area;
+          if(PONENCIA_ENTRY_IDS.titulo) hiddenTitulo.name = PONENCIA_ENTRY_IDS.titulo;
+          if(PONENCIA_ENTRY_IDS.keywords) hiddenKeywords.name = PONENCIA_ENTRY_IDS.keywords;
+          if(PONENCIA_ENTRY_IDS.resumen) hiddenResumen.name = PONENCIA_ENTRY_IDS.resumen;
+          if(PONENCIA_ENTRY_IDS.pdf && pdfInput) pdfInput.name = PONENCIA_ENTRY_IDS.pdf;
+        }
+
+        function savePonencia() {
+          clearErrors();
+          const msg = validatePonencia();
+          if(msg) {
+            showError(msg);
+            return;
+          }
+
+          const ok = window.confirm('¿Está seguro? Luego no se podrán hacer cambios. Se guardarán los datos en el formulario.');
+          if(!ok) return;
+
+          const resumen = resumenTextInput ? resumenTextInput.value.trim() : '';
+          const keywords = [k1Input, k2Input, k3Input].map(el => (el ? el.value.trim() : '')).join(', ');
+
+          if(hiddenArea) hiddenArea.value = areaInput.value;
+          if(hiddenTitulo) hiddenTitulo.value = tituloInput.value.trim();
+          if(hiddenKeywords) hiddenKeywords.value = keywords;
+          if(hiddenResumen) hiddenResumen.value = resumen;
+
+          setPonenciaHiddenNamesIfConfigured();
+
+          lockPonenciaInputs();
+          if(statusEl) {
+            statusEl.textContent = 'Datos de ponencia/póster guardados ✅';
+            statusEl.hidden = false;
+          }
+
+          window.ponenciaGate.saved = true;
+          window.ponenciaGate.lastParticipationType = partSel.value;
+
+          closeModal();
+          setSubmitEnabled(true);
+        }
+
+        if(closeBtn) closeBtn.addEventListener('click', closeModal);
+        if(saveBtn) saveBtn.addEventListener('click', savePonencia);
+
+        if(modal) {
+          modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+          });
+        }
+
+        function onParticipationChange() {
+          const v = partSel.value;
+          const isAsistentes = v === 'asistentes';
+          const isPonente = v === 'ponente' || v === 'poster';
+
+          // Reset por completo si cambia a otro tipo
+          if(isAsistentes) {
+            closeModal();
+            resetPonenciaForm();
+            setSubmitEnabled(true);
+            return;
+          }
+
+          if(isPonente) {
+            const canReuse = window.ponenciaGate.saved && window.ponenciaGate.lastParticipationType === v;
+            if(canReuse) {
+              setSubmitEnabled(true);
+              if(statusEl) statusEl.hidden = false;
+              return;
+            }
+            setSubmitEnabled(false);
+            resetPonenciaForm();
+            openModal();
+            return;
+          }
+
+          // Si todavía no elige un valor válido, dejamos el submit como está;
+          // la validación del navegador aplicará por los `required`.
+        }
+
+        partSel.addEventListener('change', onParticipationChange);
+
+        // Estado inicial
+        onParticipationChange();
+      }
+
       updateEstimate();
       renderTarifas();
     }
@@ -2733,6 +3171,21 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   }
 
   function handleSubmit(e) {
+    const form = document.getElementById('reg-form');
+    const partSel = form && form.querySelector('select[name="entry.323207977"]');
+    const participationType = partSel ? partSel.value : '';
+    const isAsistentes = participationType === 'asistentes';
+
+    const gate = window.ponenciaGate || { saved: false };
+    const requiresPonencia = participationType === 'ponente' || participationType === 'poster';
+
+    // Para ponente/póster: bloquear si aún no guardaron el modal.
+    if (requiresPonencia && !gate.saved) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      if (window.openPonenciaModal) window.openPonenciaModal();
+      return;
+    }
+
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
     btn.textContent = 'Enviando…';
@@ -2741,6 +3194,11 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     setTimeout(function () {
       document.getElementById('reg-form').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
+
+      const assistantInstructions = document.getElementById('assistant-instructions');
+      if (assistantInstructions) {
+        assistantInstructions.hidden = !isAsistentes;
+      }
     }, 1800);
   }
 
