@@ -1430,34 +1430,48 @@
     gap: 32px 48px;
   }
 
-  /* Sponsor placeholder — replace img src with real logos */
-  .sponsor-item {
+  /*-----------------carrusel---------------------*/
+  .carousel-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .carousel-track {
     display: flex;
     align-items: center;
-    justify-content: center;
-    opacity: 0.55;
-    transition: opacity 0.2s;
-    filter: brightness(0) invert(1);
+    gap: 48px;
+    width: max-content;
+    animation: scroll-left 28s linear infinite;
   }
 
-  .sponsor-item:hover { opacity: 0.9; }
-
-  .sponsor-item img {
-    height: 56px;
-    width: 900px;
-    display: block;
+  .carousel-track:hover {
+    animation-play-state: paused;
   }
 
-  /* Text fallback for sponsors without logo */
-  .sponsor-text {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.55);
-    text-transform: uppercase;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+  .carousel-logo {
+    height: 200px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+
+ 
+    transition: opacity 0.2s, filter 0.2s;
+    flex-shrink: 0;
   }
+
+  .carousel-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  /*----------------------------------------------------*/
 
   .sponsor-text:hover { opacity: 1; }
 
@@ -1877,12 +1891,12 @@
     </div>
 
     <!-- ── SPONSORS ── -->
-    <div class="footer-sponsors">
-      <div class="sponsors-label">Apoyan</div>
-          <div class="">
-            <img style="width:100%;" id="apoyan" alt="Nombre del patrocinador" loading="lazy"/>
-          </div>
-    </div>
+  <div class="footer-sponsors">
+  <div class="sponsors-label">Apoyan</div>
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track" id="carousel-track"></div>
+  </div>
+</div>
 
     <!-- ── BOTTOM BAR ── -->
     <div class="footer-bottom">
@@ -1901,7 +1915,7 @@
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
-const apoyan = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773671455/Apoyan_batcheditor_fotor_p2u9jy.webp"
+
 const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773590091/Poster_ALTENCOA11-2026_best_gz6cvq.webp"
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
@@ -1909,7 +1923,7 @@ const email = "altenua@udenar.edu.co"
 
 
 document.getElementById('footer').src = logo;
-document.getElementById('apoyan').src = apoyan;
+
 document.getElementById('posterAbout').src = posterAboutImg;
 document.getElementById('imgPasto').src = imgPasto;
 document.getElementById('email').textContent = email;
@@ -2343,25 +2357,6 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     });
   })();
 
-    // Insert subtle pi-shaped SVG decorations into green sections
-    function insertPiDecor(){
-      const svgMarkup = `
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
-            <path d="M18 30 C18 16, 38 12, 38 30" />
-            <path d="M62 30 C62 16, 82 12, 82 30" />
-            <path d="M18 30 L82 30" />
-          </g>
-          <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
-        </svg>`;
-      document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
-        if (sec.querySelector('.pi-decor')) return;
-        const wrapper = document.createElement('div');
-        wrapper.className = 'pi-decor';
-        wrapper.innerHTML = svgMarkup;
-        sec.appendChild(wrapper);
-      });
-    }
 
   function handleSubmit(e) {
     const btn = document.getElementById('submit-btn');
@@ -2374,6 +2369,37 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       document.getElementById('success-msg').style.display = 'block';
     }, 1800);
   }
+
+
+//----------------------------------------------
+ /* ══════════════════════════════════════════════
+     SPONSORS — Solo edita este arreglo
+     Cada objeto:
+       src: URL o ruta de la imagen del logo
+       alt: nombre del patrocinador
+  ══════════════════════════════════════════════ */
+  const SPONSORS = [
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773963916/Logo_DPTO_batcheditor_fotor_vxgcoo.webp", alt: "Departamento matematicas" },
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien" },
+    { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle" },
+    { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca" },
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana" },
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA" },
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia" },
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño" },
+  ];
+
+  (function buildCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    // Duplicate list to create seamless loop
+    const all = [...SPONSORS, ...SPONSORS];
+
+    track.innerHTML = all.map(s =>
+      `<img class="carousel-logo" src="${s.src}" alt="${s.alt}" loading="lazy" />`
+    ).join('');
+  })();
   
 </script>
 
