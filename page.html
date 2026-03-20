@@ -2256,6 +2256,7 @@
 
     </div>
   </div>
+  <iframe name="hidden-iframe" style="display:none;" aria-hidden="true"></iframe>
 </section>
 
 
@@ -3171,38 +3172,86 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   }
 
 /* ── SUBMIT PRINCIPAL (Asistentes y ponentes sin PDF) ── */
-  function handleSubmit(e) {
-    const form    = document.getElementById('reg-form');
-    // entry.921372150 = Tipo de participación (asistente / ponente / poster)
-    const partSel = form && form.querySelector('select[name="entry.921372150"]');
-    const participationType = partSel ? partSel.value : '';
-    const isAsistente      = participationType === 'asistentes';
-    const requiresPonencia = participationType === 'ponente' || participationType === 'poster';
-    const gate             = window.ponenciaGate || { saved: false };
+function handleSubmit(e) {
+  if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
-    // Bloquear si ponente/póster aún no completó el modal
-    if (requiresPonencia && !gate.saved) {
-      if (e && typeof e.preventDefault === 'function') e.preventDefault();
-      if (window.openPonenciaModal) window.openPonenciaModal();
-      return;
+  const form              = document.getElementById('reg-form');
+  const partSel           = form && form.querySelector('select[name="entry.921372150"]');
+  const participationType = partSel ? partSel.value : '';
+  const isAsistente       = participationType === 'asistentes';
+  const requiresPonencia  = participationType === 'ponente' || participationType === 'poster';
+  const gate              = window.ponenciaGate || { saved: false };
+
+  // Bloquear si ponente/póster aún no completó el modal
+  if (requiresPonencia && !gate.saved) {
+    if (window.openPonenciaModal) window.openPonenciaModal();
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Abriendo…'; }
+
+  if (isAsistente) {
+    // Construir URL con todos los campos del form pre-rellenados
+    // buildPrefillURL ya existe en el scope del IIFE de pricing
+    // Llamamos directamente con los extras de N/A para ponencia
+    const FORM_PREFILL_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform';
+
+    const params = new URLSearchParams();
+    params.set('usp', 'pp_url');
+
+    // Todos los campos del form
+    form.querySelectorAll('input[name], select[name]').forEach(el => {
+      if (el.name && el.value) params.set(el.name, el.value.trim());
+    });
+
+    // Campos de ponencia con N/A para no dejar vacíos
+    params.set('entry.323207977', 'N/A'); // area
+    params.set('entry.2104614869', 'N/A'); // titulo
+    params.set('entry.1781353138', 'N/A'); // resumen
+    params.set('entry.2069271964', 'N/A'); // keywords
+
+    const prefillURL = `${FORM_PREFILL_BASE}?${params.toString()}`;
+
+    // Abrir Google Form en nueva pestaña con todo pre-rellenado
+    window.open(prefillURL, '_blank', 'noopener');
+
+    // Mostrar éxito en la página
+    const regFormEl             = document.getElementById('reg-form');
+    const successMsg            = document.getElementById('success-msg');
+    const assistantInstructions = document.getElementById('assistant-instructions');
+
+    if (regFormEl) regFormEl.style.display = 'none';
+
+    if (successMsg) {
+      successMsg.style.display = 'block';
+      successMsg.innerHTML =
+        '✅ Tus datos están pre-rellenados en el formulario de Google.<br>' +
+        '<strong>Último paso:</strong> haz clic en <strong>"Enviar"</strong> en la pestaña que se acaba de abrir para confirmar tu registro.<br><br>' +
+        `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
+          ↗ Abrir de nuevo si se cerró la pestaña
+        </a>`;
     }
 
-    const btn = document.getElementById('submit-btn');
-    if(btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+    if (assistantInstructions) assistantInstructions.hidden = false;
+
+  } else {
+    // Ponente/póster sin PDF: submit al iframe (ya guardó datos en modal)
+    form.submit();
 
     setTimeout(function () {
       const regFormEl             = document.getElementById('reg-form');
       const successMsg            = document.getElementById('success-msg');
       const assistantInstructions = document.getElementById('assistant-instructions');
 
-      if(regFormEl)  regFormEl.style.display  = 'none';
-      if(successMsg) successMsg.style.display = 'block';
-      // Instrucciones de recibo solo para asistentes
-      if(assistantInstructions) assistantInstructions.hidden = !isAsistente;
+      if (regFormEl)  regFormEl.style.display  = 'none';
+      if (successMsg) successMsg.style.display = 'block';
+      if (assistantInstructions) assistantInstructions.hidden = true;
     }, 1800);
   }
+}
 
-  /* ── SPONSORS CAROUSEL ── */
+  /* ─--------------------------─ SPONSORS CAROUSEL ── */
   const SPONSORS = [
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773963916/Logo_DPTO_batcheditor_fotor_vxgcoo.webp", alt: "Departamento matematicas" },
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien" },
