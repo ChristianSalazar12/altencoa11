@@ -1944,7 +1944,7 @@
 
       <div class="hero-buttons">
         <a href="#reg-section" class="btn-register" title="Ir a Inscripción" aria-label="Ir a la sección de inscripción" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Regístrate ahora</a>
-        <a href="#" class="btn-announcement">Primera Anuncio</a>
+        <a href="#" class="btn-announcement" onclick="openAnuncioModal(event)">Primera Anuncio</a>
       </div>
     </div>x
   </section>
@@ -2450,7 +2450,7 @@
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
-
+const posterFirtsAnuncio = "https://res.cloudinary.com/dspprxtpr/image/upload/v1774041907/Primer_anuncioALTENCOA11_batcheditor_fotor_vse5hd.webp"
 const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773975620/posternew_batcheditor_fotor_g5o6ub.webp"
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
@@ -2465,6 +2465,133 @@ document.getElementById('imgUdenar').src = imgUdenar;
 const descriptionEvent="Los encuentros ALTENCOA surgieron por iniciativa del grupo de investigación Álgebra, Teoría de Números y Aplicaciones: ERM (ALTENUA), conformado principalmente por profesores y estudiantes de las universidades de Antioquia, Cauca, Nariño y Valle, con el propósito de promover y consolidar el desarrollo del Álgebra y la Teoría de Números en Colombia, así como de contribuir al posicionamiento del país como sede de eventos académicos en estas áreas. Desde sus primeras ediciones, realizadas en distintas universidades colombianas a mediados de la década de 2000, ALTENCOA se estableció como un espacio regular de articulación de la comunidad académica, intercambio científico y fortalecimiento de redes de colaboración. Este proceso favoreció la proyección nacional e internacional de estas líneas de investigación desde el grupo de investigación y contribuyó a que Colombia acogiera, en años posteriores, la XVII edición del Coloquio Latinoamericano de Álgebra.En la actualidad, ALTENCOA es un evento académico con proyección internacional orientado al fomento del Álgebra, la Teoría de Números, la Combinatoria, la Geometría Algebraica y sus Aplicaciones, mediante la interacción entre investigadores y el fortalecimiento de redes de cooperación a través de conferencias, cursillos y  sesiones de divulgación de resultados."
 document.getElementById('aboutText').textContent = descriptionEvent;
 
+/* ── MODAL PRIMER ANUNCIO ── */
+function openAnuncioModal(e) {
+  if (e) e.preventDefault();
+
+  if (!document.getElementById('anuncio-modal-style')) {
+    const style = document.createElement('style');
+    style.id = 'anuncio-modal-style';
+    style.textContent = `
+      #anuncio-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(5, 20, 5, 0.88);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: afadeIn 0.25s ease;
+      }
+      @keyframes afadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      #anuncio-modal .am-box {
+        position: relative;
+        max-width: 520px;
+        width: 100%;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+        animation: aslideUp 0.28s ease;
+        background: #0b2210;
+      }
+      @keyframes aslideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+      #anuncio-modal .am-img {
+        width: 100%;
+        display: block;
+        max-height: 80vh;
+        object-fit: contain;
+      }
+      #anuncio-modal .am-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0,0,0,0.60);
+        border: 1px solid rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.90);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        line-height: 1;
+      }
+      #anuncio-modal .am-close:hover {
+        background: rgba(255,255,255,0.18);
+        color: white;
+      }
+      #anuncio-modal .am-footer {
+        padding: 14px 18px;
+        background: #0e1f0a;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-top: 1px solid rgba(126,217,87,0.15);
+      }
+      #anuncio-modal .am-footer-text {
+        font-size: 13px;
+        color: rgba(255,255,255,0.55);
+      }
+      #anuncio-modal .am-download {
+        font-size: 13px;
+        font-weight: 700;
+        color: #7ED957;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.2s;
+      }
+      #anuncio-modal .am-download:hover { color: #9BE564; }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const existing = document.getElementById('anuncio-modal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'anuncio-modal';
+  modal.innerHTML = `
+    <div class="am-box">
+      <img class="am-img" src="${posterFirtsAnuncio}" alt="Primer Anuncio ALTENCOA 11" />
+      <button class="am-close" id="am-close-btn" aria-label="Cerrar">✕</button>
+      <div class="am-footer">
+        <span class="am-footer-text">Primer Anuncio — ALTENCOA 11 · 2026</span>
+        <a class="am-download" href="${posterFirtsAnuncio}" download target="_blank" rel="noopener">
+          ↓ Descargar
+        </a>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('am-close-btn').addEventListener('click', closeAnuncioModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeAnuncioModal(); });
+
+  modal._escHandler = e => { if (e.key === 'Escape') closeAnuncioModal(); };
+  document.addEventListener('keydown', modal._escHandler);
+}
+
+function closeAnuncioModal() {
+  const modal = document.getElementById('anuncio-modal');
+  if (!modal) return;
+  if (modal._escHandler) document.removeEventListener('keydown', modal._escHandler);
+  modal.remove();
+  document.body.style.overflow = '';
+}
+//#####################################################################################################//
   // Collapsible behavior for 'Tarifas'
   function initTarifasCollapsible(){
     const tarifasBox = document.getElementById('tarifas-box');
@@ -2505,7 +2632,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     const panel = document.getElementById('panel-' + panelId);
     if (panel) panel.classList.add('active');
   }
-
+//###################################################################COMMITTE SECCTION#########//
   const committees = [
     {
       id: 'algebra',
@@ -2635,7 +2762,6 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     document.dispatchEvent(new Event('infoCardsReady'));
   }
 
-  // Flag resolver
   (function(){
     const countryNameToCode = {
       'brasil': 'BR', 'brazil': 'BR',
@@ -2710,6 +2836,8 @@ document.getElementById('aboutText').textContent = descriptionEvent;
 
   document.addEventListener('DOMContentLoaded', () => renderCommittees());
 
+//#######################################################COMMITTE ORGANIZATION###################//
+
   const COMMITTEE = [
     { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "" },
     { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "" },
@@ -2746,6 +2874,8 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   }
 
   renderCommittee();
+
+//##############################################################SECTION PRICING AND FORM#########################//
 
   // ── PRICING & FORM ──────────────────────────────────────────────
   (function(){
@@ -2892,6 +3022,8 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       container.innerHTML = html;
       if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
     }
+
+    //############################################# SECTION MODAL ###########################//
 
     /* ── MODAL DE PONENCIA / PÓSTER ─────────────────────────────── */
     function initPricing() {
