@@ -693,8 +693,6 @@
 .pm-actions{
   display:flex;
   justify-content:flex-end;
-  gap: 12px;
-  margin-top: 14px;
 }
 .pm-error{
   margin-top: 10px;
@@ -1445,10 +1443,11 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin: 20px;
     justify-content: center;
     gap: 10px;
     transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    margin-top: 4px;
+    
   }
 
   .btn-submit:hover {
@@ -1474,9 +1473,10 @@
     text-decoration: underline;
     background: transparent;
     border: none;
-    padding: 6px 10px;
+    padding: 6px 20px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
+    
   }
 
   @media (max-width: 700px) {
@@ -2083,166 +2083,158 @@
         <div id="info-cards" class="info-cards"></div>
         <!-- Insert the registration form here so it appears below benefits and info boxes -->
         <div class="reg-form-card">
-          <form
-            id="reg-form"
-            action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
-            method="POST"
-            target="hidden-iframe"
-            onsubmit="handleSubmit(event)"
-          >
+        <form
+  id="reg-form"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
+  method="POST"
+  target="hidden-iframe"
+  onsubmit="handleSubmit(event)"
+>
+  <!-- Email -->
+  <div class="field">
+    <span class="field-icon">✉</span>
+    <input type="email" name="entry.1503609734" placeholder="Correo electrónico *" required autocomplete="email"/>
+  </div>
 
-            <!-- Nombre -->
-            <div class="field">
-              <span class="field-icon">👤</span>
-              <input type="text" name="entry.1503609734" placeholder="Nombre completo *" required autocomplete="given-name"/>
-            </div>
-   
-            <!-- Apellido -->
-            <div class="field">
-              <span class="field-icon">👤</span>
-              <input type="text" name="entry.1479821263" placeholder="Apellido *" required autocomplete="family-name"/>
-            </div>
+  <!-- Nombre -->
+  <div class="field">
+    <span class="field-icon">👤</span>
+    <input type="text" name="entry.1479821263" placeholder="Nombre *" required autocomplete="given-name"/>
+  </div>
 
-            <!-- Documento -->
-            <div class="field">
-              <span class="field-icon">ID</span>
-              <input type="text" name="entry.1479821263" placeholder="Documento *" required autocomplete="family-name"/>
-            </div>
-   
-            <!-- Email -->
-            <div class="field">
-              <span class="field-icon">✉</span>
-              <input type="email" name="entry.200075436" placeholder="Correo electrónico *" required autocomplete="email"/>
-            </div>
-   
-            <!-- Institución -->
-            <div class="field">
-              <span class="field-icon">🏛</span>
-              <input type="text" name="entry.895542888" placeholder="Institución / Universidad *" required autocomplete="organization"/>
-            </div>
-   
-            <!-- País -->
-            <div class="field">
-              <span class="field-icon">🌎</span>
-              <input type="text" name="entry.1803685710" placeholder="País *" required autocomplete="country-name"/>
-            </div>
-   
-            <!-- Tipo de Participante -->
-            <div class="field">
-              <span class="field-icon">👥</span>
-              <select name="entry.921372150" required>
-                <option value="" disabled selected>Tipo de participante *</option>
-                <option value="Estudiante de Pregrado Udenar">Estudiante de Pregrado Udenar</option>
-                <option value="Estudiante de Pregrado">Estudiante de Pregrado</option>
-                <option value="Estudiante de Postgrado">Estudiante de Postgrado</option>
-                <option value="Docente Universitario">Docente Universitario</option>
-                <option value="Docente">Docente</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-   
-            <!-- Tipo de Participación -->
-            <div class="field">
-              <span class="field-icon">📊</span>
-              <select name="entry.323207977" required>
-                <option value="" disabled selected>Tipo de participación *</option>
-                <option value="asistentes">Asistente</option>
-                <option value="ponente">Ponente</option>
-                <option value="poster">Póster</option>
-              </select>
-            </div>
-            
-            <div id="cost-estimate" class="cost-estimate" aria-live="polite">Costo estimado: —</div>
-            
-            <!-- Modal / estado para ponencia / póster -->
-            <div id="ponencia-status" class="pm-status" hidden aria-live="polite"></div>
+  <!-- Apellido -->
+  <div class="field">
+    <span class="field-icon">👤</span>
+    <input type="text" name="entry.1223149995" placeholder="Apellido *" required autocomplete="family-name"/>
+  </div>
 
-            <div id="ponencia-modal" class="pm-backdrop" aria-hidden="true">
-              <div class="pm-box" role="dialog" aria-modal="true" aria-labelledby="ponencia-modal-title">
-                <div class="pm-header">
-                  <div>
-                    <div id="ponencia-modal-title" class="pm-title">Datos para ponencia o póster</div>
-                    <div class="pm-subtitle">Completa la información para continuar con tu inscripción.</div>
-                  </div>
-                  <button type="button" class="pm-close" id="ponencia-close-btn" aria-label="Cerrar">✕</button>
-                </div>
+  <!-- Institución -->
+  <div class="field">
+    <span class="field-icon">🏛</span>
+    <input type="text" name="entry.1064649835" placeholder="Institución / Universidad *" required autocomplete="organization"/>
+  </div>
 
-                <div class="pm-body">
-                  <div class="field" style="margin-top:0;">
-                    <span class="field-icon">⬇️</span>
-                    <a id="ponencia-download-link" class="btn-fallback" href="#" target="_blank" rel="noopener noreferrer">Descargar formato del resumen (pendiente)</a>
-                  </div>
+  <!-- País -->
+  <div class="field">
+    <span class="field-icon">🌎</span>
+    <input type="text" name="entry.200075436" placeholder="País *" required autocomplete="country-name"/>
+  </div>
 
-                  <div class="field">
-                    <span class="field-icon">🧩</span>
-                    <select id="ponencia-area-input" required>
-                      <option value="" disabled selected>Selecciona el área *</option>
-                      <option value="Álgebra">Álgebra</option>
-                      <option value="Teoría de Números">Teoría de Números</option>
-                      <option value="Combinatoria">Combinatoria</option>
-                      <option value="Aplicaciones">Aplicaciones</option>
-                      <option value="Geometría Algebraica">Geometría Algebraica</option>
-                      <option value="Análisis de Datos y Sistemas Complejos">Análisis de Datos y Sistemas Complejos</option>
-                    </select>
-                  </div>
+  <!-- Documento -->
+  <div class="field">
+    <span class="field-icon">🪪</span>
+    <input type="text" name="entry.895542888" placeholder="Documento de identidad *" required autocomplete="off"/>
+  </div>
 
-                  <div class="field">
-                    <span class="field-icon">🏷️</span>
-                    <input id="ponencia-titulo-input" type="text" placeholder="Título de la ponencia / póster *" required autocomplete="off"/>
-                  </div>
+  <!-- Tipo de Participante -->
+  <div class="field">
+    <span class="field-icon">👥</span>
+    <select name="entry.1803685710" required>
+      <option value="" disabled selected>Tipo de participante *</option>
+      <option value="Estudiante de Pregrado Udenar">Estudiante de Pregrado Udenar</option>
+      <option value="Estudiante de Pregrado">Estudiante de Pregrado</option>
+      <option value="Estudiante de Postgrado">Estudiante de Postgrado</option>
+      <option value="Docente Universitario">Docente Universitario</option>
+      <option value="Docente">Docente</option>
+      <option value="Otro">Otro</option>
+    </select>
+  </div>
 
-                  <div class="field">
-                    <span class="field-icon">📄</span>
-                    <input id="ponencia-pdf-input" type="file" accept="application/pdf" aria-describedby="ponencia-pdf-help"/>
-                    <div id="ponencia-pdf-help" style="font-size:12px; color: rgba(255,255,255,0.7); margin-top:6px; padding-left:14px;">
-                      Si no logras subir el PDF, pega el resumen en el campo de abajo.
-                    </div>
-                  </div>
+  <!-- Tipo de Participación -->
+  <div class="field">
+    <span class="field-icon">📊</span>
+    <select name="entry.921372150" required>
+      <option value="" disabled selected>Tipo de participación *</option>
+      <option value="asistentes">Asistente</option>
+      <option value="ponente">Ponente</option>
+      <option value="poster">Póster</option>
+    </select>
+  </div>
 
-                  <div class="field">
-                    <div style="padding-left:14px; margin-bottom:8px; color: rgba(255,255,255,0.9); font-weight: 700; font-size: 13px;">
-                      Palabras clave (3) *
-                    </div>
-                    <div class="pm-keywords-grid">
-                      <input id="ponencia-k1-input" type="text" placeholder="Palabra 1" required autocomplete="off"/>
-                      <input id="ponencia-k2-input" type="text" placeholder="Palabra 2" required autocomplete="off"/>
-                      <input id="ponencia-k3-input" type="text" placeholder="Palabra 3" required autocomplete="off"/>
-                    </div>
-                  </div>
+  <div id="cost-estimate" class="cost-estimate" aria-live="polite">Costo estimado: —</div>
 
-                  <div class="field" style="margin-top: 10px;">
-                    <div style="padding-left:14px; margin-bottom:8px; color: rgba(255,255,255,0.9); font-weight: 700; font-size: 13px;">
-                      Resumen (texto) *
-                    </div>
-                    <textarea id="ponencia-resumen-text-input" placeholder="Pega el resumen aquí. Si subiste el PDF, este campo puede quedar vacío (según tu caso)."></textarea>
-                  </div>
+  <!-- Estado ponencia -->
+  <div id="ponencia-status" class="pm-status" hidden aria-live="polite"></div>
 
-                  <div id="ponencia-modal-error" class="pm-error" hidden></div>
-                  <div id="ponencia-modal-help" style="margin-top: 8px; color: rgba(255,255,255,0.7); font-size: 12px;">
-                    Nota: al guardar, estos datos se copian a campos ocultos del formulario.
-                  </div>
-                </div>
+  <!-- Modal ponencia/póster -->
+  <div id="ponencia-modal" class="pm-backdrop" aria-hidden="true">
+    <div class="pm-box" role="dialog" aria-modal="true" aria-labelledby="ponencia-modal-title">
+      <div class="pm-header">
+        <div>
+          <div id="ponencia-modal-title" class="pm-title">Datos para ponencia o póster</div>
+          <div class="pm-subtitle">Completa la información para continuar con tu inscripción.</div>
+        </div>
+        <button type="button" class="pm-close" id="ponencia-close-btn" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="pm-body">
+        <div class="field-formate">
+         
+          <a id="ponencia-download-link" class="btn-fallback" href="https://www.overleaf.com/project/6994ca2c9260b7a57b42caa8" target="_blank" rel="noopener noreferrer">Descargar formato del resumen</a>
+        </div>
+        <div class="field" style="margin-top: 20px;">
+          <span class="field-icon">🧩</span>
+          <select id="ponencia-area-input">
+            <option value="" disabled selected>Selecciona el área *</option>
+            <option value="Álgebra">Álgebra</option>
+            <option value="Teoría de Números">Teoría de Números</option>
+            <option value="Combinatoria">Combinatoria</option>
+            <option value="Aplicaciones">Aplicaciones</option>
+            <option value="Geometría Algebraica">Geometría Algebraica</option>
+            <option value="Análisis de Datos y Sistemas Complejos">Análisis de Datos y Sistemas Complejos</option>
+          </select>
+        </div>
+        <div>
+          <div class="field" style="margin-top: 20px; margin-bottom: 20px;">
+          <span class="field-icon">🏷️</span>
+          <input id="ponencia-titulo-input" type="text" placeholder="Título de la ponencia / póster *" autocomplete="off"/>
+        </div>
+        
+        </div>
+        <div class="field">
+          <div style="padding-left:14px; margin-bottom:8px; color:rgba(255,255,255,0.9); font-weight:700; font-size:13px;">
+            Palabras clave (3) *
+          </div>
+          <div class="pm-keywords-grid">
+            <input id="ponencia-k1-input" type="text" placeholder="Palabra 1" autocomplete="off"/>
+            <input id="ponencia-k2-input" type="text" placeholder="Palabra 2" autocomplete="off"/>
+            <input id="ponencia-k3-input" type="text" placeholder="Palabra 3" autocomplete="off"/>
+          </div>
+        </div>
+        <div class="field" style="margin-top:10px;">
+          <div style="padding-left:14px; margin-bottom:8px; color:rgba(255,255,255,0.9); font-weight:700; font-size:13px;">
+            Resumen (texto) *
+          </div>
+          <textarea id="ponencia-resumen-text-input" placeholder="Pega el resumen aquí."></textarea>
+        </div>
+        <div id="ponencia-modal-error" class="pm-error" hidden></div>
+        <div style="margin-top:8px; color:rgba(255,255,255,0.7); font-size:16px;">
+          Nota: Al finalizar estos datos, Tener el resumen en el formato solicitado listo para subir.
+        </div>
+        </div>
+        <div class="pm-actions">
+          <button type="button" class="btn-submit" id="ponencia-save-btn">Guardar</button>
+        </div>
+      </div>
+     
+    </div>
+  </div>
 
-                <div class="pm-actions">
-                  <button type="button" class="btn-submit" id="ponencia-save-btn">Guardar</button>
-                </div>
-              </div>
-            </div>
+  <!-- Campos ocultos ponencia -->
+  <input type="hidden" id="ponencia-area-hidden"     data-ponencia-field="area" />
+  <input type="hidden" id="ponencia-titulo-hidden"   data-ponencia-field="titulo" />
+  <input type="hidden" id="ponencia-keywords-hidden" data-ponencia-field="keywords" />
+  <input type="hidden" id="ponencia-resumen-hidden"  data-ponencia-field="resumen" />
 
-            <!-- Campos ocultos para ponencia (se completan al guardar el modal) -->
-            <input type="hidden" id="ponencia-area-hidden" data-ponencia-field="area" />
-            <input type="hidden" id="ponencia-titulo-hidden" data-ponencia-field="titulo" />
-            <input type="hidden" id="ponencia-keywords-hidden" data-ponencia-field="keywords" />
-            <input type="hidden" id="ponencia-resumen-hidden" data-ponencia-field="resumen" />
-    
-            <div class="form-actions">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform" target="_blank" rel="noopener noreferrer" class="btn-fallback">INTENTAR CON FORMULARIO DE GOOGLE</a>
-              <button type="submit" class="btn-submit" id="submit-btn">
-                Registrarse <span class="arrow">→</span>
-              </button>
-            </div>
-
-          </form>
+  <div class="form-actions">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform"
+       target="_blank" rel="noopener noreferrer" class="btn-fallback">
+      FORMULARIO DE GOOGLE
+    </a>
+    <button type="submit" class="btn-submit" id="submit-btn">
+      Registrarse <span class="arrow">→</span>
+    </button>
+  </div>
+</form>
 
            <div class="success-msg" id="success-msg">
             ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
@@ -2463,9 +2455,7 @@ const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Ju
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
 const email = "altenua@udenar.edu.co"
 
-
 document.getElementById('footer').src = logo;
-
 document.getElementById('posterAbout').src = posterAboutImg;
 document.getElementById('imgPasto').src = imgPasto;
 document.getElementById('email').textContent = email;
@@ -2474,7 +2464,7 @@ document.getElementById('imgUdenar').src = imgUdenar;
 const descriptionEvent="Los encuentros ALTENCOA surgieron por iniciativa del grupo de investigación Álgebra, Teoría de Números y Aplicaciones: ERM (ALTENUA), conformado principalmente por profesores y estudiantes de las universidades de Antioquia, Cauca, Nariño y Valle, con el propósito de promover y consolidar el desarrollo del Álgebra y la Teoría de Números en Colombia, así como de contribuir al posicionamiento del país como sede de eventos académicos en estas áreas. Desde sus primeras ediciones, realizadas en distintas universidades colombianas a mediados de la década de 2000, ALTENCOA se estableció como un espacio regular de articulación de la comunidad académica, intercambio científico y fortalecimiento de redes de colaboración. Este proceso favoreció la proyección nacional e internacional de estas líneas de investigación desde el grupo de investigación y contribuyó a que Colombia acogiera, en años posteriores, la XVII edición del Coloquio Latinoamericano de Álgebra.En la actualidad, ALTENCOA es un evento académico con proyección internacional orientado al fomento del Álgebra, la Teoría de Números, la Combinatoria, la Geometría Algebraica y sus Aplicaciones, mediante la interacción entre investigadores y el fortalecimiento de redes de cooperación a través de conferencias, cursillos y  sesiones de divulgación de resultados."
 document.getElementById('aboutText').textContent = descriptionEvent;
 
-  // Collapsible behavior for 'Tarifas' (initialization waits for info cards to be rendered)
+  // Collapsible behavior for 'Tarifas'
   function initTarifasCollapsible(){
     const tarifasBox = document.getElementById('tarifas-box');
     if (!tarifasBox || tarifasBox.dataset.tarifasCollapsibleInit === '1') return;
@@ -2482,7 +2472,6 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     const toggle = tarifasBox.querySelector('.collapsible-toggle');
     const content = document.getElementById('tarifas-content');
     if (!toggle || !content) return;
-    // ensure initial state
     content.style.maxHeight = '0px';
     content.hidden = true;
     toggle.addEventListener('click', function(e){
@@ -2500,28 +2489,22 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   }
 
   document.addEventListener('DOMContentLoaded', function(){
-    // if info-cards already present, init immediately; otherwise wait for event
     if (document.getElementById('tarifas-box')) initTarifasCollapsible();
     else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
   });
 
-
   function switchTab(btn, panelId) {
-    // Deactivate all tabs & panels
     document.querySelectorAll('.tab-btn').forEach(b => {
       b.classList.remove('active');
       b.setAttribute('aria-selected', 'false');
     });
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-
-    // Activate clicked
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
     const panel = document.getElementById('panel-' + panelId);
     if (panel) panel.classList.add('active');
   }
 
-  // Committee data (updated)
   const committees = [
     {
       id: 'algebra',
@@ -2578,82 +2561,80 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     }
   ];
 
-    // Data-driven info-cards for the registration section. Modify these objects to change content.
-    const infoCards = [
-      {
-        id: 'fechas',
-        title: 'Fechas importantes',
-        items: [
-          { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 8 de mayo' },
-          { label: 'Aceptación de propuestas', value: '29 de mayo' },
-          { label: 'Evento', value: '5–9 de octubre de 2026' }
-        ]
-      },
-      {
-        id: 'costos-plazos',
-        title: 'Costos y plazos',
-        items: [
-          { label: 'Límite de pago con descuento', value: '21 de agosto' },
-          { label: 'Límite de pago para expositores', value: '4 de septiembre *' },
-          { label: 'Límite de pago para asistentes', value: '18 de septiembre' }
-        ]
-      },
-      {
-        id: 'tarifas',
-        title: 'Tarifas',
-        type: 'tarifas'
-      }
-    ];
-
-    function renderInfoCards(){
-      const container = document.getElementById('info-cards');
-      if (!container) return;
-      container.innerHTML = '';
-      infoCards.forEach(card => {
-        const box = document.createElement('div');
-        box.className = 'info-box';
-        box.setAttribute('role','group');
-        box.setAttribute('aria-label', card.title);
-        if (card.type === 'tarifas') {
-          box.classList.add('info-box-collapsible');
-          box.id = 'tarifas-box';
-          const btn = document.createElement('button');
-          btn.className = 'collapsible-toggle';
-          btn.setAttribute('aria-expanded','false');
-          btn.setAttribute('aria-controls','tarifas-content');
-          btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
-          box.appendChild(btn);
-          const content = document.createElement('div');
-          content.id = 'tarifas-content';
-          content.className = 'collapsible-content';
-          content.hidden = true;
-          box.appendChild(content);
-          const mention = document.createElement('div');
-          mention.id = 'tarifas-mention';
-          mention.className = 'dates-list';
-          mention.hidden = true;
-          box.appendChild(mention);
-        } else {
-          const title = document.createElement('div');
-          title.className = 'dates-title';
-          title.textContent = card.title;
-          box.appendChild(title);
-          const ul = document.createElement('ul');
-          ul.className = 'dates-list';
-          card.items.forEach(it => {
-            const li = document.createElement('li');
-            li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
-            ul.appendChild(li);
-          });
-          box.appendChild(ul);
-        }
-        container.appendChild(box);
-      });
-      // Notify other code that info cards are ready
-      document.dispatchEvent(new Event('infoCardsReady'));
+  const infoCards = [
+    {
+      id: 'fechas',
+      title: 'Fechas importantes',
+      items: [
+        { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 8 de mayo' },
+        { label: 'Aceptación de propuestas', value: '29 de mayo' },
+        { label: 'Evento', value: '5–9 de octubre de 2026' }
+      ]
+    },
+    {
+      id: 'costos-plazos',
+      title: 'Costos y plazos',
+      items: [
+        { label: 'Límite de pago con descuento', value: '21 de agosto' },
+        { label: 'Límite de pago para expositores', value: '4 de septiembre *' },
+        { label: 'Límite de pago para asistentes', value: '18 de septiembre' }
+      ]
+    },
+    {
+      id: 'tarifas',
+      title: 'Tarifas',
+      type: 'tarifas'
     }
+  ];
 
-  // Robust flag resolver: map names → ISO2, generate emoji, and search inside strings
+  function renderInfoCards(){
+    const container = document.getElementById('info-cards');
+    if (!container) return;
+    container.innerHTML = '';
+    infoCards.forEach(card => {
+      const box = document.createElement('div');
+      box.className = 'info-box';
+      box.setAttribute('role','group');
+      box.setAttribute('aria-label', card.title);
+      if (card.type === 'tarifas') {
+        box.classList.add('info-box-collapsible');
+        box.id = 'tarifas-box';
+        const btn = document.createElement('button');
+        btn.className = 'collapsible-toggle';
+        btn.setAttribute('aria-expanded','false');
+        btn.setAttribute('aria-controls','tarifas-content');
+        btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
+        box.appendChild(btn);
+        const content = document.createElement('div');
+        content.id = 'tarifas-content';
+        content.className = 'collapsible-content';
+        content.hidden = true;
+        box.appendChild(content);
+        const mention = document.createElement('div');
+        mention.id = 'tarifas-mention';
+        mention.className = 'dates-list';
+        mention.hidden = true;
+        box.appendChild(mention);
+      } else {
+        const title = document.createElement('div');
+        title.className = 'dates-title';
+        title.textContent = card.title;
+        box.appendChild(title);
+        const ul = document.createElement('ul');
+        ul.className = 'dates-list';
+        card.items.forEach(it => {
+          const li = document.createElement('li');
+          li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
+          ul.appendChild(li);
+        });
+        box.appendChild(ul);
+      }
+      container.appendChild(box);
+    });
+    document.dispatchEvent(new Event('infoCardsReady'));
+  }
+
+  // Flag resolver
   (function(){
     const countryNameToCode = {
       'brasil': 'BR', 'brazil': 'BR',
@@ -2666,22 +2647,17 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       'venezuela': 'VE', 'uruguay': 'UY', 'paraguay': 'PY', 'bolivia': 'BO',
       'méxico ': 'MX'
     };
-
     function isoToEmoji(iso) {
       if (!iso || iso.length !== 2) return '';
       return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
     }
-
     window.getFlag = function(input) {
       if (!input) return '';
       const s = String(input).toLowerCase().trim();
-      // Direct exact key
       if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
-      // Search for known country names inside the string
       for (const name in countryNameToCode) {
         if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
       }
-      // Try simple heuristics: look for country-like words at end (e.g., ", Brasil")
       const parts = s.split(/[,\-\/]/).map(p=>p.trim());
       for (let i = parts.length-1; i >= 0; --i) {
         const p = parts[i];
@@ -2694,25 +2670,19 @@ document.getElementById('aboutText').textContent = descriptionEvent;
   function createMemberCard(m) {
     const card = document.createElement('div');
     card.className = 'member-card';
-
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
     const flag = getFlag(m.location || m.institution);
     avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
     card.appendChild(avatar);
-
     const name = document.createElement('div');
     name.className = 'member-name';
     name.textContent = m.name;
     card.appendChild(name);
-
     const inst = document.createElement('div');
     inst.className = 'member-institution';
     inst.textContent = m.institution;
     card.appendChild(inst);
-
- 
-
     return card;
   }
 
@@ -2721,9 +2691,7 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     const panelsContainer = document.getElementById('committee-panels');
     tabs.innerHTML = '';
     panelsContainer.innerHTML = '';
-
     committees.forEach((c, idx) => {
-      // Tab button
       const btn = document.createElement('button');
       btn.className = 'tab-btn' + (idx===0 ? ' active' : '');
       btn.setAttribute('role','tab');
@@ -2731,29 +2699,17 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       btn.textContent = c.label;
       btn.addEventListener('click', () => switchTab(btn, c.id));
       tabs.appendChild(btn);
-
-      // Panel
       const panel = document.createElement('div');
       panel.id = 'panel-' + c.id;
       panel.className = 'tab-panel' + (idx===0 ? ' active' : '');
-     
-
       c.members.forEach(m => panel.appendChild(createMemberCard(m)));
-
       panelsContainer.appendChild(panel);
     });
   }
 
   document.addEventListener('DOMContentLoaded', () => renderCommittees());
-  //--------------------------------------------------------
-  /* ══════════════════════════════════════════════════════
-     DATOS DEL COMITÉ — Solo edita este arreglo
-     Cada objeto tiene:
-       name:        nombre completo
-       institution: universidad o institución
-     Las iniciales del avatar se generan automáticamente
-  ══════════════════════════════════════════════════════ */
-   const COMMITTEE = [
+
+  const COMMITTEE = [
     { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "" },
     { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "" },
     { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "" },
@@ -2763,22 +2719,20 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "" },
     { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "" },
   ];
-  /* ── Helpers ── */
+
   function getInitials(name) {
     const parts = name.trim().split(/\s+/);
     if (parts.length === 1) return parts[0][0].toUpperCase();
     return (parts[0][0] + parts[parts.length > 2 ? 2 : 1][0]).toUpperCase();
   }
- 
+
   function avatarHTML(member) {
-    // If a photo URL is provided and non-empty → show image, else show initials
     if (member.photo && member.photo.trim() !== '') {
       return `<div class="avatar-O"><img src="${member.photo}" alt="${member.name}" /></div>`;
     }
     return `<div class="avatar-O">${getInitials(member.name)}</div>`;
   }
- 
-  /* ── Render ── */
+
   function renderCommittee() {
     const grid = document.getElementById('members-grid');
     grid.innerHTML = COMMITTEE.map(member => `
@@ -2789,15 +2743,82 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       </div>
     `).join('');
   }
- 
+
   renderCommittee();
 
-
-
-  //--------------------------------------------------------
-
-  // Price estimator and tarifas rendering driven from a central `costos` object
+  // ── PRICING & FORM ──────────────────────────────────────────────
   (function(){
+
+    /* ══ CONFIGURACIÓN GOOGLE FORM ══════════════════════════════
+       Entry IDs mapeados desde la URL prefilled verificada
+    ══════════════════════════════════════════════════════════════ */
+    const FORM_PREFILL_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform';
+
+    const ENTRY = {
+      email:            'entry.1503609734',
+      nombre:           'entry.1479821263',
+      apellido:         'entry.1223149995',
+      institucion:      'entry.1064649835',
+      pais:             'entry.200075436',
+      documento:        'entry.895542888',
+      tipoParticipante: 'entry.1803685710',  
+      tipoParticipacion:'entry.921372150',  
+      area:             'entry.323207977',   
+      titulo:           'entry.2104614869',
+      resumen:          'entry.1781353138',
+      keywords:         'entry.2069271964',
+};
+
+    /* Valores enviados al Google Form cuando el participante es Asistente
+       (campos de ponencia se rellenan con N/A para no dejar vacíos) */
+    const DEFAULTS_ASISTENTE = {
+      area:     'N/A',
+      titulo:   'N/A',
+      resumen:  'N/A',
+      keywords: 'N/A',
+    };
+
+    /* ── Helpers ── */
+    function getVal(name) {
+      const el = document.querySelector(`[name="${name}"]`);
+      return el ? el.value.trim() : '';
+    }
+
+    function regForm() {
+      return document.getElementById('reg-form');
+    }
+
+    /* Construye URL prefilled con todos los datos actuales del form + extras */
+    function buildPrefillURL(extras) {
+      const params = new URLSearchParams();
+      params.set('usp', 'pp_url');
+      params.set(ENTRY.email,            getVal(ENTRY.email));
+      params.set(ENTRY.nombre,           getVal(ENTRY.nombre));
+      params.set(ENTRY.apellido,         getVal(ENTRY.apellido));
+      params.set(ENTRY.pais,             getVal(ENTRY.pais));
+      params.set(ENTRY.documento,        getVal(ENTRY.documento));
+      params.set(ENTRY.institucion,      getVal(ENTRY.institucion));
+      params.set(ENTRY.tipoParticipante, getVal(ENTRY.tipoParticipante));
+      // Campos de ponencia (del modal o defaults)
+      if (extras) {
+        Object.entries(extras).forEach(([k, v]) => params.set(k, v));
+      }
+      return `${FORM_PREFILL_BASE}?${params.toString()}`;
+    }
+
+        /* ── Estimador de costo ── */
+    function getRoleKey() {
+      const form = regForm();
+      // Tipo de participación ahora es entry.921372150
+      const partSel = form && form.querySelector('select[name="entry.921372150"]');
+      if (!partSel || !partSel.value) return null;
+      const v = partSel.value;
+      if (v === 'asistentes') return 'asistentes';
+      if (v === 'ponente' || v === 'poster') return 'ponentes';
+      return 'asistentes';
+}
+
+
     const costos = {
       asistentes: {
         'Estudiante de Pregrado Udenar': 50000,
@@ -2829,42 +2850,20 @@ document.getElementById('aboutText').textContent = descriptionEvent;
       return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
-    function regForm() {
-      return document.getElementById('reg-form');
-    }
-
-    /** @returns {'asistentes'|'ponentes'|null} null si aún no eligieron tipo de participación */
-    function getRoleKey() {
-      const form = regForm();
-      const partSel = form && form.querySelector('select[name="entry.323207977"]');
-      if (!partSel || !partSel.value) return null;
-      const v = partSel.value;
-      if (v === 'asistentes') return 'asistentes';
-      if (v === 'ponente' || v === 'poster') return 'ponentes';
-      const lower = v.toLowerCase();
-      if (lower.includes('ponente') || lower.includes('poster')) return 'ponentes';
-      return 'asistentes';
-    }
-
     function updateEstimate() {
       const form = regForm();
-      const sel = form && form.querySelector('select[name="entry.921372150"]');
-      const el = document.getElementById('cost-estimate');
+      // Tipo de participante ahora es entry.1803685710
+      const sel = form && form.querySelector('select[name="entry.1803685710"]');
+      const el  = document.getElementById('cost-estimate');
       if(!sel || !el) return;
       const participant = sel.value;
-      if(!participant) {
-        el.textContent = 'Costo estimado: —';
-        return;
-      }
+      if(!participant) { el.textContent = 'Costo estimado: —'; return; }
       const roleKey = getRoleKey();
-      if (roleKey == null) {
-        el.textContent = 'Costo estimado: seleccione el tipo de participación';
-        return;
-      }
+      if (roleKey == null) { el.textContent = 'Costo estimado: seleccione el tipo de participación'; return; }
       const price = (costos[roleKey] || {})[participant];
-      const full = (costos.sin_descuento || {})[participant];
+      const full  = (costos.sin_descuento || {})[participant];
       if (price != null) {
-        const fullText = full ? ` (Precio sin descuento: $${formatCurrency(full)})` : '';
+        const fullText = full ? ` (Sin descuento: $${formatCurrency(full)})` : '';
         el.textContent = `Costo estimado: $${formatCurrency(price)}${fullText} — No se realizará ningún cargo ahora`;
       } else {
         el.textContent = 'Costo estimado: Consulte las tarifas';
@@ -2872,10 +2871,9 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     }
 
     function renderTarifas() {
-      const container = document.getElementById('tarifas-content');
+      const container  = document.getElementById('tarifas-content');
       const containerf = document.getElementById('tarifas-mention');
       if(!container) return;
-      // build HTML: Asistentes, Ponentes, Precios sin descuento — list items show label and price inline
       const createListFrom = (obj) => {
         let html = '<ul class="dates-list">';
         for (const key of Object.keys(obj)) {
@@ -2884,69 +2882,52 @@ document.getElementById('aboutText').textContent = descriptionEvent;
         html += '</ul>';
         return html;
       };
-      const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento. Para expositores que paguen hasta el 21 de agosto obtendran un descuento del 10% Adicional.';
-
-      let html = '';
-      // Grid with three columns: Asistentes | Ponentes | Precios sin descuento
-      html += '<div class="tarif-grid">';
+      const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento. Para expositores que paguen hasta el 21 de agosto obtendrán un descuento del 10% adicional.';
+      let html = '<div class="tarif-grid">';
       html += `<div class="tarif-column"><div class="tarif-col-title">Asistentes con descuento</div>` + createListFrom(costos.asistentes) + '</div>';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes con descuento</div>` + createListFrom(costos.ponentes) + '</div>';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>` + createListFrom(costos.sin_descuento) + '</div>';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes con descuento</div>`   + createListFrom(costos.ponentes)   + '</div>';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>`    + createListFrom(costos.sin_descuento) + '</div>';
       html += '</div>';
-
       container.innerHTML = html;
       if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
     }
 
+    /* ── MODAL DE PONENCIA / PÓSTER ─────────────────────────────── */
     function initPricing() {
-      // render dynamic info-cards first (creates tarifas DOM)
       renderInfoCards();
-      // insert subtle decorative SVGs in green sections
       insertPiDecor();
-      const form = regForm();
-      const sel = form && form.querySelector('select[name="entry.921372150"]');
-      const partSel = form && form.querySelector('select[name="entry.323207977"]');
-      if(sel) sel.addEventListener('change', updateEstimate);
+
+      const form    = regForm();
+      const sel     = form && form.querySelector('select[name="entry.1803685710"]'); 
+      const partSel = form && form.querySelector('select[name="entry.921372150"]');  
+
+      if(sel)     sel.addEventListener('change', updateEstimate);
       if(partSel) partSel.addEventListener('change', updateEstimate);
 
-      // Ponencia / póster: habilitar modal y bloquear el submit hasta "Guardar"
       if (partSel && !window.ponenciaGateInitialized) {
         window.ponenciaGateInitialized = true;
-        window.ponenciaGate = window.ponenciaGate || { saved: false, lastParticipationType: null };
+        window.ponenciaGate = { saved: false, lastParticipationType: null };
 
-        const submitBtn = document.getElementById('submit-btn');
-        const statusEl = document.getElementById('ponencia-status');
-
-        const modal = document.getElementById('ponencia-modal');
-        const closeBtn = document.getElementById('ponencia-close-btn');
-        const saveBtn = document.getElementById('ponencia-save-btn');
-        const errorEl = document.getElementById('ponencia-modal-error');
-
-        const areaInput = document.getElementById('ponencia-area-input');
-        const tituloInput = document.getElementById('ponencia-titulo-input');
-        const pdfInput = document.getElementById('ponencia-pdf-input');
-        const k1Input = document.getElementById('ponencia-k1-input');
-        const k2Input = document.getElementById('ponencia-k2-input');
-        const k3Input = document.getElementById('ponencia-k3-input');
+        const submitBtn        = document.getElementById('submit-btn');
+        const statusEl         = document.getElementById('ponencia-status');
+        const modal            = document.getElementById('ponencia-modal');
+        const closeBtn         = document.getElementById('ponencia-close-btn');
+        const saveBtn          = document.getElementById('ponencia-save-btn');
+        const errorEl          = document.getElementById('ponencia-modal-error');
+        const areaInput        = document.getElementById('ponencia-area-input');
+        const tituloInput      = document.getElementById('ponencia-titulo-input');
+        const pdfInput         = document.getElementById('ponencia-pdf-input');
+        const k1Input          = document.getElementById('ponencia-k1-input');
+        const k2Input          = document.getElementById('ponencia-k2-input');
+        const k3Input          = document.getElementById('ponencia-k3-input');
         const resumenTextInput = document.getElementById('ponencia-resumen-text-input');
-
-        const hiddenArea = document.getElementById('ponencia-area-hidden');
-        const hiddenTitulo = document.getElementById('ponencia-titulo-hidden');
-        const hiddenKeywords = document.getElementById('ponencia-keywords-hidden');
-        const hiddenResumen = document.getElementById('ponencia-resumen-hidden');
-
-        // TODO: reemplaza estos entry.xxxxxx con los IDs reales de tu Google Form
-        const PONENCIA_ENTRY_IDS = {
-          area: '',
-          titulo: '',
-          keywords: '',
-          resumen: '',
-          pdf: '',
-        };
+        const hiddenArea       = document.getElementById('ponencia-area-hidden');
+        const hiddenTitulo     = document.getElementById('ponencia-titulo-hidden');
+        const hiddenKeywords   = document.getElementById('ponencia-keywords-hidden');
+        const hiddenResumen    = document.getElementById('ponencia-resumen-hidden');
 
         function setSubmitEnabled(enabled) {
-          if(!submitBtn) return;
-          submitBtn.disabled = !enabled;
+          if(submitBtn) submitBtn.disabled = !enabled;
         }
 
         function openModal() {
@@ -2961,17 +2942,14 @@ document.getElementById('aboutText').textContent = descriptionEvent;
           modal.classList.remove('open');
           modal.setAttribute('aria-hidden', 'true');
           document.body.style.overflow = '';
-          if(errorEl) errorEl.hidden = true;
+          if(errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
         }
 
-        window.openPonenciaModal = openModal;
+        window.openPonenciaModal  = openModal;
         window.closePonenciaModal = closeModal;
 
         function clearErrors() {
-          if(errorEl) {
-            errorEl.textContent = '';
-            errorEl.hidden = true;
-          }
+          if(errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
         }
 
         function showError(msg) {
@@ -2980,143 +2958,165 @@ document.getElementById('aboutText').textContent = descriptionEvent;
           errorEl.hidden = false;
         }
 
-        function resetPonenciaForm(keepAreaType) {
+        function resetPonenciaForm() {
           window.ponenciaGate.saved = false;
           window.ponenciaGate.lastParticipationType = null;
-
           if(statusEl) statusEl.hidden = true;
-          if(saveBtn) saveBtn.disabled = false;
-
+          if(saveBtn)  saveBtn.disabled = false;
           clearErrors();
-
-          // Habilitar inputs de texto
           [areaInput, tituloInput, k1Input, k2Input, k3Input, resumenTextInput].forEach(el => {
             if(el) el.disabled = false;
           });
-          if(pdfInput) {
-            pdfInput.style.pointerEvents = '';
-            pdfInput.tabIndex = 0;
-          }
-
-          // Limpiar valores
-          if(keepAreaType) {
-            // no-op
-          }
-          if(areaInput) areaInput.value = '';
-          if(tituloInput) tituloInput.value = '';
-          if(k1Input) k1Input.value = '';
-          if(k2Input) k2Input.value = '';
-          if(k3Input) k3Input.value = '';
+          if(pdfInput) { pdfInput.style.pointerEvents = ''; pdfInput.tabIndex = 0; pdfInput.value = ''; }
+          if(areaInput)        areaInput.value = '';
+          if(tituloInput)      tituloInput.value = '';
+          if(k1Input)          k1Input.value = '';
+          if(k2Input)          k2Input.value = '';
+          if(k3Input)          k3Input.value = '';
           if(resumenTextInput) resumenTextInput.value = '';
-          if(pdfInput) pdfInput.value = '';
-
-          // Limpiar campos ocultos
-          if(hiddenArea) hiddenArea.value = '';
-          if(hiddenTitulo) hiddenTitulo.value = '';
-          if(hiddenKeywords) hiddenKeywords.value = '';
-          if(hiddenResumen) hiddenResumen.value = '';
-
-          // Asegurar que hidden inputs no queden con name vacío
-          // (se setean al guardar)
+          if(hiddenArea)       hiddenArea.value = '';
+          if(hiddenTitulo)     hiddenTitulo.value = '';
+          if(hiddenKeywords)   hiddenKeywords.value = '';
+          if(hiddenResumen)    hiddenResumen.value = '';
         }
 
         function lockPonenciaInputs() {
           [areaInput, tituloInput, k1Input, k2Input, k3Input, resumenTextInput].forEach(el => {
             if(el) el.disabled = true;
           });
-          // Evitar que el usuario cambie el archivo sin deshabilitarlo para que pueda enviarse con el formulario.
-          if(pdfInput) {
-            pdfInput.style.pointerEvents = 'none';
-            pdfInput.tabIndex = -1;
-          }
-          if(saveBtn) saveBtn.disabled = true;
+          if(pdfInput) { pdfInput.style.pointerEvents = 'none'; pdfInput.tabIndex = -1; }
+          if(saveBtn)  saveBtn.disabled = true;
         }
 
         function validatePonencia() {
-          const area = areaInput ? areaInput.value : '';
-          const titulo = tituloInput ? tituloInput.value.trim() : '';
-          const k1 = k1Input ? k1Input.value.trim() : '';
-          const k2 = k2Input ? k2Input.value.trim() : '';
-          const k3 = k3Input ? k3Input.value.trim() : '';
+          const area    = areaInput        ? areaInput.value            : '';
+          const titulo  = tituloInput      ? tituloInput.value.trim()   : '';
+          const k1      = k1Input          ? k1Input.value.trim()       : '';
+          const k2      = k2Input          ? k2Input.value.trim()       : '';
+          const k3      = k3Input          ? k3Input.value.trim()       : '';
           const resumen = resumenTextInput ? resumenTextInput.value.trim() : '';
-          const pdfOk = !!(pdfInput && pdfInput.files && pdfInput.files.length);
-
-          if(!area) return 'Selecciona el área para tu resumen.';
-          if(!titulo) return 'Ingresa el título de tu ponencia o póster.';
+          const hasPdf  = !!(pdfInput && pdfInput.files && pdfInput.files.length);
+          if(!area)              return 'Selecciona el área para tu resumen.';
+          if(!titulo)            return 'Ingresa el título de tu ponencia o póster.';
           if(!k1 || !k2 || !k3) return 'Ingresa tus 3 palabras clave.';
-
-          // Texto obligatorio solo si no se subió el PDF
-          if(!pdfOk && !resumen) return 'Debes subir un PDF o pegar el resumen en texto.';
+          if(!hasPdf && !resumen) return 'Debes subir un PDF o pegar el resumen en texto.';
           return null;
         }
 
-        function setPonenciaHiddenNamesIfConfigured() {
-          if(!hiddenArea || !hiddenTitulo || !hiddenKeywords || !hiddenResumen) return;
-
-          if(PONENCIA_ENTRY_IDS.area) hiddenArea.name = PONENCIA_ENTRY_IDS.area;
-          if(PONENCIA_ENTRY_IDS.titulo) hiddenTitulo.name = PONENCIA_ENTRY_IDS.titulo;
-          if(PONENCIA_ENTRY_IDS.keywords) hiddenKeywords.name = PONENCIA_ENTRY_IDS.keywords;
-          if(PONENCIA_ENTRY_IDS.resumen) hiddenResumen.name = PONENCIA_ENTRY_IDS.resumen;
-          if(PONENCIA_ENTRY_IDS.pdf && pdfInput) pdfInput.name = PONENCIA_ENTRY_IDS.pdf;
-        }
-
+        /* ══ GUARDAR PONENCIA ═══════════════════════════════════════
+           Con PDF  → abrir Google Form pre-rellenado en nueva pestaña
+           Sin PDF  → guardar en campos ocultos y hacer submit normal
+        ══════════════════════════════════════════════════════════════ */
         function savePonencia() {
           clearErrors();
-          const msg = validatePonencia();
-          if(msg) {
-            showError(msg);
-            return;
+          const err = validatePonencia();
+          if(err) { showError(err); return; }
+
+          const area     = areaInput        ? areaInput.value              : '';
+          const titulo   = tituloInput      ? tituloInput.value.trim()     : '';
+          const k1       = k1Input          ? k1Input.value.trim()         : '';
+          const k2       = k2Input          ? k2Input.value.trim()         : '';
+          const k3       = k3Input          ? k3Input.value.trim()         : '';
+          const resumen  = resumenTextInput ? resumenTextInput.value.trim() : '';
+          const keywords = [k1, k2, k3].filter(Boolean).join(', ');
+          const hasPdf   = !!(pdfInput && pdfInput.files && pdfInput.files.length);
+
+          if (hasPdf) {
+            /* ── FLUJO CON PDF: redirigir al Google Form pre-rellenado ── */
+            const prefillURL = buildPrefillURL({
+              [ENTRY.area]:     area,
+              [ENTRY.titulo]:   titulo,
+              [ENTRY.keywords]: keywords,
+              [ENTRY.resumen]:  resumen,
+            });
+
+            const ok = window.confirm(
+              '📄 Se abrirá el formulario de Google en una nueva pestaña con todos tus datos pre-rellenados.\n\n' +
+              'Solo deberás:\n' +
+              '1. Subir tu archivo PDF\n' +
+              '2. Enviar el formulario\n\n' +
+              '¿Continuar?'
+            );
+            if(!ok) return;
+
+            // Abrir Google Form pre-rellenado en nueva pestaña
+            window.open(prefillURL, '_blank', 'noopener');
+
+            closeModal();
+
+            // Ocultar el form y mostrar mensaje con link de respaldo
+            const regFormEl = document.getElementById('reg-form');
+            if(regFormEl) regFormEl.style.display = 'none';
+
+            const successMsg = document.getElementById('success-msg');
+            if(successMsg) {
+              successMsg.style.display = 'block';
+              successMsg.innerHTML =
+                '✅ Tus datos fueron pre-rellenados en el formulario de Google.<br>' +
+                '<strong>Último paso:</strong> sube el PDF en la pestaña que se acaba de abrir y envía el formulario.<br><br>' +
+                `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
+                  ↗ Abrir de nuevo si se cerró la pestaña
+                </a>`;
+            }
+
+            // Ocultar instrucciones de recibo (solo aplican para asistentes)
+            const assistantInstructions = document.getElementById('assistant-instructions');
+            if(assistantInstructions) assistantInstructions.hidden = true;
+
+          } else {
+            /* ── FLUJO SIN PDF: guardar en campos ocultos y submit normal ── */
+            const ok = window.confirm('¿Confirmar datos? Una vez guardados no podrás modificarlos.');
+            if(!ok) return;
+
+            if(hiddenArea)     hiddenArea.value     = area;
+            if(hiddenTitulo)   hiddenTitulo.value   = titulo;
+            if(hiddenKeywords) hiddenKeywords.value = keywords;
+            if(hiddenResumen)  hiddenResumen.value  = resumen;
+
+            // Asignar los entry IDs correctos a los campos ocultos
+            if(hiddenArea)     hiddenArea.name     = ENTRY.area;
+            if(hiddenTitulo)   hiddenTitulo.name   = ENTRY.titulo;
+            if(hiddenKeywords) hiddenKeywords.name = ENTRY.keywords;
+            if(hiddenResumen)  hiddenResumen.name  = ENTRY.resumen;
+
+            lockPonenciaInputs();
+
+            if(statusEl) {
+              statusEl.textContent = '✅ Datos de ponencia guardados, Click en registrar para confirma tus datos y agregar el PDF con tu resumen segun el formato.';
+              statusEl.hidden = false;
+            }
+
+            window.ponenciaGate.saved = true;
+            window.ponenciaGate.lastParticipationType = partSel.value;
+
+            closeModal();
+            setSubmitEnabled(true);
           }
-
-          const ok = window.confirm('¿Está seguro? Luego no se podrán hacer cambios. Se guardarán los datos en el formulario.');
-          if(!ok) return;
-
-          const resumen = resumenTextInput ? resumenTextInput.value.trim() : '';
-          const keywords = [k1Input, k2Input, k3Input].map(el => (el ? el.value.trim() : '')).join(', ');
-
-          if(hiddenArea) hiddenArea.value = areaInput.value;
-          if(hiddenTitulo) hiddenTitulo.value = tituloInput.value.trim();
-          if(hiddenKeywords) hiddenKeywords.value = keywords;
-          if(hiddenResumen) hiddenResumen.value = resumen;
-
-          setPonenciaHiddenNamesIfConfigured();
-
-          lockPonenciaInputs();
-          if(statusEl) {
-            statusEl.textContent = 'Datos de ponencia/póster guardados ✅';
-            statusEl.hidden = false;
-          }
-
-          window.ponenciaGate.saved = true;
-          window.ponenciaGate.lastParticipationType = partSel.value;
-
-          closeModal();
-          setSubmitEnabled(true);
         }
 
-        if(closeBtn) closeBtn.addEventListener('click', closeModal);
-        if(saveBtn) saveBtn.addEventListener('click', savePonencia);
-
-        if(modal) {
-          modal.addEventListener('click', (e) => {
-            if(e.target === modal) closeModal();
-          });
-        }
-
+        /* ══ CAMBIO DE TIPO DE PARTICIPACIÓN ════════════════════════
+           Asistente → submit habilitado, campos ponencia con N/A
+           Ponente/Póster → bloquear submit, abrir modal
+        ══════════════════════════════════════════════════════════════ */
         function onParticipationChange() {
           const v = partSel.value;
-          const isAsistentes = v === 'asistentes';
-          const isPonente = v === 'ponente' || v === 'poster';
+          const isAsistente = v === 'asistentes';
+          const isPonente   = v === 'ponente' || v === 'poster';
 
-          // Reset por completo si cambia a otro tipo
-          if(isAsistentes) {
+          if(isAsistente) {
             closeModal();
             resetPonenciaForm();
+            // Rellenar campos ocultos de ponencia con N/A para no dejar vacíos en Google Form
+            if(hiddenArea)     { hiddenArea.value     = DEFAULTS_ASISTENTE.area;     hiddenArea.name     = ENTRY.area;     }
+            if(hiddenTitulo)   { hiddenTitulo.value   = DEFAULTS_ASISTENTE.titulo;   hiddenTitulo.name   = ENTRY.titulo;   }
+            if(hiddenKeywords) { hiddenKeywords.value = DEFAULTS_ASISTENTE.keywords; hiddenKeywords.name = ENTRY.keywords; }
+            if(hiddenResumen)  { hiddenResumen.value  = DEFAULTS_ASISTENTE.resumen;  hiddenResumen.name  = ENTRY.resumen;  }
             setSubmitEnabled(true);
             return;
           }
 
           if(isPonente) {
+            // Si ya guardó datos para este mismo tipo, reutilizar
             const canReuse = window.ponenciaGate.saved && window.ponenciaGate.lastParticipationType === v;
             if(canReuse) {
               setSubmitEnabled(true);
@@ -3128,15 +3128,14 @@ document.getElementById('aboutText').textContent = descriptionEvent;
             openModal();
             return;
           }
-
-          // Si todavía no elige un valor válido, dejamos el submit como está;
-          // la validación del navegador aplicará por los `required`.
         }
 
-        partSel.addEventListener('change', onParticipationChange);
+        if(closeBtn) closeBtn.addEventListener('click', closeModal);
+        if(saveBtn)  saveBtn.addEventListener('click', savePonencia);
+        if(modal)    modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
 
-        // Estado inicial
-        onParticipationChange();
+        partSel.addEventListener('change', onParticipationChange);
+        onParticipationChange(); // estado inicial
       }
 
       updateEstimate();
@@ -3148,9 +3147,10 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     } else {
       initPricing();
     }
+
   })();
 
-  // Insert subtle pi-shaped SVG decorations into green sections
+  // Insert decorative pi SVGs
   function insertPiDecor(){
     const svgMarkup = `
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3170,16 +3170,17 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     });
   }
 
+/* ── SUBMIT PRINCIPAL (Asistentes y ponentes sin PDF) ── */
   function handleSubmit(e) {
-    const form = document.getElementById('reg-form');
-    const partSel = form && form.querySelector('select[name="entry.323207977"]');
+    const form    = document.getElementById('reg-form');
+    // entry.921372150 = Tipo de participación (asistente / ponente / poster)
+    const partSel = form && form.querySelector('select[name="entry.921372150"]');
     const participationType = partSel ? partSel.value : '';
-    const isAsistentes = participationType === 'asistentes';
-
-    const gate = window.ponenciaGate || { saved: false };
+    const isAsistente      = participationType === 'asistentes';
     const requiresPonencia = participationType === 'ponente' || participationType === 'poster';
+    const gate             = window.ponenciaGate || { saved: false };
 
-    // Para ponente/póster: bloquear si aún no guardaron el modal.
+    // Bloquear si ponente/póster aún no completó el modal
     if (requiresPonencia && !gate.saved) {
       if (e && typeof e.preventDefault === 'function') e.preventDefault();
       if (window.openPonenciaModal) window.openPonenciaModal();
@@ -3187,29 +3188,21 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     }
 
     const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
- 
-    // Give the iframe time to receive the response, then show success
-    setTimeout(function () {
-      document.getElementById('reg-form').style.display = 'none';
-      document.getElementById('success-msg').style.display = 'block';
+    if(btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
 
+    setTimeout(function () {
+      const regFormEl             = document.getElementById('reg-form');
+      const successMsg            = document.getElementById('success-msg');
       const assistantInstructions = document.getElementById('assistant-instructions');
-      if (assistantInstructions) {
-        assistantInstructions.hidden = !isAsistentes;
-      }
+
+      if(regFormEl)  regFormEl.style.display  = 'none';
+      if(successMsg) successMsg.style.display = 'block';
+      // Instrucciones de recibo solo para asistentes
+      if(assistantInstructions) assistantInstructions.hidden = !isAsistente;
     }, 1800);
   }
 
-
-//----------------------------------------------
- /* ══════════════════════════════════════════════
-     SPONSORS — Solo edita este arreglo
-     Cada objeto:
-       src: URL o ruta de la imagen del logo
-       alt: nombre del patrocinador
-  ══════════════════════════════════════════════ */
+  /* ── SPONSORS CAROUSEL ── */
   const SPONSORS = [
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773963916/Logo_DPTO_batcheditor_fotor_vxgcoo.webp", alt: "Departamento matematicas" },
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien" },
@@ -3219,52 +3212,46 @@ document.getElementById('aboutText').textContent = descriptionEvent;
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA" },
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia" },
     { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad de Nariño" },
+    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander" },
   ];
 
   (function buildCarousel() {
     const track = document.getElementById('carousel-track');
     if (!track) return;
-
-    // Duplicate list to create seamless loop
     const all = [...SPONSORS, ...SPONSORS];
-
     track.innerHTML = all.map(s =>
       `<img class="carousel-logo" src="${s.src}" alt="${s.alt}" loading="lazy" />`
     ).join('');
   })();
 
-  /* ══ VIDEO MODAL ══ */
-const VIDEO_URL = 'https://www.youtube.com/embed/K9W4TbtyZCg';
+  /* ── VIDEO MODAL ── */
+  const VIDEO_URL = 'https://www.youtube.com/embed/K9W4TbtyZCg';
 
-function openVideoModal(e) {
-  if (e) e.preventDefault();
-  // Reset to preview state each time
-  document.getElementById('vmodal-preview').style.display = 'block';
-  document.getElementById('vmodal-player').style.display  = 'none';
-  document.getElementById('vmodal-iframe').src = '';
-  document.getElementById('video-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
+  function openVideoModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('vmodal-preview').style.display = 'block';
+    document.getElementById('vmodal-player').style.display  = 'none';
+    document.getElementById('vmodal-iframe').src = '';
+    document.getElementById('video-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-function closeVideoModal(e) {
-  // Click en el backdrop (fuera del box) cierra
-  if (e && e.target !== document.getElementById('video-modal')) return;
-  document.getElementById('vmodal-iframe').src = '';
-  document.getElementById('video-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
+  function closeVideoModal(e) {
+    if (e && e.target !== document.getElementById('video-modal')) return;
+    document.getElementById('vmodal-iframe').src = '';
+    document.getElementById('video-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-function playVideo() {
-  document.getElementById('vmodal-preview').style.display = 'none';
-  document.getElementById('vmodal-player').style.display  = 'block';
-  document.getElementById('vmodal-iframe').src = VIDEO_URL + '?autoplay=1&rel=0';
-}
+  function playVideo() {
+    document.getElementById('vmodal-preview').style.display = 'none';
+    document.getElementById('vmodal-player').style.display  = 'block';
+    document.getElementById('vmodal-iframe').src = VIDEO_URL + '?autoplay=1&rel=0';
+  }
 
-// Cerrar con Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeVideoModal();
-});
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeVideoModal();
+  });
   
 </script>
 
