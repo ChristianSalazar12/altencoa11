@@ -1503,6 +1503,33 @@
       grid-template-columns: 1fr;
     }
   }
+/*-----------------formSection---------------------------*/
+.title-form{
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #7ED957;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+
+}
+.form-heading {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.info-form{
+  font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 16px;
+}
+.button-form{
+
+}
+.button-bill{
+  
+}
 
 /* ── SECTION ── */
   .discover-section {
@@ -2040,225 +2067,100 @@
 </section>
 <section class="org-section">
   <div class="org-inner-O">
- 
     <div class="section-label-O">Organización</div>
     <h2 class="section-heading-O">Comité <span class="green">Organizador</span></h2>
     <p class="section-desc-O">El equipo de profesionales que hace posible ALTENCOA 11</p>
- 
-    <!-- Cards are injected here by JS -->
     <div class="members-grid-O" id="members-grid"></div>
- 
   </div>
 </section>
-
 
 <section id="reg-section" class="reg-section">
   <div class="reg-inner">
 
-    
-    <h2 class="section-heading"> <span class="green">Inscripción </span></h2>
+    <h2 class="section-heading"><span class="green">Inscripción</span></h2>
+
     <div class="reg-grid">
-      <!-- ── LEFT: Info ── -->
       <div class="reg-pitch">
+
         <p class="pitch-text">
           Únete a matemáticos, investigadores y académicos en uno de los eventos más importantes de álgebra
           y teoría de números en América Latina.
         </p>
-        <!-- Benefits — add/remove items freely -->
+
         <div class="benefits-grid">
           <ul class="benefits-col">
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Acceso a todas las actividades académicas</li>
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Certificado digital del evento</li>
-        
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Acceso a todas las actividades académicas</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Certificado digital del evento</li>
           </ul>
           <ul class="benefits-col">
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
-                <li style="display: flex;"><span class="benefit-icon">✓</span> Memorias de encuentro</li>
-
-           
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Memorias de encuentro</li>
           </ul>
         </div>
 
-        <!-- Important Dates, Deadlines, and Rates: rendered from JS data -->
+        <!-- Fechas, plazos y tarifas -->
         <div id="info-cards" class="info-cards"></div>
-        <!-- Insert the registration form here so it appears below benefits and info boxes -->
+
+        <!-- Bloque de registro -->
         <div class="reg-form-card">
-        <form
-  id="reg-form"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
-  method="POST"
-  target="hidden-iframe"
-  onsubmit="handleSubmit(event)"
->
-  <!-- Email -->
-  <div class="field">
-    <span class="field-icon">✉</span>
-    <input type="email" name="entry.1503609734" placeholder="Correo electrónico *" required autocomplete="email"/>
-  </div>
 
-  <!-- Nombre -->
-  <div class="field">
-    <span class="field-icon">👤</span>
-    <input type="text" name="entry.1479821263" placeholder="Nombre *" required autocomplete="given-name"/>
-  </div>
-
-  <!-- Apellido -->
-  <div class="field">
-    <span class="field-icon">👤</span>
-    <input type="text" name="entry.1223149995" placeholder="Apellido *" required autocomplete="family-name"/>
-  </div>
-
-  <!-- Institución -->
-  <div class="field">
-    <span class="field-icon">🏛</span>
-    <input type="text" name="entry.1064649835" placeholder="Institución / Universidad *" required autocomplete="organization"/>
-  </div>
-
-  <!-- País -->
-  <div class="field">
-    <span class="field-icon">🌎</span>
-    <input type="text" name="entry.200075436" placeholder="País *" required autocomplete="country-name"/>
-  </div>
-
-  <!-- Documento -->
-  <div class="field">
-    <span class="field-icon">🪪</span>
-    <input type="text" name="entry.895542888" placeholder="Documento de identidad *" required autocomplete="off"/>
-  </div>
-
-  <!-- Tipo de Participante -->
-  <div class="field">
-    <span class="field-icon">👥</span>
-    <select name="entry.1803685710" required>
-      <option value="" disabled selected>Tipo de participante *</option>
-      <option value="Estudiante de Pregrado Udenar">Estudiante de Pregrado Udenar</option>
-      <option value="Estudiante de Pregrado">Estudiante de Pregrado</option>
-      <option value="Estudiante de Postgrado">Estudiante de Postgrado</option>
-      <option value="Docente Universitario">Docente Universitario</option>
-      <option value="Docente">Docente</option>
-      <option value="Otro">Otro</option>
-    </select>
-  </div>
-
-  <!-- Tipo de Participación -->
-  <div class="field">
-    <span class="field-icon">📊</span>
-    <select name="entry.921372150" required>
-      <option value="" disabled selected>Tipo de participación *</option>
-      <option value="asistentes">Asistente</option>
-      <option value="ponente">Ponente</option>
-      <option value="poster">Póster</option>
-    </select>
-  </div>
-
-  <div id="cost-estimate" class="cost-estimate" aria-live="polite">Costo estimado: —</div>
-
-  <!-- Estado ponencia -->
-  <div id="ponencia-status" class="pm-status" hidden aria-live="polite"></div>
-
-  <!-- Modal ponencia/póster -->
-  <div id="ponencia-modal" class="pm-backdrop" aria-hidden="true">
-    <div class="pm-box" role="dialog" aria-modal="true" aria-labelledby="ponencia-modal-title">
-      <div class="pm-header">
-        <div>
-          <div id="ponencia-modal-title" class="pm-title">Datos para ponencia o póster</div>
-          <div class="pm-subtitle">Completa la información para continuar con tu inscripción.</div>
-        </div>
-        <button type="button" class="pm-close" id="ponencia-close-btn" aria-label="Cerrar">✕</button>
-      </div>
-      <div class="pm-body">
-        <div class="field-formate">
-         
-          <a id="ponencia-download-link" class="btn-fallback" href="https://www.overleaf.com/project/6994ca2c9260b7a57b42caa8" target="_blank" rel="noopener noreferrer">Descargar formato del resumen</a>
-        </div>
-        <div class="field" style="margin-top: 20px;">
-          <span class="field-icon">🧩</span>
-          <select id="ponencia-area-input">
-            <option value="" disabled selected>Selecciona el área *</option>
-            <option value="Álgebra">Álgebra</option>
-            <option value="Teoría de Números">Teoría de Números</option>
-            <option value="Combinatoria">Combinatoria</option>
-            <option value="Aplicaciones">Aplicaciones</option>
-            <option value="Geometría Algebraica">Geometría Algebraica</option>
-            <option value="Análisis de Datos y Sistemas Complejos">Análisis de Datos y Sistemas Complejos</option>
-          </select>
-        </div>
-        <div>
-          <div class="field" style="margin-top: 20px; margin-bottom: 20px;">
-          <span class="field-icon">🏷️</span>
-          <input id="ponencia-titulo-input" type="text" placeholder="Título de la ponencia / póster *" autocomplete="off"/>
-        </div>
-        
-        </div>
-        <div class="field">
-          <div style="padding-left:14px; margin-bottom:8px; color:rgba(255,255,255,0.9); font-weight:700; font-size:13px;">
-            Palabras clave (3) *
+          <!-- Paso 1: Formulario -->
+          <div style="margin-bottom: 20px;">
+            <div class="title-form">Paso 1</div>
+            <div class="form-heading">FORMULARIO DE INSCRIPCIÓN</div>
+            <p class="info-form">
+              Completa el formulario con tus datos personales y tipo de participación.
+            </p>
+            <a
+              id="urlForm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-submit"
+              style="display:inline-flex; align-items:center; gap: 4px; text-decoration:none;"
+            >
+              Ir al formulario <span class="arrow">→</span>
+            </a>
           </div>
-          <div class="pm-keywords-grid">
-            <input id="ponencia-k1-input" type="text" placeholder="Palabra 1" autocomplete="off"/>
-            <input id="ponencia-k2-input" type="text" placeholder="Palabra 2" autocomplete="off"/>
-            <input id="ponencia-k3-input" type="text" placeholder="Palabra 3" autocomplete="off"/>
+          <!-- Divisor -->
+          <div style="border-top: 1px solid rgba(126,217,87,0.15); margin-bottom: 18px;"></div>
+          <!-- Paso 2: Recibo -->
+          <div>
+            <div class="title-form">Paso 2</div>
+            <div class="form-heading">GENERAR RECIBO</div>
+            <p class="info-form">
+              Una vez inscrito, genera tu recibo de pago e ingresa tus datos para completar el proceso.
+            </p>
+            <a
+              id="urlBill"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-submit"
+              style="display:inline-flex; align-items:center; text-decoration:none; background: transparent; border: 2px solid #7ED957; color: #7ED957;"
+            >
+              Generar recibo de pago <span class="arrow">→</span>
+            </a>
           </div>
-        </div>
-        <div class="field" style="margin-top:10px;">
-          <div style="padding-left:14px; margin-bottom:8px; color:rgba(255,255,255,0.9); font-weight:700; font-size:13px;">
-            Resumen (texto) *
+
+          <!-- Nota final -->
+          <div style="
+            margin-top: 28px;
+            padding: 14px 16px;
+            background: rgba(126,217,87,0.06);
+            border: 1px solid rgba(126,217,87,0.18);
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.60);
+            line-height: 1.6;
+          ">
+            📌 Confirma que tus datos sean correctos en el recibo antes de realizar el pago. ¡Te esperamos en el evento!
           </div>
-          <textarea id="ponencia-resumen-text-input" placeholder="Pega el resumen aquí."></textarea>
-        </div>
-        <div id="ponencia-modal-error" class="pm-error" hidden></div>
-        <div style="margin-top:8px; color:rgba(255,255,255,0.7); font-size:16px;">
-          Nota: Al finalizar estos datos, Tener el resumen en el formato solicitado listo para subir.
-        </div>
-        </div>
-        <div class="pm-actions">
-          <button type="button" class="btn-submit" id="ponencia-save-btn">Guardar</button>
+
         </div>
       </div>
-     
     </div>
+
   </div>
-
-  <!-- Campos ocultos ponencia -->
-  <input type="hidden" id="ponencia-area-hidden"     data-ponencia-field="area" />
-  <input type="hidden" id="ponencia-titulo-hidden"   data-ponencia-field="titulo" />
-  <input type="hidden" id="ponencia-keywords-hidden" data-ponencia-field="keywords" />
-  <input type="hidden" id="ponencia-resumen-hidden"  data-ponencia-field="resumen" />
-
-  <div class="form-actions">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform"
-       target="_blank" rel="noopener noreferrer" class="btn-fallback">
-      FORMULARIO DE GOOGLE
-    </a>
-    <button type="submit" class="btn-submit" id="submit-btn">
-      Registrarse <span class="arrow">→</span>
-    </button>
-  </div>
-</form>
-
-           <div class="success-msg" id="success-msg">
-            ✅ ¡Registro recibido! Nos pondremos en contacto pronto.
-          </div>
-
-          <div id="assistant-instructions" class="pm-status" hidden aria-live="polite">
-            ✅ Registro exitoso. Sigue estos pasos para generar tu recibo y completar el proceso:
-            <ol style="margin: 10px 0 0; padding-left: 20px; color: rgba(255,255,255,0.92); font-weight: 700;">
-              <li>Ir al enlace del recibo: <a href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245" target="_blank" rel="noopener noreferrer" style="color: #5cb832;"">GENERAR RECIBO DE PAGO</a>.</li>
-              <li>Marcar la opción de <strong>asistentes</strong>.</li>
-              <li>Ingresar sus datos.</li>
-              <li>Confirmar que los datos sean correctos, guardar y seguir las instrucciones del recibo para cancelar su inscripción. Luego los esperamos en el evento.</li>
-            </ol>
-          </div>
-        </div>
-
-      </div>
-      <!-- Form moved below benefits and info boxes to appear last in column -->
-
-    </div>
-  </div>
-  <iframe name="hidden-iframe" style="display:none;" aria-hidden="true"></iframe>
 </section>
-
 
 <section id="narino" class="discover-section">
   <div class="discover-inner">
@@ -2455,17 +2357,21 @@ const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v17739
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
 const email = "altenua@udenar.edu.co"
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform"
+const GOOGLE_FORM_BILL_URL = "https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245"
 
 document.getElementById('footer').src = logo;
 document.getElementById('posterAbout').src = posterAboutImg;
 document.getElementById('imgPasto').src = imgPasto;
 document.getElementById('email').textContent = email;
 document.getElementById('imgUdenar').src = imgUdenar;
+document.getElementById('urlForm').href = GOOGLE_FORM_URL;
+document.getElementById('urlBill').href = GOOGLE_FORM_BILL_URL;
 
-const descriptionEvent="Los encuentros ALTENCOA surgieron por iniciativa del grupo de investigación Álgebra, Teoría de Números y Aplicaciones: ERM (ALTENUA), conformado principalmente por profesores y estudiantes de las universidades de Antioquia, Cauca, Nariño y Valle, con el propósito de promover y consolidar el desarrollo del Álgebra y la Teoría de Números en Colombia, así como de contribuir al posicionamiento del país como sede de eventos académicos en estas áreas. Desde sus primeras ediciones, realizadas en distintas universidades colombianas a mediados de la década de 2000, ALTENCOA se estableció como un espacio regular de articulación de la comunidad académica, intercambio científico y fortalecimiento de redes de colaboración. Este proceso favoreció la proyección nacional e internacional de estas líneas de investigación desde el grupo de investigación y contribuyó a que Colombia acogiera, en años posteriores, la XVII edición del Coloquio Latinoamericano de Álgebra.En la actualidad, ALTENCOA es un evento académico con proyección internacional orientado al fomento del Álgebra, la Teoría de Números, la Combinatoria, la Geometría Algebraica y sus Aplicaciones, mediante la interacción entre investigadores y el fortalecimiento de redes de cooperación a través de conferencias, cursillos y  sesiones de divulgación de resultados."
+const descriptionEvent = "Los encuentros ALTENCOA surgieron por iniciativa del grupo de investigación Álgebra, Teoría de Números y Aplicaciones: ERM (ALTENUA), conformado principalmente por profesores y estudiantes de las universidades de Antioquia, Cauca, Nariño y Valle, con el propósito de promover y consolidar el desarrollo del Álgebra y la Teoría de Números en Colombia, así como de contribuir al posicionamiento del país como sede de eventos académicos en estas áreas. Desde sus primeras ediciones, realizadas en distintas universidades colombianas a mediados de la década de 2000, ALTENCOA se estableció como un espacio regular de articulación de la comunidad académica, intercambio científico y fortalecimiento de redes de colaboración. Este proceso favoreció la proyección nacional e internacional de estas líneas de investigación desde el grupo de investigación y contribuyó a que Colombia acogiera, en años posteriores, la XVII edición del Coloquio Latinoamericano de Álgebra. En la actualidad, ALTENCOA es un evento académico con proyección internacional orientado al fomento del Álgebra, la Teoría de Números, la Combinatoria, la Geometría Algebraica y sus Aplicaciones, mediante la interacción entre investigadores y el fortalecimiento de redes de cooperación a través de conferencias, cursillos y sesiones de divulgación de resultados."
 document.getElementById('aboutText').textContent = descriptionEvent;
 
-/* ── MODAL PRIMER ANUNCIO ── */
+/* ══ MODAL PRIMER ANUNCIO ══════════════════════════════════════ */
 function openAnuncioModal(e) {
   if (e) e.preventDefault();
 
@@ -2474,82 +2380,38 @@ function openAnuncioModal(e) {
     style.id = 'anuncio-modal-style';
     style.textContent = `
       #anuncio-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: rgba(5, 20, 5, 0.88);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        animation: afadeIn 0.25s ease;
+        position: fixed; inset: 0; z-index: 9999;
+        background: rgba(5,20,5,0.88);
+        display: flex; align-items: center; justify-content: center;
+        padding: 20px; animation: afadeIn 0.25s ease;
       }
-      @keyframes afadeIn {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-      }
+      @keyframes afadeIn { from{opacity:0} to{opacity:1} }
       #anuncio-modal .am-box {
-        position: relative;
-        max-width: 520px;
-        width: 100%;
-        border-radius: 14px;
-        overflow: hidden;
+        position: relative; max-width: 520px; width: 100%;
+        border-radius: 14px; overflow: hidden;
         box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-        animation: aslideUp 0.28s ease;
-        background: #0b2210;
+        animation: aslideUp 0.28s ease; background: #0b2210;
       }
-      @keyframes aslideUp {
-        from { transform: translateY(20px); opacity: 0; }
-        to   { transform: translateY(0);    opacity: 1; }
-      }
-      #anuncio-modal .am-img {
-        width: 100%;
-        display: block;
-        max-height: 80vh;
-        object-fit: contain;
-      }
+      @keyframes aslideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+      #anuncio-modal .am-img { width:100%; display:block; max-height:80vh; object-fit:contain; }
       #anuncio-modal .am-close {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: rgba(0,0,0,0.60);
-        border: 1px solid rgba(255,255,255,0.20);
-        color: rgba(255,255,255,0.90);
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        font-size: 15px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-        line-height: 1;
+        position: absolute; top: 12px; right: 12px;
+        background: rgba(0,0,0,0.60); border: 1px solid rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.90); border-radius: 50%;
+        width: 36px; height: 36px; font-size: 15px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s; line-height: 1;
       }
-      #anuncio-modal .am-close:hover {
-        background: rgba(255,255,255,0.18);
-        color: white;
-      }
+      #anuncio-modal .am-close:hover { background: rgba(255,255,255,0.18); color: white; }
       #anuncio-modal .am-footer {
-        padding: 14px 18px;
-        background: #0e1f0a;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        border-top: 1px solid rgba(126,217,87,0.15);
+        padding: 14px 18px; background: #0e1f0a;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 12px; border-top: 1px solid rgba(126,217,87,0.15);
       }
-      #anuncio-modal .am-footer-text {
-        font-size: 13px;
-        color: rgba(255,255,255,0.55);
-      }
+      #anuncio-modal .am-footer-text { font-size: 13px; color: rgba(255,255,255,0.55); }
       #anuncio-modal .am-download {
-        font-size: 13px;
-        font-weight: 700;
-        color: #7ED957;
-        text-decoration: none;
-        white-space: nowrap;
-        transition: color 0.2s;
+        font-size: 13px; font-weight: 700; color: #7ED957;
+        text-decoration: none; white-space: nowrap; transition: color 0.2s;
       }
       #anuncio-modal .am-download:hover { color: #9BE564; }
     `;
@@ -2567,9 +2429,7 @@ function openAnuncioModal(e) {
       <button class="am-close" id="am-close-btn" aria-label="Cerrar">✕</button>
       <div class="am-footer">
         <span class="am-footer-text">Primer Anuncio — ALTENCOA 11 · 2026</span>
-        <a class="am-download" href="${posterFirtsAnuncio}" download target="_blank" rel="noopener">
-          ↓ Descargar
-        </a>
+        <a class="am-download" href="${posterFirtsAnuncio}" download target="_blank" rel="noopener">↓ Descargar</a>
       </div>
     </div>
   `;
@@ -2579,7 +2439,6 @@ function openAnuncioModal(e) {
 
   document.getElementById('am-close-btn').addEventListener('click', closeAnuncioModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeAnuncioModal(); });
-
   modal._escHandler = e => { if (e.key === 'Escape') closeAnuncioModal(); };
   document.addEventListener('keydown', modal._escHandler);
 }
@@ -2591,854 +2450,397 @@ function closeAnuncioModal() {
   modal.remove();
   document.body.style.overflow = '';
 }
-//#####################################################################################################//
-  // Collapsible behavior for 'Tarifas'
-  function initTarifasCollapsible(){
-    const tarifasBox = document.getElementById('tarifas-box');
-    if (!tarifasBox || tarifasBox.dataset.tarifasCollapsibleInit === '1') return;
-    tarifasBox.dataset.tarifasCollapsibleInit = '1';
-    const toggle = tarifasBox.querySelector('.collapsible-toggle');
-    const content = document.getElementById('tarifas-content');
-    if (!toggle || !content) return;
-    content.style.maxHeight = '0px';
-    content.hidden = true;
-    toggle.addEventListener('click', function(e){
-      e.preventDefault();
-      const isOpen = tarifasBox.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      if (isOpen) {
-        content.hidden = false;
-        requestAnimationFrame(()=>{ content.style.maxHeight = content.scrollHeight + 'px'; });
-      } else {
-        content.style.maxHeight = '0px';
-        setTimeout(()=> content.hidden = true, 360);
-      }
-    });
-  }
 
-  document.addEventListener('DOMContentLoaded', function(){
-    if (document.getElementById('tarifas-box')) initTarifasCollapsible();
-    else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+/* ══ TABS COMITÉ CIENTÍFICO ════════════════════════════════════ */
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
   });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  const panel = document.getElementById('panel-' + panelId);
+  if (panel) panel.classList.add('active');
+}
 
-  function switchTab(btn, panelId) {
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
-    const panel = document.getElementById('panel-' + panelId);
-    if (panel) panel.classList.add('active');
+/* ══ COMITÉ CIENTÍFICO ════════════════════════════════════════ */
+const committees = [
+  {
+    id: 'algebra', label: 'Álgebra',
+    members: [
+      { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
+      { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
+      { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'number', label: 'Teoría de Números',
+    members: [
+      { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
+      { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
+      { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'comb', label: 'Combinatoria',
+    members: [
+      { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
+      { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
+      { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'apps', label: 'Aplicaciones',
+    members: [
+      { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
+      { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'alg-geom', label: 'Geometría Algebraica',
+    members: [
+      { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
+      { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
+      { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'data', label: 'Análisis de Datos y Sistemas Complejos',
+    members: [
+      { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
+      { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
+      { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'Francia' }
+    ]
   }
-//###################################################################COMMITTE SECCTION#########//
-  const committees = [
-    {
-      id: 'algebra',
-      label: 'Álgebra',
-      members: [
-        { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
-        { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
-        { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'number',
-      label: 'Teoría de Números',
-      members: [
-        { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
-        { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
-        { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'comb',
-      label: 'Combinatoria',
-      members: [
-        { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
-        { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
-        { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'apps',
-      label: 'Aplicaciones',
-      members: [
-        { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
-        { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'alg-geom',
-      label: 'Geometría Algebraica',
-      members: [
-        { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
-        { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
-        { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'data',
-      label: 'Análisis de Datos y Sistemas Complejos',
-      members: [
-        { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
-        { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
-        { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'Francia' }
-      ]
+];
+
+/* ══ FLAGS ════════════════════════════════════════════════════ */
+(function(){
+  const countryNameToCode = {
+    'brasil':'BR','brazil':'BR','colombia':'CO','méxico':'MX','mexico':'MX',
+    'chile':'CL','estados unidos':'US','usa':'US','united states':'US',
+    'francia':'FR','france':'FR','argentina':'AR','perú':'PE','peru':'PE',
+    'ecuador':'EC','venezuela':'VE','uruguay':'UY','paraguay':'PY','bolivia':'BO'
+  };
+  function isoToEmoji(iso) {
+    if (!iso || iso.length !== 2) return '';
+    return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+  }
+  window.getFlag = function(input) {
+    if (!input) return '';
+    const s = String(input).toLowerCase().trim();
+    if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
+    for (const name in countryNameToCode) {
+      if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
     }
-  ];
-
-  const infoCards = [
-    {
-      id: 'fechas',
-      title: 'Fechas importantes',
-      items: [
-        { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 8 de mayo' },
-        { label: 'Aceptación de propuestas', value: '29 de mayo' },
-        { label: 'Evento', value: '5–9 de octubre de 2026' }
-      ]
-    },
-    {
-      id: 'costos-plazos',
-      title: 'Costos y plazos',
-      items: [
-        { label: 'Límite de pago con descuento', value: '21 de agosto' },
-        { label: 'Límite de pago para expositores', value: '4 de septiembre *' },
-        { label: 'Límite de pago para asistentes', value: '18 de septiembre' }
-      ]
-    },
-    {
-      id: 'tarifas',
-      title: 'Tarifas',
-      type: 'tarifas'
+    const parts = s.split(/[,\-\/]/).map(p => p.trim());
+    for (let i = parts.length - 1; i >= 0; --i) {
+      if (countryNameToCode[parts[i]]) return isoToEmoji(countryNameToCode[parts[i]]);
     }
-  ];
+    return '';
+  };
+})();
 
-  function renderInfoCards(){
-    const container = document.getElementById('info-cards');
-    if (!container) return;
-    container.innerHTML = '';
-    infoCards.forEach(card => {
-      const box = document.createElement('div');
-      box.className = 'info-box';
-      box.setAttribute('role','group');
-      box.setAttribute('aria-label', card.title);
-      if (card.type === 'tarifas') {
-        box.classList.add('info-box-collapsible');
-        box.id = 'tarifas-box';
-        const btn = document.createElement('button');
-        btn.className = 'collapsible-toggle';
-        btn.setAttribute('aria-expanded','false');
-        btn.setAttribute('aria-controls','tarifas-content');
-        btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
-        box.appendChild(btn);
-        const content = document.createElement('div');
-        content.id = 'tarifas-content';
-        content.className = 'collapsible-content';
-        content.hidden = true;
-        box.appendChild(content);
-        const mention = document.createElement('div');
-        mention.id = 'tarifas-mention';
-        mention.className = 'dates-list';
-        mention.hidden = true;
-        box.appendChild(mention);
-      } else {
-        const title = document.createElement('div');
-        title.className = 'dates-title';
-        title.textContent = card.title;
-        box.appendChild(title);
-        const ul = document.createElement('ul');
-        ul.className = 'dates-list';
-        card.items.forEach(it => {
-          const li = document.createElement('li');
-          li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
-          ul.appendChild(li);
-        });
-        box.appendChild(ul);
-      }
-      container.appendChild(box);
-    });
-    document.dispatchEvent(new Event('infoCardsReady'));
+function createMemberCard(m) {
+  const card = document.createElement('div');
+  card.className = 'member-card';
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar';
+  const flag = getFlag(m.location || m.institution);
+  avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n => n[0]).join('').slice(0, 2);
+  card.appendChild(avatar);
+  const name = document.createElement('div');
+  name.className = 'member-name';
+  name.textContent = m.name;
+  card.appendChild(name);
+  const inst = document.createElement('div');
+  inst.className = 'member-institution';
+  inst.textContent = m.institution;
+  card.appendChild(inst);
+  return card;
+}
+
+function renderCommittees() {
+  const tabs = document.getElementById('committee-tabs');
+  const panelsContainer = document.getElementById('committee-panels');
+  if (!tabs || !panelsContainer) return;
+  tabs.innerHTML = '';
+  panelsContainer.innerHTML = '';
+  committees.forEach((c, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+    btn.textContent = c.label;
+    btn.addEventListener('click', () => switchTab(btn, c.id));
+    tabs.appendChild(btn);
+    const panel = document.createElement('div');
+    panel.id = 'panel-' + c.id;
+    panel.className = 'tab-panel' + (idx === 0 ? ' active' : '');
+    c.members.forEach(m => panel.appendChild(createMemberCard(m)));
+    panelsContainer.appendChild(panel);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => renderCommittees());
+
+/* ══ COMITÉ ORGANIZADOR ═══════════════════════════════════════ */
+const COMMITTEE = [
+  { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "" },
+  { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "" },
+  { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "" },
+  { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "" },
+  { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "" },
+  { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "" },
+  { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "" },
+  { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "" },
+];
+
+function getInitials(name) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length > 2 ? 2 : 1][0]).toUpperCase();
+}
+
+function avatarHTML(member) {
+  if (member.photo && member.photo.trim() !== '') {
+    return `<div class="avatar-O"><img src="${member.photo}" alt="${member.name}" /></div>`;
   }
+  return `<div class="avatar-O">${getInitials(member.name)}</div>`;
+}
 
-  (function(){
-    const countryNameToCode = {
-      'brasil': 'BR', 'brazil': 'BR',
-      'colombia': 'CO',
-      'méxico': 'MX', 'mexico': 'MX',
-      'chile': 'CL',
-      'estados unidos': 'US', 'usa': 'US', 'united states': 'US',
-      'francia': 'FR', 'france': 'FR',
-      'argentina': 'AR', 'perú': 'PE', 'peru': 'PE', 'ecuador': 'EC',
-      'venezuela': 'VE', 'uruguay': 'UY', 'paraguay': 'PY', 'bolivia': 'BO',
-      'méxico ': 'MX'
-    };
-    function isoToEmoji(iso) {
-      if (!iso || iso.length !== 2) return '';
-      return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
-    }
-    window.getFlag = function(input) {
-      if (!input) return '';
-      const s = String(input).toLowerCase().trim();
-      if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
-      for (const name in countryNameToCode) {
-        if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
-      }
-      const parts = s.split(/[,\-\/]/).map(p=>p.trim());
-      for (let i = parts.length-1; i >= 0; --i) {
-        const p = parts[i];
-        if (countryNameToCode[p]) return isoToEmoji(countryNameToCode[p]);
-      }
-      return '';
-    };
-  })();
+function renderCommittee() {
+  const grid = document.getElementById('members-grid');
+  if (!grid) return;
+  grid.innerHTML = COMMITTEE.map(member => `
+    <div class="member-card-O">
+      ${avatarHTML(member)}
+      <div class="member-name-O">${member.name}</div>
+      <div class="member-institution-O">${member.institution}</div>
+    </div>
+  `).join('');
+}
 
-  function createMemberCard(m) {
-    const card = document.createElement('div');
-    card.className = 'member-card';
-    const avatar = document.createElement('div');
-    avatar.className = 'avatar';
-    const flag = getFlag(m.location || m.institution);
-    avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
-    card.appendChild(avatar);
-    const name = document.createElement('div');
-    name.className = 'member-name';
-    name.textContent = m.name;
-    card.appendChild(name);
-    const inst = document.createElement('div');
-    inst.className = 'member-institution';
-    inst.textContent = m.institution;
-    card.appendChild(inst);
-    return card;
+renderCommittee();
+
+/* ══ TARIFAS E INFO CARDS ════════════════════════════════════ */
+const infoCards = [
+  {
+    id: 'fechas',
+    title: 'Fechas importantes',
+    items: [
+      { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 8 de mayo' },
+      { label: 'Aceptación de propuestas', value: '29 de mayo' },
+      { label: 'Evento', value: '5–9 de octubre de 2026' }
+    ]
+  },
+  {
+    id: 'costos-plazos',
+    title: 'Costos y plazos',
+    items: [
+      { label: 'Límite de pago con descuento', value: '21 de agosto' },
+      { label: 'Límite de pago para expositores', value: '4 de septiembre *' },
+      { label: 'Límite de pago para asistentes', value: '18 de septiembre' }
+    ]
+  },
+  { id: 'tarifas', title: 'Tarifas', type: 'tarifas' }
+];
+
+const costos = {
+  asistentes: {
+    'Estudiante de Pregrado Udenar': 50000, 'Estudiante de Postgrado': 335000,
+    'Estudiante de Pregrado': 100000, 'Docente Universitario': 400000,
+    'Docente': 120000, 'Otro': 450000
+  },
+  ponentes: {
+    'Estudiante de Pregrado Udenar': 45000, 'Estudiante de Postgrado': 301500,
+    'Estudiante de Pregrado': 90000, 'Docente Universitario': 360000,
+    'Docente': 108000, 'Otro': 405000
+  },
+  sin_descuento: {
+    'Estudiante de Pregrado Udenar': 100000, 'Estudiante de Postgrado': 370000,
+    'Estudiante de Pregrado': 120000, 'Docente Universitario': 500000,
+    'Docente': 140000, 'Otro': 500000
   }
-
-  function renderCommittees() {
-    const tabs = document.getElementById('committee-tabs');
-    const panelsContainer = document.getElementById('committee-panels');
-    tabs.innerHTML = '';
-    panelsContainer.innerHTML = '';
-    committees.forEach((c, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'tab-btn' + (idx===0 ? ' active' : '');
-      btn.setAttribute('role','tab');
-      btn.setAttribute('aria-selected', idx===0 ? 'true' : 'false');
-      btn.textContent = c.label;
-      btn.addEventListener('click', () => switchTab(btn, c.id));
-      tabs.appendChild(btn);
-      const panel = document.createElement('div');
-      panel.id = 'panel-' + c.id;
-      panel.className = 'tab-panel' + (idx===0 ? ' active' : '');
-      c.members.forEach(m => panel.appendChild(createMemberCard(m)));
-      panelsContainer.appendChild(panel);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => renderCommittees());
-
-//#######################################################COMMITTE ORGANIZATION###################//
-
-  const COMMITTEE = [
-    { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "" },
-    { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "" },
-    { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "" },
-    { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "" },
-    { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "" },
-    { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "" },
-    { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "" },
-    { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "" },
-  ];
-
-  function getInitials(name) {
-    const parts = name.trim().split(/\s+/);
-    if (parts.length === 1) return parts[0][0].toUpperCase();
-    return (parts[0][0] + parts[parts.length > 2 ? 2 : 1][0]).toUpperCase();
-  }
-
-  function avatarHTML(member) {
-    if (member.photo && member.photo.trim() !== '') {
-      return `<div class="avatar-O"><img src="${member.photo}" alt="${member.name}" /></div>`;
-    }
-    return `<div class="avatar-O">${getInitials(member.name)}</div>`;
-  }
-
-  function renderCommittee() {
-    const grid = document.getElementById('members-grid');
-    grid.innerHTML = COMMITTEE.map(member => `
-      <div class="member-card-O">
-        ${avatarHTML(member)}
-        <div class="member-name-O">${member.name}</div>
-        <div class="member-institution-O">${member.institution}</div>
-      </div>
-    `).join('');
-  }
-
-  renderCommittee();
-
-//##############################################################SECTION PRICING AND FORM#########################//
-
-  // ── PRICING & FORM ──────────────────────────────────────────────
-  (function(){
-
-    /* ══ CONFIGURACIÓN GOOGLE FORM ══════════════════════════════
-       Entry IDs mapeados desde la URL prefilled verificada
-    ══════════════════════════════════════════════════════════════ */
-    const FORM_PREFILL_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform';
-
-    const ENTRY = {
-      email:            'entry.1503609734',
-      nombre:           'entry.1479821263',
-      apellido:         'entry.1223149995',
-      institucion:      'entry.1064649835',
-      pais:             'entry.200075436',
-      documento:        'entry.895542888',
-      tipoParticipante: 'entry.1803685710',  
-      tipoParticipacion:'entry.921372150',  
-      area:             'entry.323207977',   
-      titulo:           'entry.2104614869',
-      resumen:          'entry.1781353138',
-      keywords:         'entry.2069271964',
 };
 
-    /* Valores enviados al Google Form cuando el participante es Asistente
-       (campos de ponencia se rellenan con N/A para no dejar vacíos) */
-    const DEFAULTS_ASISTENTE = {
-      area:     'N/A',
-      titulo:   'N/A',
-      resumen:  'N/A',
-      keywords: 'N/A',
-    };
-
-    /* ── Helpers ── */
-    function getVal(name) {
-      const el = document.querySelector(`[name="${name}"]`);
-      return el ? el.value.trim() : '';
-    }
-
-    function regForm() {
-      return document.getElementById('reg-form');
-    }
-
-    /* Construye URL prefilled con todos los datos actuales del form + extras */
-    function buildPrefillURL(extras) {
-      const params = new URLSearchParams();
-      params.set('usp', 'pp_url');
-      params.set(ENTRY.email,            getVal(ENTRY.email));
-      params.set(ENTRY.nombre,           getVal(ENTRY.nombre));
-      params.set(ENTRY.apellido,         getVal(ENTRY.apellido));
-      params.set(ENTRY.pais,             getVal(ENTRY.pais));
-      params.set(ENTRY.documento,        getVal(ENTRY.documento));
-      params.set(ENTRY.institucion,      getVal(ENTRY.institucion));
-      params.set(ENTRY.tipoParticipante, getVal(ENTRY.tipoParticipante));
-      // Campos de ponencia (del modal o defaults)
-      if (extras) {
-        Object.entries(extras).forEach(([k, v]) => params.set(k, v));
-      }
-      return `${FORM_PREFILL_BASE}?${params.toString()}`;
-    }
-
-        /* ── Estimador de costo ── */
-    function getRoleKey() {
-      const form = regForm();
-      // Tipo de participación ahora es entry.921372150
-      const partSel = form && form.querySelector('select[name="entry.921372150"]');
-      if (!partSel || !partSel.value) return null;
-      const v = partSel.value;
-      if (v === 'asistentes') return 'asistentes';
-      if (v === 'ponente' || v === 'poster') return 'ponentes';
-      return 'asistentes';
+function formatCurrency(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
-
-    const costos = {
-      asistentes: {
-        'Estudiante de Pregrado Udenar': 50000,
-        'Estudiante de Postgrado': 335000,
-        'Estudiante de Pregrado': 100000,
-        'Docente Universitario': 400000,
-        'Docente': 120000,
-        'Otro': 450000
-      },
-      ponentes: {
-        'Estudiante de Pregrado Udenar': 45000,
-        'Estudiante de Postgrado': 301500,
-        'Estudiante de Pregrado': 90000,
-        'Docente Universitario': 360000,
-        'Docente': 108000,
-        'Otro': 405000
-      },
-      sin_descuento: {
-        'Estudiante de Pregrado Udenar': 100000,
-        'Estudiante de Postgrado': 370000,
-        'Estudiante de Pregrado': 120000,
-        'Docente Universitario': 500000,
-        'Docente': 140000,
-        'Otro': 500000
-      }
-    };
-
-    function formatCurrency(n){
-      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    function updateEstimate() {
-      const form = regForm();
-      // Tipo de participante ahora es entry.1803685710
-      const sel = form && form.querySelector('select[name="entry.1803685710"]');
-      const el  = document.getElementById('cost-estimate');
-      if(!sel || !el) return;
-      const participant = sel.value;
-      if(!participant) { el.textContent = 'Costo estimado: —'; return; }
-      const roleKey = getRoleKey();
-      if (roleKey == null) { el.textContent = 'Costo estimado: seleccione el tipo de participación'; return; }
-      const price = (costos[roleKey] || {})[participant];
-      const full  = (costos.sin_descuento || {})[participant];
-      if (price != null) {
-        const fullText = full ? ` (Sin descuento: $${formatCurrency(full)})` : '';
-        el.textContent = `Costo estimado: $${formatCurrency(price)}${fullText} — No se realizará ningún cargo ahora`;
-      } else {
-        el.textContent = 'Costo estimado: Consulte las tarifas';
-      }
-    }
-
-    function renderTarifas() {
-      const container  = document.getElementById('tarifas-content');
-      const containerf = document.getElementById('tarifas-mention');
-      if(!container) return;
-      const createListFrom = (obj) => {
-        let html = '<ul class="dates-list">';
-        for (const key of Object.keys(obj)) {
-          html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
-        }
-        html += '</ul>';
-        return html;
-      };
-      const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento. Para expositores que paguen hasta el 21 de agosto obtendrán un descuento del 10% adicional.';
-      let html = '<div class="tarif-grid">';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Asistentes con descuento</div>` + createListFrom(costos.asistentes) + '</div>';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes con descuento</div>`   + createListFrom(costos.ponentes)   + '</div>';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>`    + createListFrom(costos.sin_descuento) + '</div>';
-      html += '</div>';
-      container.innerHTML = html;
-      if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
-    }
-
-    //############################################# SECTION MODAL ###########################//
-
-    /* ── MODAL DE PONENCIA / PÓSTER ─────────────────────────────── */
-    function initPricing() {
-      renderInfoCards();
-      insertPiDecor();
-
-      const form    = regForm();
-      const sel     = form && form.querySelector('select[name="entry.1803685710"]'); 
-      const partSel = form && form.querySelector('select[name="entry.921372150"]');  
-
-      if(sel)     sel.addEventListener('change', updateEstimate);
-      if(partSel) partSel.addEventListener('change', updateEstimate);
-
-      if (partSel && !window.ponenciaGateInitialized) {
-        window.ponenciaGateInitialized = true;
-        window.ponenciaGate = { saved: false, lastParticipationType: null };
-
-        const submitBtn        = document.getElementById('submit-btn');
-        const statusEl         = document.getElementById('ponencia-status');
-        const modal            = document.getElementById('ponencia-modal');
-        const closeBtn         = document.getElementById('ponencia-close-btn');
-        const saveBtn          = document.getElementById('ponencia-save-btn');
-        const errorEl          = document.getElementById('ponencia-modal-error');
-        const areaInput        = document.getElementById('ponencia-area-input');
-        const tituloInput      = document.getElementById('ponencia-titulo-input');
-        const pdfInput         = document.getElementById('ponencia-pdf-input');
-        const k1Input          = document.getElementById('ponencia-k1-input');
-        const k2Input          = document.getElementById('ponencia-k2-input');
-        const k3Input          = document.getElementById('ponencia-k3-input');
-        const resumenTextInput = document.getElementById('ponencia-resumen-text-input');
-        const hiddenArea       = document.getElementById('ponencia-area-hidden');
-        const hiddenTitulo     = document.getElementById('ponencia-titulo-hidden');
-        const hiddenKeywords   = document.getElementById('ponencia-keywords-hidden');
-        const hiddenResumen    = document.getElementById('ponencia-resumen-hidden');
-
-        function setSubmitEnabled(enabled) {
-          if(submitBtn) submitBtn.disabled = !enabled;
-        }
-
-        function openModal() {
-          if(!modal) return;
-          modal.classList.add('open');
-          modal.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-          if(!modal) return;
-          modal.classList.remove('open');
-          modal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-          if(errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
-        }
-
-        window.openPonenciaModal  = openModal;
-        window.closePonenciaModal = closeModal;
-
-        function clearErrors() {
-          if(errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
-        }
-
-        function showError(msg) {
-          if(!errorEl) return;
-          errorEl.textContent = msg;
-          errorEl.hidden = false;
-        }
-
-        function resetPonenciaForm() {
-          window.ponenciaGate.saved = false;
-          window.ponenciaGate.lastParticipationType = null;
-          if(statusEl) statusEl.hidden = true;
-          if(saveBtn)  saveBtn.disabled = false;
-          clearErrors();
-          [areaInput, tituloInput, k1Input, k2Input, k3Input, resumenTextInput].forEach(el => {
-            if(el) el.disabled = false;
-          });
-          if(pdfInput) { pdfInput.style.pointerEvents = ''; pdfInput.tabIndex = 0; pdfInput.value = ''; }
-          if(areaInput)        areaInput.value = '';
-          if(tituloInput)      tituloInput.value = '';
-          if(k1Input)          k1Input.value = '';
-          if(k2Input)          k2Input.value = '';
-          if(k3Input)          k3Input.value = '';
-          if(resumenTextInput) resumenTextInput.value = '';
-          if(hiddenArea)       hiddenArea.value = '';
-          if(hiddenTitulo)     hiddenTitulo.value = '';
-          if(hiddenKeywords)   hiddenKeywords.value = '';
-          if(hiddenResumen)    hiddenResumen.value = '';
-        }
-
-        function lockPonenciaInputs() {
-          [areaInput, tituloInput, k1Input, k2Input, k3Input, resumenTextInput].forEach(el => {
-            if(el) el.disabled = true;
-          });
-          if(pdfInput) { pdfInput.style.pointerEvents = 'none'; pdfInput.tabIndex = -1; }
-          if(saveBtn)  saveBtn.disabled = true;
-        }
-
-        function validatePonencia() {
-          const area    = areaInput        ? areaInput.value            : '';
-          const titulo  = tituloInput      ? tituloInput.value.trim()   : '';
-          const k1      = k1Input          ? k1Input.value.trim()       : '';
-          const k2      = k2Input          ? k2Input.value.trim()       : '';
-          const k3      = k3Input          ? k3Input.value.trim()       : '';
-          const resumen = resumenTextInput ? resumenTextInput.value.trim() : '';
-          const hasPdf  = !!(pdfInput && pdfInput.files && pdfInput.files.length);
-          if(!area)              return 'Selecciona el área para tu resumen.';
-          if(!titulo)            return 'Ingresa el título de tu ponencia o póster.';
-          if(!k1 || !k2 || !k3) return 'Ingresa tus 3 palabras clave.';
-          if(!hasPdf && !resumen) return 'Debes subir un PDF o pegar el resumen en texto.';
-          return null;
-        }
-
-        /* ══ GUARDAR PONENCIA ═══════════════════════════════════════
-           Con PDF  → abrir Google Form pre-rellenado en nueva pestaña
-           Sin PDF  → guardar en campos ocultos y hacer submit normal
-        ══════════════════════════════════════════════════════════════ */
-        function savePonencia() {
-          clearErrors();
-          const err = validatePonencia();
-          if(err) { showError(err); return; }
-
-          const area     = areaInput        ? areaInput.value              : '';
-          const titulo   = tituloInput      ? tituloInput.value.trim()     : '';
-          const k1       = k1Input          ? k1Input.value.trim()         : '';
-          const k2       = k2Input          ? k2Input.value.trim()         : '';
-          const k3       = k3Input          ? k3Input.value.trim()         : '';
-          const resumen  = resumenTextInput ? resumenTextInput.value.trim() : '';
-          const keywords = [k1, k2, k3].filter(Boolean).join(', ');
-          const hasPdf   = !!(pdfInput && pdfInput.files && pdfInput.files.length);
-
-          if (hasPdf) {
-            /* ── FLUJO CON PDF: redirigir al Google Form pre-rellenado ── */
-            const prefillURL = buildPrefillURL({
-              [ENTRY.area]:     area,
-              [ENTRY.titulo]:   titulo,
-              [ENTRY.keywords]: keywords,
-              [ENTRY.resumen]:  resumen,
-            });
-
-            const ok = window.confirm(
-              '📄 Se abrirá el formulario de Google en una nueva pestaña con todos tus datos pre-rellenados.\n\n' +
-              'Solo deberás:\n' +
-              '1. Subir tu archivo PDF\n' +
-              '2. Enviar el formulario\n\n' +
-              '¿Continuar?'
-            );
-            if(!ok) return;
-
-            // Abrir Google Form pre-rellenado en nueva pestaña
-            window.open(prefillURL, '_blank', 'noopener');
-
-            closeModal();
-
-            // Ocultar el form y mostrar mensaje con link de respaldo
-            const regFormEl = document.getElementById('reg-form');
-            if(regFormEl) regFormEl.style.display = 'none';
-
-            const successMsg = document.getElementById('success-msg');
-            if(successMsg) {
-              successMsg.style.display = 'block';
-              successMsg.innerHTML =
-                '✅ Tus datos fueron pre-rellenados en el formulario de Google.<br>' +
-                '<strong>Último paso:</strong> sube el PDF en la pestaña que se acaba de abrir y envía el formulario.<br><br>' +
-                `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
-                  ↗ Abrir de nuevo si se cerró la pestaña
-                </a>`;
-            }
-
-            // Ocultar instrucciones de recibo (solo aplican para asistentes)
-            const assistantInstructions = document.getElementById('assistant-instructions');
-            if(assistantInstructions) assistantInstructions.hidden = true;
-
-          } else {
-            /* ── FLUJO SIN PDF: guardar en campos ocultos y submit normal ── */
-            const ok = window.confirm('¿Confirmar datos? Una vez guardados no podrás modificarlos.');
-            if(!ok) return;
-
-            if(hiddenArea)     hiddenArea.value     = area;
-            if(hiddenTitulo)   hiddenTitulo.value   = titulo;
-            if(hiddenKeywords) hiddenKeywords.value = keywords;
-            if(hiddenResumen)  hiddenResumen.value  = resumen;
-
-            // Asignar los entry IDs correctos a los campos ocultos
-            if(hiddenArea)     hiddenArea.name     = ENTRY.area;
-            if(hiddenTitulo)   hiddenTitulo.name   = ENTRY.titulo;
-            if(hiddenKeywords) hiddenKeywords.name = ENTRY.keywords;
-            if(hiddenResumen)  hiddenResumen.name  = ENTRY.resumen;
-
-            lockPonenciaInputs();
-
-            if(statusEl) {
-              statusEl.textContent = '✅ Datos de ponencia guardados, Click en registrar para confirma tus datos y agregar el PDF con tu resumen segun el formato.';
-              statusEl.hidden = false;
-            }
-
-            window.ponenciaGate.saved = true;
-            window.ponenciaGate.lastParticipationType = partSel.value;
-
-            closeModal();
-            setSubmitEnabled(true);
-          }
-        }
-
-        /* ══ CAMBIO DE TIPO DE PARTICIPACIÓN ════════════════════════
-           Asistente → submit habilitado, campos ponencia con N/A
-           Ponente/Póster → bloquear submit, abrir modal
-        ══════════════════════════════════════════════════════════════ */
-        function onParticipationChange() {
-          const v = partSel.value;
-          const isAsistente = v === 'asistentes';
-          const isPonente   = v === 'ponente' || v === 'poster';
-
-          if(isAsistente) {
-            closeModal();
-            resetPonenciaForm();
-            // Rellenar campos ocultos de ponencia con N/A para no dejar vacíos en Google Form
-            if(hiddenArea)     { hiddenArea.value     = DEFAULTS_ASISTENTE.area;     hiddenArea.name     = ENTRY.area;     }
-            if(hiddenTitulo)   { hiddenTitulo.value   = DEFAULTS_ASISTENTE.titulo;   hiddenTitulo.name   = ENTRY.titulo;   }
-            if(hiddenKeywords) { hiddenKeywords.value = DEFAULTS_ASISTENTE.keywords; hiddenKeywords.name = ENTRY.keywords; }
-            if(hiddenResumen)  { hiddenResumen.value  = DEFAULTS_ASISTENTE.resumen;  hiddenResumen.name  = ENTRY.resumen;  }
-            setSubmitEnabled(true);
-            return;
-          }
-
-          if(isPonente) {
-            // Si ya guardó datos para este mismo tipo, reutilizar
-            const canReuse = window.ponenciaGate.saved && window.ponenciaGate.lastParticipationType === v;
-            if(canReuse) {
-              setSubmitEnabled(true);
-              if(statusEl) statusEl.hidden = false;
-              return;
-            }
-            setSubmitEnabled(false);
-            resetPonenciaForm();
-            openModal();
-            return;
-          }
-        }
-
-        if(closeBtn) closeBtn.addEventListener('click', closeModal);
-        if(saveBtn)  saveBtn.addEventListener('click', savePonencia);
-        if(modal)    modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
-
-        partSel.addEventListener('change', onParticipationChange);
-        onParticipationChange(); // estado inicial
-      }
-
-      updateEstimate();
-      renderTarifas();
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPricing);
+function renderInfoCards() {
+  const container = document.getElementById('info-cards');
+  if (!container) return;
+  container.innerHTML = '';
+  infoCards.forEach(card => {
+    const box = document.createElement('div');
+    box.className = 'info-box';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', card.title);
+    if (card.type === 'tarifas') {
+      box.classList.add('info-box-collapsible');
+      box.id = 'tarifas-box';
+      const btn = document.createElement('button');
+      btn.className = 'collapsible-toggle';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', 'tarifas-content');
+      btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
+      box.appendChild(btn);
+      const content = document.createElement('div');
+      content.id = 'tarifas-content';
+      content.className = 'collapsible-content';
+      content.hidden = true;
+      box.appendChild(content);
+      const mention = document.createElement('div');
+      mention.id = 'tarifas-mention';
+      mention.className = 'dates-list';
+      mention.hidden = true;
+      box.appendChild(mention);
     } else {
-      initPricing();
+      const title = document.createElement('div');
+      title.className = 'dates-title';
+      title.textContent = card.title;
+      box.appendChild(title);
+      const ul = document.createElement('ul');
+      ul.className = 'dates-list';
+      card.items.forEach(it => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
     }
-
-  })();
-
-  // Insert decorative pi SVGs
-  function insertPiDecor(){
-    const svgMarkup = `
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
-          <path d="M18 30 C18 16, 38 12, 38 30" />
-          <path d="M62 30 C62 16, 82 12, 82 30" />
-          <path d="M18 30 L82 30" />
-        </g>
-        <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
-      </svg>`;
-    document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
-      if (sec.querySelector('.pi-decor')) return;
-      const wrapper = document.createElement('div');
-      wrapper.className = 'pi-decor';
-      wrapper.innerHTML = svgMarkup;
-      sec.appendChild(wrapper);
-    });
-  }
-
-/* ── SUBMIT PRINCIPAL (Asistentes y ponentes sin PDF) ── */
-function handleSubmit(e) {
-  if (e && typeof e.preventDefault === 'function') e.preventDefault();
-
-  const form              = document.getElementById('reg-form');
-  const partSel           = form && form.querySelector('select[name="entry.921372150"]');
-  const participationType = partSel ? partSel.value : '';
-  const isAsistente       = participationType === 'asistentes';
-  const requiresPonencia  = participationType === 'ponente' || participationType === 'poster';
-  const gate              = window.ponenciaGate || { saved: false };
-
-  // Bloquear si ponente/póster aún no completó el modal
-  if (requiresPonencia && !gate.saved) {
-    if (window.openPonenciaModal) window.openPonenciaModal();
-    return;
-  }
-
-  const btn = document.getElementById('submit-btn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Abriendo…'; }
-
-  const FORM_PREFILL_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/viewform';
-  const params = new URLSearchParams();
-  params.set('usp', 'pp_url');
-
-  // Campos base del formulario principal
-  form.querySelectorAll('input[name], select[name]').forEach(el => {
-    if (el.name && el.value) params.set(el.name, el.value.trim());
+    container.appendChild(box);
   });
-
-  if (isAsistente) {
-    // Campos de ponencia → N/A para asistentes
-    params.set('entry.323207977',  'N/A');
-    params.set('entry.2104614869', 'N/A');
-    params.set('entry.1781353138', 'N/A');
-    params.set('entry.2069271964', 'N/A');
-  } else {
-    // Ponente/póster → recuperar datos guardados del modal
-    const area     = document.getElementById('ponencia-area-hidden')     ? document.getElementById('ponencia-area-hidden').value     : '';
-    const titulo   = document.getElementById('ponencia-titulo-hidden')   ? document.getElementById('ponencia-titulo-hidden').value   : '';
-    const keywords = document.getElementById('ponencia-keywords-hidden') ? document.getElementById('ponencia-keywords-hidden').value : '';
-    const resumen  = document.getElementById('ponencia-resumen-hidden')  ? document.getElementById('ponencia-resumen-hidden').value  : '';
-
-    params.set('entry.323207977',  area);
-    params.set('entry.2104614869', titulo);
-    params.set('entry.2069271964', keywords);
-    params.set('entry.1781353138', resumen);
-  }
-
-  const prefillURL = `${FORM_PREFILL_BASE}?${params.toString()}`;
-
-  // Abrir Google Form en nueva pestaña con todo pre-rellenado
-  window.open(prefillURL, '_blank', 'noopener');
-
-  // Mostrar mensaje en la página
-  const regFormEl             = document.getElementById('reg-form');
-  const successMsg            = document.getElementById('success-msg');
-  const assistantInstructions = document.getElementById('assistant-instructions');
-
-  if (regFormEl) regFormEl.style.display = 'none';
-
-  if (isAsistente) {
-    if (successMsg) {
-      successMsg.style.display = 'block';
-      successMsg.innerHTML =
-        '✅ Tus datos están pre-rellenados en el formulario de Google.<br>' +
-        '<strong>Último paso:</strong> revisa tus datos y haz clic en <strong>"Enviar"</strong> en la pestaña que se acaba de abrir para confirmar tu registro.<br><br>' +
-        `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
-          ↗ Abrir de nuevo si se cerró la pestaña
-        </a>`;
-    }
-    if (assistantInstructions) assistantInstructions.hidden = false;
-
-  } else {
-    if (successMsg) {
-      successMsg.style.display = 'block';
-      successMsg.innerHTML =
-        '✅ Tus datos y resumen están pre-rellenados en el formulario de Google.<br>' +
-        '<strong>Último paso:</strong> verifica tus datos, sube el <strong>PDF de tu resumen</strong> y haz clic en <strong>"Enviar"</strong> en la pestaña que se acaba de abrir.<br><br>' +
-        `<a href="${prefillURL}" target="_blank" rel="noopener" style="color:#9BE564; font-weight:700;">
-          ↗ Abrir de nuevo si se cerró la pestaña
-        </a>`;
-    }
-    if (assistantInstructions) assistantInstructions.hidden = false;
-  }
+  document.dispatchEvent(new Event('infoCardsReady'));
 }
 
-  /* ─--------------------------─ SPONSORS CAROUSEL ── */
-  const SPONSORS = [
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773963916/Logo_DPTO_batcheditor_fotor_vxgcoo.webp", alt: "Departamento matematicas" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien" },
-    { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle" },
-    { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño" },
-    { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander" },
-  ];
+function renderTarifas() {
+  const container  = document.getElementById('tarifas-content');
+  const containerf = document.getElementById('tarifas-mention');
+  if (!container) return;
+  const createListFrom = (obj) => {
+    let html = '<ul class="dates-list">';
+    for (const key of Object.keys(obj)) {
+      html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
+    }
+    return html + '</ul>';
+  };
+  let html = '<div class="tarif-grid">';
+  html += `<div class="tarif-column"><div class="tarif-col-title">Asistentes con descuento</div>${createListFrom(costos.asistentes)}</div>`;
+  html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes con descuento</div>${createListFrom(costos.ponentes)}</div>`;
+  html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>${createListFrom(costos.sin_descuento)}</div>`;
+  html += '</div>';
+  container.innerHTML = html;
+  const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento. Para expositores que paguen hasta el 21 de agosto obtendrán un descuento del 10% adicional.';
+  if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
+}
 
-  (function buildCarousel() {
-    const track = document.getElementById('carousel-track');
-    if (!track) return;
-    const all = [...SPONSORS, ...SPONSORS];
-    track.innerHTML = all.map(s =>
-      `<img class="carousel-logo" src="${s.src}" alt="${s.alt}" loading="lazy" />`
-    ).join('');
-  })();
-
-  /* ── VIDEO MODAL ── */
-  const VIDEO_URL = 'https://www.youtube.com/embed/K9W4TbtyZCg';
-
-  function openVideoModal(e) {
-    if (e) e.preventDefault();
-    document.getElementById('vmodal-preview').style.display = 'block';
-    document.getElementById('vmodal-player').style.display  = 'none';
-    document.getElementById('vmodal-iframe').src = '';
-    document.getElementById('video-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeVideoModal(e) {
-    if (e && e.target !== document.getElementById('video-modal')) return;
-    document.getElementById('vmodal-iframe').src = '';
-    document.getElementById('video-modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function playVideo() {
-    document.getElementById('vmodal-preview').style.display = 'none';
-    document.getElementById('vmodal-player').style.display  = 'block';
-    document.getElementById('vmodal-iframe').src = VIDEO_URL + '?autoplay=1&rel=0';
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeVideoModal();
+function initTarifasCollapsible() {
+  const tarifasBox = document.getElementById('tarifas-box');
+  if (!tarifasBox || tarifasBox.dataset.tarifasCollapsibleInit === '1') return;
+  tarifasBox.dataset.tarifasCollapsibleInit = '1';
+  const toggle = tarifasBox.querySelector('.collapsible-toggle');
+  const content = document.getElementById('tarifas-content');
+  if (!toggle || !content) return;
+  content.style.maxHeight = '0px';
+  content.hidden = true;
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    const isOpen = tarifasBox.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) {
+      content.hidden = false;
+      requestAnimationFrame(() => { content.style.maxHeight = content.scrollHeight + 'px'; });
+    } else {
+      content.style.maxHeight = '0px';
+      setTimeout(() => content.hidden = true, 360);
+    }
   });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderInfoCards();
+  renderTarifas();
+  insertPiDecor();
+  if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+  else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+});
+
+/* ══ DECORACIÓN PI ════════════════════════════════════════════ */
+function insertPiDecor() {
+  const svgMarkup = `
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+        <path d="M18 30 C18 16, 38 12, 38 30" />
+        <path d="M62 30 C62 16, 82 12, 82 30" />
+        <path d="M18 30 L82 30" />
+      </g>
+      <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
+    </svg>`;
+  document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
+    if (sec.querySelector('.pi-decor')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'pi-decor';
+    wrapper.innerHTML = svgMarkup;
+    sec.appendChild(wrapper);
+  });
+}
+
+/* ══ SPONSORS CAROUSEL ════════════════════════════════════════ */
+const SPONSORS = [
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773963916/Logo_DPTO_batcheditor_fotor_vxgcoo.webp", alt: "Departamento Matemáticas" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien" },
+  { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle" },
+  { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander" },
+];
+
+(function buildCarousel() {
+  const track = document.getElementById('carousel-track');
+  if (!track) return;
+  const all = [...SPONSORS, ...SPONSORS];
+  track.innerHTML = all.map(s =>
+    `<img class="carousel-logo" src="${s.src}" alt="${s.alt}" loading="lazy" />`
+  ).join('');
+})();
+
+/* ══ VIDEO MODAL ══════════════════════════════════════════════ */
+const VIDEO_URL = 'https://www.youtube.com/embed/K9W4TbtyZCg';
+
+function openVideoModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('vmodal-preview').style.display = 'block';
+  document.getElementById('vmodal-player').style.display  = 'none';
+  document.getElementById('vmodal-iframe').src = '';
+  document.getElementById('video-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal(e) {
+  if (e && e.target !== document.getElementById('video-modal')) return;
+  document.getElementById('vmodal-iframe').src = '';
+  document.getElementById('video-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function playVideo() {
+  document.getElementById('vmodal-preview').style.display = 'none';
+  document.getElementById('vmodal-player').style.display  = 'block';
+  document.getElementById('vmodal-iframe').src = VIDEO_URL + '?autoplay=1&rel=0';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeVideoModal();
+    closeAnuncioModal();
+  }
+});
   
 </script>
 
