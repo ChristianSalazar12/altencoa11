@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ALTENCOA 11 — Encuentro 2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Merriweather:wght@700&display=swap');
+  
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -2127,6 +2129,105 @@
     }
     .brand-desc { max-width: 100%; }
   }
+  /*----------------------------------------------------*/
+  /* == CHAT BOOT == */
+  #chat-fab {
+  position: fixed;
+  bottom: 70px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #5cb832;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#chat-modal {
+  position: fixed;
+  bottom: 130px;
+  right: 24px;
+  width: 300px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  z-index: 9998;
+}
+
+.chat-hidden {
+  display: none;
+}
+
+.chat-body {
+  padding: 12px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+/* Chat bubbles */
+.chat-bot {
+  background: #eef2ee;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  color: black;
+  font-size: 13px;
+}
+
+.chat-user {
+  background: #5cb832;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* Options */
+.chat-option {
+  display: block;
+  width: 100%;
+  margin: 4px 0;
+  padding: 6px;
+  border: none;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.chat-header{
+  background: #5cb832;
+  color: white;
+  padding: 10px 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 480px) {
+  #chat-fab {
+    bottom: 80px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+  }
+
+  #chat-modal {
+    bottom: 140px;
+    right: 12px;
+    width: calc(100vw - 24px); /* ancho completo menos margen */
+    max-height: 60vh;          /* que no tape toda la pantalla */
+  }
+
+  .chat-body {
+    max-height: calc(60vh - 100px); /* descuenta header */
+  }
+}
   </style>
 </head>
 <body>
@@ -2337,6 +2438,17 @@
             >
               Ir al formulario <span class="arrow">→</span>
             </a>
+            <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
+              Descarga el formato de presentación (Solo para Ponentes o Poster): 
+              <a 
+                href="https://www.overleaf.com/read/cdhzxkppjvnx#3989d2" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style="color:#7ED957; text-decoration: none; font-size: 15px;"
+              >
+                Formato de presentación
+              </a>
+            </p>
           </div>
           <!-- Divisor -->
           <div style="border-top: 1px solid rgba(126,217,87,0.15); margin-bottom: 18px;"></div>
@@ -2356,6 +2468,13 @@
             >
               Generar recibo de pago <span class="arrow">→</span>
             </a>
+
+            <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
+                Mayor Información: 
+                <a href="mailto:fandresbenavides@udenar.edu.co" style="color:#7ED957;     text-decoration: none; font-size: 15px;">
+                fandresbenavides@udenar.edu.co
+              </a>
+            </p>
           </div>
 
           <!-- Nota final -->
@@ -2565,6 +2684,19 @@
     <button class="vmodal-close" onclick="closeVideoModal()" aria-label="Cerrar video">✕</button>
   </div>
 </div>
+<div id="chat-fab">💬</div>
+
+<div id="chat-modal" class="chat-hidden">
+  <div class="chat-header">
+    <span>ALTENUA Bot</span>
+    <button id="chat-close">✕</button>
+  </div>
+
+  <div class="chat-body">
+    <div id="chat-messages"></div>
+    <div id="chat-options"></div>
+  </div>
+</div>
 
 
 <script>
@@ -2732,75 +2864,99 @@ const committees = [
   }
 ];
 
-/* ══ FLAGS ════════════════════════════════════════════════════ */
+/* ══ FLAGS (CSS FLAG ICONS) ═══════════════════════════════════ */
 (function(){
   const countryNameToCode = {
-    'brasil':'BR','brazil':'BR','colombia':'CO','méxico':'MX','mexico':'MX',
-    'chile':'CL','estados unidos':'US','usa':'US','united states':'US',
-    'francia':'FR','france':'FR','argentina':'AR','perú':'PE','peru':'PE',
-    'ecuador':'EC','venezuela':'VE','uruguay':'UY','paraguay':'PY','bolivia':'BO'
+    'brasil':'br','brazil':'br','colombia':'co','méxico':'mx','mexico':'mx',
+    'chile':'cl','estados unidos':'us','usa':'us','united states':'us',
+    'francia':'fr','france':'fr','argentina':'ar','perú':'pe','peru':'pe',
+    'ecuador':'ec','venezuela':'ve','uruguay':'uy','paraguay':'py','bolivia':'bo'
   };
-  function isoToEmoji(iso) {
-    if (!iso || iso.length !== 2) return '';
-    return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
-  }
-  window.getFlag = function(input) {
-    if (!input) return '';
+
+  window.getCountryCode = function(input) {
+    if (!input) return null;
     const s = String(input).toLowerCase().trim();
-    if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
+
+    if (countryNameToCode[s]) return countryNameToCode[s];
+
     for (const name in countryNameToCode) {
-      if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
+      if (s.includes(name)) return countryNameToCode[name];
     }
+
     const parts = s.split(/[,\-\/]/).map(p => p.trim());
     for (let i = parts.length - 1; i >= 0; --i) {
-      if (countryNameToCode[parts[i]]) return isoToEmoji(countryNameToCode[parts[i]]);
+      if (countryNameToCode[parts[i]]) return countryNameToCode[parts[i]];
     }
-    return '';
+
+    return null;
   };
 })();
 
+/* ══ CREATE MEMBER CARD ═══════════════════════════════════════ */
 function createMemberCard(m) {
   const card = document.createElement('div');
   card.className = 'member-card';
+
   const avatar = document.createElement('div');
   avatar.className = 'avatar';
-  const flag = getFlag(m.location || m.institution);
-  avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n => n[0]).join('').slice(0, 2);
+
+  const code = getCountryCode(m.location || m.institution);
+
+  if (code) {
+    avatar.innerHTML = `<span class="fi fi-${code}"></span>`;
+  } else {
+    avatar.textContent = m.initials || (m.name || '')
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .slice(0, 2);
+  }
+
   card.appendChild(avatar);
+
   const name = document.createElement('div');
   name.className = 'member-name';
   name.textContent = m.name;
   card.appendChild(name);
+
   const inst = document.createElement('div');
   inst.className = 'member-institution';
   inst.textContent = m.institution;
   card.appendChild(inst);
+
   return card;
 }
 
+/* ══ RENDER ═══════════════════════════════════════════════════ */
 function renderCommittees() {
   const tabs = document.getElementById('committee-tabs');
   const panelsContainer = document.getElementById('committee-panels');
+
   if (!tabs || !panelsContainer) return;
+
   tabs.innerHTML = '';
   panelsContainer.innerHTML = '';
+
   committees.forEach((c, idx) => {
     const btn = document.createElement('button');
     btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
     btn.setAttribute('role', 'tab');
     btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
     btn.textContent = c.label;
+
     btn.addEventListener('click', () => switchTab(btn, c.id));
     tabs.appendChild(btn);
+
     const panel = document.createElement('div');
     panel.id = 'panel-' + c.id;
     panel.className = 'tab-panel' + (idx === 0 ? ' active' : '');
+
     c.members.forEach(m => panel.appendChild(createMemberCard(m)));
+
     panelsContainer.appendChild(panel);
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => renderCommittees());
 
 /* ══ COMITÉ ORGANIZADOR ═══════════════════════════════════════ */
 const COMMITTEE = [
@@ -2977,13 +3133,13 @@ function initTarifasCollapsible() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  renderInfoCards();
-  renderTarifas();
-  insertPiDecor();
-  if (document.getElementById('tarifas-box')) initTarifasCollapsible();
-  else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   renderInfoCards();
+//   renderTarifas();
+//   insertPiDecor();
+//   if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+//   else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+// });
 
 /* ══ DECORACIÓN PI ════════════════════════════════════════════ */
 function insertPiDecor() {
@@ -3058,6 +3214,114 @@ document.addEventListener('keydown', e => {
     closeAnuncioModal();
   }
 });
+
+// ==help menssages===//
+
+const BOT_KB = {
+  altenua: {
+    label: "¿Qué es ALTENUA?",
+    answer: `
+      ALTENUA es un evento académico enfocado en las matemáticas,
+      que reúne universidades, investigadores y estudiantes.
+    `
+  },
+ registro: {
+  label: "¿Cómo me inscribo?",
+  answer: `
+    1. Dirígete a la sección de registro
+    2. Completa el formulario y selecciona tu tipo de participación
+    3. Envía tu información y carga tu resumen si eres ponente o póster. Finalmente, genera tu recibo de pago y realiza el pago correspondiente
+    4. Revisa tu correo para confirmación
+  `,
+  action: () => {
+    document.querySelector('#registro')?.scrollIntoView({ behavior: 'smooth' });
+  }
+},
+  costo: {
+    label: "¿Cuánto cuesta?",
+    answer: `
+    El costo del evento varía según tu perfil (asistente o ponente) y la fecha de pago.
+
+    Existen tarifas con descuento disponibles hasta el 21 de agosto. Después de esta fecha, se aplicarán tarifas completas.
+
+    Los precios oscilan aproximadamente entre $45.000 y $500.000 COP, dependiendo de:
+    - Tipo de participante (estudiante, docente, etc.)
+    - Rol (asistente o ponente)
+    - Fecha de pago
+
+    Para ver el detalle completo de tarifas y categorías, revisa la sección de tarifas en la página.
+  `
+  },
+  ubicacion: {
+    label: "¿Dónde es?",
+    answer: "El evento se llevará a cabo en la Universidad del Valle.",
+    action: () => {
+      document.querySelector('#ubicacion')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
+document.addEventListener('DOMContentLoaded', () => {
+
+
+   // Comité científico
+  renderCommittees();
+
+  // Info cards y tarifas
+  renderInfoCards();
+  renderTarifas();
+  insertPiDecor();
+  if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+  else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+
+
+  const fab = document.getElementById('chat-fab');
+  const modal = document.getElementById('chat-modal');
+  const closeBtn = document.getElementById('chat-close');
+  const messages = document.getElementById('chat-messages');
+  const optionsBox = document.getElementById('chat-options');
+
+  if (!fab || !modal || !closeBtn || !messages || !optionsBox) {
+    console.error("Chat elements not found");
+    return;
+  }
+
+  fab.onclick = () => modal.classList.toggle('chat-hidden');
+  closeBtn.onclick = () => modal.classList.add('chat-hidden');
+
+  function renderOptions() {
+    optionsBox.innerHTML = Object.entries(BOT_KB)
+      .map(([key, item]) =>
+        `<button class="chat-option" data-key="${key}">${item.label}</button>`
+      ).join('');
+  }
+
+  function addMessage(text, type = 'bot') {
+    const div = document.createElement('div');
+    div.className = type === 'bot' ? 'chat-bot' : 'chat-user';
+    div.innerText = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  optionsBox.addEventListener('click', e => {
+    if (!e.target.classList.contains('chat-option')) return;
+
+    const key = e.target.dataset.key;
+    const item = BOT_KB[key];
+
+    if (!item) return;
+
+    addMessage(item.label, 'user');
+    addMessage(item.answer, 'bot');
+
+    if (item.action) item.action();
+  });
+
+  addMessage("Hola! Soy el ALTENCOA Bot. ¿En qué puedo ayudarte?");
+  renderOptions();
+
+});
+
   
 </script>
 

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALTENCOA 11 — Conference 2026</title>
+  <title>ALTENCOA 11 — Encuentro 2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Merriweather:wght@700&display=swap');
+  
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -197,6 +199,21 @@
     color: rgba(255,255,255,0.95);
     margin-top: 6px;
   }
+  .date-list{
+    list-style:none; 
+    padding:8px 0 0; 
+    margin:0; 
+    font-size:15px; 
+    color:rgba(255,255,255,0.9); 
+    text-align:left;
+  }
+
+  @media (max-width: 480px) {
+    .date-card { flex: 1 1 100%; }
+    .date-card .date-main { font-size: clamp(16px, 5vw, 28px); }
+    .date-card .date-sub { font-size: clamp(12px, 3vw, 14px); }
+    .date-list { font-size: clamp(13px, 3vw, 15px); }
+  }
 
   .date-card .location {
     font-size: clamp(12px, 1.4vw, 14px);
@@ -204,6 +221,101 @@
     margin-top: 8px;
     text-align: center;
   }
+
+
+/* ── FLIP DATES CARD ── */
+.flip-dates-card {
+  background: transparent;
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 360px;
+  perspective: 900px;
+  cursor: default;
+}
+
+.flip-dates-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  /* Altura fija para que el flip no cambie el tamaño del contenedor */
+  min-height: 170px;
+}
+
+.flip-dates-card.flipped .flip-dates-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-dates-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: rgba(0,0,0,0.44);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.flip-dates-back {
+  transform: rotateY(180deg);
+}
+
+.flip-dates-title {
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.flip-dates-list {
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
+  font-size: clamp(12px, 1.4vw, 14px);
+  color: rgba(255,255,255,0.88);
+  text-align: left;
+  flex: 1;
+  width: 100%;
+}
+
+.flip-dates-list li {
+  padding: 3px 0;
+  line-height: 1.4;
+}
+
+.flip-dates-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid rgba(126,217,87,0.45);
+  color: #7ED957;
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.3px;
+  align-self: flex-end;
+}
+
+.flip-dates-btn:hover {
+  background: rgba(126,217,87,0.12);
+  border-color: #7ED957;
+}
+
+@media (max-width: 480px) {
+  .flip-dates-card { flex: 1 1 100%; }
+  .flip-dates-inner { min-height: 185px; }
+  .flip-dates-list { font-size: clamp(12px, 3vw, 14px); }
+}
+
+  /* Hero buttons */
 
   .hero-buttons {
     display: flex;
@@ -311,7 +423,7 @@
   }
 
   .poster-card {
-    width: clamp(420px, 22vw, 250px);
+    width: clamp(380px, 22vw, 290px);
     border-radius: var(--card-radius);
     overflow: hidden;
     box-shadow: var(--shadow-strong);
@@ -340,6 +452,381 @@
     min-width: 280px;
     max-width: 540px;
   }
+  /* ── VIDEO BUTTON ── */
+.video-btn {
+   display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0e1f0a;
+  border: 1px solid rgba(126,217,87,0.25);
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-decoration: none;
+  margin-top: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, background 0.3s;
+
+  /* Pulso de brillo en el borde */
+  animation: btn-pulse 2.8s ease-in-out infinite;
+}
+@keyframes btn-pulse {
+  0%   { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
+  50%  { box-shadow: 0 0 14px 4px rgba(126,217,87,0.28); border-color: rgba(126,217,87,0.70); }
+  100% { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
+}
+/* Barrido de luz de izquierda a derecha */
+.video-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(126,217,87,0.13) 50%,
+    transparent 100%
+  );
+  animation: btn-sweep 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btn-sweep {
+  0%   { left: -75%; opacity: 0; }
+  20%  { opacity: 1; }
+  60%  { left: 125%; opacity: 0; }
+  100% { left: 125%; opacity: 0; }
+}
+
+.video-btn:hover {
+  border-color: rgba(126,217,87,0.85) !important;
+  background: #122a0d;
+  animation: none;
+  box-shadow: 0 0 22px 6px rgba(126,217,87,0.30);
+}
+.video-btn:hover::before {
+  animation: none;
+}
+
+/* Icono */
+.video-btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(126,217,87,0.12);
+  border: 1px solid rgba(126,217,87,0.30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+  animation: icon-ping 2.8s ease-in-out infinite;
+}
+
+@keyframes icon-ping {
+  0%,100% { box-shadow: 0 0 0 0 rgba(126,217,87,0.0); }
+  50%      { box-shadow: 0 0 0 5px rgba(126,217,87,0.18); }
+}
+
+.video-btn:hover .video-btn-icon {
+  background: rgba(126,217,87,0.25);
+  transform: scale(1.08);
+  animation: none;
+  box-shadow: none;
+}
+
+.video-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.video-btn-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.video-btn-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.50);
+  line-height: 1.3;
+}
+/*--------------------------modal video--------------------------------*/
+/* ══ VIDEO MODAL ══ */
+.vmodal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(5, 20, 5, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: vfadeIn 0.25s ease;
+}
+
+.vmodal-backdrop.open {
+  display: flex;
+}
+
+@keyframes vfadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.vmodal-box {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b1f08;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  animation: vslideUp 0.28s ease;
+}
+
+@keyframes vslideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Preview thumbnail */
+.vmodal-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  overflow: hidden;
+  background: #040f03;
+}
+
+.vmodal-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  filter: brightness(0.75);
+}
+
+.vmodal-preview:hover .vmodal-thumb {
+  transform: scale(1.03);
+  filter: brightness(0.6);
+}
+
+/* Play button */
+.vmodal-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(126,217,87,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.2s;
+  box-shadow: 0 0 0 12px rgba(126,217,87,0.18);
+}
+
+.vmodal-preview:hover .vmodal-play-btn {
+  transform: translate(-50%, -60%) scale(1.1);
+  background: #9BE564;
+}
+
+/* Label sobre la thumbnail */
+.vmodal-preview-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 20px 18px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vmodal-preview-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.vmodal-preview-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Iframe player */
+.vmodal-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.vmodal-player iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Botón cerrar */
+.vmodal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  z-index: 10;
+  line-height: 1;
+}
+
+.vmodal-close:hover {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+@media (max-width: 500px) {
+  .vmodal-play-btn { width: 52px; height: 52px; }
+  .vmodal-preview-title { font-size: 14px; }
+}
+
+/*--------------------------modal ponencia--------------------------*/
+.pm-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  background: rgba(5, 20, 5, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 20px;
+  align-items:center;
+  justify-content:center;
+}
+.pm-backdrop.open{ display:flex; }
+.pm-box{
+  width:100%;
+  max-width: 760px;
+  border-radius: 14px;
+  overflow:hidden;
+  background: #0b1f08;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  color: white;
+}
+.pm-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  padding: 18px 18px 10px;
+  gap: 12px;
+}
+.pm-title{
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 20px;
+  color: white;
+  margin: 0;
+}
+.pm-subtitle{
+  margin-top: 6px;
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.pm-close{
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink:0;
+}
+.pm-close:hover{ background: rgba(255,255,255,0.15); color: white; }
+.pm-body{
+  padding: 0 18px 18px;
+  max-height: calc(100vh - 160px);
+  overflow:auto;
+}
+.pm-body .field{ margin-top: 0; }
+.pm-box .field input,
+.pm-box .field select{
+  padding-left: 42px;
+}
+.pm-keywords-grid input{
+  padding-left: 14px !important;
+}
+.pm-box textarea{
+  width:100%;
+  min-height: 120px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: white;
+  outline:none;
+  resize: vertical;
+}
+.pm-box textarea::placeholder{ color: var(--text-muted); }
+.pm-keywords-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.pm-actions{
+  display:flex;
+  justify-content:flex-end;
+}
+.pm-error{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 120, 120, 0.28);
+  background: rgba(255, 120, 120, 0.08);
+  color: rgba(255,255,255,0.9);
+  font-size: 13px;
+}
+.pm-status{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(126,217,87,0.22);
+  background: rgba(126,217,87,0.06);
+  color: rgba(255,255,255,0.92);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ── RESEARCH AREAS ── */
 
   .research-heading {
     font-family: var(--font-serif);
@@ -370,6 +857,21 @@
     transition: box-shadow 0.2s, border-color 0.2s;
     cursor: default;
   }
+    .area-card-invited {
+    background: white;
+    border: 1px solid #d8e8d0;
+    border-radius: 8px;
+    padding: 13px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: #2a3a24;
+    font-weight: 600;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+    margin-bottom: 10px;
+  }
 
   .area-card:hover {
     box-shadow: 0 4px 16px rgba(94,184,50,0.14);
@@ -389,6 +891,7 @@
     flex-shrink: 0;
     background: #f4fbf0;
   }
+ 
 
   .organizer-box {
     background: white;
@@ -411,6 +914,8 @@
   .map-card .dates-title { padding: 12px 16px; background: #f4fbf0; color: #2a3a24; font-weight:700; }
   .map-frame { width: 100%; height: 100px; }
   .map-frame iframe { width: 100%; height: 100%; border: 0; display:block; }
+
+  /*-------------------------------------------------*/
 
   /* Benefits two-column grid */
   .benefits-grid {
@@ -489,6 +994,11 @@
     .poster-card { width: 100%; max-width: 420px; }
     .poster-card img { width: 100%; height: auto; aspect-ratio: auto; display: block; }
     .poster-card-label { text-align: center; }
+
+      /* Video button responsive */
+  .video-btn { width: 100%; max-width: 420px; }
+  .poster-col { flex-direction: column; align-items: center; }
+    
   }
    /* ── SECTION ── */
   .committee-section {
@@ -646,6 +1156,152 @@
     .member-location { grid-column: 2; text-align: left; }
     .tab-btn { padding: 8px 14px 10px; font-size: 12px; }
   }
+/*--------------------------------------------*/
+/* == LOGOS-CTA SECTION == */
+ .logo-ct-udenar{
+  padding:5px !important;
+  text-align: center;
+ }
+ .logo-ct-unicauca{
+  padding:0 !important;
+  text-align: center;
+ }
+
+/* ══ ORGANIZING COMMITTEE ══ */
+  /* ── SECTION ── */
+   .org-section {
+    background: #eef2ee;
+    padding: 80px 24px 90px;
+    text-align: center;
+    color: #1a2a14;
+  }
+ 
+  .org-inner-O {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+ 
+  /* Header */
+  .section-label-O {
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5cb832;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+ 
+  .section-heading-O {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 10px;
+  }
+ 
+  .section-heading-O .green { color: #5cb832; }
+ 
+  .section-desc-O {
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: #778877;
+    font-style: italic;
+    margin-bottom: 48px;
+  }
+ 
+  /* ── GRID ── */
+  .members-grid-O {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+ 
+  /* Member card */
+  .member-card-O {
+    background: white;
+    border: 1px solid #9eb390;
+    border-radius: 12px;
+    padding: 28px 18px 22px;
+    text-align: left;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+ 
+  .member-card-O:hover {
+    box-shadow: 0 6px 22px rgba(94,184,50,0.13);
+    border-color: #a8d890;
+  }
+ 
+  /* Avatar */
+  .avatar-O {
+    width: 76px;
+    height: 76px;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid #c6d3ba;
+    padding: 10px;
+  }
+ 
+  .avatar-O img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+ 
+  .member-name-O {
+    font-size: clamp(13px, 1.3vw, 14.5px);
+    font-weight: 700;
+    color: #1a2a14;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+ 
+  .member-institution-O {
+    font-size: clamp(11px, 1.1vw, 12.5px);
+    color: #778877;
+    line-height: 1.4;
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 760px) {
+    .members-grid-O { grid-template-columns: repeat(2, 1fr); }
+  }
+ 
+  @media (max-width: 420px) {
+
+    .members-grid-O { grid-template-columns: 1fr; }
+
+    .member-card-O {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .avatar-O {
+    margin-bottom: 0;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .member-name-O,
+  .member-institution-O {
+    text-align: left;
+  }
+   .member-info-O {
+    display: flex;
+    flex-direction: column;
+  }
+    
+  }
 /*-------------------------------------------*/
   .reg-section {
     background: linear-gradient(160deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #0e2a14 100%);
@@ -749,6 +1405,9 @@
     gap: 18px;
     margin-top: 18px;
   }
+  .tarifas-mention{
+    margin-top: 40px;
+  }
 
   .info-box {
     background: rgba(255,255,255,0.03);
@@ -776,24 +1435,31 @@
 
   .collapsible-toggle .dates-title { margin-bottom: 0; }
 
-  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; }
+  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; font-style: italic;}
 
   .info-box .collapsible-content {
     display: flex;
     overflow: hidden;
-    max-height: 0;
     transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
     opacity: 0;
     padding-top: 0;
   }
 
   .info-box.open .collapsible-content {
-    max-height: 900px;
+    max-height: 1000px;
     opacity: 1;
     padding-top: 12px;
+    margin-left: 20px;
   }
 
-  .info-box.open .collapsible-toggle .chev { transform: rotate(90deg); }
+  .info-box.open .collapsible-toggle .chev { 
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-style: italic;
+
+   }
 
   .info-box .tarifas-note { font-size:12px; color: rgba(255,255,255,0.9); margin-top:8px; }
 
@@ -934,10 +1600,11 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin: 20px;
     justify-content: center;
     gap: 10px;
     transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    margin-top: 4px;
+    
   }
 
   .btn-submit:hover {
@@ -963,9 +1630,10 @@
     text-decoration: underline;
     background: transparent;
     border: none;
-    padding: 6px 10px;
+    padding: 6px 20px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
+    
   }
 
   @media (max-width: 700px) {
@@ -992,6 +1660,27 @@
       grid-template-columns: 1fr;
     }
   }
+/*-----------------formSection---------------------------*/
+.title-form{
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #7ED957;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+
+}
+.form-heading {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.info-form{
+  font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 16px;
+}
 
 /* ── SECTION ── */
   .discover-section {
@@ -1297,17 +1986,17 @@
 
   /* ── SPONSORS ROW ── */
   .footer-sponsors {
-    padding: 44px 0 40px;
+    background: #f0f4ef;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     text-align: center;
   }
 
   .sponsors-label {
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgb(39, 142, 2);
     margin-bottom: 28px;
   }
 
@@ -1318,35 +2007,93 @@
     flex-wrap: wrap;
     gap: 32px 48px;
   }
+  /* Sponsor logos */
+  .logo-udenar {
+  height: 245px  !important;        
+  max-width: 400px !important;
+  transform: scale(0.9);   
+}
+  .logo-uis {
+    height: 170px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-javeriana {
+    height: 190px !important;        
+    max-width: 200px !important;
+    transform: scale(0.9);   
+  }
+  .logo-cauca {
+    height: 250px !important;    
+    max-width: 400px !important;
+    transform: scale(0.9);   
+  }
+  .logo-valle {
+    height: 190px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-altenua {
+    height: 180px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-dpto {
+    height: 180px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-antioquia {
+    height: 190px !important;        
+    max-width: 350px !important;
+    transform: scale(0.9);   
+  }
+  .logo-facien {
+    height: 200px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+ 
 
-  /* Sponsor placeholder — replace img src with real logos */
-  .sponsor-item {
+  /*-----------------carrusel---------------------*/
+  .carousel-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .carousel-track {
     display: flex;
     align-items: center;
-    justify-content: center;
-    opacity: 0.55;
-    transition: opacity 0.2s;
-    filter: brightness(0) invert(1);
+    gap: 48px;
+    width: max-content;
+    animation: scroll-left 28s linear infinite;
   }
 
-  .sponsor-item:hover { opacity: 0.9; }
-
-  .sponsor-item img {
-    height: 56px;
-    width: 900px;
-    display: block;
+  .carousel-track:hover {
+    animation-play-state: paused;
   }
 
-  /* Text fallback for sponsors without logo */
-  .sponsor-text {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.55);
-    text-transform: uppercase;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+  .carousel-logo {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.2s, filter 0.2s;
+    flex-shrink: 0;
   }
+
+  .carousel-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  /*----------------------------------------------------*/
 
   .sponsor-text:hover { opacity: 1; }
 
@@ -1382,251 +2129,373 @@
     }
     .brand-desc { max-width: 100%; }
   }
+  /*----------------------------------------------------*/
+  /* == CHAT BOOT == */
+  #chat-fab {
+  position: fixed;
+  bottom: 70px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #5cb832;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#chat-modal {
+  position: fixed;
+  bottom: 130px;
+  right: 24px;
+  width: 300px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  z-index: 9998;
+}
+
+.chat-hidden {
+  display: none;
+}
+
+.chat-body {
+  padding: 12px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+/* Chat bubbles */
+.chat-bot {
+  background: #eef2ee;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  color: black;
+  font-size: 13px;
+}
+
+.chat-user {
+  background: #5cb832;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* Options */
+.chat-option {
+  display: block;
+  width: 100%;
+  margin: 4px 0;
+  padding: 6px;
+  border: none;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.chat-header{
+  background: #5cb832;
+  color: white;
+  padding: 10px 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 480px) {
+  #chat-fab {
+    bottom: 80px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+  }
+
+  #chat-modal {
+    bottom: 140px;
+    right: 12px;
+    width: calc(100vw - 24px); /* ancho completo menos margen */
+    max-height: 60vh;          /* que no tape toda la pantalla */
+  }
+
+  .chat-body {
+    max-height: calc(60vh - 100px); /* descuenta header */
+  }
+}
   </style>
 </head>
 <body>
+<!-- ══ HERO ══ -->
+<section id="inicio" class="hero">
+  <div class="bg bg1"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+  <div class="bg bg4"></div>
+  <div class="green-overlay"></div>
 
-  <!-- ══ HERO ══ -->
-  <section class="hero">
-    <div class="bg bg1"></div>
-    <div class="bg bg2"></div>
-    <div class="bg bg3"></div>
-    <div class="bg bg4"></div>
-    <div class="green-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-subtitle">Universidad de Nariño — San Juan de Pasto, Colombia</div>
+    <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span><span class="hero-year-inline"> — 2026 —</span></div>
+    <div class="hero-topics">Algebra · Number Theory · Combinatorics · Applications · Algebraic Geometry · Data Analysis and Complex Systems</div>
 
-    <div class="hero-content">
-      <div class="hero-subtitle">University of Nariño — San Juan de Pasto, Colombia</div>
-      <div class="hero-title"><span>ALTENCOA</span><span class="green">11</span><span class="hero-year-inline"> — 2026 —</span></div>
-      <div class="hero-topics">Algebra · Number Theory · Combinatorics · Applications · Algebraic Geometry · Data Analysis & Complex Systems
+    <div class="hero-meta">
+      <div class="date-card" role="group" aria-label="Main dates">
+        <div class="date-main">Oct 5–9, 2026</div>
+        <div class="date-sub">Plenary Conferences, Short Courses, Talks and Posters</div>
+        <div class="location">San Juan de Pasto, Nariño — Colombia</div>
       </div>
 
-      <div class="hero-meta">
-        <div class="date-card" role="group" aria-label="Main dates">
-          <div class="date-main">5–9 Oct 2026</div>
-          <div class="date-sub">Talks, workshops and posters</div>
-          <div class="location">San Juan de Pasto, Nariño — Colombia</div>
-        </div>
+      <div class="flip-dates-card" aria-label="Important dates">
+        <div class="flip-dates-inner">
 
-        <div class="date-card" role="group" aria-label="Key dates">
-          <div class="date-sub" style="font-weight:800; opacity:0.95; font-size: 18px;">Key dates</div>
-          <ul style="list-style:none; padding:8px 0 0; margin:0; font-size:15px; color:rgba(255,255,255,0.9); text-align:left;">
-            <li><strong>Early registration:</strong> 31 July 2026</li>
-            <li><strong>Abstract submission:</strong> 15 August 2026</li>
-          </ul>
-        </div>
-      </div>
+          <!-- Front: first 3 dates -->
+          <div class="flip-dates-face flip-dates-front">
+            <div class="flip-dates-title">Important Dates</div>
+            <ul class="flip-dates-list">
+              <li><strong>Submission of Proposals:</strong> February 16 to May 8</li>
+              <li><strong>Acceptance of Proposals:</strong> May 29</li>
+              <li><strong>Early Registration Deadline:</strong> August 21</li>
+            </ul>
+            <button class="flip-dates-btn" onclick="this.closest('.flip-dates-card').classList.add('flipped')" aria-label="See more dates">
+              See more →
+            </button>
+          </div>
 
-      <div class="hero-buttons">
-        <a href="#reg-section" class="btn-register" title="Go to Registration" aria-label="Go to the registration section" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Register now</a>
-        <a href="#" class="btn-announcement">Call for papers</a>
+          <!-- Back: remaining dates -->
+          <div class="flip-dates-face flip-dates-back">
+            <div class="flip-dates-title">More Dates</div>
+            <ul class="flip-dates-list">
+              <li><strong>Speaker payment deadline:</strong> September 4</li>
+              <li><strong>Attendee payment deadline:</strong> September 18</li>
+              <li><strong>Event:</strong> October 5–9, 2026</li>
+            </ul>
+            <button class="flip-dates-btn" onclick="this.closest('.flip-dates-card').classList.remove('flipped')" aria-label="See previous dates">
+              ← Back
+            </button>
+          </div>
+
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ══ ABOUT ══ -->
-  <section class="about-section">
-    <div class="about-inner">
+    <div class="hero-buttons">
+      <a href="#reg-section" class="btn-register" title="Go to Registration" aria-label="Go to the registration section" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Register now</a>
+      <a href="#" class="btn-announcement" onclick="openAnuncioModal(event)">First Announcement</a>
+    </div>
+  </div>
+</section>
 
-    <div class="about-label">Call for papers</div>
+<!-- ══ ABOUT ══ -->
+<section id="convocatoria" class="about-section">
+  <div class="about-inner">
+
+    <div class="about-label">First call</div>
     <h2 class="about-heading">About the <span class="green">event</span></h2>
-      <!-- Description text (rendered by JS) -->
-      <p id="aboutText" class="about-desc">
-      </p>
+    <p id="aboutText" class="about-desc"></p>
 
-      <div class="about-grid">
+    <div class="about-grid">
 
-        <!-- Poster -->
-        <div class="poster-col">
-          <div class="poster-card">
-            <img id="posterAbout"
-              alt="ALTENCOA11 poster 2026" loading="lazy"
-            />
-            <div class="poster-card-label">ALTENCOA11 · 2026</div>
-          </div>
+      <!-- Poster -->
+      <div class="poster-col">
+        <div class="poster-card">
+          <img id="posterAbout" alt="ALTENCOA11 2026 Poster" loading="lazy" />
+          <div class="poster-card-label">ALTENCOA11 · 2026</div>
         </div>
 
-        <!-- Info -->
-        <div class="info-col">
-          <div class="research-heading">Research areas</div>
-
-          <div class="areas-grid">
-            <div class="area-card"><div class="area-icon">∑</div><span class="area-label">Algebra</span></div>
-            <div class="area-card"><div class="area-icon">ℕ</div><span class="area-label">Number Theory</span></div>
-            <div class="area-card"><div class="area-icon">∧</div><span class="area-label">Combinatorics</span></div>
-            <div class="area-card"><div class="area-icon">◈</div><span class="area-label">Applications</span></div>
-            <div class="area-card"><div class="area-icon">△</div><span class="area-label">Geometría Algebraica</span></div>
-            <div class="area-card"><div class="area-icon">⊕</div><span class="area-label">Análisis de Datos y Sistemas Complejos</span></div>
+        <a href="#" class="video-btn" onclick="openVideoModal(event)">
+          <div class="video-btn-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polygon points="3,1 13,7 3,13" fill="#7ED957"/>
+            </svg>
           </div>
-
-          <div class="organizer-box">
-            <div class="org-title">Organized by</div>
-                <div class="org-details">
-                    Department of Mathematics and Statistics<br>
-                    University of Nariño<br>
-                    San Juan de Pasto, Nariño, Colombia<br>
-                    e-mail: <span id="email" class="about-label"></span>
-                </div>
-            </div>
-          
-        <div class="map-card" aria-label="Mapa de la ubicación">
-            <div class="dates-title">Location  </div>
-            <div class="map-frame">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127644.69493195027!2d-77.43772785664062!3d1.2315202000000134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed38ec693925f%3A0x1af234a076b0cf7!2sUniversidad%20de%20Nari%C3%B1o!5e0!3m2!1ses!2sco!4v1773610150622!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <p style="padding:12px 16px; margin:0;"> University of Nariño —  <a href="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" target="_blank" rel="noopener">Open in Google Maps</a></p>
+          <div class="video-btn-text">
+            <span class="video-btn-title">Watch event video</span>
+            <span class="video-btn-sub">Learn more about ALTENCOA</span>
           </div>
-        </div>
-
+        </a>
       </div>
-    </div>
-  </section>
 
-<section class="committee-section">
+      <!-- Info -->
+      <div class="info-col">
+        <div class="research-heading">Areas</div>
+
+        <div class="areas-grid">
+          <div class="area-card"><div class="area-icon">∑</div><span class="area-label">Algebra</span></div>
+          <div class="area-card"><div class="area-icon">ℕ</div><span class="area-label">Number Theory</span></div>
+          <div class="area-card"><div class="area-icon">∧</div><span class="area-label">Combinatorics</span></div>
+          <div class="area-card"><div class="area-icon">◈</div><span class="area-label">Applications</span></div>
+          <div class="area-card"><div class="area-icon">△</div><span class="area-label">Algebraic Geometry</span></div>
+        </div>
+
+        <div class="research-heading">Guest Area</div>
+        <div class="area-card-invited"><div class="area-icon">⊕</div><span class="area-label">Data Analysis and Complex Systems</span></div>
+
+        <div class="organizer-box">
+          <div class="org-title">Organized by</div>
+          <div class="org-details">
+            ALTENUA Research Group<br>
+            Faculty of Exact and Natural Sciences<br>
+            Department of Mathematics and Statistics<br>
+            Universidad de Nariño<br>
+            San Juan de Pasto, Nariño, Colombia<br>
+            e-mail: <span id="email" style="color: #3a7a1e;"></span>
+          </div>
+        </div>
+
+        <div class="map-card" aria-label="Location map">
+          <div class="dates-title">Location</div>
+          <div class="map-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127644.69493195027!2d-77.43772785664062!3d1.2315202000000134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed38ec693925f%3A0x1af234a076b0cf7!2sUniversidad%20de%20Nari%C3%B1o!5e0!3m2!1ses!2sco!4v1773610150622!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p style="padding:12px 16px; margin:0;">Universidad de Nariño — <a href="https://maps.app.goo.gl/ypMNdXRVeH2MAsg27" target="_blank" rel="noopener">Open in Google Maps</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="comites" class="committee-section">
   <div class="committee-inner">
 
     <div class="section-label">Committees</div>
     <h2 class="section-heading"><span class="green">Scientific</span> <span class="green">Committee</span></h2>
-    <p class="section-desc">Leading researchers from around the world heading each area</p>
+    <p class="section-desc">Prominent researchers from around the world leading each area</p>
 
     <!-- Tabs container (rendered by JS) -->
-    <div id="committee-tabs" class="tabs" role="tablist" aria-label="Committee areas"></div>
+    <div id="committee-tabs" class="tabs" role="tablist" aria-label="Áreas del comité"></div>
 
     <!-- Panels container (rendered by JS) -->
     <div id="committee-panels"></div>
 
   </div>
 </section>
-
+<section class="org-section">
+  <div class="org-inner-O">
+    <div class="section-label-O">Organization</div>
+    <h2 class="section-heading-O">Organizing <span class="green">Committee</span></h2>
+    <p class="section-desc-O">The team of professionals making ALTENCOA 11 possible</p>
+    <div class="members-grid-O" id="members-grid"></div>
+  </div>
+</section>
 
 <section id="reg-section" class="reg-section">
   <div class="reg-inner">
 
-    <div class="section-label">Registration</div>
-    <h2 class="section-heading"> <span class="green">Reserve</span> <span class="green">your spot</span></h2>
+    <h2 class="section-heading"><span class="green">Registration</span></h2>
+
     <div class="reg-grid">
-      <!-- ── LEFT: Info ── -->
       <div class="reg-pitch">
+
         <p class="pitch-text">
-          Join mathematicians, researchers and academics from over
-          30 countries at one of the most important algebra
-          and number theory gatherings in Latin America.
+          Join mathematicians, researchers and academics at one of the most important events in algebra, number theory, combinatorics, algebraic geometry and their applications in Latin America
         </p>
-        <!-- Benefits — add/remove items freely -->
+
         <div class="benefits-grid">
           <ul class="benefits-col">
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Access to all talks, workshops and sessions</li>
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Official event certificate</li>
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Proceedings and digital materials</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Access to all academic activities</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Digital certificate of the event</li>
           </ul>
           <ul class="benefits-col">
-            <li style="display: flex;"><span class="benefit-icon">✓</span> International networking opportunities</li>
-            <li style="display: flex;"><span class="benefit-icon">✓</span> Access to post-event recordings</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> International networking opportunities</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Conference proceedings</li>
           </ul>
         </div>
 
-        <!-- Important Dates, Deadlines, and Rates: rendered from JS data -->
+        <!-- Fechas, plazos y tarifas -->
         <div id="info-cards" class="info-cards"></div>
-        <!-- Insert the registration form here so it appears below benefits and info boxes -->
+
+        <!-- Bloque de registro -->
         <div class="reg-form-card">
-          <form
-  id="reg-form"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSeQrIhuKzilwjH8HP9OLfAyYWAAYxd4o1jT23rbsMBdPpgx5Q/formResponse"
-  method="POST"
-  target="hidden-iframe"
-  onsubmit="handleSubmit(event)"
->
 
-  <!-- Full name -->
-  <div class="field">
-    <span class="field-icon">👤</span>
-    <input type="text" name="entry.1503609734" placeholder="Full name *" required autocomplete="given-name"/>
-  </div>
-
-  <!-- Last name -->
-  <div class="field">
-    <span class="field-icon">👤</span>
-    <input type="text" name="entry.1479821263" placeholder="Last name *" required autocomplete="family-name"/>
-  </div>
-
-  <!-- ID document ← entry corregido -->
-  <div class="field">
-    <span class="field-icon">ID</span>
-    <input type="text" name="entry.1223149995" placeholder="ID / Document *" required/>
-  </div>
-
-  <!-- Email -->
-  <div class="field">
-    <span class="field-icon">✉</span>
-    <input type="email" name="entry.200075436" placeholder="Email address *" required autocomplete="email"/>
-  </div>
-
-  <!-- Institution -->
-  <div class="field">
-    <span class="field-icon">🏛</span>
-    <input type="text" name="entry.895542888" placeholder="Institution / University *" required autocomplete="organization"/>
-  </div>
-
-  <!-- Country -->
-  <div class="field">
-    <span class="field-icon">🌎</span>
-    <input type="text" name="entry.1803685710" placeholder="Country *" required autocomplete="country-name"/>
-  </div>
-
-  <!-- Participant type -->
-  <div class="field">
-    <span class="field-icon">👥</span>
-   <select name="entry.921372150" required>
-  <option value="" disabled selected>Participant type *</option>
-  <option value="Udenar Undergraduate Student">Undergraduate student (Udenar)</option>
-  <option value="Undergraduate Student">Undergraduate student</option>
-  <option value="Postgraduate Student">Graduate student</option>
-  <option value="University Professor">University faculty</option>
-  <option value="Teacher">Faculty</option>
-  <option value="Other">Other</option>
-</select>
-  </div>
-
-  <!-- Participation type -->
-  <div class="field">
-    <span class="field-icon">📊</span>
-    <select name="entry.323207977" required>
-      <option value="" disabled selected>Participation type *</option>
-      <option value="asistentes">Attendee</option>
-      <option value="ponente">Speaker</option>
-      <option value="poster">Poster</option>
-    </select>
-  </div>
-
-  <div id="cost-estimate" class="cost-estimate" aria-live="polite">Estimated cost: —</div>
-
-  <div class="form-actions">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform"
-       target="_blank" rel="noopener noreferrer" class="btn-fallback">OPEN GOOGLE FORM</a>
-    <button type="submit" class="btn-submit" id="submit-btn">
-      Register <span class="arrow">→</span>
-    </button>
-  </div>
-
-</form>
-           <div class="success-msg" id="success-msg">
-            ✅ Registration received! We will contact you soon.
+          <!-- Paso 1: Formulario -->
+          <div style="margin-bottom: 20px;">
+            <div class="title-form">Step 1</div>
+            <div class="form-heading">REGISTRATION FORM</div>
+            <p class="info-form">
+              Complete the form with your personal data and type of participation.
+            </p>
+            <a
+              id="urlForm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-submit"
+              style="display:inline-flex; align-items:center; gap: 4px; text-decoration:none;"
+            >
+              Go to the form <span class="arrow">→</span>
+            </a>
+            <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
+              Download the presentation format (For Presenters or Posters only): 
+              <a 
+                href="https://www.overleaf.com/read/cdhzxkppjvnx#3989d2" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style="color:#7ED957; text-decoration: none; font-size: 15px;"
+              >
+                Presentation Format
+              </a>
+            </p>
           </div>
+          <!-- Divisor -->
+          <div style="border-top: 1px solid rgba(126,217,87,0.15); margin-bottom: 18px;"></div>
+          <!-- Paso 2: Recibo -->
+          <div>
+            <div class="title-form">Step 2</div>
+            <div class="form-heading">GENERATE RECEIPT</div>
+            <p class="info-form">
+              Enter the data of the paying institution. Keep in mind that ONLY with these data will the electronic invoice be generated.
+            </p>
+            <a
+              id="urlBill"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-submit"
+              style="display:inline-flex; align-items:center; text-decoration:none; background: transparent; border: 2px solid #7ED957; color: #7ED957;"
+            >
+              Generate payment receipt <span class="arrow">→</span>
+            </a>
+
+            <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
+                More Information: 
+                <a href="mailto:fandresbenavides@udenar.edu.co" style="color:#7ED957;     text-decoration: none; font-size: 15px;">
+                fandresbenavides@udenar.edu.co
+              </a>
+            </p>
+          </div>
+
+          <!-- Nota final -->
+          <div style="
+            margin-top: 28px;
+            padding: 14px 16px;
+            background: rgba(126,217,87,0.06);
+            border: 1px solid rgba(126,217,87,0.18);
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.60);
+            line-height: 1.6;
+          ">
+            📌 Confirm that your details are correct on the receipt before making the payment. We’ll wait for you at the event!
+          </div>
+
         </div>
-
       </div>
-      <!-- Form moved below benefits and info boxes to appear last in column -->
-
     </div>
+
   </div>
 </section>
 
-
-<section class="discover-section">
+<section id="narino" class="discover-section">
   <div class="discover-inner">
 
-    <div class="section-label">Discover</div>
+    <div class="section-label">Find Out</div>
     <h2 class="section-heading">Pasto — <span class="green">Nariño</span></h2>
-    <p class="section-desc">A land of mountains, culture, and academic excellence in southern Colombia</p>
+    <p class="section-desc">A land of mountains, culture and academic excellence in the south of Colombia.</p>
 
     <!-- Photo cards -->
     <div class="photo-grid">
@@ -1634,12 +2503,13 @@
       <div class="photo-card">
         <img data-img="photo1"
           id="imgPasto"
+         
           alt="San Juan de Pasto"
           loading="lazy"
         />
         <div class="photo-label">
           <strong>San Juan de Pasto</strong>
-          <span>Capital of Nariño, Colombia</span>
+          <span>Capital de Nariño, Colombia</span>
           <a class="photo-more" href="https://aventurecolombia.com/es/que-hacer-en-pasto/" target="_blank" rel="noopener noreferrer">Learn more</a>
         </div>
       </div>
@@ -1647,43 +2517,43 @@
       <div class="photo-card">
         <img data-img="photo2"
           id="imgUdenar"
-          alt="University of Nariño"
+          alt="Universidad de Nariño"
           loading="lazy"
         />
         <div class="photo-label">
-          <strong>University of Nariño</strong>
-          <span>Venue of the ALTENCOA11 event</span>
+          <strong>Universidad de Nariño</strong>
+          <span>Sede del evento ALTENCOA11</span>
           <a class="photo-more" href="https://www.udenar.edu.co/resena-historica/" target="_blank" rel="noopener noreferrer">Learn more</a>
         </div>
       </div>
 
     </div>
-
+    <!--vamos a traducir a ingles-->
     <!-- Info cards -->
     <div class="info-grid">
 
       <div class="info-card">
         <span class="info-icon">🏔</span>
-        <h4>Galeras Volcano</h4>
-        <p>One of the most active volcanoes in Colombia, offering impressive views from the city of Pasto at 2,927 meters above sea level.</p>
+        <h4>Volcano Galeras</h4>
+        <p>One of the most active volcanoes in Colombia, with impressive views from the city of Pasto at 2.927 m above sea level.</p>
       </div>
 
       <div class="info-card">
         <span class="info-icon">🎓</span>
-        <h4>University of Nariño</h4>
-        <p>Founded in 1904, it is the main public university in southern Colombia, with a strong tradition in mathematics and sciences.</p>
+        <h4>Universidad de Nariño</h4>
+        <p>Founded in 1904, it is the main public university in southern Colombia, with a strong tradition in mathematics and science.</p>
       </div>
 
       <div class="info-card">
         <span class="info-icon">📍</span>
         <h4>San Juan de Pasto</h4>
-        <p>Known as "The Surprise City of Nariño", Pasto is the capital of Nariño, recognized for its colonial architecture and cultural heritage.</p>
+        <p>Known as "The Surprising City of Nariño", Pasto is the capital of Nariño, famous for its colonial architecture and cultural heritage.</p>
       </div>
 
       <div class="info-card">
         <span class="info-icon">🍽</span>
         <h4>Nariño Cuisine</h4>
-        <p>Discover the region's unique cuisine, including cuy, aged empanadas, and traditional stews — a warm welcome for every visitor.</p>
+        <p>Discover the unique regional cuisine, including cuy, empanadas de añejo and the traditional stews — a warm welcome for every visitor.</p>
       </div>
 
     </div>
@@ -1704,7 +2574,7 @@
           <div class="brand-name">ALTENCOA<span class="green">11</span></div>
         </div>
         <p class="brand-desc">
-          Algebra, Logic, Number Theory, Combinatorics and their Applications.
+           Algebra, Number Theory, Combinatorics, Algebraic Geometry and its Applications.
           An international academic event at the University of Nariño.
         </p>
       </div>
@@ -1713,11 +2583,11 @@
       <div>
         <div class="footer-col-title">Quick Links</div>
         <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Call for Papers</a></li>
-          <li><a href="#">Committees</a></li>
-          <li><a href="#">Registration</a></li>
-          <li><a href="#">Nariño</a></li>
+          <li><a href="#inicio">Home</a></li>
+          <li><a href="#convocatoria">About</a></li>
+          <li><a href="#comites">Committes</a></li>
+          <li><a href="#reg-section">Registration</a></li>
+          <li><a href="#narino">Nariño</a></li>
         </ul>
       </div>
 
@@ -1733,10 +2603,10 @@
             <span class="contact-icon">✉</span>
             <a href="mailto:matematicas@udenar.edu.co">matematicas@udenar.edu.co</a>
           </div>
-          <div class="contact-item">
+          <!-- <div class="contact-item">
             <span class="contact-icon">📞</span>
             <span>+57 (2) 7311449</span>
-          </div>
+          </div> -->
           <div class="contact-item">
             <span class="contact-icon">📍</span>
             <span>Universidad de Nariño,<br>San Juan de Pasto, Colombia</span>
@@ -1747,19 +2617,19 @@
     </div>
 
     <!-- ── SPONSORS ── -->
-    <div class="footer-sponsors">
-      <div class="sponsors-label">Supported by</div>
-          <div class="">
-            <img style="width:100%;" id="apoyan" alt="Sponsor name" loading="lazy"/>
-          </div>
-    </div>
+  <div class="footer-sponsors">
+  <div class="sponsors-label">Supported by</div>
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track" id="carousel-track"></div>
+  </div>
+</div>
 
     <!-- ── BOTTOM BAR ── -->
     <div class="footer-bottom">
       <p>
-        © 2026 ALTENCOA11 — University of Nariño. All rights reserved.
+        © 2026 ALTENCOA11 — Universidad de Nariño. All rights reserved.
         &nbsp;·&nbsp;
-        <a href="#">Privacy policy</a>
+        <a href="#">Privacy Policy</a>
         &nbsp;·&nbsp;
         <a href="#">Contact</a>
       </p>
@@ -1768,434 +2638,682 @@
   </div>
 </footer>
 
+<!-- ══ VIDEO MODAL ══ -->
+<div id="video-modal" class="vmodal-backdrop" onclick="closeVideoModal(event)">
+  <div class="vmodal-box">
+
+    <!-- Thumbnail preview visible antes de reproducir -->
+    <div class="vmodal-preview" id="vmodal-preview" onclick="playVideo()">
+      <img
+        src="https://img.youtube.com/vi/K9W4TbtyZCg/maxresdefault.jpg"
+        alt="Vista previa del video"
+        class="vmodal-thumb"
+      />
+      <div class="vmodal-play-btn">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <polygon points="6,3 19,11 6,19" fill="white"/>
+        </svg>
+      </div>
+      <div class="vmodal-preview-label">
+        <span class="vmodal-preview-title">ALTENCOA 11 · 2026</span>
+        <span class="vmodal-preview-sub">Click to play</span>
+      </div>
+    </div>
+
+    <!-- iframe oculto hasta que el usuario da play -->
+    <div class="vmodal-player" id="vmodal-player" style="display:none;">
+      <iframe
+        id="vmodal-iframe"
+        src=""
+        title="Video ALTENCOA11"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- Botón cerrar -->
+    <button class="vmodal-close" onclick="closeVideoModal()" aria-label="Cerrar video">✕</button>
+  </div>
+</div>
+<div id="chat-fab">💬</div>
+
+<div id="chat-modal" class="chat-hidden">
+  <div class="chat-header">
+    <span>ALTENUA Bot</span>
+    <button id="chat-close">✕</button>
+  </div>
+
+  <div class="chat-body">
+    <div id="chat-messages"></div>
+    <div id="chat-options"></div>
+  </div>
+</div>
+
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
-const apoyan = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773671455/Apoyan_batcheditor_fotor_p2u9jy.webp"
-const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773590091/Poster_ALTENCOA11-2026_best_gz6cvq.webp"
+const posterFirtsAnuncio = "https://res.cloudinary.com/dspprxtpr/image/upload/v1774041907/Primer_anuncioALTENCOA11_batcheditor_fotor_vse5hd.webp"
+const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773975620/posternew_batcheditor_fotor_g5o6ub.webp"
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
 const email = "altenua@udenar.edu.co"
-
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform"
+const GOOGLE_FORM_BILL_URL = "https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245"
 
 document.getElementById('footer').src = logo;
-document.getElementById('apoyan').src = apoyan;
 document.getElementById('posterAbout').src = posterAboutImg;
 document.getElementById('imgPasto').src = imgPasto;
 document.getElementById('email').textContent = email;
 document.getElementById('imgUdenar').src = imgUdenar;
+document.getElementById('urlForm').href = GOOGLE_FORM_URL;
+document.getElementById('urlBill').href = GOOGLE_FORM_BILL_URL;
 
-const descriptionEvent="The research group ALTENUA: Álgebra, Teoría de Números y Aplicaciones is pleased to announce the eleventh edition of the International Meeting on Algebra, Number Theory, Combinatorics and Applications ALTENCOA11-2026,  which will take place at the University of Nariño, Pasto, Colombia, from October 5 to 9, 2026.The ALTENCOA meetings aim to promote Algebra, Number Theory, Combinatorics, and Applications in Colombia. The event will provide an excellent space for the dissemination of research results, new ideas, and experiences in the aforementioned areas."
+const descriptionEvent = "The ALTENCOA meetings arose on the initiative of the research group Algebra, Number Theory and Applications: ERM (ALTENUA), composed mainly by professors and students from the universities of Antioquia, Cauca, Nariño and Valle, with the purpose of promoting and consolidating the development of Algebra and Number Theory in Colombia, as well as contributing to the positioning of the country as a venue for academic events in these areas. Since its first editions, held in various Colombian universities in the mid-2000s, ALTENCOA was established as a regular space for academic community articulation, scientific exchange and strengthening of collaborative networks. This process favored the national and international projection of these lines of research from the research group and contributed to Colombia hosting, in later years, the XVII edition of the Latin American Colloquium of Algebra. Currently, ALTENCOA is an academic event with international projection oriented to the promotion of Algebra, Number Theory, Combinatorics, Algebraic Geometry and its Applications, by interacting between researchers and strengthening cooperation networks through conferences, workshops and dissemination sessions of results."
 document.getElementById('aboutText').textContent = descriptionEvent;
 
-  // Collapsible behavior for 'Tarifas' (initialization waits for info cards to be rendered)
-  function initTarifasCollapsible(){
-    const tarifasBox = document.getElementById('tarifas-box');
-    if (!tarifasBox) return;
-    const toggle = tarifasBox.querySelector('.collapsible-toggle');
-    const content = document.getElementById('tarifas-content');
-    if (!toggle || !content) return;
-    // ensure initial state
-    content.style.maxHeight = '0px';
-    content.hidden = true;
-    toggle.addEventListener('click', function(e){
-      e.preventDefault();
-      const isOpen = tarifasBox.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      if (isOpen) {
-        content.hidden = false;
-        requestAnimationFrame(()=>{ content.style.maxHeight = content.scrollHeight + 'px'; });
-      } else {
-        content.style.maxHeight = '0px';
-        setTimeout(()=> content.hidden = true, 360);
+/* ══ MODAL PRIMER ANUNCIO ══════════════════════════════════════ */
+function openAnuncioModal(e) {
+  if (e) e.preventDefault();
+
+  if (!document.getElementById('anuncio-modal-style')) {
+    const style = document.createElement('style');
+    style.id = 'anuncio-modal-style';
+    style.textContent = `
+      #anuncio-modal {
+        position: fixed; inset: 0; z-index: 9999;
+        background: rgba(5,20,5,0.88);
+        display: flex; align-items: center; justify-content: center;
+        padding: 20px; animation: afadeIn 0.25s ease;
       }
-    });
+      @keyframes afadeIn { from{opacity:0} to{opacity:1} }
+      #anuncio-modal .am-box {
+        position: relative; max-width: 520px; width: 100%;
+        border-radius: 14px; overflow: hidden;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+        animation: aslideUp 0.28s ease; background: #0b2210;
+      }
+      @keyframes aslideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+      #anuncio-modal .am-img { width:100%; display:block; max-height:80vh; object-fit:contain; }
+      #anuncio-modal .am-close {
+        position: absolute; top: 12px; right: 12px;
+        background: rgba(0,0,0,0.60); border: 1px solid rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.90); border-radius: 50%;
+        width: 36px; height: 36px; font-size: 15px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s; line-height: 1;
+      }
+      #anuncio-modal .am-close:hover { background: rgba(255,255,255,0.18); color: white; }
+      #anuncio-modal .am-footer {
+        padding: 14px 18px; background: #0e1f0a;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 12px; border-top: 1px solid rgba(126,217,87,0.15);
+      }
+      #anuncio-modal .am-footer-text { font-size: 13px; color: rgba(255,255,255,0.55); }
+      #anuncio-modal .am-download {
+        font-size: 13px; font-weight: 700; color: #7ED957;
+        text-decoration: none; white-space: nowrap; transition: color 0.2s;
+      }
+      #anuncio-modal .am-download:hover { color: #9BE564; }
+    `;
+    document.head.appendChild(style);
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
-    // if info-cards already present, init immediately; otherwise wait for event
-    if (document.getElementById('tarifas-box')) initTarifasCollapsible();
-    else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+  const existing = document.getElementById('anuncio-modal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'anuncio-modal';
+  modal.innerHTML = `
+    <div class="am-box">
+      <img class="am-img" src="${posterFirtsAnuncio}" alt="Primer Anuncio ALTENCOA 11" />
+      <button class="am-close" id="am-close-btn" aria-label="Cerrar">✕</button>
+      <div class="am-footer">
+        <span class="am-footer-text">First Announcement — ALTENCOA 11 · 2026</span>
+        <a class="am-download" href="${posterFirtsAnuncio}" download target="_blank" rel="noopener">↓ Download</a>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('am-close-btn').addEventListener('click', closeAnuncioModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeAnuncioModal(); });
+  modal._escHandler = e => { if (e.key === 'Escape') closeAnuncioModal(); };
+  document.addEventListener('keydown', modal._escHandler);
+}
+
+function closeAnuncioModal() {
+  const modal = document.getElementById('anuncio-modal');
+  if (!modal) return;
+  if (modal._escHandler) document.removeEventListener('keydown', modal._escHandler);
+  modal.remove();
+  document.body.style.overflow = '';
+}
+
+/* ══ TABS COMITÉ CIENTÍFICO ════════════════════════════════════ */
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  const panel = document.getElementById('panel-' + panelId);
+  if (panel) panel.classList.add('active');
+}
+
+/* ══ COMITÉ CIENTÍFICO ════════════════════════════════════════ */
+const committees = [
+  {
+    id: 'algebra', label: 'Álgebra',
+    members: [
+      { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
+      { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
+      { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'number', label: 'Number Theory',
+    members: [
+      { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
+      { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
+      { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'comb', label: 'Combinatorics',
+    members: [
+      { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
+      { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
+      { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'apps', label: 'Applications',
+    members: [
+      { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
+      { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'alg-geom', label: 'Algebraic Geometry',
+    members: [
+      { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
+      { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
+      { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
+    ]
+  },
+  {
+    id: 'data', label: 'Data Analysis and Complex Systems (Guest Area)',
+    members: [
+      { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
+      { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
+      { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'Francia' }
+    ]
+  }
+];
+
+/* ══ FLAGS (CSS FLAG ICONS) ═══════════════════════════════════ */
+(function(){
+  const countryNameToCode = {
+    'brasil':'br','brazil':'br','colombia':'co','méxico':'mx','mexico':'mx',
+    'chile':'cl','estados unidos':'us','usa':'us','united states':'us',
+    'francia':'fr','france':'fr','argentina':'ar','perú':'pe','peru':'pe',
+    'ecuador':'ec','venezuela':'ve','uruguay':'uy','paraguay':'py','bolivia':'bo'
+  };
+
+  window.getCountryCode = function(input) {
+    if (!input) return null;
+    const s = String(input).toLowerCase().trim();
+
+    if (countryNameToCode[s]) return countryNameToCode[s];
+
+    for (const name in countryNameToCode) {
+      if (s.includes(name)) return countryNameToCode[name];
+    }
+
+    const parts = s.split(/[,\-\/]/).map(p => p.trim());
+    for (let i = parts.length - 1; i >= 0; --i) {
+      if (countryNameToCode[parts[i]]) return countryNameToCode[parts[i]];
+    }
+
+    return null;
+  };
+})();
+
+/* ══ CREATE MEMBER CARD ═══════════════════════════════════════ */
+function createMemberCard(m) {
+  const card = document.createElement('div');
+  card.className = 'member-card';
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar';
+
+  const code = getCountryCode(m.location || m.institution);
+
+  if (code) {
+    avatar.innerHTML = `<span class="fi fi-${code}"></span>`;
+  } else {
+    avatar.textContent = m.initials || (m.name || '')
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .slice(0, 2);
+  }
+
+  card.appendChild(avatar);
+
+  const name = document.createElement('div');
+  name.className = 'member-name';
+  name.textContent = m.name;
+  card.appendChild(name);
+
+  const inst = document.createElement('div');
+  inst.className = 'member-institution';
+  inst.textContent = m.institution;
+  card.appendChild(inst);
+
+  return card;
+}
+
+/* ══ RENDER ═══════════════════════════════════════════════════ */
+function renderCommittees() {
+  const tabs = document.getElementById('committee-tabs');
+  const panelsContainer = document.getElementById('committee-panels');
+
+  if (!tabs || !panelsContainer) return;
+
+  tabs.innerHTML = '';
+  panelsContainer.innerHTML = '';
+
+  committees.forEach((c, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+    btn.textContent = c.label;
+
+    btn.addEventListener('click', () => switchTab(btn, c.id));
+    tabs.appendChild(btn);
+
+    const panel = document.createElement('div');
+    panel.id = 'panel-' + c.id;
+    panel.className = 'tab-panel' + (idx === 0 ? ' active' : '');
+
+    c.members.forEach(m => panel.appendChild(createMemberCard(m)));
+
+    panelsContainer.appendChild(panel);
+  });
+}
+
+
+/* ══ COMITÉ ORGANIZADOR ═══════════════════════════════════════ */
+const COMMITTEE = [
+  { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" , class: "logo-ct-udenar" },
+  { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", class: "logo-ct-univalle" },
+  { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774224948/logo-unicaragena_batchedito-subir_xva0q1.webp", class: "logo-ct-unicar" },
+  { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", class: "logo-ct-unicauca" },
+  { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+];
+
+function getInitials(name) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length > 2 ? 2 : 1][0]).toUpperCase();
+}
+
+function avatarHTML(member) {
+  if (member.photo && member.photo.trim() !== '') {
+    return `<div class="avatar-O ${member.class || ''}"><img src="${member.photo}" alt="${member.name}" /></div>`;
+  }
+  return `<div class="avatar-O">${getInitials(member.name)}</div>`;
+}
+
+function renderCommittee() {
+  const grid = document.getElementById('members-grid');
+  if (!grid) return;
+  grid.innerHTML = COMMITTEE.map(member => `
+    <div class="member-card-O">
+      ${avatarHTML(member)}
+      <div class="member-name-O">${member.name}</div>
+      <div class="member-institution-O">${member.institution}</div>
+    </div>
+  `).join('');
+}
+
+renderCommittee();
+
+/* ══ TARIFAS E INFO CARDS ════════════════════════════════════ */
+const infoCards = [
+  {
+    id: 'fechas',
+    title: 'Important dates',
+    items: [
+      { label: 'Submission of papers and posters / Proposal reception', value: '16 de febrero al 8 de mayo' },
+      { label: 'Proposal acceptance', value: '29 de mayo' },
+      { label: 'Event', value: '5–9 de octubre de 2026' }
+    ]
+  },
+  {
+    id: 'costos-plazos',
+    title: 'Costs and Deadlines',
+    items: [
+      { label: 'Payment Deadline with Discount', value: '21 de agosto' },
+      { label: 'Payment Deadline for Presenters', value: '4 de septiembre *' },
+      { label: 'Payment Deadline for Attendees', value: '18 de septiembre' }
+    ]
+  },
+  { id: 'tarifas', title: 'Feets', type: 'tarifas' }
+];
+
+const costos = {
+  asistentes: {
+    'Undergraduate Student (Udenar)': 50000,
+    'Postgraduate Student': 335000,
+    'Undergraduate Student': 100000,
+    'University Professor': 400000,
+    'Non-University Teacher': 120000,
+    'Other': 450000
+  },
+  ponentes: {
+    'Undergraduate Student (Udenar)': 45000, 'Postgraduate Student': 301500,
+    'Undergraduate Student': 90000, 'University Professor': 360000,
+    'Non-University Teacher': 108000, 'Other': 405000
+  },
+  sin_descuento: {
+    'Undergraduate Student (Udenar)': 100000, 'Postgraduate Student': 370000,
+    'Undergraduate Student': 120000, 'University Professor': 500000,
+    'Non-University Teacher': 140000, 'Other': 500000
+  }
+};
+
+function formatCurrency(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function renderInfoCards() {
+  const container = document.getElementById('info-cards');
+  if (!container) return;
+  container.innerHTML = '';
+  infoCards.forEach(card => {
+    const box = document.createElement('div');
+    box.className = 'info-box';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', card.title);
+    if (card.type === 'tarifas') {
+      box.classList.add('info-box-collapsible');
+      box.id = 'tarifas-box';
+      const btn = document.createElement('button');
+      btn.className = 'collapsible-toggle';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', 'tarifas-content');
+      btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">Ver más</span>`;
+      box.appendChild(btn);
+      const content = document.createElement('div');
+      content.id = 'tarifas-content';
+      content.className = 'collapsible-content';
+      content.hidden = true;
+      box.appendChild(content);
+      const mention = document.createElement('div');
+      mention.id = 'tarifas-mention';
+      mention.className = 'dates-list';
+      mention.hidden = true;
+      box.appendChild(mention);
+    } else {
+      const title = document.createElement('div');
+      title.className = 'dates-title';
+      title.textContent = card.title;
+      box.appendChild(title);
+      const ul = document.createElement('ul');
+      ul.className = 'dates-list';
+      card.items.forEach(it => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+    }
+    container.appendChild(box);
+  });
+  document.dispatchEvent(new Event('infoCardsReady'));
+}
+
+function renderTarifas() {
+  const container  = document.getElementById('tarifas-content');
+  const containerf = document.getElementById('tarifas-mention');
+  if (!container) return;
+  const createListFrom = (obj) => {
+    let html = '<ul class="dates-list">';
+    for (const key of Object.keys(obj)) {
+      html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
+    }
+    return html + '</ul>';
+  };
+  let html = '<div class="tarif-grid" style="min-height: 240px; ">';
+  html += `<div class="tarif-column"><div class="tarif-col-title">Discounted attendees</div>${createListFrom(costos.asistentes)}</div>`;
+  html += `<div class="tarif-column"><div class="tarif-col-title">Discounted speakers</div>${createListFrom(costos.ponentes)}</div>`;
+  html += `<div class="tarif-column"><div class="tarif-col-title">Regular prices</div>${createListFrom(costos.sin_descuento)}</div>`;
+  html += '</div>';
+  container.innerHTML = html;
+  const mentionText = 'Discounted prices apply for payments made before 21 August 2026. After this date, no discount rates will apply. For exhibitors who pay by 21 August will get an additional 10% discount. ';
+  if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
+}
+
+function initTarifasCollapsible() {
+  const tarifasBox = document.getElementById('tarifas-box');
+  if (!tarifasBox || tarifasBox.dataset.tarifasCollapsibleInit === '1') return;
+  tarifasBox.dataset.tarifasCollapsibleInit = '1';
+  const toggle = tarifasBox.querySelector('.collapsible-toggle');
+  const content = document.getElementById('tarifas-content');
+  if (!toggle || !content) return;
+  content.style.maxHeight = '0px';
+  content.hidden = true;
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    const isOpen = tarifasBox.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) {
+      content.hidden = false;
+      requestAnimationFrame(() => { content.style.maxHeight = content.scrollHeight + 'px'; });
+    } else {
+      content.style.maxHeight = '0px';
+      setTimeout(() => content.hidden = true, 360);
+    }
+  });
+}
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   renderInfoCards();
+//   renderTarifas();
+//   insertPiDecor();
+//   if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+//   else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+// });
+
+/* ══ DECORACIÓN PI ════════════════════════════════════════════ */
+function insertPiDecor() {
+  const svgMarkup = `
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+        <path d="M18 30 C18 16, 38 12, 38 30" />
+        <path d="M62 30 C62 16, 82 12, 82 30" />
+        <path d="M18 30 L82 30" />
+      </g>
+      <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
+    </svg>`;
+  document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
+    if (sec.querySelector('.pi-decor')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'pi-decor';
+    wrapper.innerHTML = svgMarkup;
+    sec.appendChild(wrapper);
+  });
+}
+
+/* ══ SPONSORS CAROUSEL ════════════════════════════════════════ */
+const SPONSORS = [
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño", class:"logo-udenar" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774364495/Logo_DPTO_final_f2r3wq.webp", alt: "Departamento Matemáticas", class:"logo-dpto" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien", class:"logo-facien" },
+  { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle", class:"logo-valle" },
+  { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca", class:"logo-cauca" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana" , class:"logo-javeriana" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA", class:"logo-altenua" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia", class:"logo-antioquia" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander", class:"logo-uis" },
+];
+
+(function buildCarousel() {
+  const track = document.getElementById('carousel-track');
+  if (!track) return;
+  const all = [...SPONSORS, ...SPONSORS];
+  track.innerHTML = all.map(s =>
+    `<img class="carousel-logo ${s.class || ''}" src="${s.src}" alt="${s.alt}" loading="lazy" />`
+  ).join('');
+})();
+
+/* ══ VIDEO MODAL ══════════════════════════════════════════════ */
+const VIDEO_URL = 'https://www.youtube.com/embed/K9W4TbtyZCg';
+
+function openVideoModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('vmodal-preview').style.display = 'block';
+  document.getElementById('vmodal-player').style.display  = 'none';
+  document.getElementById('vmodal-iframe').src = '';
+  document.getElementById('video-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal(e) {
+  if (e && e.target !== document.getElementById('video-modal')) return;
+  document.getElementById('vmodal-iframe').src = '';
+  document.getElementById('video-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function playVideo() {
+  document.getElementById('vmodal-preview').style.display = 'none';
+  document.getElementById('vmodal-player').style.display  = 'block';
+  document.getElementById('vmodal-iframe').src = VIDEO_URL + '?autoplay=1&rel=0';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeVideoModal();
+    closeAnuncioModal();
+  }
+});
+
+// ==help menssages===//
+
+const BOT_KB = {
+  altenua: {
+    label: "¿What is ALTENUA?",
+    answer: `
+      ALTENUA is an academic event focused on mathematics,
+      which brings together universities, researchers and students.
+    `
+  },
+  registro: {
+  label: "How do I register?",
+  answer: `
+    1. Go to the registration section
+    2. Fill out the form and select your type of participation
+    3. Submit your information and upload your abstract if you are a poster or presenter. Finally, generate your payment receipt and complete the payment
+    4. Check your email for confirmation
+  `,
+  action: () => {
+    document.querySelector('#registro')?.scrollIntoView({ behavior: 'smooth' });
+  }
+},
+  costo: {
+    label: "How much does it cost?",
+      answer: `  The cost of the event varies depending on your profile (attendee or presenter) and the payment date.Discounted rates are available until August 21. 
+
+      After this date, standard fees will apply.Prices range approximately from $45,000 to $500,000 COP, depending on:
+
+      - Participant type (undergraduate student, postgraduate, professor, etc.)
+      - Role (attendee or presenter)
+      - Payment deadline
+
+      For detailed pricing and categories, please check the fees section on the page.`,
+  },
+  ubicacion: {
+  label: "Where is it?",
+  answer: "The event will be held at Universidad de Nariño.",
+  action: () => {
+    document.querySelector('#ubicacion')?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+};
+document.addEventListener('DOMContentLoaded', () => {
+
+
+   // Comité científico
+  renderCommittees();
+
+  // Info cards y tarifas
+  renderInfoCards();
+  renderTarifas();
+  insertPiDecor();
+  if (document.getElementById('tarifas-box')) initTarifasCollapsible();
+  else document.addEventListener('infoCardsReady', initTarifasCollapsible, { once: true });
+
+
+  const fab = document.getElementById('chat-fab');
+  const modal = document.getElementById('chat-modal');
+  const closeBtn = document.getElementById('chat-close');
+  const messages = document.getElementById('chat-messages');
+  const optionsBox = document.getElementById('chat-options');
+
+  if (!fab || !modal || !closeBtn || !messages || !optionsBox) {
+    console.error("Chat elements not found");
+    return;
+  }
+
+  fab.onclick = () => modal.classList.toggle('chat-hidden');
+  closeBtn.onclick = () => modal.classList.add('chat-hidden');
+
+  function renderOptions() {
+    optionsBox.innerHTML = Object.entries(BOT_KB)
+      .map(([key, item]) =>
+        `<button class="chat-option" data-key="${key}">${item.label}</button>`
+      ).join('');
+  }
+
+  function addMessage(text, type = 'bot') {
+    const div = document.createElement('div');
+    div.className = type === 'bot' ? 'chat-bot' : 'chat-user';
+    div.innerText = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  optionsBox.addEventListener('click', e => {
+    if (!e.target.classList.contains('chat-option')) return;
+
+    const key = e.target.dataset.key;
+    const item = BOT_KB[key];
+
+    if (!item) return;
+
+    addMessage(item.label, 'user');
+    addMessage(item.answer, 'bot');
+
+    if (item.action) item.action();
   });
 
+  addMessage("Hello! I am the ALTENCOA Bot. How can I help you?");
+  renderOptions();
 
-  function switchTab(btn, panelId) {
-    // Deactivate all tabs & panels
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+});
 
-    // Activate clicked
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
-    const panel = document.getElementById('panel-' + panelId);
-    if (panel) panel.classList.add('active');
-  }
-
-  // Committee data (updated)
-  const committees = [
-    {
-      id: 'algebra',
-      label: 'Algebra',
-      members: [
-        { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brazil' },
-        { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brazil' },
-        { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'number',
-      label: 'Number Theory',
-      members: [
-        { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'Mexico' },
-        { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
-        { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'comb',
-      label: 'Combinatorics',
-      members: [
-        { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'Mexico' },
-        { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
-        { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'apps',
-      label: 'Applications',
-      members: [
-        { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
-        { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'alg-geom',
-      label: 'Algebraic Geometry',
-      members: [
-        { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brazil' },
-        { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brazil' },
-        { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
-      ]
-    },
-    {
-      id: 'data',
-      label: 'Data Analysis and Complex Systems',
-      members: [
-        { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brazil' },
-        { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brazil' },
-        { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'France' }
-      ]
-    }
-  ];
-
-    // Data-driven info-cards for the registration section. Modify these objects to change content.
-    const infoCards = [
-      {
-        id: 'fechas',
-        title: 'Important dates',
-        items: [
-          { label: 'Submission of talks and posters / Deadline for submission', value: '16 Feb – 8 May' },
-          { label: 'Acceptance of proposals', value: '29 May' },
-          { label: 'Event', value: '5–9 October 2026' }
-        ]
-      },
-      {
-        id: 'costos-plazos',
-        title: 'Costs & Deadlines',
-        items: [
-          { label: 'Payment deadline with discount', value: '21 August' },
-          { label: 'Payment deadline for speakers', value: '4 September *' },
-          { label: 'Payment deadline for participants', value: '18 September' }
-        ]
-      },
-      {
-        id: 'tarifas',
-        title: 'Fees',
-        type: 'tarifas'
-      }
-    ];
-
-    function renderInfoCards(){
-      const container = document.getElementById('info-cards');
-      if (!container) return;
-      container.innerHTML = '';
-      infoCards.forEach(card => {
-        const box = document.createElement('div');
-        box.className = 'info-box';
-        box.setAttribute('role','group');
-        box.setAttribute('aria-label', card.title);
-        if (card.type === 'tarifas') {
-          box.classList.add('info-box-collapsible');
-          box.id = 'tarifas-box';
-          const btn = document.createElement('button');
-          btn.className = 'collapsible-toggle';
-          btn.setAttribute('aria-expanded','false');
-          btn.setAttribute('aria-controls','tarifas-content');
-          btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
-          box.appendChild(btn);
-          const content = document.createElement('div');
-          content.id = 'tarifas-content';
-          content.className = 'collapsible-content';
-          content.hidden = true;
-          box.appendChild(content);
-          const mention = document.createElement('div');
-          mention.id = 'tarifas-mention';
-          mention.className = 'dates-list';
-          mention.hidden = true;
-          box.appendChild(mention);
-        } else {
-          const title = document.createElement('div');
-          title.className = 'dates-title';
-          title.textContent = card.title;
-          box.appendChild(title);
-          const ul = document.createElement('ul');
-          ul.className = 'dates-list';
-          card.items.forEach(it => {
-            const li = document.createElement('li');
-            li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
-            ul.appendChild(li);
-          });
-          box.appendChild(ul);
-        }
-        container.appendChild(box);
-      });
-      // Notify other code that info cards are ready
-      document.dispatchEvent(new Event('infoCardsReady'));
-    }
-
-  // Robust flag resolver: map names → ISO2, generate emoji, and search inside strings
-  (function(){
-    const countryNameToCode = {
-      'brasil': 'BR', 'brazil': 'BR',
-      'colombia': 'CO',
-      'méxico': 'MX', 'mexico': 'MX',
-      'chile': 'CL',
-      'estados unidos': 'US', 'usa': 'US', 'united states': 'US',
-      'francia': 'FR', 'france': 'FR',
-      'argentina': 'AR', 'perú': 'PE', 'peru': 'PE', 'ecuador': 'EC',
-      'venezuela': 'VE', 'uruguay': 'UY', 'paraguay': 'PY', 'bolivia': 'BO',
-      'méxico ': 'MX'
-    };
-
-    function isoToEmoji(iso) {
-      if (!iso || iso.length !== 2) return '';
-      return String.fromCodePoint(...iso.toUpperCase().split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
-    }
-
-    window.getFlag = function(input) {
-      if (!input) return '';
-      const s = String(input).toLowerCase().trim();
-      // Direct exact key
-      if (countryNameToCode[s]) return isoToEmoji(countryNameToCode[s]);
-      // Search for known country names inside the string
-      for (const name in countryNameToCode) {
-        if (s.indexOf(name) !== -1) return isoToEmoji(countryNameToCode[name]);
-      }
-      // Try simple heuristics: look for country-like words at end (e.g., ", Brasil")
-      const parts = s.split(/[,\-\/]/).map(p=>p.trim());
-      for (let i = parts.length-1; i >= 0; --i) {
-        const p = parts[i];
-        if (countryNameToCode[p]) return isoToEmoji(countryNameToCode[p]);
-      }
-      return '';
-    };
-  })();
-
-  function createMemberCard(m) {
-    const card = document.createElement('div');
-    card.className = 'member-card';
-
-    const avatar = document.createElement('div');
-    avatar.className = 'avatar';
-    const flag = getFlag(m.location || m.institution);
-    avatar.textContent = flag || m.initials || (m.name || '').split(' ').map(n=>n[0]).join('').slice(0,2);
-    card.appendChild(avatar);
-
-    const name = document.createElement('div');
-    name.className = 'member-name';
-    name.textContent = m.name;
-    card.appendChild(name);
-
-    const inst = document.createElement('div');
-    inst.className = 'member-institution';
-    inst.textContent = m.institution;
-    card.appendChild(inst);
-
- 
-
-    return card;
-  }
-
-  function renderCommittees() {
-    const tabs = document.getElementById('committee-tabs');
-    const panelsContainer = document.getElementById('committee-panels');
-    tabs.innerHTML = '';
-    panelsContainer.innerHTML = '';
-
-    committees.forEach((c, idx) => {
-      // Tab button
-      const btn = document.createElement('button');
-      btn.className = 'tab-btn' + (idx===0 ? ' active' : '');
-      btn.setAttribute('role','tab');
-      btn.setAttribute('aria-selected', idx===0 ? 'true' : 'false');
-      btn.textContent = c.label;
-      btn.addEventListener('click', () => switchTab(btn, c.id));
-      tabs.appendChild(btn);
-
-      // Panel
-      const panel = document.createElement('div');
-      panel.id = 'panel-' + c.id;
-      panel.className = 'tab-panel' + (idx===0 ? ' active' : '');
-     
-
-      c.members.forEach(m => panel.appendChild(createMemberCard(m)));
-
-      panelsContainer.appendChild(panel);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => renderCommittees());
-
-  // Price estimator and tarifas rendering driven from a central `costos` object
-  (function(){
-    const costos = {
-      asistentes: {
-        'Udenar Undergraduate Student': 50000,
-      'Postgraduate Student': 335000,
-      'Undergraduate Student': 100000,
-      'University Professor': 400000,
-      'Teacher': 120000,
-      'Other': 450000
-      },
-      ponentes: {
-        'Udenar Undergraduate Student': 45000,
-      'Postgraduate Student': 301500,
-      'Undergraduate Student': 90000,
-      'University Professor': 360000,
-      'Teacher': 108000,
-      'Other': 405000
-      },
-      sin_descuento: {
-       'Udenar Undergraduate Student': 100000,
-      'Postgraduate Student': 370000,
-      'Undergraduate Student': 120000,
-      'University Professor': 500000,
-      'Teacher': 140000,
-      'Other': 500000
-      }
-    };
-
-    function formatCurrency(n){
-      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    function getRoleKey() {
-      const partSel = document.querySelector('select[name="entry.323207977"]');
-      if(!partSel) return 'asistentes';
-      const v = partSel.value || '';
-      // Treat 'ponente' and 'poster' as ponentes; otherwise asistentes
-      // treat both Spanish and English input keywords for robustness
-      const vl = v.toLowerCase();
-      if (vl.indexOf('ponente') !== -1 || vl.indexOf('poster') !== -1 || vl.indexOf('speaker') !== -1) return 'ponentes';
-      return 'asistentes';
-    }
-
-    function updateEstimate() {
-      const sel = document.querySelector('select[name="entry.921372150"]');
-      const el = document.getElementById('cost-estimate');
-      if(!sel || !el) return;
-      const participant = sel.value;
-      if(!participant) {
-        el.textContent = 'Estimated cost: —';
-        return;
-      }
-      const roleKey = getRoleKey();
-      const price = (costos[roleKey] || {})[participant];
-      const full = (costos.sin_descuento || {})[participant];
-      if (price != null) {
-        const fullText = full ? ` (Price without discount: $${formatCurrency(full)})` : '';
-        el.textContent = `Estimated cost: $${formatCurrency(price)}${fullText} — No charges will be made now`;
-      } else {
-        el.textContent = 'Estimated cost: Check the fees';
-      }
-    }
-
-    function renderTarifas() {
-      const container = document.getElementById('tarifas-content');
-      const containerf = document.getElementById('tarifas-mention');
-      if(!container) return;
-      // build HTML: Asistentes, Ponentes, Precios sin descuento — list items show label and price inline
-      const createListFrom = (obj) => {
-        let html = '<ul class="dates-list">';
-        for (const key of Object.keys(obj)) {
-          html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
-        }
-        html += '</ul>';
-        return html;
-      };
-      const mentionText = 'Discounted prices apply for payments made before 21 August 2026. After this date, regular (non-discounted) fees will apply.';
-
-      let html = '';
-      // Grid with three columns: Attendees | Speakers | Regular prices
-      html += '<div class="tarif-grid">';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Attendees</div>` + createListFrom(costos.asistentes) + '</div>';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Speakers</div>` + createListFrom(costos.ponentes) + '</div>';
-      html += `<div class="tarif-column"><div class="tarif-col-title">Regular prices</div>` + createListFrom(costos.sin_descuento) + '</div>';
-      html += '</div>';
-
-      container.innerHTML = html;
-      if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-      // render dynamic info-cards first (creates tarifas DOM)
-      renderInfoCards();
-      // insert subtle decorative SVGs in green sections
-      insertPiDecor();
-      const sel = document.querySelector('select[name="entry.921372150"]');
-      const partSel = document.querySelector('select[name="entry.323207977"]');
-      if(sel) sel.addEventListener('change', updateEstimate);
-      if(partSel) partSel.addEventListener('change', updateEstimate);
-      // initialize
-      updateEstimate();
-      renderTarifas();
-    });
-  })();
-
-    // Insert subtle pi-shaped SVG decorations into green sections
-    function insertPiDecor(){
-      const svgMarkup = `
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
-            <path d="M18 30 C18 16, 38 12, 38 30" />
-            <path d="M62 30 C62 16, 82 12, 82 30" />
-            <path d="M18 30 L82 30" />
-          </g>
-          <circle cx="62" cy="62" r="10" fill="currentColor" opacity="0.06" />
-        </svg>`;
-      document.querySelectorAll('.committee-section, .reg-section').forEach(sec => {
-        if (sec.querySelector('.pi-decor')) return;
-        const wrapper = document.createElement('div');
-        wrapper.className = 'pi-decor';
-        wrapper.innerHTML = svgMarkup;
-        sec.appendChild(wrapper);
-      });
-    }
-
-  function handleSubmit(e) {
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
- 
-    // Give the iframe time to receive the response, then show success
-    setTimeout(function () {
-      document.getElementById('reg-form').style.display = 'none';
-      document.getElementById('success-msg').style.display = 'block';
-    }, 1800);
-  }
   
 </script>
 
