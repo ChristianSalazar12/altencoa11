@@ -220,6 +220,101 @@
     text-align: center;
   }
 
+
+/* ── FLIP DATES CARD ── */
+.flip-dates-card {
+  background: transparent;
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 360px;
+  perspective: 900px;
+  cursor: default;
+}
+
+.flip-dates-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  /* Altura fija para que el flip no cambie el tamaño del contenedor */
+  min-height: 170px;
+}
+
+.flip-dates-card.flipped .flip-dates-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-dates-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: rgba(0,0,0,0.44);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.flip-dates-back {
+  transform: rotateY(180deg);
+}
+
+.flip-dates-title {
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.flip-dates-list {
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
+  font-size: clamp(12px, 1.4vw, 14px);
+  color: rgba(255,255,255,0.88);
+  text-align: left;
+  flex: 1;
+  width: 100%;
+}
+
+.flip-dates-list li {
+  padding: 3px 0;
+  line-height: 1.4;
+}
+
+.flip-dates-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid rgba(126,217,87,0.45);
+  color: #7ED957;
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.3px;
+  align-self: flex-end;
+}
+
+.flip-dates-btn:hover {
+  background: rgba(126,217,87,0.12);
+  border-color: #7ED957;
+}
+
+@media (max-width: 480px) {
+  .flip-dates-card { flex: 1 1 100%; }
+  .flip-dates-inner { min-height: 185px; }
+  .flip-dates-list { font-size: clamp(12px, 3vw, 14px); }
+}
+
+  /* Hero buttons */
+
   .hero-buttons {
     display: flex;
     gap: 16px;
@@ -1060,6 +1155,17 @@
     .tab-btn { padding: 8px 14px 10px; font-size: 12px; }
   }
 /*--------------------------------------------*/
+/* == LOGOS-CTA SECTION == */
+ .logo-ct-udenar{
+  padding:5px !important;
+  text-align: center;
+ }
+ .logo-ct-unicauca{
+  padding:0 !important;
+  text-align: center;
+ }
+
+/* ══ ORGANIZING COMMITTEE ══ */
   /* ── SECTION ── */
    .org-section {
     background: #eef2ee;
@@ -1143,8 +1249,8 @@
  
   .avatar-O img {
     width: 100%;
-    object-fit: cover;
-    display: block;
+    height: 100%;
+    object-fit: contain;
   }
  
   .member-name-O {
@@ -1167,7 +1273,32 @@
   }
  
   @media (max-width: 420px) {
+
     .members-grid-O { grid-template-columns: 1fr; }
+
+    .member-card-O {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .avatar-O {
+    margin-bottom: 0;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .member-name-O,
+  .member-institution-O {
+    text-align: left;
+  }
+   .member-info-O {
+    display: flex;
+    flex-direction: column;
+  }
+    
   }
 /*-------------------------------------------*/
   .reg-section {
@@ -1272,6 +1403,9 @@
     gap: 18px;
     margin-top: 18px;
   }
+  .tarifas-mention{
+    margin-top: 40px;
+  }
 
   .info-box {
     background: rgba(255,255,255,0.03);
@@ -1299,24 +1433,31 @@
 
   .collapsible-toggle .dates-title { margin-bottom: 0; }
 
-  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; }
+  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; font-style: italic;}
 
   .info-box .collapsible-content {
     display: flex;
     overflow: hidden;
-    max-height: 0;
     transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
     opacity: 0;
     padding-top: 0;
   }
 
   .info-box.open .collapsible-content {
-    max-height: 900px;
+    max-height: 1000px;
     opacity: 1;
     padding-top: 12px;
+    margin-left: 20px;
   }
 
-  .info-box.open .collapsible-toggle .chev { transform: rotate(90deg); }
+  .info-box.open .collapsible-toggle .chev { 
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-style: italic;
+
+   }
 
   .info-box .tarifas-note { font-size:12px; color: rgba(255,255,255,0.9); margin-top:8px; }
 
@@ -1843,17 +1984,17 @@
 
   /* ── SPONSORS ROW ── */
   .footer-sponsors {
-    padding: 44px 0 40px;
+    background: #f0f4ef;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     text-align: center;
   }
 
   .sponsors-label {
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgb(39, 142, 2);
     margin-bottom: 28px;
   }
 
@@ -1864,6 +2005,53 @@
     flex-wrap: wrap;
     gap: 32px 48px;
   }
+  /* Sponsor logos */
+  .logo-udenar {
+  height: 245px  !important;        
+  max-width: 400px !important;
+  transform: scale(0.9);   
+}
+  .logo-uis {
+    height: 170px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-javeriana {
+    height: 190px !important;        
+    max-width: 200px !important;
+    transform: scale(0.9);   
+  }
+  .logo-cauca {
+    height: 250px !important;    
+    max-width: 400px !important;
+    transform: scale(0.9);   
+  }
+  .logo-valle {
+    height: 190px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-altenua {
+    height: 180px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-dpto {
+    height: 180px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+  .logo-antioquia {
+    height: 190px !important;        
+    max-width: 350px !important;
+    transform: scale(0.9);   
+  }
+  .logo-facien {
+    height: 200px !important;        
+    max-width: 300px !important;
+    transform: scale(0.9);   
+  }
+ 
 
   /*-----------------carrusel---------------------*/
   .carousel-track-wrapper {
@@ -1889,10 +2077,7 @@
   .carousel-logo {
     height: 200px;
     width: auto;
-    max-width: 140px;
     object-fit: contain;
-
- 
     transition: opacity 0.2s, filter 0.2s;
     flex-shrink: 0;
   }
@@ -1967,14 +2152,39 @@
           <div class="location">San Juan de Pasto, Nariño — Colombia</div>
         </div>
 
-        <div class="date-card" role="group" aria-label="Fechas clave">
-          <div class="date-sub" style="font-weight:800; opacity:0.95; font-size: 18px;">Fechas Importantes</div>
-          <ul class="date-list" >
-            <li><strong>Recepción de Propuestas:</strong> Febrero 16 a Mayo 8</li>
-            <li><strong>Aceptación de Propuestas:</strong> Mayo 29</li>
-            <li><strong>Inscripciones con descuento:</strong> Agosto 21</li>
-          </ul>
-        </div>
+        <div class="flip-dates-card" aria-label="Fechas importantes">
+  <div class="flip-dates-inner">
+
+    <!-- Frente: primeras 3 fechas -->
+    <div class="flip-dates-face flip-dates-front">
+      <div class="flip-dates-title">Fechas Importantes</div>
+      <ul class="flip-dates-list">
+        <li><strong>Recepción de Propuestas:</strong> Febrero 16 a Mayo 8</li>
+        <li><strong>Aceptación de Propuestas:</strong> Mayo 29</li>
+        <li><strong>Inscripciones con descuento:</strong> Agosto 21</li>
+      </ul>
+      <button class="flip-dates-btn" onclick="this.closest('.flip-dates-card').classList.add('flipped')" aria-label="Ver más fechas">
+        Ver más →
+      </button>
+    </div>
+
+    <!-- Reverso: siguientes fechas -->
+    <div class="flip-dates-face flip-dates-back">
+      <div class="flip-dates-title">Más Fechas</div>
+      <ul class="flip-dates-list">
+        <li><strong>Límite pago expositores:</strong> Septiembre 4</li>
+        <li><strong>Límite pago asistentes:</strong> Septiembre 18</li>
+        <li><strong>Evento:</strong> Octubre 5–9, 2026</li>
+      </ul>
+      <button class="flip-dates-btn" onclick="this.closest('.flip-dates-card').classList.remove('flipped')" aria-label="Ver fechas anteriores">
+        ← Volver
+      </button>
+    </div>
+
+  </div>
+</div>
+
+        
       </div>
 
       <div class="hero-buttons">
@@ -2091,8 +2301,7 @@
       <div class="reg-pitch">
 
         <p class="pitch-text">
-          Únete a matemáticos, investigadores y académicos en uno de los eventos más importantes de álgebra
-          y teoría de números en América Latina.
+          Únete a matemáticos, investigadores y académicos en uno de los eventos más importantes de álgebra, teoría de números, combinatoria, geometría algebraica y sus aplicaciones en América Latina
         </p>
 
         <div class="benefits-grid">
@@ -2136,7 +2345,7 @@
             <div class="title-form">Paso 2</div>
             <div class="form-heading">GENERAR RECIBO</div>
             <p class="info-form">
-              Una vez inscrito, genera tu recibo de pago e ingresa tus datos para completar el proceso.
+              Ingresa los datos de la institución pagadora. Ten en cuenta que SOLAMENTE con estos datos se generará la factura electrónica.
             </p>
             <a
               id="urlBill"
@@ -2595,14 +2804,14 @@ document.addEventListener('DOMContentLoaded', () => renderCommittees());
 
 /* ══ COMITÉ ORGANIZADOR ═══════════════════════════════════════ */
 const COMMITTEE = [
-  { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" },
-  { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg" },
-  { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774224948/logo-unicaragena_batchedito-subir_xva0q1.webp" },
-  { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png" },
-  { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" },
-  { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" },
-  { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" },
-  { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" },
+  { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" , class: "logo-ct-udenar" },
+  { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", class: "logo-ct-univalle" },
+  { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774224948/logo-unicaragena_batchedito-subir_xva0q1.webp", class: "logo-ct-unicar" },
+  { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", class: "logo-ct-unicauca" },
+  { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
 ];
 
 function getInitials(name) {
@@ -2613,7 +2822,7 @@ function getInitials(name) {
 
 function avatarHTML(member) {
   if (member.photo && member.photo.trim() !== '') {
-    return `<div class="avatar-O"><img src="${member.photo}" alt="${member.name}" /></div>`;
+    return `<div class="avatar-O ${member.class || ''}"><img src="${member.photo}" alt="${member.name}" /></div>`;
   }
   return `<div class="avatar-O">${getInitials(member.name)}</div>`;
 }
@@ -2659,17 +2868,17 @@ const costos = {
   asistentes: {
     'Estudiante de Pregrado Udenar': 50000, 'Estudiante de Postgrado': 335000,
     'Estudiante de Pregrado': 100000, 'Docente Universitario': 400000,
-    'Docente': 120000, 'Otro': 450000
+    'Docente No Universtiario': 120000, 'Otro': 450000
   },
   ponentes: {
     'Estudiante de Pregrado Udenar': 45000, 'Estudiante de Postgrado': 301500,
     'Estudiante de Pregrado': 90000, 'Docente Universitario': 360000,
-    'Docente': 108000, 'Otro': 405000
+    'Docente No Universitario': 108000, 'Otro': 405000
   },
   sin_descuento: {
     'Estudiante de Pregrado Udenar': 100000, 'Estudiante de Postgrado': 370000,
     'Estudiante de Pregrado': 120000, 'Docente Universitario': 500000,
-    'Docente': 140000, 'Otro': 500000
+    'Docente No Universitario': 140000, 'Otro': 500000
   }
 };
 
@@ -2693,7 +2902,7 @@ function renderInfoCards() {
       btn.className = 'collapsible-toggle';
       btn.setAttribute('aria-expanded', 'false');
       btn.setAttribute('aria-controls', 'tarifas-content');
-      btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">▸</span>`;
+      btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">Ver más</span>`;
       box.appendChild(btn);
       const content = document.createElement('div');
       content.id = 'tarifas-content';
@@ -2735,7 +2944,7 @@ function renderTarifas() {
     }
     return html + '</ul>';
   };
-  let html = '<div class="tarif-grid">';
+  let html = '<div class="tarif-grid" style="min-height: 240px; ">';
   html += `<div class="tarif-column"><div class="tarif-col-title">Asistentes con descuento</div>${createListFrom(costos.asistentes)}</div>`;
   html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes con descuento</div>${createListFrom(costos.ponentes)}</div>`;
   html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>${createListFrom(costos.sin_descuento)}</div>`;
@@ -2798,15 +3007,15 @@ function insertPiDecor() {
 
 /* ══ SPONSORS CAROUSEL ════════════════════════════════════════ */
 const SPONSORS = [
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773963916/Logo_DPTO_batcheditor_fotor_vxgcoo.webp", alt: "Departamento Matemáticas" },
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien" },
-  { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle" },
-  { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca" },
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana" },
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA" },
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia" },
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño" },
-  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño", class:"logo-udenar" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774364495/Logo_DPTO_final_f2r3wq.webp", alt: "Departamento Matemáticas", class:"logo-dpto" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien", class:"logo-facien" },
+  { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle", class:"logo-valle" },
+  { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca", class:"logo-cauca" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana" , class:"logo-javeriana" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA", class:"logo-altenua" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia", class:"logo-antioquia" },
+  { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander", class:"logo-uis" },
 ];
 
 (function buildCarousel() {
@@ -2814,7 +3023,7 @@ const SPONSORS = [
   if (!track) return;
   const all = [...SPONSORS, ...SPONSORS];
   track.innerHTML = all.map(s =>
-    `<img class="carousel-logo" src="${s.src}" alt="${s.alt}" loading="lazy" />`
+    `<img class="carousel-logo ${s.class || ''}" src="${s.src}" alt="${s.alt}" loading="lazy" />`
   ).join('');
 })();
 
