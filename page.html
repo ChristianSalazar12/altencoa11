@@ -2419,79 +2419,128 @@
         <!-- Fechas, plazos y tarifas -->
         <div id="info-cards" class="info-cards"></div>
 
-        <!-- Bloque de registro -->
-        <div class="reg-form-card">
+       <!-- Bloque de registro -->
+<div class="reg-form-card">
 
-          <!-- Paso 1: Formulario -->
-          <div style="margin-bottom: 20px;">
-            <div class="title-form">Paso 1</div>
-            <div class="form-heading">FORMULARIO DE INSCRIPCIÓN</div>
-            <p class="info-form">
-              Completa el formulario con tus datos personales y tipo de participación.
-            </p>
-            <a
-              id="urlForm"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-submit"
-              style="display:inline-flex; align-items:center; gap: 4px; text-decoration:none;"
-            >
-              Ir al formulario <span class="arrow">→</span>
-            </a>
-            <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
-              Descarga el formato de presentación (Solo para Ponentes o Poster): 
-              <a 
-                href="https://www.overleaf.com/read/cdhzxkppjvnx#3989d2" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style="color:#7ED957; text-decoration: none; font-size: 15px;"
-              >
-                Formato de presentación
-              </a>
-            </p>
-          </div>
-          <!-- Divisor -->
-          <div style="border-top: 1px solid rgba(126,217,87,0.15); margin-bottom: 18px;"></div>
-          <!-- Paso 2: Recibo -->
-          <div>
-            <div class="title-form">Paso 2</div>
-            <div class="form-heading">GENERAR RECIBO</div>
-            <p class="info-form">
-              Ingresa los datos de la institución pagadora. Ten en cuenta que SOLAMENTE con estos datos se generará la factura electrónica.
-            </p>
-            <a
-              id="urlBill"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-submit"
-              style="display:inline-flex; align-items:center; text-decoration:none; background: transparent; border: 2px solid #7ED957; color: #7ED957;"
-            >
-              Generar recibo de pago <span class="arrow">→</span>
-            </a>
+  <!-- Paso 1: Formulario -->
+  <div style="margin-bottom: 20px;">
+    <div class="title-form">Paso 1</div>
+    <div class="form-heading">FORMULARIO DE INSCRIPCIÓN</div>
+    <p class="info-form">
+      Completa el formulario con tus datos personales y tipo de participación.
+    </p>
+    <a
+      id="urlForm"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-submit"
+      style="display:inline-flex; align-items:center; gap: 4px; text-decoration:none;"
+    >
+      Ir al formulario <span class="arrow">→</span>
+    </a>
 
-            <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
-                Mayor Información: 
-                <a href="mailto:fandresbenavides@udenar.edu.co" style="color:#7ED957;     text-decoration: none; font-size: 15px;">
-                fandresbenavides@udenar.edu.co
-              </a>
-            </p>
-          </div>
+    <!-- Nota importante -->
+    <div style="
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(126,217,87,0.07);
+      border-left: 3px solid #7ED957;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    ">
+      <p style="margin: 0 0 6px 0; font-weight: 600; color: #7ED957; font-size: 13px; letter-spacing: 0.03em;">
+        ⚠️ NOTA IMPORTANTE — Ponentes y Póster
+      </p>
+      <p style="margin: 0 0 8px 0;">
+        Para enviar su resumen, siga las instrucciones de la plantilla oficial 
+        <strong>ALTENCOA11-2026</strong>. Los trabajos que no utilicen esta plantilla 
+        <strong>no podrán ser considerados</strong> por el Comité Científico.
+      </p>
+      <p style="margin: 0 0 10px 0;">
+        Los resúmenes presentados durante ALTENCOA11-2026 se publicarán como memorias del evento en la 
+        <strong><a href="https://revistas.udenar.edu.co/index.php/rsigma/" target="_blank" rel="noopener noreferrer" style= "color: #7ED957;" >Revista Sigma (ISSN: 2017-064X)</a></strong> de la Universidad de Nariño.
+      </p>
+      <a 
+        href="https://www.overleaf.com/project/6994ca2c9260b7a57b42caa8" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style="
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          color: #7ED957;
+          text-decoration: none;
+          font-size: 13px;
+          font-weight: 600;
+          border: 1px solid rgba(126,217,87,0.4);
+          padding: 5px 12px;
+          border-radius: 5px;
+          transition: background 0.2s;
+        "
+        onmouseover="this.style.background='rgba(126,217,87,0.12)'"
+        onmouseout="this.style.background='transparent'"
+      >
+        📄 Descargar Plantilla ALTENCOA11-2026 →
+      </a>
+      <p style="margin-top:12px; font-size:14px; color:#d3d5d2;">
+      Mayor información:
+      <a 
+        href="mailto:altenua@udenar.edu.co"
+        style="color:#7ED957; text-decoration: none; font-size: 15px;"
+      >
+        altenua@udenar.edu.co
+      </a>
+    </p>
+    </div>
 
-          <!-- Nota final -->
-          <div style="
-            margin-top: 28px;
-            padding: 14px 16px;
-            background: rgba(126,217,87,0.06);
-            border: 1px solid rgba(126,217,87,0.18);
-            border-radius: 8px;
-            font-size: 12.5px;
-            color: rgba(255,255,255,0.60);
-            line-height: 1.6;
-          ">
-            📌 Confirma que tus datos sean correctos en el recibo antes de realizar el pago. ¡Te esperamos en el evento!
-          </div>
+    
+  </div>
 
-        </div>
+  <!-- Divisor -->
+  <div style="border-top: 1px solid rgba(126,217,87,0.15); margin-bottom: 18px;"></div>
+
+  <!-- Paso 2: Recibo -->
+  <div>
+    <div class="title-form">Paso 2</div>
+    <div class="form-heading">GENERAR RECIBO</div>
+    <p class="info-form">
+      Ingresa los datos de la institución pagadora. Ten en cuenta que SOLAMENTE con estos datos se generará la factura electrónica.
+    </p>
+    <a
+      id="urlBill"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-submit"
+      style="display:inline-flex; align-items:center; text-decoration:none; background: transparent; border: 2px solid #7ED957; color: #7ED957;"
+    >
+      Generar recibo de pago <span class="arrow">→</span>
+    </a>
+
+    <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
+      Mayor Información: 
+      <a href="mailto:fandresbenavides@udenar.edu.co" style="color:#7ED957; text-decoration: none; font-size: 15px;">
+        fandresbenavides@udenar.edu.co
+      </a>
+    </p>
+  </div>
+
+  <!-- Nota final -->
+  <div style="
+    margin-top: 28px;
+    padding: 14px 16px;
+    background: rgba(126,217,87,0.06);
+    border: 1px solid rgba(126,217,87,0.18);
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.60);
+    line-height: 1.6;
+  ">
+    📌 Confirma que tus datos sean correctos en el recibo antes de realizar el pago. ¡Te esperamos en el evento!
+  </div>
+
+</div>
       </div>
     </div>
 
@@ -2816,7 +2865,7 @@ function switchTab(btn, panelId) {
 /* ══ COMITÉ CIENTÍFICO ════════════════════════════════════════ */
 const committees = [
   {
-    id: 'algebra', label: 'Álgebra',
+    id: 'algebra', label: 'Algebra',
     members: [
       { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
       { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
@@ -2855,7 +2904,7 @@ const committees = [
     ]
   },
   {
-    id: 'data', label: 'Análisis de Datos y Sistemas Complejos',
+    id: 'data', label: 'Análisis de Datos y Sistemas Complejos (Área Invitada)',
     members: [
       { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
       { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
@@ -3096,7 +3145,7 @@ function renderTarifas() {
   const createListFrom = (obj) => {
     let html = '<ul class="dates-list">';
     for (const key of Object.keys(obj)) {
-      html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong></span></li>`;
+      html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong> COP</span></li>`;
     }
     return html + '</ul>';
   };
@@ -3218,47 +3267,150 @@ document.addEventListener('keydown', e => {
 // ==help menssages===//
 
 const BOT_KB = {
-  altenua: {
-    label: "¿Qué es ALTENUA?",
-    answer: `
-      ALTENUA es un evento académico enfocado en las matemáticas,
-      que reúne universidades, investigadores y estudiantes.
-    `
-  },
- registro: {
+altencoa: {
+  label: "¿Que es ALTENCOA?",
+  answer: `
+    <p style="margin: 0 0 10px 0;">
+      <strong>ALTENUA</strong> Es un evento académico con proyección internacional 
+      orientado al fomento del Álgebra, la Teoría de Números, la Combinatoria, 
+      la Geometría Algebraica y sus Aplicaciones, mediante la interacción entre 
+      investigadores y el fortalecimiento de redes de cooperación a través de 
+      conferencias, cursillos y sesiones de divulgación de resultados.
+    </p>
+    <p style="margin: 0; font-size: 13px; color: rgba(255,255,255,0.6);">
+      💡 Puedes explorar más sobre el evento desplazándote por la página principal.
+    </p>
+  `
+},
+altenua: {
+  label: "¿Qué es ALTENUA?",
+  answer: `
+    <p style="margin: 0 0 10px 0;">
+      <strong>ALTENUA</strong> Es el  grupo de investigación Álgebra, Teoría de Números 
+      y Aplicaciones: ERM (ALTENUA), conformado principalmente por profesores y estudiantes 
+      de las universidades de Antioquia, Cauca, Nariño y Valle.
+    </p>
+  `
+},
+
+registro: {
   label: "¿Cómo me inscribo?",
   answer: `
-    1. Dirígete a la sección de registro
-    2. Completa el formulario y selecciona tu tipo de participación
-    3. Envía tu información y carga tu resumen si eres ponente o póster. Finalmente, genera tu recibo de pago y realiza el pago correspondiente
-    4. Revisa tu correo para confirmación
+    <p style="margin: 0 0 10px 0;">Sigue estos pasos para completar tu inscripción:</p>
+    <ol style="margin: 0 0 12px 0; padding-left: 18px; line-height: 2;">
+      <li>Dirígete a la sección de <strong>Registro</strong> en la página.</li>
+      <li>Completa el formulario con tus datos y selecciona tu <strong>tipo de participación</strong>.</li>
+      <li>Si eres <strong>ponente o póster</strong>, carga tu resumen usando la plantilla oficial.</li>
+      <li>Genera tu <strong>recibo de pago</strong> y realiza el pago correspondiente.</li>
+      <li>Revisa tu correo para recibir la <strong>confirmación</strong> e información adicional.</li>
+    </ol>
+    <p style="margin: 0; font-size: 13px; color: #343434;">
+      📌 ¿Tienes dudas sobre el recibo? Consulta la opción <em>"¿Cómo genero el recibo?"</em> en el menú.
+    </p>
   `,
   action: () => {
     document.querySelector('#registro')?.scrollIntoView({ behavior: 'smooth' });
   }
 },
-  costo: {
-    label: "¿Cuánto cuesta?",
-    answer: `
-    El costo del evento varía según tu perfil (asistente o ponente) y la fecha de pago.
 
-    Existen tarifas con descuento disponibles hasta el 21 de agosto. Después de esta fecha, se aplicarán tarifas completas.
-
-    Los precios oscilan aproximadamente entre $45.000 y $500.000 COP, dependiendo de:
-    - Tipo de participante (estudiante, docente, etc.)
-    - Rol (asistente o ponente)
-    - Fecha de pago
-
-    Para ver el detalle completo de tarifas y categorías, revisa la sección de tarifas en la página.
+costo: {
+  label: "¿Cuánto cuesta?",
+  answer: `
+    <p style="margin: 0 0 10px 0;">
+      El costo varía según tu <strong>perfil</strong> y la <strong>fecha de pago</strong>:
+    </p>
+    <table style="width:100%; border-collapse:collapse; font-size:13px; margin-bottom:12px;">
+      <thead>
+        <tr style="background: rgba(126,217,87,0.12); color: #7ED957;">
+          <th style="padding: 6px 8px; text-align:left; border-bottom: 1px solid rgba(126,217,87,0.2);">Factor</th>
+          <th style="padding: 6px 8px; text-align:left; border-bottom: 1px solid rgba(126,217,87,0.2);">Detalle</th>
+        </tr>
+      </thead>
+      <tbody style="color: #343434;">
+        <tr>
+          <td style="padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">💰 Rango</td>
+          <td style="padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">$45.000 – $500.000 COP</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">🏷️ Descuento</td>
+          <td style="padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">Hasta el <strong>21 de agosto</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">👤 Perfil</td>
+          <td style="padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">Estudiante, docente u otro</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 8px;">🎤 Rol</td>
+          <td style="padding: 6px 8px;">Asistente o ponente</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin: 0; font-size: 13px; color: #343434;">
+      📋 Consulta el detalle completo en la sección de <strong>Tarifas</strong> de la página.
+    </p>
   `
-  },
-  ubicacion: {
-    label: "¿Dónde es?",
-    answer: "El evento se llevará a cabo en la Universidad del Valle.",
-    action: () => {
-      document.querySelector('#ubicacion')?.scrollIntoView({ behavior: 'smooth' });
-    }
+},
+
+ubicacion: {
+  label: "¿Dónde es?",
+  answer: `
+    <p style="margin: 0 0 10px 0;">
+      📍 El evento se llevará a cabo en la<br>
+      <strong>Universidad de Nariño — Pasto, Colombia</strong>
+    </p>
+    <p style="margin: 0; font-size: 13px; color: #343434;">
+      🗺️ Desplázate a la sección de <em>Ubicación</em> para ver el mapa y más detalles.
+    </p>
+  `,
+   
+},
+recibo: {
+  label: "¿Cómo puedo generar el recibo de pago y recibir la factura electrónica?",
+  answer: `
+    <ol style="margin: 0; padding-left: 18px; line-height: 1.8;">
+      <li>
+        <strong>Ingresar al enlace oficial</strong><br>
+        <a href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245" 
+           target="_blank" rel="noopener noreferrer"
+           style="color:#7ED957; text-decoration:none; word-break:break-all;">
+          Acceder al portal de recibos →
+        </a>
+      </li>
+      <li>
+        <strong>Diligenciar los datos de facturación</strong><br>
+        Nombre o razón social, número de identificación (cédula o NIT) y dirección si es requerida.
+      </li>
+      <li>
+        <strong>Registrar el correo electrónico</strong><br>
+        Ingresa un correo válido; allí recibirás la factura electrónica.
+      </li>
+      <li>
+        <strong>Verificar la información</strong><br>
+        Revisa que todos los datos estén correctos antes de continuar.
+      </li>
+      <li>
+        <strong>Generar el recibo de pago</strong><br>
+        Haz clic en la opción correspondiente para generarlo.
+      </li>
+      <li>
+        <strong>Elegir el método de pago</strong><br>
+        • <em>Pago en línea (PSE)</em>: directamente desde la plataforma.<br>
+        • <em>Pago por ventanilla</em>: imprime el recibo y acércate al banco indicado.
+      </li>
+      <li>
+        <strong>Conservar el soporte de pago</strong><br>
+        Guarda el comprobante generado (en línea o en banco).
+      </li>
+      <li>
+        <strong>Recepción de la factura electrónica</strong><br>
+        Una vez realizado el pago, la factura será enviada a tu correo registrado.
+      </li>
+    </ol>
+  `,
+  action: () => {
+    document.querySelector('#ubicacion')?.scrollIntoView({ behavior: 'smooth' });
   }
+}
 };
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -3296,12 +3448,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function addMessage(text, type = 'bot') {
-    const div = document.createElement('div');
-    div.className = type === 'bot' ? 'chat-bot' : 'chat-user';
-    div.innerText = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
+  const div = document.createElement('div');
+  div.className = type === 'bot' ? 'chat-bot' : 'chat-user';
+
+  if (type === 'bot') {
+    div.innerHTML = text; // ← permite HTML en mensajes del bot
+  } else {
+    div.innerText = text; // ← el texto del usuario sigue siendo plano (seguridad)
   }
+
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
 
   optionsBox.addEventListener('click', e => {
     if (!e.target.classList.contains('chat-option')) return;
