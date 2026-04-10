@@ -2640,11 +2640,22 @@
       <div>
         <div class="footer-col-title">Enlaces rápidos</div>
         <ul class="footer-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#convocatoria">Convocatoria</a></li>
-          <li><a href="#comites">Comités</a></li>
-          <li><a href="#reg-section">Inscripción</a></li>
-          <li><a href="#narino">Nariño</a></li>
+          <li>
+            <a href="#inicio"  title="Ir a Inicio" aria-label="ir a la sección de inicio" onclick="document.getElementById('inicio').scrollIntoView({behavior:'smooth'}); return false;">Inicio</a>  
+            
+          </li>
+          <li>
+            <a href="#convocatoria"  title="Ir a Sobre el evento" aria-label="ir a la sección de información" onclick="document.getElementById('convocatoria').scrollIntoView({behavior:'smooth'}); return false;">Sobre el evento</a>  
+          </li>
+          <li>
+            <a href="#comites"  title="Ir a Comités" aria-label="ir a la sección de comités" onclick="document.getElementById('comites').scrollIntoView({behavior:'smooth'}); return false;">Comités</a>  
+          </li>
+          <li>
+            <a href="#reg-section"  title="Ir a Inscripción" aria-label="ir a la sección de inscripción" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Inscripción</a>
+          </li>
+          <li>
+            <a href="#narino"  title="Ir a Descubrir Nariño" aria-label="ir a la sección de descubrir nariño" onclick="document.getElementById('narino').scrollIntoView({behavior:'smooth'}); return false;">Descubrir Nariño</a>
+          </li>
         </ul>
       </div>
 
@@ -2865,7 +2876,7 @@ function switchTab(btn, panelId) {
 /* ══ COMITÉ CIENTÍFICO ════════════════════════════════════════ */
 const committees = [
   {
-    id: 'algebra', label: 'Algebra',
+    id: 'algebra', label: 'Álgebra',
     members: [
       { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
       { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
@@ -3277,7 +3288,7 @@ altencoa: {
       investigadores y el fortalecimiento de redes de cooperación a través de 
       conferencias, cursillos y sesiones de divulgación de resultados.
     </p>
-    <p style="margin: 0; font-size: 13px; color: rgba(255,255,255,0.6);">
+    <p style="margin: 0; font-size: 13px; color: #343434;">
       💡 Puedes explorar más sobre el evento desplazándote por la página principal.
     </p>
   `
