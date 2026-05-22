@@ -63,6 +63,256 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+
+  /* ══ AVISO MODAL ══ */
+  #aviso-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 11000;
+    background: rgba(5, 20, 5, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: avisoFadeIn 0.3s ease;
+  }
+
+  #aviso-modal.aviso-hidden {
+    display: none;
+  }
+
+  @keyframes avisoFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .aviso-box {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: #0f2410;
+    border: 1px solid rgba(126,217,87,0.20);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+    animation: avisoSlideUp 0.32s cubic-bezier(0.22,1,0.36,1);
+    color: white;
+  }
+
+  @keyframes avisoSlideUp {
+    from { transform: translateY(28px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  /* Header */
+  .aviso-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 22px 20px 14px;
+  }
+
+  .aviso-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+  .aviso-icon-wrap img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .aviso-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .aviso-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7ED957;
+  }
+
+  .aviso-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  /* Close button */
+  .aviso-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.70);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .aviso-close:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+  }
+
+  /* Body */
+  .aviso-body {
+    padding: 0 20px 6px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+  }
+
+  /* Fechas grid */
+  .aviso-dates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .aviso-date-card {
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .aviso-date-card.old {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .aviso-date-card.new {
+    background: rgba(126,217,87,0.08);
+    border: 1px solid rgba(126,217,87,0.28);
+  }
+
+  .aviso-date-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .aviso-date-card.old .aviso-date-label { color: rgba(255,255,255,0.38); }
+  .aviso-date-card.new .aviso-date-label { color: #7ED957; }
+
+  .aviso-date-main {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .aviso-date-card.old .aviso-date-main {
+    color: rgba(255,255,255,0.38);
+    text-decoration: line-through;
+  }
+  .aviso-date-card.new .aviso-date-main { color: #7ED957; }
+
+  .aviso-date-sub {
+    font-size: 11px;
+    margin-top: 4px;
+    color: rgba(255,255,255,0.40);
+  }
+  .aviso-date-card.new .aviso-date-sub { color: rgba(126,217,87,0.65); }
+
+  /* Nota */
+  .aviso-note {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.765);
+    line-height: 1.65;
+    margin-top: 4px;
+  }
+
+  .aviso-note strong {
+    color: var(--bg-light);
+  }
+
+  /* Footer / actions */
+  .aviso-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 20px 20px;
+    flex-wrap: wrap;
+  }
+
+  .aviso-btn-dismiss {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.50);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+    font-family: 'Lato', sans-serif;
+  }
+  .aviso-btn-dismiss:hover {
+    color: white;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .aviso-btn-cta {
+    background: #7ED957;
+    color: #0a2a00;
+    border: none;
+    border-radius: 50px;
+    padding: 11px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .aviso-btn-cta:hover {
+    background: #9BE564;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(126,217,87,0.35);
+  }
+
+  @media (max-width: 400px) {
+    .aviso-dates-grid { grid-template-columns: 1fr; }
+    .aviso-footer { justify-content: stretch; }
+    .aviso-btn-cta { width: 100%; justify-content: center; }
+  }
+
+
+
   /* ── HERO ── */
   .hero {
     position: relative;
@@ -369,7 +619,7 @@
 
   /* ── ABOUT SECTION ── */
   .about-section {
-    background: #f0f4ef;
+    background: var(--bg-light);
     padding: 80px 20px 90px;
     text-align: center;
   }
@@ -2260,8 +2510,8 @@
     <div class="flip-dates-face flip-dates-front">
       <div class="flip-dates-title">Fechas Importantes</div>
       <ul class="flip-dates-list">
-        <li><strong>Recepción de Propuestas:</strong> Febrero 16 a Mayo 8</li>
-        <li><strong>Aceptación de Propuestas:</strong> Mayo 29</li>
+        <li><strong>Recepción de Propuestas:</strong> Febrero 16 a Junio 5</li>
+        <li><strong>Aceptación de Propuestas:</strong> Junio 29</li>
         <li><strong>Inscripciones con descuento:</strong> Agosto 21</li>
       </ul>
       <button class="flip-dates-btn" onclick="this.closest('.flip-dates-card').classList.add('flipped')" aria-label="Ver más fechas">
@@ -2324,7 +2574,7 @@
         </div>
         <div class="video-btn-text">
           <span class="video-btn-title">Ver video del evento</span>
-          <span class="video-btn-sub">Conoce más sobre ALTENCOA</span>
+          <span class="video-btn-sub">Conoce más sobre <span id="eventTitle"></span> </span>
         </div>
       </a>
         </div>
@@ -2388,7 +2638,7 @@
   <div class="org-inner-O">
     <div class="section-label-O">Organización</div>
     <h2 class="section-heading-O">Comité <span class="green">Organizador</span></h2>
-    <p class="section-desc-O">El equipo de profesionales que hace posible ALTENCOA 11</p>
+    <p class="section-desc-O">El equipo de profesionales que hace posible <span id="eventTitle"></span> </p>
     <div class="members-grid-O" id="members-grid"></div>
   </div>
 </section>
@@ -2412,7 +2662,7 @@
           </ul>
           <ul class="benefits-col">
             <li style="display:flex;"><span class="benefit-icon">✓</span> Oportunidades de networking internacional</li>
-            <li style="display:flex;"><span class="benefit-icon">✓</span> Memorias de encuentro</li>
+            <li style="display:flex;"><span class="benefit-icon">✓</span> Memorias de digitales del encuentro</li>
           </ul>
         </div>
 
@@ -2426,9 +2676,10 @@
   <div style="margin-bottom: 20px;">
     <div class="title-form">Paso 1</div>
     <div class="form-heading">FORMULARIO DE INSCRIPCIÓN</div>
-    <p class="info-form">
-      Completa el formulario con tus datos personales y tipo de participación.
-    </p>
+    
+   <p id="mensajecambiar" class="info-form">
+   
+    </p>  
     <a
       id="urlForm"
       target="_blank"
@@ -2463,7 +2714,7 @@
         <strong><a href="https://revistas.udenar.edu.co/index.php/rsigma/" target="_blank" rel="noopener noreferrer" style= "color: #7ED957;" >Revista Sigma (ISSN: 2017-064X)</a></strong> de la Universidad de Nariño.
       </p>
       <a 
-        href="https://www.overleaf.com/project/6994ca2c9260b7a57b42caa8" 
+        href="https://www.overleaf.com/read/ptptxkcfhsqp#eaa366%22" 
         target="_blank" 
         rel="noopener noreferrer"
         style="
@@ -2482,15 +2733,15 @@
         onmouseover="this.style.background='rgba(126,217,87,0.12)'"
         onmouseout="this.style.background='transparent'"
       >
-        📄 Descargar Plantilla ALTENCOA11-2026 →
+        📄 Plantilla ALTENCOA11-2026 →
       </a>
       <p style="margin-top:12px; font-size:14px; color:#d3d5d2;">
       Mayor información:
       <a 
-        href="mailto:altenua@udenar.edu.co"
+        href="mailto:udenaraltenua@gmail.com"
         style="color:#7ED957; text-decoration: none; font-size: 15px;"
       >
-        altenua@udenar.edu.co
+        udenaraltenua@gmail.com
       </a>
     </p>
     </div>
@@ -2520,8 +2771,8 @@
 
     <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
       Mayor Información: 
-      <a href="mailto:fandresbenavides@udenar.edu.co" style="color:#7ED957; text-decoration: none; font-size: 15px;">
-        fandresbenavides@udenar.edu.co
+      <a href="mailto:fandresbenavides@gmail.com" style="color:#7ED957; text-decoration: none; font-size: 15px;">
+        fandresbenavides@gmail.com
       </a>
     </p>
   </div>
@@ -2628,7 +2879,7 @@
       <div class="brand-col">
         <div class="brand-logo">
           <img style="width: 40px;" id="footer" alt="logo" loading="lazy">
-          <div class="brand-name">ALTENCOA<span class="green">11</span></div>
+          <div class="brand-name">ALTENCOA<span class="green">11 - 2026</span></div>
         </div>
         <p class="brand-desc">
           Álgebra, Teoría de Números, Combinatoria, Geometría Algebraica y sus Aplicaciones.
@@ -2665,11 +2916,11 @@
         <div class="contact-items">
           <div class="contact-item">
             <span class="contact-icon">✉</span>
-            <a href="altenua@udenar.edu.co">altenua@udenar.edu.co</a>
+            <a href="mailto:udenaraltenua@gmail.com">udenaraltenua@gmail.com</a>
           </div>
           <div class="contact-item">
             <span class="contact-icon">✉</span>
-            <a href="mailto:matematicas@udenar.edu.co">matematicas@udenar.edu.co</a>
+            <a href="mailto:jhcastillo@gmail.com">jhcastillo@gmail.com</a>
           </div>
           <!-- <div class="contact-item">
             <span class="contact-icon">📞</span>
@@ -2758,6 +3009,60 @@
   </div>
 </div>
 
+<!-- MODAL DE AVISO IMPORTANTE -->
+<div id="aviso-modal" class="aviso-hidden" role="dialog" aria-modal="true" aria-labelledby="aviso-title">
+  <div class="aviso-box">
+
+    <div class="aviso-header">
+      <div  class="aviso-icon-wrap" aria-hidden="true">
+        <img id="aviso-logo-information" alt="imagen">
+      </div>
+      <div class="aviso-header-text">
+        <span class="aviso-eyebrow">Comunicado importante</span>
+        <h2 class="aviso-title" id="aviso-title">Extensión fecha límite para recepción de trabajos </h2>
+      </div>
+    </div>
+
+    <button class="aviso-close" onclick="closeAvisoModal()" aria-label="Cerrar aviso">✕</button>
+
+    <div class="aviso-body">
+      <p>
+        Informamos a la comunidad académica  la nueva fecha límite para la 
+        recepción de propuestas. Ajusta tu calendario y aprovecha el tiempo 
+        adicional para perfeccionar tu propuesta.
+      </p>
+
+      <div class="aviso-dates-grid">
+        <div class="aviso-date-card old">
+          <div class="aviso-date-label">Fecha anterior</div>
+          <div class="aviso-date-main">8 de Mayo</div>
+          <div class="aviso-date-sub">2026</div>
+        </div>
+        <div class="aviso-date-card new">
+          <div class="aviso-date-label">🟢 Nueva fecha</div>
+          <div class="aviso-date-main">5 de Junio</div>
+          <div class="aviso-date-sub">2026</div>
+        </div>
+      </div>
+
+      <div class="aviso-note">
+        Recordamos que a quienes sometan sus propuestas hasta el <strong>8 de mayo</strong>. 
+        La respuesta se les informará hasta el <strong>29 de mayo</strong>.
+        <br>Para envíos hasta el <strong>5 de junio</strong>, la fecha de respuesta será <strong>29 de junio</strong>.
+      </div>
+    </div>
+
+    <div class="aviso-footer">
+      <button class="aviso-btn-dismiss" onclick="closeAvisoModal()">Entendido</button>
+      <a class="aviso-btn-cta" href="#reg-section"
+         onclick="closeAvisoModal(); setTimeout(()=>document.getElementById('reg-section')?.scrollIntoView({behavior:'smooth'}),80); return false;">
+        Ir a Inscripción →
+      </a>
+    </div>
+
+  </div>
+</div>
+
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
@@ -2765,10 +3070,15 @@ const posterFirtsAnuncio = "https://res.cloudinary.com/dspprxtpr/image/upload/v1
 const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773975620/posternew_batcheditor_fotor_g5o6ub.webp"
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
-const email = "altenua@udenar.edu.co"
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform"
+const email = "udenaraltenua@gmail.com"
+//AQUI CAMBIAR CON EL NUEVO LINK DEL FORMULARIO DE INSCRIPCION ESTE LISTO
+const GOOGLE_FORM_URL = "https://forms.gle/sUV6sRaRW1NMukwi8"
 const GOOGLE_FORM_BILL_URL = "https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245"
+const eventName = "ALTENCOA 11 - 2026"
+const mensajetemporalOrignal = "Completa el formulario con tus datos personales y tipo de participación."
 
+//
+document.getElementById('mensajecambiar').textContent = mensajetemporalOrignal;
 document.getElementById('footer').src = logo;
 document.getElementById('posterAbout').src = posterAboutImg;
 document.getElementById('imgPasto').src = imgPasto;
@@ -2776,9 +3086,42 @@ document.getElementById('email').textContent = email;
 document.getElementById('imgUdenar').src = imgUdenar;
 document.getElementById('urlForm').href = GOOGLE_FORM_URL;
 document.getElementById('urlBill').href = GOOGLE_FORM_BILL_URL;
+document.getElementById('eventTitle').textContent = eventName;
+document.getElementById('aviso-logo-information').src = logo;
 
 const descriptionEvent = "Los encuentros ALTENCOA surgieron por iniciativa del grupo de investigación Álgebra, Teoría de Números y Aplicaciones: ERM (ALTENUA), conformado principalmente por profesores y estudiantes de las universidades de Antioquia, Cauca, Nariño y Valle, con el propósito de promover y consolidar el desarrollo del Álgebra y la Teoría de Números en Colombia, así como de contribuir al posicionamiento del país como sede de eventos académicos en estas áreas. Desde sus primeras ediciones, realizadas en distintas universidades colombianas a mediados de la década de 2000, ALTENCOA se estableció como un espacio regular de articulación de la comunidad académica, intercambio científico y fortalecimiento de redes de colaboración. Este proceso favoreció la proyección nacional e internacional de estas líneas de investigación desde el grupo de investigación y contribuyó a que Colombia acogiera, en años posteriores, la XVII edición del Coloquio Latinoamericano de Álgebra. En la actualidad, ALTENCOA es un evento académico con proyección internacional orientado al fomento del Álgebra, la Teoría de Números, la Combinatoria, la Geometría Algebraica y sus Aplicaciones, mediante la interacción entre investigadores y el fortalecimiento de redes de cooperación a través de conferencias, cursillos y sesiones de divulgación de resultados."
 document.getElementById('aboutText').textContent = descriptionEvent;
+
+
+/* ══ AVISO MODAL ══════════════════════════════════════════════════ */
+function openAvisoModal() {
+  const m = document.getElementById('aviso-modal');
+  if (!m) return;
+  m.classList.remove('aviso-hidden');
+  document.body.style.overflow = 'hidden';
+  m.addEventListener('click', function backdropClick(e) {
+    if (e.target === m) { closeAvisoModal(); m.removeEventListener('click', backdropClick); }
+  });
+}
+
+function closeAvisoModal() {
+  const m = document.getElementById('aviso-modal');
+  if (!m) return;
+  m.classList.add('aviso-hidden');
+  document.body.style.overflow = '';
+}
+
+// Abrir automáticamente al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  // Pequeño delay para que el hero cargue primero (opcional: quitar el setTimeout si se prefiere inmediato)
+  setTimeout(openAvisoModal, 600);
+});
+
+// Cerrar con Escape (se integra al listener ya existente en el sitio)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeAvisoModal();
+});
+
 
 /* ══ MODAL PRIMER ANUNCIO ══════════════════════════════════════ */
 function openAnuncioModal(e) {
@@ -3063,8 +3406,8 @@ const infoCards = [
     id: 'fechas',
     title: 'Fechas importantes',
     items: [
-      { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 8 de mayo' },
-      { label: 'Aceptación de propuestas', value: '29 de mayo' },
+      { label: 'Envío de ponencias y pósters / Recepción de propuestas', value: '16 de febrero al 5 de junio' },
+      { label: 'Aceptación de propuestas', value: '29 de junio' },
       { label: 'Evento', value: '5–9 de octubre de 2026' }
     ]
   },
@@ -3073,7 +3416,7 @@ const infoCards = [
     title: 'Costos y plazos',
     items: [
       { label: 'Límite de pago con descuento', value: '21 de agosto' },
-      { label: 'Límite de pago para expositores', value: '4 de septiembre *' },
+      { label: 'Límite de pago para expositores', value: '4 de septiembre' },
       { label: 'Límite de pago para asistentes', value: '18 de septiembre' }
     ]
   },
@@ -3166,7 +3509,7 @@ function renderTarifas() {
   html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>${createListFrom(costos.sin_descuento)}</div>`;
   html += '</div>';
   container.innerHTML = html;
-  const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento. Para expositores que paguen hasta el 21 de agosto obtendrán un descuento del 10% adicional.';
+  const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento.';
   if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
 }
 

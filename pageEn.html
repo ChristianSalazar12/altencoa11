@@ -63,6 +63,257 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+
+
+  /* ══ AVISO MODAL ══ */
+  #aviso-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 11000;
+    background: rgba(5, 20, 5, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: avisoFadeIn 0.3s ease;
+  }
+
+  #aviso-modal.aviso-hidden {
+    display: none;
+  }
+
+  @keyframes avisoFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .aviso-box {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: #0f2410;
+    border: 1px solid rgba(126,217,87,0.20);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+    animation: avisoSlideUp 0.32s cubic-bezier(0.22,1,0.36,1);
+    color: white;
+  }
+
+  @keyframes avisoSlideUp {
+    from { transform: translateY(28px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  /* Header */
+  .aviso-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 22px 20px 14px;
+  }
+
+  .aviso-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+  .aviso-icon-wrap img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .aviso-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .aviso-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7ED957;
+  }
+
+  .aviso-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  /* Close button */
+  .aviso-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.70);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .aviso-close:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+  }
+
+  /* Body */
+  .aviso-body {
+    padding: 0 20px 6px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+  }
+
+  /* Fechas grid */
+  .aviso-dates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .aviso-date-card {
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .aviso-date-card.old {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .aviso-date-card.new {
+    background: rgba(126,217,87,0.08);
+    border: 1px solid rgba(126,217,87,0.28);
+  }
+
+  .aviso-date-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .aviso-date-card.old .aviso-date-label { color: rgba(255,255,255,0.38); }
+  .aviso-date-card.new .aviso-date-label { color: #7ED957; }
+
+  .aviso-date-main {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .aviso-date-card.old .aviso-date-main {
+    color: rgba(255,255,255,0.38);
+    text-decoration: line-through;
+  }
+  .aviso-date-card.new .aviso-date-main { color: #7ED957; }
+
+  .aviso-date-sub {
+    font-size: 11px;
+    margin-top: 4px;
+    color: rgba(255,255,255,0.40);
+  }
+  .aviso-date-card.new .aviso-date-sub { color: rgba(126,217,87,0.65); }
+
+  /* Nota */
+  .aviso-note {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.60);
+    line-height: 1.65;
+    margin-top: 4px;
+  }
+
+  .aviso-note strong {
+    color: rgba(255,255,255,0.90);
+  }
+
+  /* Footer / actions */
+  .aviso-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 20px 20px;
+    flex-wrap: wrap;
+  }
+
+  .aviso-btn-dismiss {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.50);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+    font-family: 'Lato', sans-serif;
+  }
+  .aviso-btn-dismiss:hover {
+    color: white;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .aviso-btn-cta {
+    background: #7ED957;
+    color: #0a2a00;
+    border: none;
+    border-radius: 50px;
+    padding: 11px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .aviso-btn-cta:hover {
+    background: #9BE564;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(126,217,87,0.35);
+  }
+
+  @media (max-width: 400px) {
+    .aviso-dates-grid { grid-template-columns: 1fr; }
+    .aviso-footer { justify-content: stretch; }
+    .aviso-btn-cta { width: 100%; justify-content: center; }
+  }
+
+
+
   /* ── HERO ── */
   .hero {
     position: relative;
@@ -2258,8 +2509,8 @@
           <div class="flip-dates-face flip-dates-front">
             <div class="flip-dates-title">Important Dates</div>
             <ul class="flip-dates-list">
-              <li><strong>Submission of Proposals:</strong> February 16 to May 8</li>
-              <li><strong>Acceptance of Proposals:</strong> May 29</li>
+              <li><strong>Submission of Proposals:</strong> February 16 to June 5</li>
+              <li><strong>Acceptance of Proposals:</strong> June 29</li>
               <li><strong>Early Registration Deadline:</strong> August 21</li>
             </ul>
             <button class="flip-dates-btn" onclick="this.closest('.flip-dates-card').classList.add('flipped')" aria-label="See more dates">
@@ -2316,7 +2567,7 @@
           </div>
           <div class="video-btn-text">
             <span class="video-btn-title">Watch event video</span>
-            <span class="video-btn-sub">Learn more about ALTENCOA</span>
+            <span class="video-btn-sub">Learn more about <span id="eventName"></span></span>
           </div>
         </a>
       </div>
@@ -2380,7 +2631,7 @@
   <div class="org-inner-O">
     <div class="section-label-O">Organization</div>
     <h2 class="section-heading-O">Organizing <span class="green">Committee</span></h2>
-    <p class="section-desc-O">The team of professionals making ALTENCOA 11 possible</p>
+    <p class="section-desc-O">The team of professionals making ALTENCOA 11-2026 possible</p>
     <div class="members-grid-O" id="members-grid"></div>
   </div>
 </section>
@@ -2446,7 +2697,7 @@
         ⚠️ Important Note - Oral presentation or Poster
       </p>
       <p style="margin: 0 0 8px 0;">
-        To submit your abstract, we kindly ask you to follow the instructions provided in the official ALTENCOA11-2026 
+        To submit your abstract, we kindly ask you to follow the instructions provided in the official
         <strong>ALTENCOA11-2026</strong>. Submissions that do not use this template
         <strong>cannot be considered</strong> by the Scientific Committee.
       </p>
@@ -2455,7 +2706,7 @@
         <strong><a href="https://revistas.udenar.edu.co/index.php/rsigma/" target="_blank" rel="noopener noreferrer" style= "color: #7ED957;" >Revista Sigma (ISSN: 2017-064X)</a></strong> of Universidad de Nariño
       </p>
       <a 
-        href="https://www.overleaf.com/project/6990fddbc7b24c05a73b8063" 
+        href="https://www.overleaf.com/read/cdhzxkppjvnx#3989d2" 
         target="_blank" 
         rel="noopener noreferrer"
         style="
@@ -2474,15 +2725,15 @@
         onmouseover="this.style.background='rgba(126,217,87,0.12)'"
         onmouseout="this.style.background='transparent'"
       >
-        📄 Download ALTENCOA11-2026 Template →
+        📄 Template ALTENCOA11-2026 →
       </a>
        <p style="margin-top:12px; font-size:14px; color:#d3d5d2;">
-      Mayor información:
+      More information:
       <a 
         href="mailto:altenua@udenar.edu.co"
         style="color:#7ED957; text-decoration: none; font-size: 15px;"
       >
-        altenua@udenar.edu.co
+        udenaraltenua@gmail.com
       </a>
     </p>
     </div>
@@ -2509,13 +2760,13 @@
 
             <p style="margin-top:10px; font-size:14px; color:#d3d5d2;">
                 More Information: 
-                <a href="mailto:fandresbenavides@udenar.edu.co" style="color:#7ED957;     text-decoration: none; font-size: 15px;">
-                fandresbenavides@udenar.edu.co
+                <a href="mailto:fandresbenavides@gmail.com" style="color:#7ED957;     text-decoration: none; font-size: 15px;">
+                fandresbenavides@gmail.com
               </a>
             </p>
           </div>
 
-          <!-- Nota final -->
+            <!-- Nota final -->
           <div style="
             margin-top: 28px;
             padding: 14px 16px;
@@ -2555,7 +2806,7 @@
         />
         <div class="photo-label">
           <strong>San Juan de Pasto</strong>
-          <span>Capital de Nariño, Colombia</span>
+          <span>Capital of Nariño, Colombia</span>
           <a class="photo-more" href="https://aventurecolombia.com/es/que-hacer-en-pasto/" target="_blank" rel="noopener noreferrer">Learn more</a>
         </div>
       </div>
@@ -2563,12 +2814,12 @@
       <div class="photo-card">
         <img data-img="photo2"
           id="imgUdenar"
-          alt="Universidad de Nariño"
+          alt="University of Nariño"
           loading="lazy"
         />
         <div class="photo-label">
-          <strong>Universidad de Nariño</strong>
-          <span>Sede del evento ALTENCOA11</span>
+          <strong>University of Nariño</strong>
+          <span>Venue ALTENCOA 11-2026</span>
           <a class="photo-more" href="https://www.udenar.edu.co/resena-historica/" target="_blank" rel="noopener noreferrer">Learn more</a>
         </div>
       </div>
@@ -2586,7 +2837,7 @@
 
       <div class="info-card">
         <span class="info-icon">🎓</span>
-        <h4>Universidad de Nariño</h4>
+        <h4>University of Nariño</h4>
         <p>Founded in 1904, it is the main public university in southern Colombia, with a strong tradition in mathematics and science.</p>
       </div>
 
@@ -2617,7 +2868,7 @@
       <div class="brand-col">
         <div class="brand-logo">
           <img style="width: 40px;" id="footer" alt="logo" loading="lazy">
-          <div class="brand-name">ALTENCOA<span class="green">11</span></div>
+          <div class="brand-name">ALTENCOA<span class="green">11-2026</span></div>
         </div>
         <p class="brand-desc">
            Algebra, Number Theory, Combinatorics, Algebraic Geometry and its Applications.
@@ -2654,11 +2905,11 @@
         <div class="contact-items">
           <div class="contact-item">
             <span class="contact-icon">✉</span>
-            <a href="altenua@udenar.edu.co">altenua@udenar.edu.co</a>
+            <a href="mailto:udenaraltenua@gmail.com">udenaraltenua@gmail.com</a>
           </div>
           <div class="contact-item">
             <span class="contact-icon">✉</span>
-            <a href="mailto:matematicas@udenar.edu.co">matematicas@udenar.edu.co</a>
+            <a href="mailto:jhcastillo@gmail.com">jhcastillo@gmail.com</a>
           </div>
           <!-- <div class="contact-item">
             <span class="contact-icon">📞</span>
@@ -2747,6 +2998,65 @@
   </div>
 </div>
 
+<!-- MODAL DE AVISO IMPORTANTE -->
+<div id="aviso-modal" class="aviso-hidden" role="dialog" aria-modal="true" aria-labelledby="aviso-title">
+  <div class="aviso-box">
+
+    <div class="aviso-header">
+      <div  class="aviso-icon-wrap" aria-hidden="true">
+        <img id="aviso-logo-information" alt="imagen">
+      </div>
+      <div class="aviso-header-text">
+        <span class="aviso-eyebrow">Important Announcement</span>
+        <h2 class="aviso-title" id="aviso-title">Extension of the Submission Deadline</h2>
+      </div>
+    </div>
+
+    <button class="aviso-close" onclick="closeAvisoModal()" aria-label="Close announcement">✕</button>
+
+    <div class="aviso-body">
+      <p>
+       We inform the academic community of the new deadline for proposal submissions.
+        Please adjust your calendar and take advantage of this additional time 
+        to refine your proposal.
+      </p>
+     
+      <div class="aviso-dates-grid">
+        <div class="aviso-date-card old">
+          <div class="aviso-date-label">Previous Date</div>
+          <div class="aviso-date-main">May 8</div>
+          <div class="aviso-date-sub">2026</div>
+        </div>
+        <div class="aviso-date-card new">
+          <div class="aviso-date-label">🟢 New Date</div>
+          <div class="aviso-date-main">June 5</div>
+          <div class="aviso-date-sub">2026</div>
+        </div>
+      </div>
+
+
+
+     <!-- traduce este div -->
+      <div class="aviso-note">
+        
+
+        We remember that those who submit their proposals until the <strong>May 8</strong>. 
+        The response will be informed until the <strong>May 29</strong>.
+        <br>For submissions until the <strong>June 5</strong>, the response date will be <strong>June 29</strong>.
+      </div>
+    </div>
+
+    <div class="aviso-footer">
+      <button class="aviso-btn-dismiss" onclick="closeAvisoModal()">Understood</button>
+      <a class="aviso-btn-cta" href="#reg-section"
+         onclick="closeAvisoModal(); setTimeout(()=>document.getElementById('reg-section')?.scrollIntoView({behavior:'smooth'}),80); return false;">
+        Go to Registration →
+      </a>
+    </div>
+
+  </div>
+</div>
+
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
@@ -2754,9 +3064,10 @@ const posterFirtsAnuncio = "https://res.cloudinary.com/dspprxtpr/image/upload/v1
 const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773975620/posternew_batcheditor_fotor_g5o6ub.webp"
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
-const email = "altenua@udenar.edu.co"
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdxrMzl8qnib8Tcd2c8NOKNkkcWPKrxqYtPtTcA_RpHYmdJtg/viewform"
+const email = "udenaraltenua@gmail.com"
+const GOOGLE_FORM_URL = "https://forms.gle/sUV6sRaRW1NMukwi8"
 const GOOGLE_FORM_BILL_URL = "https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245"
+const eventName = "ALTENCOA 11 - 2026"
 
 document.getElementById('footer').src = logo;
 document.getElementById('posterAbout').src = posterAboutImg;
@@ -2765,9 +3076,41 @@ document.getElementById('email').textContent = email;
 document.getElementById('imgUdenar').src = imgUdenar;
 document.getElementById('urlForm').href = GOOGLE_FORM_URL;
 document.getElementById('urlBill').href = GOOGLE_FORM_BILL_URL;
+document.getElementById('eventName').textContent = eventName;
+document.getElementById('aviso-logo-information').src = logo;
 
 const descriptionEvent = "The ALTENCOA meetings arose on the initiative of the research group Algebra, Number Theory and Applications: ERM (ALTENUA), composed mainly by professors and students from the universities of Antioquia, Cauca, Nariño and Valle, with the purpose of promoting and consolidating the development of Algebra and Number Theory in Colombia, as well as contributing to the positioning of the country as a venue for academic events in these areas. Since its first editions, held in various Colombian universities in the mid-2000s, ALTENCOA was established as a regular space for academic community articulation, scientific exchange and strengthening of collaborative networks. This process favored the national and international projection of these lines of research from the research group and contributed to Colombia hosting, in later years, the XVII edition of the Latin American Colloquium of Algebra. Currently, ALTENCOA is an academic event with international projection oriented to the promotion of Algebra, Number Theory, Combinatorics, Algebraic Geometry and its Applications, by interacting between researchers and strengthening cooperation networks through conferences, workshops and dissemination sessions of results."
 document.getElementById('aboutText').textContent = descriptionEvent;
+
+
+/* ══ AVISO MODAL ══════════════════════════════════════════════════ */
+function openAvisoModal() {
+  const m = document.getElementById('aviso-modal');
+  if (!m) return;
+  m.classList.remove('aviso-hidden');
+  document.body.style.overflow = 'hidden';
+  m.addEventListener('click', function backdropClick(e) {
+    if (e.target === m) { closeAvisoModal(); m.removeEventListener('click', backdropClick); }
+  });
+}
+
+function closeAvisoModal() {
+  const m = document.getElementById('aviso-modal');
+  if (!m) return;
+  m.classList.add('aviso-hidden');
+  document.body.style.overflow = '';
+}
+
+// Abrir automáticamente al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  // Pequeño delay para que el hero cargue primero (opcional: quitar el setTimeout si se prefiere inmediato)
+  setTimeout(openAvisoModal, 600);
+});
+
+// Cerrar con Escape (se integra al listener ya existente en el sitio)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeAvisoModal();
+});
 
 /* ══ MODAL PRIMER ANUNCIO ══════════════════════════════════════ */
 function openAnuncioModal(e) {
@@ -3052,8 +3395,8 @@ const infoCards = [
     id: 'fechas',
     title: 'Important dates',
     items: [
-      { label: 'Submission of papers and posters / Proposal reception', value: 'February 16 to May 8' },
-      { label: 'Proposal acceptance', value: 'May 29' },
+      { label: 'Submission of papers and posters / Proposal reception', value: 'February 16 to June 5' },
+      { label: 'Proposal acceptance', value: 'June 29' },
       { label: 'Event', value: 'October 5–9, 2026' }
     ]
   },
@@ -3062,11 +3405,11 @@ const infoCards = [
     title: 'Costs and Deadlines',
     items: [
       { label: 'Payment Deadline with Discount', value: 'August 21' },
-      { label: 'Payment Deadline for Presenters', value: 'September 4 *' },
+      { label: 'Payment Deadline for Speakers', value: 'September 4 ' },
       { label: 'Payment Deadline for Attendees', value: 'September 18' }
     ]
   },
-  { id: 'tarifas', title: 'Feets', type: 'tarifas' }
+  { id: 'tarifas', title: 'Fees', type: 'tarifas' }
 ];
 
 const costos = {
@@ -3158,7 +3501,7 @@ function renderTarifas() {
   html += `<div class="tarif-column"><div class="tarif-col-title">Regular prices</div>${createListFrom(costos.sin_descuento)}</div>`;
   html += '</div>';
   container.innerHTML = html;
-  const mentionText = 'Discounted prices apply for payments made before 21 August 2026. After this date, no discount rates will apply. For exhibitors who pay by August 21 will get an additional 10% discount. ';
+  const mentionText = 'Discounted prices apply for payments made before 21 August 2026. After this date, no discount rates will apply.';
   if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
 }
 
