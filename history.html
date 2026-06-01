@@ -59,47 +59,28 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* SVG Logo */
-    .logo-svg { width: 40px; height: 40px; flex-shrink: 0; }
-
-    /* Hero inline logo */
-    .hero-logo {
-      display: block;
-      width: 200px;
-      height: auto;
-      margin: 0.6rem auto 1rem;
-      border-radius: 10px;
-    }
-
-    .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--text);
-      letter-spacing: .04em;
-    }
-
-    .logo-text span { color: var(--green); }
 
     /* ═══════════════════════════════════
        BANNER
     ═══════════════════════════════════ */
         .banner {
       position: relative;
-      width: 100%;
-      min-height: 420px;
+      min-width: 100%;
+      max-height: 420px;
+      min-height: 411px;
       overflow: hidden;
       display: flex;
-      align-items: center;
+      
     }
 
     /* ── BACKGROUND IMAGE (inserted via JS) ── */
     #bg-image {
       position: absolute;
-      inset: 0;
       width: 100%;
+      inset: 0;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background-size: contain;
       object-position: center top;
       z-index: 0;
     }
@@ -171,14 +152,15 @@
       gap: 140px;
     }
     .udenar-logo {
-      max-width: 220px;
+      max-width: 270px;
       height: auto;
-      filter: drop-shadow(0 2px 8px rgb(255, 255, 255));
+      filter: invert(1) contrast(300%) drop-shadow(2px 6px 8px rgb(136, 136, 136));
     }
     .altencoa-logo {
-      max-width: 60px;
+      max-width: 70px;
       height: auto;
-      filter: drop-shadow(0 2px 8px rgba(144, 140, 140, 0.7));
+      filter: contrast(100%);
+      /* filter: drop-shadow(0 2px 8px rgba(144, 140, 140, 0.7)); */
 
     }
 
@@ -387,7 +369,7 @@
 .history-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: opacity 0.3s ease;
 }
@@ -411,7 +393,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-top: 8px;
+  
 }
 
 .history-info-label {
@@ -594,8 +576,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: transparent;
-  border: 1px solid rgba(126,217,87,0.35);
+  background: var(--accent-300);
+  border: 1px solid rgba(96, 243, 33, 0.35);
   color: var(--accent-600);
   font-size: 12px;
   font-weight: 700;
@@ -607,8 +589,8 @@
   transition: background 0.2s, border-color 0.2s;
 }
 .btn-resumen:hover {
-  background: rgba(126,217,87,0.1);
-  border-color: rgba(126,217,87,0.6);
+  background: rgba(93, 255, 23, 0.1);
+  border-color: rgba(93, 255, 23, 0.6);
 }
 .btn-resumen svg { flex-shrink: 0; }
 
@@ -1290,8 +1272,7 @@
       <span class="title-descubre">Descubre</span>
       <span class="title-altencoa">ALTENCOA</span>
       <p class="description">
-        El encuentro académico más importante de Colombia en Álgebra,
-        Teoría de Números, Combinatoria y Aplicaciones.
+       Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica · Análisis de Datos y Sistemas Complejos.
       </p>
     </div>
 
@@ -1554,20 +1535,49 @@
 </footer>
 
 <script>
+
+  //HEADER LOGO
   const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
   document.getElementById('footer').src = logo;
 
   const banner = document.getElementById('banner');
+    
+    // ► Array de URLs de imágenes para el carrusel
+    const carouselImages = [
+      'https://res.cloudinary.com/dspprxtpr/image/upload/v1779472982/ALTENCOA8_1027x411_mvqbud.jpg',
+      'https://res.cloudinary.com/dspprxtpr/image/upload/v1779475622/ALTENCOA6_1376x420_pfiysy.jpg',
+      'https://res.cloudinary.com/dspprxtpr/image/upload/v1779474909/ALTENCOA10_1375x420_tq5o5a.png'
+      // Agrega más URLs aquí según sea necesario
+    ];
+
     const bgImg = document.createElement('img');
     bgImg.id = 'bg-image';
     bgImg.alt = 'Universidad de Nariño - ALTENCOA';
-
-    // ► Cambia esta URL por la ruta real de tu imagen de fondo
-    bgImg.src = 'https://res.cloudinary.com/dspprxtpr/image/upload/v1777050161/fondopasto_batcheditor_fotor_r8p3cv.webp';
+    bgImg.style.transition = 'opacity 1s ease-in-out';
 
     // Insertar antes de .overlay (primer hijo)
     banner.insertBefore(bgImg, banner.firstChild);
 
+    // Variables para el carrusel
+    let currentImageIndex = 0;
+
+    // Función para cambiar la imagen
+    function changeBackgroundImage() {
+      bgImg.style.opacity = '0';
+      setTimeout(() => {
+        bgImg.src = carouselImages[currentImageIndex];
+        bgImg.style.opacity = '1';
+        currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+      }, 500);
+    }
+
+    // Establecer la primera imagen
+    bgImg.src = carouselImages[0];
+    bgImg.style.opacity = '1';
+    currentImageIndex = 1;
+
+    // Cambiar imagen cada 5 segundos (5000 milisegundos)
+    setInterval(changeBackgroundImage, 5000);
 
     // 2. RIGHT-SIDE LOGOS
     const logosContainer = document.getElementById('logos-right');
@@ -1606,7 +1616,7 @@
 
 Entre los participantes internacionales se contó con José Antonio de La Peña (UNAM, México), Nicolás Andruskiewitsch (Universidad de Córdoba, Argentina), Héctor Merklen (Universidad de Sao Paulo, Brasil), Juan Rada (Universidad de los Andes, Venezuela), Ivonne Ortiz (Universidad de Miami), Juan Carlos Bustamante (Universidad de Sao Paulo), Julio César López (Universidad de Campinhas), Víctor Albis (Universidad Nacional de Bogotá y Academia Colombiana de Ciencias Exactas Físicas y Naturales), Juan Diego Vélez y Margarita Toro (Universidad Nacional seccional Medellín).
 `,
-    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=80',
+    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1779481983/6bd86dec-e63e-4635-86aa-14a6c26665dc.png',
     speakers: [
       { name: 'José Antonio de La Peña', affiliation: 'UNAM, México', country: 'México' },
       { name: 'Nicolás Andruskiewitsch', affiliation: 'Universidad de Córdoba, Argentina', country: 'Argentina' },
@@ -1762,7 +1772,7 @@ Entre los participantes internacionales se contó con José Antonio de La Peña 
     grupo nacional ALTENUA y semillero de investigación en Teoría de Números
     ITENUA
     `,
-    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1777039717/ALTENCOA5_batcheditor_fotor_efpgi6.webp',
+    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1779481138/ALTENCOA5_cdu40d.png',
     speakers: [
       { name: 'Wilson Zuñiga', affiliation: 'CINVESTAV I.P.N.', country: 'México' },
       { name: 'Florian Luca', affiliation: 'Universidad Nacional Autónoma de México', country: 'México' },
@@ -1911,7 +1921,7 @@ Entre los participantes internacionales se contó con José Antonio de La Peña 
      cursillos, plenarias, ponencias y posters en cada una de las áreas del encuentro. Esta versión fue 
      pospuesta del año 2020, como consecuencia de la pandemia COVID 19.
     ` ,
-    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1777043004/altenco82018_yuvufz.webp',
+    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1779481530/ALTENCOA9_nylntv.jpg',
     speakers: [
       { name: 'Bernhard Amberg', affiliation: 'Institut für Mathematik, Johannes Gutenberg-Universität', country: 'Alemania' },
       { name: 'Edson Ribeiro Alvares', affiliation: 'Universidade Federal do Paraná', country: 'Brasil' },
@@ -1960,7 +1970,7 @@ Entre los participantes internacionales se contó con José Antonio de La Peña 
     ponencias en sesiones simultáneas, con aportes de estudiantes, docentes e investigadores consolidados y emergentes.
 
     ` ,
-    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1777567941/altencoa2025_ar1yrx.webp',
+    img: 'https://res.cloudinary.com/dspprxtpr/image/upload/v1779481745/ALTENCOA10_m7pdfh.webp',
     speakers: [
       { name: 'Salvador Hernández', affiliation: 'Universidad Jaume I de Castellón', country: 'España' },
       { name: 'Luciane Quoos', affiliation: 'Universidade Federal do Rio de Janeiro', country: 'Brasil' },
@@ -2078,8 +2088,6 @@ function renderPeople(ed, animate = true) {
   }
 }
 
-
-
 /* ── Render ── */
 let currentEditionIndex = 0;
 
@@ -2118,7 +2126,7 @@ function loadEdition(index, animate = true) {
     document.getElementById('history-img').src        = ed.img;
     document.getElementById('history-img').alt        = ed.title;
     document.getElementById('history-badge').textContent = ed.edition;
-    document.getElementById('history-info-label').textContent = `ALTENCOA${(index + 1)} - ${ed.year}`;
+    // document.getElementById('history-info-label').textContent = `ALTENCOA${(index + 1)} - ${ed.year}`;
     document.getElementById('history-info-title').textContent = ed.title;
     document.getElementById('history-city').textContent       = ed.city;
     document.getElementById('history-date-meta').textContent  = ed.date;
@@ -2171,16 +2179,16 @@ document.addEventListener('DOMContentLoaded', renderHistory);
 
 /* ══ PDF MODAL ══ */
 const PDF_DOCS = {
-  0: { url: 'https://collection.cloudinary.com/dspprxtpr/08128a88f63d8e35ff399926aabf060c',   label: 'Memorias ALTENCOA 2004'    },
-  1: { url: 'https://drive.google.com/file/d/1xbmaI7ojN5wspsAIMYzBQ8BXZALd9sEt/view?usp=sharing',   label: 'Memorias ALTENCOA 2006'    },
-  2: { url: 'https://raw.githubusercontent.com/ChristianSalazar12/altencoa11/2bf354474a2c384fa7f725cb55ccd9368566fa19/assets/pdf/PROYECTO-ALTENCOA11-2026DEF.pdf',   label: 'Memorias ALTENCOA 2008'    },
-  3: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/PROYECTO-ALTENCOA11-2026DEF.pdf',   label: 'Memorias ALTENCOA 2010'    },
-  4: { url: 'https://TU-ENLACE-PDF-ALTENCOA2012.pdf',   label: 'Memorias ALTENCOA 2012'    },
-  5: { url: 'https://TU-ENLACE-PDF-ALTENCOA2014.pdf',   label: 'Memorias ALTENCOA 2014'    },
-  6: { url: 'https://TU-ENLACE-PDF-ALTENCOA2016.pdf',   label: 'Memorias ALTENCOA 2016'    },
-  7: { url: 'https://TU-ENLACE-PDF-ALTENCOA2018.pdf',   label: 'Memorias ALTENCOA 2018'    },
-  8: { url: 'https://TU-ENLACE-PDF-ALTENCOA2023.pdf',   label: 'Memorias ALTENCOA 2023'    },
-  9: { url: 'https://TU-ENLACE-PDF-ALTENCOA2025.pdf',   label: 'Memorias ALTENCOA 2025'    },
+  0: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/documentoconinformacionALTENCOA2004.pdf',   label: 'Memorias ALTENCOA 2004'    },
+  1: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA2006.pdf',   label: 'Memorias ALTENCOA 2006'    },
+  2: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/primeravisoaltencoa3.pdf',   label: 'Memorias ALTENCOA 2008'    },
+  3: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA4-2010.pdf',   label: 'Memorias ALTENCOA 2010'    },
+  4: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA5-2012.pdf',   label: 'Memorias ALTENCOA 2012'    },
+  5: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA6-2014.pdf',   label: 'Memorias ALTENCOA 2014'    },
+  6: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA7-2016.pdf',   label: 'Memorias ALTENCOA 2016'    },
+  7: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA8-2018.pdf',   label: 'Memorias ALTENCOA 2018'    },
+  8: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA9-2023.pdf',   label: 'Memorias ALTENCOA 2023'    },
+  9: { url: 'https://christiansalazar12.github.io/altencoa11/assets/pdf/ALTENCOA10-2025.pdf',   label: 'Memorias ALTENCOA 2025'    },
 };
 
 (function buildPdfModal() {

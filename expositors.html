@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALTENCOA11 – 2026</title>
+    <link />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Merriweather:wght@700&display=swap');
+
+        /* ── TOKENS ─────────────────────────────────────────── */
+        :root {
+            --green-dark: #1a3c2bb1;
+            --green-mid: #7ED957;
+            --green-main: #5cb832;
+            --green-light: #7ED957;
+            --green-pale: #e8f5ed;
+            --green-badge: #c8e6d0;
+            --bg-dark: #1d5027f3;
+            --bg-darker: #092010;
+            --green-photo-bg: linear-gradient(180deg, #d4edda 0%, #b8dfc4 100%);
+            --cream: #f7f5f0;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-mid: #3a3a3a;
+            --text-muted: #6b7280;
+            --border: #c8e0d2;
+            --border-thin: #a8d4b8;
+            --shadow-card: 0 4px 28px rgba(30, 80, 50, .11), 0 1px 4px rgba(30, 80, 50, .06);
+            --shadow-hover: 0 14px 44px rgba(30, 80, 50, .20), 0 2px 8px rgba(30, 80, 50, .10);
+            --radius-card: 16px;
+            --radius-pill: 999px;
+            --bg-light: #f0f4ef;
+
+
+            /* Typography */
+            --font-sans: 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            --font-display: 'Bebas Neue', system-ui, sans-serif;
+            --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+            --fs-base: 16px;
+            --fs-scale-lg: clamp(26px, 4vw, 46px);
+            --fs-scale-md: clamp(14px, 1.5vw, 18px);
+
+            /* ── RESET & BASE ────────────────────────────────────── */
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: var(--font-sans);
+                font-size: var(--fs-base);
+                background: var(--bg-light);
+                color: var(--text-dark);
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+        }
+
+        /* ── DECORATIVE BG SIGMA ─────────────────────────────── */
+        body::before {
+            content: 'Σ';
+            position: fixed;
+            top: -60px;
+            left: -40px;
+            font-size: 540px;
+            font-family: var(--font-serif);
+            color: rgba(61, 140, 90, .05);
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        /* ── PAGE HEADER ─────────────────────────────────────── */
+        header {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Sticky header event tag */
+        .header-event-wrapper {
+            position: sticky;
+            display: flex;
+            top: 0;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            background: var(--bg-light);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            transition: background-color .3s ease, border-color .3s ease;
+        }
+
+        .header-event-wrapper.scrolled {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.992), rgba(54, 97, 36, 0.794));
+            border-bottom: 2px solid var(--green-light);
+        }
+
+        .header-content {
+            max-width: 720px;
+            margin: 0 auto;
+            font-family: var(--font-sans);
+            letter-spacing: -.01em;
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--text-dark);
+        }
+
+        /* event name highlight */
+        header h1 .event-name {
+            display: inline-block;
+            position: relative;
+            color: var(--green-main);
+            font-style: italic;
+        }
+
+        .header-event-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgb(17, 77, 41);
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            padding: 8px 22px;
+            border-radius: var(--radius-pill);
+        }
+
+        .header-event-tag .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green-light);
+        }
+
+        /* Filter Controls */
+        .filter-select {
+            padding: 6px 10px;
+            border: 1px solid rgba(38, 172, 91, 0.624);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            cursor: pointer;
+            transition: all .2s ease;
+            font-family: var(--font-sans);
+        }
+
+        .filter-select:hover,
+        .filter-select:focus {
+            background: rgba(126, 217, 87, 0.1);
+            border-color: var(--green-main);
+            outline: none;
+        }
+
+        .filter-select option {
+            background: var(--bg-darker);
+            color: var(--white);
+        }
+
+        .header-sub {
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ── CARDS GRID ──────────────────────────────────────── */
+        .cards-section {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px 96px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        /* ── SPEAKER CARD  (horizontal: left photo | right info) */
+        .speaker-card {
+            position: relative;
+            /* Obligatorio para posicionar la línea */
+            background: var(--white);
+            border-radius: var(--radius-card);
+            border-bottom: 2px solid var(--green-main);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            /* Esto recortará la línea del pseudo-elemento perfectamente */
+            display: flex;
+            flex-direction: row;
+            min-height: 220px;
+            transition: transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease;
+            animation: fadeUp .55s ease both;
+        }
+
+        /* La línea gradiente moderna */
+        .speaker-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--green-dark), var(--green-light));
+        }
+
+
+        .speaker-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .speaker-card:nth-child(1) {
+            animation-delay: .05s;
+        }
+
+        .speaker-card:nth-child(2) {
+            animation-delay: .16s;
+        }
+
+        .speaker-card:nth-child(3) {
+            animation-delay: .27s;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── LEFT COLUMN – photo panel ───────────────────────── */
+        /* ── LEFT COLUMN – photo panel ───────────────────────── */
+        .card-photo-panel {
+            flex-shrink: 0;
+            width: 290px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 24px 16px;
+            position: relative;
+            margin-top: 5px;
+
+            /* 1. Fondo base plano con el color más oscuro de los bordes */
+            background: rgba(0, 192, 77, 0.507);
+
+            /* 2. Sombras internas que simulan el resplandor rectangular desde el centro hacia afuera */
+            box-shadow:
+                inset 0 0 140px 70px rgb(255, 255, 255);
+
+            overflow: hidden;
+        }
+
+        /* El pseudo-elemento ::before ya no es necesario con este método */
+        .card-photo-panel::before {
+            display: none;
+        }
+
+        .photo-wrapper {
+            position: relative;
+            z-index: 2;
+            /* Sube el z-index para que flote claramente sobre el fondo */
+            width: 200px;
+            height: 240px;
+            border-radius: 13px;
+            border: 2.5px solid var(--green-dark);
+            /* Sombra exterior de la foto reforzada para dar volumen */
+            box-shadow: 0 12px 28px rgba(30, 80, 50, 0.25);
+            overflow: visible;
+            background: white;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 11px;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--green-dark);
+            background: linear-gradient(160deg, #e8f5ed 0%, #c8e6d0 100%);
+            letter-spacing: -.02em;
+            border-radius: 11px;
+        }
+
+        .photo-wrapper .topic-badge {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background: var(--bg-darker);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border-radius: var(--radius-pill);
+            white-space: nowrap;
+        }
+
+
+
+        /* ── RIGHT COLUMN – all info ─────────────────────────── */
+        .card-info-panel {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Imagen de fondo sutil y difuminada */
+        .card-info-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1779729332/ca25cd6d-bc6d-4568-8780-161122e4a865.png');
+            background-size: cover;
+            background-position: left right;
+            opacity: 0.18;
+            z-index: 0;
+            filter: blur(1px);
+            pointer-events: none;
+        }
+
+        /* Asegurar que el contenido esté encima de la imagen */
+        .card-info-panel>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* top bar with event tag */
+        .card-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 18px 0 18px;
+        }
+
+        .conf-type-label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            color: var(--bg-dark);
+        }
+
+        .event-pill-container {
+            line-height: 1;
+        }
+
+        .event-pill {
+            /* Eliminamos el fondo para que luzca como un logo integrado */
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            display: flex;
+            /* Estilo tipográfico imponente y comprimido (estilo Impact/Bebas) */
+            font-family: var(--font-sans);
+            font-size: 23.5px;
+            /* Más grande para que domine como un logo */
+            font-weight: bold;
+            /* Muy grueso */
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            /* Letras juntas, estilo marca moderna */
+            line-height: 1;
+
+            align-items: center;
+            gap: 4px;
+            /* Espacio mínimo entre el texto y el número */
+            color: var(--bg-dark);
+        }
+
+        .event-years {
+            color: var(--green-main);
+            font-weight: 900;
+        }
+
+        .event-topics {
+            font-size: 8px;
+            font-weight: 500;
+            color: var(--bg-darker);
+            margin: 0;
+            ;
+        }
+
+
+        .card-header {
+            padding: 14px 18px 12px;
+        }
+
+        .speaker-name {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--bg-darker);
+            margin-bottom: 9px;
+        }
+
+        .affiliation {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            font-size: 12px;
+            line-height: 1.45;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .affiliation-icon {
+            flex-shrink: 0;
+            width: 13px;
+            height: 13px;
+            margin-top: 1px;
+            color: var(--green-mid);
+        }
+
+        .affiliation strong {
+            color: var(--text-mid);
+            font-weight: 600;
+        }
+
+        /* talk title */
+        .card-talk {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(198, 235, 200, 0.492);
+            border-left: 4px solid var(--green-dark);
+            border-radius: 10px;
+            margin-left: 18px;
+            margin-right: 18px;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--green-main);
+            margin-bottom: 7px;
+        }
+
+        .section-label svg {
+            width: 13px;
+            height: 13px;
+        }
+
+
+        .talk-title {
+            font-size: 15px;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.4;
+            font-family: var(--font-serif);
+
+
+        }
+
+        /* abstract */
+        .card-abstract {
+            padding: 12px 18px 18px;
+            flex: 1;
+        }
+
+        .abstract-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--green-light);
+            margin-bottom: 7px;
+        }
+
+        .abstract-label svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .abstract-text {
+            font-size: 12.5px;
+            line-height: 1.65;
+            color: var(--text-mid);
+        }
+
+        .abstract-text em {
+            color: var(--text-mid);
+            font-style: italic;
+        }
+
+        .abstract-text strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+      
+
+        /* ── RESPONSIVE ──────────────────────────────────────── */
+        @media (max-width: 580px) {
+            .speaker-card {
+                flex-direction: column;
+            }
+
+            .card-photo-panel {
+                width: 100%;
+                padding: 16px 20px;
+                gap: 16px;
+            }
+
+            .card-info-panel {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .event-pill {
+                font-size: 18px;
+            }
+
+            .card-info-panel::before {
+                width: 100%;
+                background-position: center;
+
+            }
+
+            .header-sub {
+                font-size: 12px;
+                width: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header-event-wrapper {
+                width: 100%;
+                
+            }
+
+            .header-event-tag {
+                width: 100%;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                border-radius: 0;
+                border: 0;
+            }
+            .header-event-wrapper.scrolled {
+                background: none;
+                padding: 0;
+            
+        }
+        }
+
+
+        /* ══ FOOTER ══ */
+        .footer {
+            background: linear-gradient(160deg, #092010 0%, #0b2210 60%, #0e2a14 100%);
+            color: white;
+            padding: 70px 24px 0;
+        }
+
+        .footer-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ── TOP ROW: 3 columns ── */
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.4fr;
+            gap: 48px;
+            padding-bottom: 52px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Brand column */
+
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .logo-badge {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #3a7a1e, #7ED957);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            color: #0a2a00;
+            font-weight: 900;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: white;
+            line-height: 1;
+        }
+
+        .brand-name .green {
+            color: #7ED957;
+        }
+
+        .brand-desc {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.8;
+            max-width: 320px;
+            font-style: italic;
+        }
+
+        /* Links & Contact columns */
+        .footer-col-title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #7ED957;
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links li a {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .footer-links li a::before {
+            content: '→';
+            font-size: 11px;
+            color: #5cb832;
+            opacity: 0.7;
+        }
+
+        .footer-links li a:hover {
+            color: #9BE564;
+        }
+
+        /* Contact items */
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+
+        .contact-icon {
+            color: #7ED957;
+            font-size: 15px;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: #9BE564;
+        }
+
+        /* ── SPONSORS ROW ── */
+        .footer-sponsors {
+            background: #f0f4ef;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .sponsors-label {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgb(39, 142, 2);
+            margin-bottom: 28px;
+        }
+
+        .sponsors-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px 48px;
+        }
+
+        /* Sponsor logos */
+        .logo-udenar {
+            height: 245px !important;
+            max-width: 400px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-uis {
+            height: 170px !important;
+            max-width: 300px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-javeriana {
+            height: 190px !important;
+            max-width: 200px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-cauca {
+            height: 250px !important;
+            max-width: 400px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-valle {
+            height: 190px !important;
+            max-width: 300px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-altenua {
+            height: 180px !important;
+            max-width: 300px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-dpto {
+            height: 180px !important;
+            max-width: 300px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-antioquia {
+            height: 190px !important;
+            max-width: 350px !important;
+            transform: scale(0.9);
+        }
+
+        .logo-facien {
+            height: 200px !important;
+            max-width: 300px !important;
+            transform: scale(0.9);
+        }
+
+
+        /*-----------------carrusel---------------------*/
+        .carousel-track-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            width: max-content;
+            animation: scroll-left 28s linear infinite;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-logo {
+            height: 200px;
+            width: auto;
+            object-fit: contain;
+            transition: opacity 0.2s, filter 0.2s;
+            flex-shrink: 0;
+        }
+
+        .carousel-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /*----------------------------------------------------*/
+
+        .sponsor-text:hover {
+            opacity: 1;
+        }
+
+        /* ── BOTTOM BAR ── */
+        .footer-bottom {
+            padding: 22px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-bottom p {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-bottom a:hover {
+            color: #7ED957;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 720px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .brand-desc {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header-container" style="margin-top: 60px;">
+        <div class="header-content">
+            <h1>NUESTROS <span class="event-name">CONFERENCISTAS</span></h1>
+        </div>
+        <p class="header-sub">Álgebra · Teoría de Números · Combinatoria · Aplicaciones · Geometría Algebraica ·
+            Análisis de Datos y Sistemas Complejos</p>
+    </header>
+
+    <!-- STICKY FILTER HEADER -->
+    <div class="header-event-wrapper">
+        <span class="header-event-tag">
+            <div>
+                 <span class="dot"></span>
+                ALTENCOA11 – 2026
+                <span class="dot"></span>
+            </div>
+           
+
+            <select id="topicFilter" class="filter-select">
+                <option value="">Todos los Tópicos</option>
+            </select>
+        </span>
+    </div>
+
+    <!-- CARDS – populated by JS -->
+    <section class="cards-section" id="cards-grid"></section>
+
+
+    <footer class="footer">
+        <div class="footer-inner">
+
+            <!-- ── TOP: Brand · Links · Contact ── -->
+            <div class="footer-top">
+
+                <!-- Brand -->
+                <div class="brand-col">
+                    <div class="brand-logo">
+                        <img style="width: 40px;" id="footer" alt="logo" loading="lazy">
+                        <div class="brand-name">ALTENCOA<span class="green">11 - 2026</span></div>
+                    </div>
+                    <p class="brand-desc">
+                        Álgebra, Teoría de Números, Combinatoria, Geometría Algebraica y sus Aplicaciones.
+                        Un evento académico internacional en la Universidad de Nariño.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <div class="footer-col-title">Enlaces rápidos</div>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#inicio" title="Ir a Inicio" aria-label="ir a la sección de inicio"
+                                onclick="document.getElementById('inicio').scrollIntoView({behavior:'smooth'}); return false;">Inicio</a>
+
+                        </li>
+                        <li>
+                            <a href="#convocatoria" title="Ir a Sobre el evento"
+                                aria-label="ir a la sección de información"
+                                onclick="document.getElementById('convocatoria').scrollIntoView({behavior:'smooth'}); return false;">Sobre
+                                el evento</a>
+                        </li>
+                        <li>
+                            <a href="#comites" title="Ir a Comités" aria-label="ir a la sección de comités"
+                                onclick="document.getElementById('comites').scrollIntoView({behavior:'smooth'}); return false;">Comités</a>
+                        </li>
+                        <li>
+                            <a href="#reg-section" title="Ir a Inscripción" aria-label="ir a la sección de inscripción"
+                                onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Inscripción</a>
+                        </li>
+                        <li>
+                            <a href="#narino" title="Ir a Descubrir Nariño"
+                                aria-label="ir a la sección de descubrir nariño"
+                                onclick="document.getElementById('narino').scrollIntoView({behavior:'smooth'}); return false;">Descubrir
+                                Nariño</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <div class="footer-col-title">Contacto</div>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <span class="contact-icon">✉</span>
+                            <a href="mailto:udenaraltenua@gmail.com">udenaraltenua@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉</span>
+                            <a href="mailto:jhcastillo@gmail.com">jhcastillo@gmail.com</a>
+                        </div>
+                        <!-- <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <span>+57 (2) 7311449</span>
+              </div> -->
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Universidad de Nariño,<br>San Juan de Pasto, Colombia</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── SPONSORS ── -->
+            <div class="footer-sponsors">
+                <div class="sponsors-label">Apoyan</div>
+                <div class="carousel-track-wrapper">
+                    <div class="carousel-track" id="carousel-track"></div>
+                </div>
+            </div>
+
+            <!-- ── BOTTOM BAR ── -->
+            <div class="footer-bottom">
+                <p>
+                    © 2026 ALTENCOA11 — Universidad de Nariño. Todos los derechos reservados.
+                    &nbsp;·&nbsp;
+                    <a href="#">Política de privacidad</a>
+                    &nbsp;·&nbsp;
+                    <a href="#">Contacto</a>
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script>
+        const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
+        document.getElementById('footer').src = logo;
+        /* ═══════════════════════════════════════════════════════
+           DATA – all speaker data lives here
+        ═══════════════════════════════════════════════════════ */
+        const speakers = [
+            {
+                name: "Javier Sánchez Serdà",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779723110/Javier_Sanchez_Serd%C3%A0_wmaacw.jpg",
+                photoAlt: "Javier Sánchez Serdà",
+                confType: "Conferencia Plenaria",
+                affiliations: [
+                    { name: "Universidad de Sao Paulo", country: "Brasil" },
+
+                ],
+                topic: "Algebra",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Toward a Theory of Groupoid Graded Rings',
+                abstract: `We discuss initial steps toward the development of the theory of object-unital groupoid-
+                        graded rings. Although such rings do not, in general, possess
+                        a global identity element, they admit an appropriate system of 
+                        local units and we define local chain conditions, instead of global ones.
+                        We discuss initial steps toward the development of the theory of object-unital groupoid-
+                        graded rings. Although such rings do not, in general, possess
+                        a global identity element, they admit an appropriate system of 
+                        local units and we define local chain conditions, instead of global ones.`
+            },
+            {
+                name: "Florian Luca",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735277/Florian-Luca_duzyai.png",
+                photoAlt: "Florian Luca",
+                confType: "Conferencia Plenaria",
+                affiliations: [
+                    { name: "Stellenbosch University", country: "South Africa" },
+                    { name: "Max Planck Institute for Software Systems", country: "Germany" }
+                ],
+                topic: "Teoría de Números",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Multiply Gleeful numbers',
+                abstract: `For positive integers k and n let fk(n) be the number of ways of representing n as a sum of k
+                    powers of consecutive primes. A number is called k-gleeful if fk(n) > 0 and multiply gleeful if fk(n) > 1
+                    or fk(n)fk0 (n) > 0 for some positive integers k < k0
+
+                    . Under Schinzel’s hypothesis H, we show that
+                    there are infinitely many positive integers n such that f2(n)f4(n) > 0. Under the same assumption we
+                    show that lim supn→∞ f2(n) = ∞. This gives a conditional proof of a stronger version of a conjecture
+                    of Moore and Sorenson from the preprint [1].
+                    This work was funded in part by the 2024 ERC Synergy Grant “DynAMiCs”.`,
+            },
+            {
+                name: "Alonso Sepúlveda Castellanos",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735338/AlonsoSepulvedaCastellanos_sqjl4z.jpg",
+                photoAlt: "Alonso Sepúlveda Castellanos",
+                confType: "Conferencia Plenaria",
+                affiliations: [
+                    { name: "Universidade Federal de Uberlândia", country: "Brasil" },
+
+                ],
+                topic: "Geometría <br> Algebraica",
+                eventTag: "ALTENCOA",
+                talkTitle: 'LCD and LCP of AG Codes',
+                abstract: `Linear complementary pairs (LCPs) of codes and linear complementary dual (LCD) codes
+                    have gained significant attention due to their applications in coding theory and cryptography. In this
+                    work, we construct explicit LCPs of codes and LCD codes from function fields of genus g ≥ 1.`
+            },
+            {
+                name: "Alejandra Rada",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735371/AlejandraRada_dno8xj.jpg",
+                photoAlt: "Alejandra Rada",
+                confType: "Conferencia Plenaria",
+                affiliations: [
+                    { name: "Universidade Federal do ABC", country: "Brasil" },
+
+                ],
+                topic: "Análisis de Datos y <br> Sistemas Complejos",
+                eventTag: "ALTENCOA",
+                talkTitle: 'A Maki-Thompson model with updated and verified information.',
+                abstract: `Building on classical frameworks such as the Daley–Kendall (DK) and
+
+                    Maki–Thompson (MT) models, this lecture introduces a novel generalization of rumor propa-
+                    gation. We propose a model that incorporates two key innovations: in one hand, firstly, it extends
+                                
+                    the MT model by allowing multiple types of spreaders and permits stiflers to become spreaders
+                                
+                    again without returning to an ignorant state and seconly, it models updating, distortion and veri-
+                    fication of the information.`
+            },
+            {
+                name: "Pablo Martín Rodríguez",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735442/PabloMRodriguez_odfypy.jpg",
+                photoAlt: "Pablo Martín Rodríguez",
+                confType: "Conferencia Plenaria",
+                affiliations: [
+                    { name: "Universidade Federal de Pernambuco", country: "Brasil" },
+
+                ],
+                topic: "Análisis de Datos y <br>Sistemas Complejos",
+                eventTag: "ALTENCOA",
+                talkTitle: 'La matemática de la desinformación: procesos estocásticos en grafos.',
+                abstract: `En esta conferencia mostraremos c ́omo los modelos matem ́aticos de naturaleza estoc ́astica
+                    definidos sobre grafos permiten describir la din ́amica de transmisi ́on de informaci ́on en poblaciones es-
+                    tructuradas. Veremos que el desarrollo de modelos simplificados, lejos de constituir una limitaci ́on,
+
+                    representa una estrategia eficaz para identificar principios universales en los procesos de difusi ́on. In-
+                    troduciremos formalmente un sistema de part ́ıculas interactuantes que constituye uno de los primeros
+
+                    enfoques anal ́ıticos para el estudio de rumores en poblaciones homog ́eneamente mezcladas.`
+            }
+        ];
+
+        const courses = [
+            {
+                name: "Mario Huicochea ",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779737654/MarioHuicocheaMason_nultgi.jpg",
+                photoAlt: "Mario Huicochea ",
+                confType: "Cursillo",
+                affiliations: [
+                    { name: "SECIHTI/UAZ, Zacatecas", country: "México" },
+
+                ],
+                topic: "Combinatoria",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Colores en la geometría combinatoria',
+                abstract: `La geometr ́ıa discreta es un  ́area muy extensa de las matem ́aticas que se destaca por presentar
+                    problemas muy sencillos de entender pero en algunas ocasiones muy dif ́ıciles de resolver. En particular,
+                    varios problemas en esta  ́area se pueden plantear en t ́erminos de colores, subconjuntos monocrom ́aticos,
+                    etc. En este minicurso daremos una breve introducci ́on a algunos de los resultados de esta  ́area. En
+                    algunos casos, veremos las ideas de sus demostraciones.`
+            },
+            {
+                name: "Sergio Troncoso",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779737636/SERGIOTRONCOSOIGUA_f9m3cx.jpg",
+                photoAlt: "Sergio Troncoso",
+                confType: "Cursillo",
+                affiliations: [
+                    { name: "Universidad del Valle", country: "Colombia" },
+
+                ],
+                topic: "Geometría <br> Algebraica",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Introducción a las Variedades Tóricas',
+                abstract: `Linear complementary pairs (LCPs) of codes and linear complementary dual (LCD) codes
+                    have gained significant attention due to their applications in coding theory and cryptography. In this
+                    work, we construct explicit LCPs of codes and LCD codes from function fields of genus g ≥ 1.`,
+            }
+
+        ];
+
+        /* ═══════════════════════════════════════════════════════
+           ICONS
+        ═══════════════════════════════════════════════════════ */
+        const iconPin = `<svg class="affiliation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+        const iconMic = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10a7 7 0 01-14 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>`;
+        const iconDoc = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>`;
+
+        /* ═══════════════════════════════════════════════════════
+           RENDER
+        ═══════════════════════════════════════════════════════ */
+        function avatarHTML(s) {
+            if (s.photo) return `<img src="${s.photo}" alt="${s.photoAlt}" loading="lazy">`;
+            const initials = s.name.split(' ').map(w => w[0]).slice(0, 2).join('');
+            return `<div class="photo-placeholder">${initials}</div>`;
+        }
+
+        function affiliationsHTML(affs) {
+            return affs.map(a =>
+                `<div class="affiliation">${iconPin}<span><strong>${a.name}</strong>, ${a.country}</span></div>`
+            ).join('');
+        }
+
+
+
+        /* ═══════════════════════════════════════════════════════
+           FILTER LOGIC
+        ═══════════════════════════════════════════════════════ */
+        const allPeople = [...speakers, ...courses];
+
+        // Get unique topics
+        const uniqueTopics = [...new Set(allPeople.map(p => p.topic))];
+
+        // Populate topic filter
+        const topicFilter = document.getElementById('topicFilter');
+
+        uniqueTopics.forEach(topic => {
+            const option = document.createElement('option');
+            option.value = topic;
+            option.textContent = topic.replace(/<br>/g, ' ');
+            topicFilter.appendChild(option);
+        });
+
+        // Filter function
+        function applyFilters() {
+            const selectedTopic = topicFilter.value;
+
+            const cards = document.querySelectorAll('.speaker-card');
+
+            cards.forEach(card => {
+                const cardTopic = card.dataset.topic;
+                const topicMatch = !selectedTopic || cardTopic === selectedTopic;
+
+                if (topicMatch) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listener for topic filter
+        topicFilter.addEventListener('change', applyFilters);
+
+        // Scroll listener for sticky header color change
+        const headerWrapper = document.querySelector('.header-event-wrapper');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                headerWrapper.classList.add('scrolled');
+            } else {
+                headerWrapper.classList.remove('scrolled');
+            }
+        });
+
+        // Modified buildCard to include data attributes
+        function buildCardWithData(person) {
+            return `
+        <article class="speaker-card" data-confType="${person.confType}" data-topic="${person.topic}">
+
+          <!-- LEFT: photo panel -->
+          <div class="card-photo-panel">
+            <div class="photo-wrapper">
+              ${avatarHTML(person)}
+              <span class="topic-badge">${person.topic}</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: all information -->
+          <div class="card-info-panel">
+
+            <div class="card-topbar">
+              <span class="conf-type-label">${person.confType}</span>
+              <h3 class="event-pill-container"><span class="event-pill">${person.eventTag} <span class="event-years">11 - 2026</span></span>
+                <span class="event-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones <br>Geometría Algebraica · Análisis de Datos y Sistemas Complejos</span></h3>
+            </div>
+
+            <div class="card-header">
+              <h2 class="speaker-name">${person.name}</h2>
+              ${affiliationsHTML(person.affiliations)}
+            </div>
+
+            <div class="card-talk">
+              <div class="section-label">${iconMic} Título de la Conferencia</div>
+              <div class="talk-box">
+                <p class="talk-title">${person.talkTitle}</p>
+              </div>
+            </div>
+
+            <div class="card-abstract">
+              <div class="abstract-label">${iconDoc} Extracto del Abstract</div>
+              <p class="abstract-text">${person.abstract}</p>
+            </div>
+
+          </div>
+        </article>
+      `;
+        }
+
+        // Renderizar todos los speakers primero, luego todos los courses
+        const speakersHTML = '<h2 class="section-title">PLENARIAS</h2>' + speakers.map(buildCardWithData).join('');
+        const coursesHTML = '<h2 class="section-title">CURSILLOS</h2>' + courses.map(buildCardWithData).join('');
+        document.getElementById('cards-grid').innerHTML = speakersHTML + coursesHTML;
+
+
+        //FOOTER
+        /* ══ SPONSORS CAROUSEL ════════════════════════════════════════ */
+        const SPONSORS = [
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773966178/Logo-Universidad-de-Nari%C3%B1o_batcheditor_final_pmd5ou.webp", alt: "Universidad de Nariño", class: "logo-udenar" },
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774364495/Logo_DPTO_final_f2r3wq.webp", alt: "Departamento Matemáticas", class: "logo-dpto" },
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964202/Logo_FACIEN_batcheditor_fotor_kyx1fr.webp", alt: "Facien", class: "logo-facien" },
+            { src: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", alt: "Universidad del Valle", class: "logo-valle" },
+            { src: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", alt: "Universidad del Cauca", class: "logo-cauca" },
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773964345/JaverianaCaliNegro_batcheditor_fotor-negro_dxob0m.webp", alt: "Universidad Javeriana", class: "logo-javeriana" },
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png", alt: "ALTENUA", class: "logo-altenua" },
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773965477/universidadAntioquia_batcheditor_fotor_wlx2im.webp", alt: "Universidad de Antioquia", class: "logo-antioquia" },
+            { src: "https://res.cloudinary.com/dspprxtpr/image/upload/v1773971784/Universidad_Industrial_de_Santander_fotor_uuzx0t.webp", alt: "Universidad Industrial de Santander", class: "logo-uis" },
+        ];
+
+        (function buildCarousel() {
+            const track = document.getElementById('carousel-track');
+            if (!track) return;
+            const all = [...SPONSORS, ...SPONSORS];
+            track.innerHTML = all.map(s =>
+                `<img class="carousel-logo ${s.class || ''}" src="${s.src}" alt="${s.alt}" loading="lazy" />`
+            ).join('');
+        })();
+
+    </script>
+</body>
+
+</html>
