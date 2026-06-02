@@ -83,10 +83,28 @@
   #aviso-modal.aviso-hidden {
     display: none;
   }
+   .aviso-urgente{
+    font-family:var(--font-serif);
+    font-size:15px;
+    letter-spacing:2px;
+    color:#0a2a00;
+    font-weight:900;
+    width:429px;
+    height:8px;
+    border-radius:50%;
+    opacity:0.5;
+    margin-left:auto;
+    animation:aviso-blink 1.2s ease-in-out infinite;
+    padding-bottom: 15px;
+  }
 
   @keyframes avisoFadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
+  }
+    @keyframes aviso-blink {
+  0%,100% { opacity: .2; }
+  50%      { opacity: .8; }
   }
 
   .aviso-box {
@@ -156,14 +174,14 @@
   /* Close button */
   .aviso-close {
     position: absolute;
-    top: 14px;
+    top: 2px;
     right: 14px;
-    background: rgba(255,255,255,0.07);
+    background: var(--bg-dark);
     border: 1px solid rgba(255,255,255,0.12);
     color: rgba(255,255,255,0.70);
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 29px;
+    height: 29px;
     font-size: 14px;
     cursor: pointer;
     display: flex;
@@ -2999,50 +3017,52 @@
 </div>
 
 <!-- MODAL DE AVISO IMPORTANTE -->
+
 <div id="aviso-modal" class="aviso-hidden" role="dialog" aria-modal="true" aria-labelledby="aviso-title">
   <div class="aviso-box">
 
-    <div class="aviso-header">
-      <div  class="aviso-icon-wrap" aria-hidden="true">
-        <img id="aviso-logo-information" alt="imagen">
+    <!-- Franja superior de alerta -->
+    <div style="background:linear-gradient(90deg,#7ED957 0%,#5cb832 100%);padding:10px 20px;display:flex;align-items:center;gap:10px;"> 
+      <span class="aviso-urgente" id="aviso-blink">¡Short deadline!</span>
+  
+    </div>
+
+    <button class="aviso-close" onclick="closeAvisoModal()" aria-label="Cerrar aviso">✕</button>
+
+    <div class="aviso-header" style="padding-top:18px;">
+      <div class="aviso-icon-wrap" aria-hidden="true">
+        <img id="aviso-logo-information" alt="logo">
       </div>
       <div class="aviso-header-text">
-        <span class="aviso-eyebrow">Important Announcement</span>
-        <h2 class="aviso-title" id="aviso-title">Extension of the Submission Deadline</h2>
+        <span class="aviso-eyebrow">ALTENCOA 11 - 2026</span>
+        <h2 class="aviso-title" id="aviso-title">Don't miss the event</h2>
       </div>
     </div>
 
-    <button class="aviso-close" onclick="closeAvisoModal()" aria-label="Close announcement">✕</button>
-
     <div class="aviso-body">
-      <p>
-       We inform the academic community of the new deadline for proposal submissions.
-        Please adjust your calendar and take advantage of this additional time 
-        to refine your proposal.
+      <p style="margin-bottom:14px;">
+        The deadline for submitting your proposal is approaching soon. This is your chance to secure your place at one of the most important meetings of algebra and number theory in Latin America.
       </p>
-     
-      <div class="aviso-dates-grid">
-        <div class="aviso-date-card old">
-          <div class="aviso-date-label">Previous Date</div>
-          <div class="aviso-date-main">May 8</div>
-          <div class="aviso-date-sub">2026</div>
+
+      <!-- Cuenta regresiva -->
+      <div style="display:flex;gap:10px;margin-bottom:14px;">
+        <div class="aviso-date-card new" style="flex:1;text-align:center;padding:12px 8px;">
+          <div class="aviso-date-label">Days</div>
+          <div class="aviso-date-main" id="aviso-cd-d" style="text-decoration:none;">—</div>
         </div>
-        <div class="aviso-date-card new">
-          <div class="aviso-date-label">🟢 New Date</div>
-          <div class="aviso-date-main">June 5</div>
-          <div class="aviso-date-sub">2026</div>
+        <div class="aviso-date-card new" style="flex:1;text-align:center;padding:12px 8px;">
+          <div class="aviso-date-label">Hours</div>
+          <div class="aviso-date-main" id="aviso-cd-h" style="text-decoration:none;">—</div>
+        </div>
+        <div class="aviso-date-card new" style="flex:1;text-align:center;padding:12px 8px;">
+          <div class="aviso-date-label">Minutes</div>
+          <div class="aviso-date-main" id="aviso-cd-m" style="text-decoration:none;">—</div>
         </div>
       </div>
 
-
-
-     <!-- traduce este div -->
       <div class="aviso-note">
-        
-
-        We remember that those who submit their proposals until the <strong>May 8</strong>. 
-        The response will be informed until the <strong>May 29</strong>.
-        <br>For submissions until the <strong>June 5</strong>, the response date will be <strong>June 29</strong>.
+        <strong>Submission deadline: June 5, 2026.</strong><br>
+        For submissions until June 5, the response date will be <strong>June 29</strong>.
       </div>
     </div>
 
@@ -3050,12 +3070,13 @@
       <button class="aviso-btn-dismiss" onclick="closeAvisoModal()">Understood</button>
       <a class="aviso-btn-cta" href="#reg-section"
          onclick="closeAvisoModal(); setTimeout(()=>document.getElementById('reg-section')?.scrollIntoView({behavior:'smooth'}),80); return false;">
-        Go to Registration →
+        Submit proposal →
       </a>
     </div>
 
   </div>
 </div>
+ 
 
 
 <script>
@@ -3105,6 +3126,17 @@ function closeAvisoModal() {
 document.addEventListener('DOMContentLoaded', () => {
   // Pequeño delay para que el hero cargue primero (opcional: quitar el setTimeout si se prefiere inmediato)
   setTimeout(openAvisoModal, 600);
+   // Cuenta regresiva hacia el 5 de junio
+  function updateAvisoCountdown() {
+    var target = new Date('2026-06-05T23:59:59'), now = new Date(), diff = target - now;
+    if (diff <= 0) { ['d','h','m'].forEach(k => document.getElementById('aviso-cd-'+k).textContent = '0'); return; }
+    var d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4);
+    document.getElementById('aviso-cd-d').textContent = d;
+    document.getElementById('aviso-cd-h').textContent = h;
+    document.getElementById('aviso-cd-m').textContent = m;
+  }
+  updateAvisoCountdown();
+  setInterval(updateAvisoCountdown, 30000);
 });
 
 // Cerrar con Escape (se integra al listener ya existente en el sitio)
