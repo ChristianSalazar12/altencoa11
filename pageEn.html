@@ -722,109 +722,137 @@
     max-width: 540px;
   }
   /* ── VIDEO BUTTON ── */
-.video-btn {
-   display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #0e1f0a;
-  border: 1px solid rgba(126,217,87,0.25);
-  border-radius: 10px;
-  padding: 14px 18px;
-  text-decoration: none;
-  margin-top: 12px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s, background 0.3s;
+      .video-btn {
+      display: grid;
+      grid-template-rows: 2fr 1fr;
+      grid-template-columns: auto 1fr;
+      border: 1px solid rgba(126, 217, 87, 0.25);
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 12px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, background 0.3s;
+      animation: btn-pulse 2.8s ease-in-out infinite;
+      min-height: 206px;
+      z-index: 1;
+    }
+  @keyframes btn-pulse {
+    0%   { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
+    50%  { box-shadow: 0 0 14px 4px rgba(126,217,87,0.28); border-color: rgba(126,217,87,0.70); }
+    100% { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
+  }
 
-  /* Pulso de brillo en el borde */
-  animation: btn-pulse 2.8s ease-in-out infinite;
-}
-@keyframes btn-pulse {
-  0%   { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
-  50%  { box-shadow: 0 0 14px 4px rgba(126,217,87,0.28); border-color: rgba(126,217,87,0.70); }
-  100% { box-shadow: 0 0 0px 0px rgba(126,217,87,0.0); border-color: rgba(126,217,87,0.20); }
-}
-/* Barrido de luz de izquierda a derecha */
-.video-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(126,217,87,0.13) 50%,
-    transparent 100%
-  );
-  animation: btn-sweep 2.8s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes btn-sweep {
-  0%   { left: -75%; opacity: 0; }
-  20%  { opacity: 1; }
-  60%  { left: 125%; opacity: 0; }
-  100% { left: 125%; opacity: 0; }
-}
+   /* Imagen de fondo difuminada - 2/3 superior */
+    .video-btn::after {
+      content: '';
+      grid-column: 1 / -1;
+      grid-row: 1;
+      background-image: url('https://res.cloudinary.com/dspprxtpr/image/upload/v1781636490/c5fc68a7-0de3-4fa7-a622-54f6761dae02.png');
+      background-size: cover;
+      background-position: center;
+       
+      z-index: 1;
+      border-radius: 0;
+      
+    }
 
-.video-btn:hover {
-  border-color: rgba(126,217,87,0.85) !important;
-  background: #122a0d;
-  animation: none;
-  box-shadow: 0 0 22px 6px rgba(126,217,87,0.30);
-}
-.video-btn:hover::before {
-  animation: none;
-}
+  /* Barrido de luz de izquierda a derecha */
+  .video-btn::before {
+    content: '';
+     position: absolute;
+     top: 0;
+     left: -75%;
+     width: 50%;
+     height: 100%;
+     background: linear-gradient(120deg,
+         transparent 0%,
+         rgba(126, 217, 87, 0.13) 50%,
+         transparent 100%);
+     animation: btn-sweep 2.8s ease-in-out infinite;
+     pointer-events: none;
+     z-index: 0;
+  }
+  @keyframes btn-sweep {
+    0%   { left: -75%; opacity: 0; }
+    20%  { opacity: 1; }
+    60%  { left: 125%; opacity: 0; }
+    100% { left: 125%; opacity: 0; }
+  }
 
-/* Icono */
-.video-btn-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  background: rgba(126,217,87,0.12);
-  border: 1px solid rgba(126,217,87,0.30);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s, transform 0.2s;
-  animation: icon-ping 2.8s ease-in-out infinite;
-}
+  .video-btn:hover {
+    border-color: rgba(126,217,87,0.85) !important;
+    background: #122a0d;
+    animation: none;
+    box-shadow: 0 0 22px 6px rgba(126,217,87,0.30);
+  }
+  .video-btn:hover::before {
+    animation: none;
+  }
 
-@keyframes icon-ping {
-  0%,100% { box-shadow: 0 0 0 0 rgba(126,217,87,0.0); }
-  50%      { box-shadow: 0 0 0 5px rgba(126,217,87,0.18); }
-}
+  /* Icono */
+  .video-btn-icon {
+    grid-row: 2;
+    grid-column: 1;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(126, 217, 87, 0.12);
+    border: 1px solid rgba(126, 217, 87, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.2s;
+    animation: icon-ping 2.8s ease-in-out infinite;
+    margin: 0 14px 0 18px;
+    z-index: 2;
+  }
 
-.video-btn:hover .video-btn-icon {
-  background: rgba(126,217,87,0.25);
-  transform: scale(1.08);
-  animation: none;
-  box-shadow: none;
-}
+  @keyframes icon-ping {
+    0%,100% { box-shadow: 0 0 0 0 rgba(126,217,87,0.0); }
+    50%      { box-shadow: 0 0 0 5px rgba(126,217,87,0.18); }
+  }
 
-.video-btn-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  text-align: left;
-}
+  .video-btn:hover .video-btn-icon {
+    background: rgba(126,217,87,0.25);
+    transform: scale(1.08);
+    animation: none;
+    box-shadow: none;
+  }
 
-.video-btn-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.3;
-}
+  .video-btn-text {
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    gap: 2px;
+    text-align: left;
+    background: #1a2a14;
+    padding: 14px 100px 14px 0;
+    justify-content: center;
+    z-index: 2;
+  }
 
-.video-btn-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,0.50);
-  line-height: 1.3;
-}
+  .video-btn-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      
+    }
+
+  .video-btn-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .video-btn-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.50);
+    line-height: 1.3;
+  }
 /*--------------------------modal video--------------------------------*/
 /* ══ VIDEO MODAL ══ */
 .vmodal-backdrop {
@@ -1436,13 +1464,302 @@
   text-align: center;
  }
 
+   /*--------------------------------------------*/
+    /* ══ EXPOSITORES SECTION ══ */
+    .expositores-section {
+      background: var(--bg-light);
+      padding: 80px 24px 10px;
+      text-align: center;
+      color: #1a2a14;
+    }
+
+    .expositores-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-label-exp {
+      letter-spacing: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #5cb832;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-heading-exp {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 700;
+      color: #1a2a14;
+      margin-bottom: 10px;
+    }
+
+    .section-heading-exp .green {
+      color: #5cb832;
+    }
+
+    .section-desc-exp {
+      font-size: clamp(13px, 1.4vw, 15px);
+      color: #778877;
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+
+    /* Filtros */
+    .exp-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 42px;
+    }
+
+    .exp-filter-btn {
+      background: white;
+      border: 1.5px solid #d0e5c8;
+      color: #2a3a24;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .exp-filter-btn:hover {
+      border-color: #7ED957;
+      color: #5cb832;
+      background: rgba(126, 217, 87, 0.06);
+    }
+
+    .exp-filter-btn.active {
+      background: #5cb832;
+      border-color: #5cb832;
+      color: white;
+    }
+
+    /* Grid de expositores - SIMPLIFICADO */
+    .expositores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .expositor-card {
+    background: white;
+    border: 1px solid #dce8d4;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    }
+    
+    .expositor-card:hover {
+      box-shadow: 0 12px 36px rgba(94,184,50,0.15);
+      border-color: #9BE564;
+      transform: translateY(-4px);
+    }
+    
+    /* Contenedor de la foto con posición relativa */
+    .expositor-photo-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background: #f0f4ef;
+    }
+
+    /* Foto del expositor */
+    .expositor-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: #f0f4ef;
+    }
+
+
+    /* Contenido SIMPLIFICADO */
+    .expositor-content {
+      padding: 16px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    .expositor-badge {
+      display: inline-block;
+      background: rgba(126, 217, 87, 0.12);
+      border: 1px solid rgba(126, 217, 87, 0.25);
+      color: #5cb832;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .expositor-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a2a14;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .expositor-affiliation {
+      font-size: 12px;
+      color: #778877;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .expositor-country {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #556055;
+      background: rgba(92, 184, 50, 0.08);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botón sobre la foto */
+    .exp-learn-more {
+      position: absolute;
+      bottom: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-500);
+      color: rgb(16, 15, 15);
+      border: none;
+      padding: 4px 8px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+      width: 80%;
+    }
+
+    .exp-learn-more:hover {
+      background: #7ED957;
+      color: #0a2a00;
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+    /* Sección "Ver todos" */
+    .exp-view-all-section {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .exp-view-all-text {
+      font-size: 14px;
+      color: #778877;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .exp-view-all-btn {
+      background: #5cb832;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .exp-view-all-btn:hover {
+      background: #7ED957;
+      color: #0a2a00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(126, 217, 87, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .expositores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .exp-filters {
+        gap: 6px;
+        margin-bottom: 28px;
+      }
+
+      .exp-filter-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .expositor-photo {
+        height: 200px;
+      }
+
+      .expositor-content {
+        padding: 12px 10px;
+      }
+
+      .expositor-name {
+        font-size: 13px;
+      }
+
+      .expositor-affiliation {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .expositores-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
 /* ══ ORGANIZING COMMITTEE ══ */
   /* ── SECTION ── */
    .org-section {
     background: #eef2ee;
     padding: 80px 24px 90px;
     text-align: center;
-    color: #1a2a14;
+    color: #1a2a14;    
+    border-top: 2px solid #dce8d4;
+
   }
  
   .org-inner-O {
@@ -1572,385 +1889,608 @@
     
   }
 /*-------------------------------------------*/
-  .reg-section {
-    background: linear-gradient(160deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #0e2a14 100%);
-    padding: var(--section-vertical-pad) var(--gutter) calc(var(--section-vertical-pad) + 10px);
-    color: white;
-    min-height: 80vh;
-  }
-
-  .reg-inner {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-  }
-
-  /* Header */
-  .section-label {
-    text-align: center;
-    letter-spacing: 5px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .section-heading {
-    text-align: center;
-    font-family: 'Merriweather', serif;
-    font-size: clamp(28px, 4.5vw, 46px);
-    font-weight: 700;
-    color: white;
-    margin-bottom: 48px;
-  }
-
-  .section-heading .green { color: var(--accent); }
-
-  /* Two-column layout */
-  .reg-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    align-items: start;
-  }
-
-  /* ── LEFT COLUMN ── */
-  .reg-pitch {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  .pitch-text {
-    font-size: clamp(14px, 1.6vw, 16px);
-    font-style: italic;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.8;
-  }
-
-  /* Benefits list */
-  .benefits {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .benefits li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: clamp(13px, 1.4vw, 15px);
-    color: rgba(255,255,255,0.80);
-  }
-
-  .benefit-icon {
-    width: 22px;
-    height: 22px;
-    margin-right:10px;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: var(--accent);
-    font-size: 12px;
-  }
-
-  /* Dates card */
-  .dates-card {
-    background: rgba(126,217,87,0.06);
-    border: 1px solid rgba(126,217,87,0.22);
-    border-radius: 10px;
-    padding: 20px 22px;
-  }
-
-  /* Wrapper for registration info boxes: dates, deadlines, tariffs */
-  .info-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    margin-top: 18px;
-  }
-  .tarifas-mention{
-    margin-top: 40px;
-  }
-
-  .info-box {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 10px;
-    padding: 16px;
-    color: rgba(255,255,255,0.95);
-  }
-
-  /* Collapsible tarifas card */
-  .collapsible-toggle {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    text-align: left;
-    gap: 12px;
-  }
-
-  .collapsible-toggle:focus { outline: 2px solid rgba(126,217,87,0.18); border-radius: 6px; }
-
-  .collapsible-toggle .dates-title { margin-bottom: 0; }
-
-  .collapsible-toggle .chev { font-size: 16px; color: var(--accent); transform: rotate(0deg); transition: transform 0.25s ease; font-style: italic;}
-
-  .info-box .collapsible-content {
-    display: flex;
-    overflow: hidden;
-    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
-    opacity: 0;
-    padding-top: 0;
-  }
-
-  .info-box.open .collapsible-content {
-    max-height: 1000px;
-    opacity: 1;
-    padding-top: 12px;
-    margin-left: 20px;
-  }
-
-  .info-box.open .collapsible-toggle .chev { 
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-style: italic;
-
-   }
-
-  .info-box .tarifas-note { font-size:12px; color: rgba(255,255,255,0.9); margin-top:8px; }
-
-  /* Make the third box (tarifas) span full width under the first two */
-  .info-cards .info-box:nth-child(3) {
-    grid-column: 1 / -1;
-  }
-
-  .info-box .dates-title { color: var(--accent); margin-bottom: 8px; }
-
-  .info-box ul { margin: 0; padding-left: 16px; }
-
-  @media (max-width: 980px) {
-    .info-cards { grid-template-columns: 1fr; }
-  }
-
-  /* Small styling for cost estimate shown in form */
-  .cost-estimate {
-    margin-top: 12px;
-    font-weight: 700;
-    color: var(--accent-500);
-    background: rgba(126,217,87,0.06);
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(126,217,87,0.14);
-  }
-
-  .dates-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-style: italic;
-  }
-
-  .dates-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .dates-list li {
-    font-size: clamp(12px, 1.3vw, 13px);
-    color: rgba(255,255,255,0.65);
-    line-height: 1.5;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .tarif-label { flex: 1 1 auto; color: rgba(255,255,255,0.75); }
-  .tarif-price { flex: 0 0 auto; margin-left: 12px; color: rgba(255,255,255,0.95); }
-
-  .dates-list strong {
-    color: white;
-    font-weight: 700;
-  }
-
-  /* ── RIGHT COLUMN — FORM ── */
-  .reg-form-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: calc(var(--card-radius) + 4px);
-    padding: 26px 22px;
-  
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  /* Field wrapper */
-  .field {
-    position: relative;
-    margin-top: 5px;
-  }
-
-  .field-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    font-size: 15px;
-    pointer-events: none;
-    line-height: 1;
-  }
-
-  .field input,
-  .field select {
-    width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 14px 14px 42px;
-    font-family: var(--font-sans);
-    font-size: clamp(13px, 1.3vw, 14px);
-    color: white;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-
-  .field input::placeholder { color: var(--text-muted); }
-
-  .field input:focus,
-  .field select:focus {
-    border-color: var(--accent);
-    background: rgba(126,217,87,0.06);
-  }
-
-  /* Select arrow */
-  .field select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237ED957' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
-    cursor: pointer;
-  }
-
-  .field select option {
-    background: #0b2210;
-    color: white;
-  }
-
-  /* Submit button */
-  .btn-submit {
-    background: var(--accent-500);
-    color: #0a2a00;
-    border: none;
-    border-radius: 8px;
-    padding: 14px 20px;
-    font-family: var(--font-sans);
-    font-size: clamp(14px, 1.5vw, 16px);
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    
-  }
-
-  .btn-submit:hover {
-    background: #9BE564;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(126,217,87,0.35);
-  }
-
-  .btn-submit .arrow { font-size: 18px; }
-
-  /* Form actions: fallback link + submit button on one row */
-  .form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .btn-fallback {
-    color: var(--accent-500);
-    font-weight: 700;
-    text-decoration: underline;
-    background: transparent;
-    border: none;
-    padding: 6px 20px;
-    cursor: pointer;
-    font-size: 18px;
-    
-  }
-
-  @media (max-width: 700px) {
-    .form-actions { flex-direction: column; align-items: stretch; }
-    .btn-fallback { text-align: center; }
-  }
-
-  /* Success message (hidden by default) */
-  .success-msg {
-    display: none;
-    text-align: center;
-    padding: 20px;
-    color: var(--accent);
-    font-size: 15px;
-    font-weight: 700;
-    animation: fadeIn 0.4s ease;
-  }
-
-  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: none; } }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 700px) {
-    .reg-grid {
-      grid-template-columns: 1fr;
+  /* ══════════════════════════════════════════════════════════════ */
+    /* REGISTRO SECTION - DISEÑO MODERNO */
+    /* ══════════════════════════════════════════════════════════════ */
+      
+    .reg-section {
+      background: linear-gradient(160deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #0e2a14 100%);
+      padding: clamp(60px, 8vw, 100px) var(--gutter) clamp(60px, 8vw, 100px);
+      color: white;
     }
-  }
-/*-----------------formSection---------------------------*/
-.title-form{
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: #7ED957;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-
-}
-.form-heading {
-  font-size: clamp(20px, 3vw, 28px);
-  font-weight: 900;
-  color: white;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-  line-height: 1.1;
-}
-.info-form{
-  font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 16px;
-}
-
+    
+    .reg-inner {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    
+    /* ── HEADING ── */
+    .section-heading {
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: var(--fs-scale-lg);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+    }
+    
+    .section-heading .green {
+      color: var(--accent);
+    }
+    
+    .section-subheading {
+      text-align: center;
+      font-size: clamp(14px, 1.5vw, 16px);
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+    
+    /* ── MAIN GRID ── */
+    .reg-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    
+    /* ── PITCH SECTION ── */
+    .reg-pitch {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    
+    .pitch-text {
+      font-size: var(--fs-scale-md);
+      font-style: italic;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 90%;
+    }
+    
+    /* ── BENEFITS GRID ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    
+    .benefits-col {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .benefits-col li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: clamp(13px, 1.3vw, 15px);
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+    
+    .benefit-icon {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-400) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--bg-darker);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    
+    /* ── INFO CARDS (Fechas, Plazos, Tarifas) ── */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+    
+    .info-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(126, 217, 87, 0.15);
+      border-radius: 12px;
+      padding: 24px;
+      color: var(--text-light);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .info-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .info-box:hover {
+      background: rgba(126, 217, 87, 0.06);
+      border-color: rgba(126, 217, 87, 0.25);
+    }
+    
+    .info-box:hover::before {
+      opacity: 1;
+    }
+    
+    .info-box:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+    
+    /* ── INFO BOX TITLES ── */
+    .dates-title {
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* ── DATES LIST ── */
+    .dates-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .dates-list li {
+      font-size: clamp(12px, 1.2vw, 14px);
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(126, 217, 87, 0.08);
+    }
+    
+    .dates-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .tarif-label {
+      flex: 1 1 auto;
+      color: var(--text-muted);
+    }
+    
+    .tarif-price {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: clamp(12px, 1.1vw, 13px);
+    }
+    
+    /* ── COLLAPSIBLE TARIFAS ── */
+    .info-box-collapsible {
+      cursor: pointer;
+    }
+    
+    .collapsible-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+      font-size: inherit;
+      font-family: inherit;
+    }
+    
+    
+    
+    .collapsible-toggle .chev {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+      transition: text-decoration 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .info-box.open .collapsible-toggle .chev {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+    
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+    
+    .info-box.open .collapsible-content {
+      max-height: 1000px;
+      opacity: 1;
+      padding-top: 16px;
+      margin-top: 16px;
+      border-top: 1px solid rgba(126, 217, 87, 0.15);
+    }
+    
+    /* ── FORM CARD ── */
+    .reg-form-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(126, 217, 87, 0.15);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    
+    /* ── FORM SECTIONS ── */
+    .title-form {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .form-heading {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      font-family: var(--font-serif);
+    }
+    
+    .info-form {
+      font-size: clamp(13px, 1.3vw, 14px);
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    /* ── BUTTONS ── */
+    .btn-submit {
+      background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+      color: var(--bg-darker);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-family: var(--font-sans);
+      font-size: clamp(13px, 1.3vw, 15px);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+    
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(126, 217, 87, 0.25);
+    }
+    
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+    
+    .btn-submit.outline {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 12px 22px;
+    }
+    
+    .btn-submit.outline:hover {
+      background: rgba(126, 217, 87, 0.1);
+      border-color: var(--accent-600);
+    }
+    
+    .btn-submit .arrow {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-submit:hover .arrow {
+      transform: translateX(4px);
+    }
+    
+    /* ── NOTES/ALERTS ── */
+    .note-form {
+      background: rgba(126, 217, 87, 0.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin: 16px 0;
+      font-size: clamp(12px, 1.2vw, 13px);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    
+    .note-form-label {
+      color: var(--accent);
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      font-size: 13px;
+    }
+    
+    .note-final {
+      background: rgba(126, 217, 87, 0.06);
+      border: 1px solid rgba(126, 217, 87, 0.18);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: clamp(12px, 1.2vw, 13px);
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+    
+    /* ── DIVIDER ── */
+    .form-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(126, 217, 87, 0.15) 50%, transparent 100%);
+      margin: 24px 0;
+    }
+    
+    /* ── CONTACT EMAIL ── */
+    .contact-email {
+      margin-top: 12px;
+      font-size: clamp(12px, 1.2vw, 14px);
+      color: var(--text-muted);
+    }
+    
+    .contact-email a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    
+    .contact-email a:hover {
+      color: var(--accent-600);
+    }
+    
+    /* ══════════════════════════════════════════════════════════════ */
+    /* RESPONSIVE DESIGN */
+    /* ══════════════════════════════════════════════════════════════ */
+    
+    @media (max-width: 980px) {
+      .info-cards {
+        grid-template-columns: 1fr;
+      }
+    
+      .info-box:nth-child(3) {
+        grid-column: 1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .reg-section {
+        padding: clamp(50px, 6vw, 80px) var(--gutter);
+      }
+    
+      .section-heading {
+        margin-bottom: 16px;
+      }
+    
+      .section-subheading {
+        margin-bottom: 36px;
+      }
+    
+      .reg-pitch {
+        gap: 28px;
+      }
+    
+      .pitch-text {
+        max-width: 100%;
+      }
+    
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    
+      .benefits-col li {
+        font-size: 13px;
+      }
+    
+      .info-box {
+        padding: 20px;
+      }
+    
+      .reg-form-card {
+        padding: 24px;
+        gap: 22px;
+      }
+    
+      .btn-submit {
+        width: 100%;
+        padding: 12px 20px;
+      }
+    
+      .btn-submit.outline {
+        padding: 12px 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .reg-inner {
+        padding: 0 12px;
+      }
+    
+      .reg-section {
+        padding: clamp(40px, 5vw, 60px) 0;
+      }
+    
+      .section-heading {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+    
+      .section-subheading {
+        font-size: 13px;
+        margin-bottom: 24px;
+      }
+    
+      .reg-pitch {
+        gap: 20px;
+      }
+    
+      .pitch-text {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+    
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    
+      .benefits-col li {
+        font-size: 12px;
+        gap: 10px;
+      }
+    
+      .benefit-icon {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        font-size: 12px;
+      }
+    
+      .info-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+    
+      .info-box {
+        padding: 16px;
+        gap: 0;
+      }
+    
+      .info-box:nth-child(3) {
+        grid-column: 1;
+      }
+    
+      .dates-title {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+    
+      .dates-list li {
+        font-size: 11px;
+        gap: 12px;
+        padding: 6px 0;
+      }
+    
+      .tarif-label,
+      .tarif-price {
+        font-size: 11px;
+      }
+    
+      .reg-form-card {
+        padding: 18px;
+        gap: 18px;
+        border-radius: 12px;
+      }
+    
+      .title-form {
+        font-size: 10px;
+      }
+    
+      .form-heading {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+    
+      .info-form {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+    
+      .btn-submit {
+        width: 100%;
+        padding: 11px 16px;
+        font-size: 13px;
+        margin: 0;
+      }
+    
+      .btn-submit.outline {
+        padding: 11px 16px;
+      }
+    
+      .note-form {
+        padding: 12px 14px;
+        font-size: 12px;
+        margin: 12px 0;
+      }
+    
+      .note-form-label {
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+    
+      .form-divider {
+        margin: 16px 0;
+      }
+    
+      .contact-email {
+        font-size: 12px;
+      }
+    
+      .note-final {
+        padding: 12px 14px;
+        font-size: 11px;
+        margin-top: 14px;
+      }
+    }
 /* ── SECTION ── */
   .discover-section {
     background: #eef2ee;
@@ -2497,9 +3037,220 @@
     max-height: calc(60vh - 100px); /* descuenta header */
   }
 }
-  </style>
+ /* ══ COUNTDOWN TIMER ══ */
+    #countdown-container {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+      font-family: var(--font-serif);
+      pointer-events: none;
+    }   
+
+    .countdown-clock {
+      width: 200px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(126, 217, 87, 0.268), rgba(94, 184, 50, 0.1));
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 0 30px rgba(126, 217, 87, 0.2),
+        inset 0 0 20px rgba(126, 217, 87, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: countdown-pulse 2s ease-in-out infinite;
+    }   
+
+    @keyframes countdown-pulse {
+      0%, 100% {
+        box-shadow: 
+          0 0 30px rgba(126, 217, 87, 0.2),
+          inset 0 0 20px rgba(126, 217, 87, 0.05);
+      }
+      50% {
+        box-shadow: 
+          0 0 50px rgba(126, 217, 87, 0.35),
+          inset 0 0 30px rgba(126, 217, 87, 0.1);
+      }
+    }   
+
+    .countdown-content {
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }   
+
+    .countdown-value {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -1px;
+    }   
+
+    .countdown-label {
+      font-size: 10px;
+      color: var(--bg-darker);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      display: block;
+      margin-top: 2px;
+    }   
+
+    .countdown-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--bg-dark);
+      opacity: 0.4;
+      margin: 0;
+    }   
+
+    .countdown-minimize-btn {
+      display: none;
+    }   
+
+    @media (max-width: 768px) {
+      #countdown-container {
+        bottom: 20px;
+        left: 20px;
+      }   
+
+      .countdown-clock {
+        width: 260px;
+        height: 110px;
+        border-radius: 14px;
+      }   
+
+      .countdown-value {
+        font-size: 22px;
+      }   
+
+      .countdown-label {
+        font-size: 9px;
+      }   
+
+      .countdown-content {
+        gap: 24px;
+      }
+    }   
+
+    @media (max-width: 480px) {
+      #countdown-container {
+        bottom: 120px;
+        left: 15px;
+      }   
+
+      .countdown-clock {
+        width: 150px;
+        height: 55px;
+        border-radius: 12px;
+        position: relative;
+      }   
+
+      .countdown-value {
+        font-size: 10px;
+      }   
+
+      .countdown-label {
+        font-size: 8px;
+      }   
+
+      .countdown-content {
+        gap: 8px;
+      }   
+
+      .countdown-divider {
+        height: 35px;
+      }   
+
+      .countdown-minimize-btn {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: none;
+        color: var(--bg-dark);
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        pointer-events: auto;
+      }   
+
+      .countdown-minimize-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(126, 217, 87, 0.5);
+      }   
+
+      .countdown-clock.minimized {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }   
+
+      .countdown-clock.minimized .countdown-content {
+        gap: 0;
+      }   
+
+      .countdown-clock.minimized .countdown-days,
+      .countdown-clock.minimized .countdown-hours,
+      .countdown-clock.minimized .countdown-divider {
+        display: none;
+      }   
+
+      .countdown-clock.minimized .countdown-value {
+        font-size: 20px;
+      }   
+
+      .countdown-clock.minimized .countdown-label {
+        font-size: 7px;
+        margin-top: 0;
+      }
+}
+
+
+</style>
 </head>
 <body>
+
+  <!-- ══ COUNTDOWN TIMER ══ -->
+  <div id="countdown-container">
+    <div class="countdown-clock" id="countdown-clock">
+      <button class="countdown-minimize-btn" id="minimize-btn" aria-label="Minimizar contador">−</button>
+      <div class="countdown-content">
+        <div>
+          <div class="countdown-value" id="countdown-months"></div>
+          <div class="countdown-label">months</div>  
+        </div>
+           <div class="countdown-divider"></div>
+        <div class="countdown-days">
+          <div class="countdown-value" id="countdown-days"></div>
+          <div class="countdown-label">days</div>
+        </div>
+        <div class="countdown-divider"></div>
+        <div class="countdown-hours">
+          <div class="countdown-value" id="countdown-hours"></div>
+          <div class="countdown-label">hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <!-- ══ HERO ══ -->
 <section id="inicio" class="hero">
   <div class="bg bg1"></div>
@@ -2555,7 +3306,7 @@
 
     <div class="hero-buttons">
       <a href="#reg-section" class="btn-register" title="Go to Registration" aria-label="Go to the registration section" onclick="document.getElementById('reg-section').scrollIntoView({behavior:'smooth'}); return false;">Register now</a>
-      <a href="#" class="btn-announcement" onclick="openAnuncioModal(event)">First Announcement</a>
+      <!-- <a href="#" class="btn-announcement" onclick="openAnuncioModal(event)">First Announcement</a> -->
     </div>
   </div>
 </section>
@@ -2578,14 +3329,16 @@
         </div>
 
         <a href="#" class="video-btn" onclick="openVideoModal(event)">
-          <div class="video-btn-icon">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <polygon points="3,1 13,7 3,13" fill="#7ED957"/>
-            </svg>
-          </div>
           <div class="video-btn-text">
-            <span class="video-btn-title">Watch event video</span>
-            <span class="video-btn-sub">Learn more about <span id="eventName"></span></span>
+            <div class="video-btn-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <polygon points="3,1 13,7 3,13" fill="#7ED957"/>
+              </svg>
+            </div>
+            <div class="video-btn-content">
+              <span class="video-btn-title">Watch event video</span>
+              <span class="video-btn-sub">Learn more about <span id="eventName"></span></span>
+            </div>
           </div>
         </a>
       </div>
@@ -2645,6 +3398,17 @@
 
   </div>
 </section>
+ <!-- ══ EXPOSITORES PRINCIPALES ══ -->
+  <section id="expositores" class="expositores-section">
+    <div class="expositores-inner">
+      <div class="section-label-exp">Exhibitors</div>
+      <h2 class="section-heading-exp"><span class="green">Plenarys</span> and <span
+          class="green">Mini-courses</span></h2>
+      <p class="section-desc-exp">Prominent researchers sharing their latest advances</p>
+      <div class="exp-filters" id="exp-filters" role="tablist" aria-label="Filter by topic"></div>
+      <div class="expositores-grid" id="expositores-grid"></div>
+    </div>
+  </section>
 <section class="org-section">
   <div class="org-inner-O">
     <div class="section-label-O">Organization</div>
@@ -2673,7 +3437,7 @@
           </ul>
           <ul class="benefits-col">
             <li style="display:flex;"><span class="benefit-icon">✓</span> International networking opportunities</li>
-            <li style="display:flex;"><span class="benefit-icon">✓</span> Conference proceedings</li>
+            <li style="display:flex; padding-right: 12px;"><span class="benefit-icon">✓</span> Conference proceedings in &nbsp; <a href="https://revistas.udenar.edu.co/index.php/rsigma/" target="_blank" rel="noopener noreferrer" style= "color: #7ED957;" > Revista Sigma (ISSN: 2017-064X)</a> </li>
           </ul>
         </div>
 
@@ -2686,7 +3450,7 @@
           <!-- Paso 1: Formulario -->
           <div style="margin-bottom: 20px;">
             <div class="title-form">Step 1</div>
-            <div class="form-heading">REGISTRATION FORM</div>
+            <div class="form-heading">Registration Form</div>
             <p class="info-form">
               Complete the form with your personal data and type of participation.
             </p>
@@ -2700,26 +3464,25 @@
               Go to the form <span class="arrow">→</span>
             </a>
            
-    <!-- Nota importante -->
-    <div style="
-      margin-top: 16px;
-      padding: 14px 16px;
-      background: rgba(126,217,87,0.07);
-      border-left: 3px solid #7ED957;
-      border-radius: 0 8px 8px 0;
-      font-size: 13px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.65;
-    ">
+      <!-- Nota importante -->
+      <div style="
+        margin-top: 16px;
+        padding: 14px 16px;
+        background: rgba(126,217,87,0.07);
+        border-left: 3px solid #7ED957;
+        border-radius: 0 8px 8px 0;
+        font-size: 13px;
+        color: rgba(255,255,255,0.75);
+        line-height: 1.65;
+      ">
       <p style="margin: 0 0 6px 0; font-weight: 600; color: #7ED957; font-size: 13px; letter-spacing: 0.03em;">
         ⚠️ Important Note - Oral presentation or Poster
       </p>
       <p style="margin: 0 0 8px 0;">
-        To submit your abstract, we kindly ask you to follow the instructions provided in the official
-        <strong>ALTENCOA11-2026</strong>. Submissions that do not use this template
-        <strong>cannot be considered</strong> by the Scientific Committee.
+      
+        Review the registration fees according to the category to which it corresponds
       </p>
-      <p style="margin: 0 0 10px 0;">
+      <!-- <p style="margin: 0 0 10px 0;">
        The abstracts of the works presented during ALTENCOA11-2026 will be published as the event proceedings in 
         <strong><a href="https://revistas.udenar.edu.co/index.php/rsigma/" target="_blank" rel="noopener noreferrer" style= "color: #7ED957;" >Revista Sigma (ISSN: 2017-064X)</a></strong> of Universidad de Nariño
       </p>
@@ -2744,7 +3507,7 @@
         onmouseout="this.style.background='transparent'"
       >
         📄 Template ALTENCOA11-2026 →
-      </a>
+      </a> -->
        <p style="margin-top:12px; font-size:14px; color:#d3d5d2;">
       More information:
       <a 
@@ -2755,7 +3518,7 @@
       </a>
     </p>
     </div>
-            </p>
+        </p>
           </div>
           <!-- Divisor -->
           <div style="border-top: 1px solid rgba(126,217,87,0.15); margin-bottom: 18px;"></div>
@@ -2781,7 +3544,7 @@
                 <a href="mailto:fandresbenavides@gmail.com" style="color:#7ED957;     text-decoration: none; font-size: 15px;">
                 fandresbenavides@gmail.com
               </a>
-            </p>
+          </p>
           </div>
 
             <!-- Nota final -->
@@ -3016,68 +3779,57 @@
   </div>
 </div>
 
-<!-- MODAL DE AVISO IMPORTANTE -->
 
-<div id="aviso-modal" class="aviso-hidden" role="dialog" aria-modal="true" aria-labelledby="aviso-title">
-  <div class="aviso-box">
+  <!-- ══ AVISO MODAL ══ -->
+  <div id="aviso-modal" class="aviso-hidden" role="dialog" aria-modal="true" aria-labelledby="aviso-title">
+    <div class="aviso-box">
 
-    <!-- Franja superior de alerta -->
-    <div style="background:linear-gradient(90deg,#7ED957 0%,#5cb832 100%);padding:10px 20px;display:flex;align-items:center;gap:10px;"> 
-      <span class="aviso-urgente" id="aviso-blink">¡Short deadline!</span>
-  
-    </div>
-
-    <button class="aviso-close" onclick="closeAvisoModal()" aria-label="Cerrar aviso">✕</button>
-
-    <div class="aviso-header" style="padding-top:18px;">
-      <div class="aviso-icon-wrap" aria-hidden="true">
-        <img id="aviso-logo-information" alt="logo">
+      <!-- Franja superior de alerta -->
+      <div
+        style="background:linear-gradient(90deg,#7ED957 0%,#5cb832 100%);padding:10px 20px;display:flex;align-items:center;gap:10px;">
+        <span class="aviso-urgente" id="aviso-blink">¡Deadline expired!</span>
       </div>
-      <div class="aviso-header-text">
-        <span class="aviso-eyebrow">ALTENCOA 11 - 2026</span>
-        <h2 class="aviso-title" id="aviso-title">Don't miss the event</h2>
-      </div>
-    </div>
 
-    <div class="aviso-body">
-      <p style="margin-bottom:14px;">
-        The deadline for submitting your proposal is approaching soon. This is your chance to secure your place at one of the most important meetings of algebra and number theory in Latin America.
-      </p>
+      <button class="aviso-close" onclick="closeAvisoModal()" aria-label="Cerrar aviso">✕</button>
 
-      <!-- Cuenta regresiva -->
-      <div style="display:flex;gap:10px;margin-bottom:14px;">
-        <div class="aviso-date-card new" style="flex:1;text-align:center;padding:12px 8px;">
-          <div class="aviso-date-label">Days</div>
-          <div class="aviso-date-main" id="aviso-cd-d" style="text-decoration:none;">—</div>
+      <div class="aviso-header" style="padding-top:18px;">
+        <div class="aviso-icon-wrap" aria-hidden="true">
+          <img id="aviso-logo-information" alt="logo">
         </div>
-        <div class="aviso-date-card new" style="flex:1;text-align:center;padding:12px 8px;">
-          <div class="aviso-date-label">Hours</div>
-          <div class="aviso-date-main" id="aviso-cd-h" style="text-decoration:none;">—</div>
-        </div>
-        <div class="aviso-date-card new" style="flex:1;text-align:center;padding:12px 8px;">
-          <div class="aviso-date-label">Minutes</div>
-          <div class="aviso-date-main" id="aviso-cd-m" style="text-decoration:none;">—</div>
+        <div class="aviso-header-text">
+          <span class="aviso-eyebrow">ALTENCOA 11 - 2026</span>
+          <h2 class="aviso-title" id="aviso-title">Thank you for your interest!</h2>
         </div>
       </div>
 
-      <div class="aviso-note">
-        <strong>Submission deadline: June 5, 2026.</strong><br>
-        For submissions until June 5, the response date will be <strong>June 29</strong>.
+      <div class="aviso-body">
+        <p style="margin-bottom:14px; line-height:1.7;">
+          Thank you for your incredible interest in <strong>ALTENCOA11-2026</strong>! The deadline for submitting papers has expired.
+        </p>
+
+        <p style="margin-bottom:14px; line-height:1.7;">
+          If you have already submitted your paper, please keep an eye on your email; we will soon share the official agenda of the
+          event, general information and more surprises.
+        </p>
+
+        <div class="aviso-note" style="margin-bottom:12px;">
+          <strong>Do you want to participate as an attendee?</strong><br>
+          We ask you to register your data in the registration form. See you in October at the Universidad de
+          Nariño!
+        </div>
       </div>
-    </div>
 
-    <div class="aviso-footer">
-      <button class="aviso-btn-dismiss" onclick="closeAvisoModal()">Understood</button>
-      <a class="aviso-btn-cta" href="#reg-section"
-         onclick="closeAvisoModal(); setTimeout(()=>document.getElementById('reg-section')?.scrollIntoView({behavior:'smooth'}),80); return false;">
-        Submit proposal →
-      </a>
-    </div>
+      <div class="aviso-footer">
+        <button class="aviso-btn-dismiss" onclick="closeAvisoModal()">Close</button>
+        <a class="aviso-btn-cta" href="#reg-section"
+          onclick="closeAvisoModal(); setTimeout(()=>document.getElementById('reg-section')?.scrollIntoView({behavior:'smooth'}),80); return false;">
+          Go to Registration →
+        </a>
+      </div>
 
+    </div>
   </div>
 </div>
- 
-
 
 <script>
 const logo = "https://res.cloudinary.com/dspprxtpr/image/upload/v1773421727/altenua_hrhiw8.png"
@@ -3086,7 +3838,7 @@ const posterAboutImg = "https://res.cloudinary.com/dspprxtpr/image/upload/v17739
 const imgPasto = "https://aventurecolombia.com/wp-content/uploads/2021/04/San-Juan-de-Pasto-et-Narino-Laguna-la-Cocha-colombia-%C2%A9_RemySoulard-1.jpg"
 const imgUdenar = "https://static.tildacdn.com/tild3461-3938-4438-a237-643439336666/universidad-udenar-p.jpg"
 const email = "udenaraltenua@gmail.com"
-const GOOGLE_FORM_URL = "https://forms.gle/sUV6sRaRW1NMukwi8"
+const GOOGLE_FORM_URL = "https://forms.gle/2DSyWkVN5PfyYfES8"
 const GOOGLE_FORM_BILL_URL = "https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=245"
 const eventName = "ALTENCOA 11 - 2026"
 
@@ -3105,437 +3857,742 @@ document.getElementById('aboutText').textContent = descriptionEvent;
 
 
 /* ══ AVISO MODAL ══════════════════════════════════════════════════ */
-function openAvisoModal() {
-  const m = document.getElementById('aviso-modal');
-  if (!m) return;
-  m.classList.remove('aviso-hidden');
-  document.body.style.overflow = 'hidden';
-  m.addEventListener('click', function backdropClick(e) {
-    if (e.target === m) { closeAvisoModal(); m.removeEventListener('click', backdropClick); }
-  });
-}
+// function openAvisoModal() {
+//   const m = document.getElementById('aviso-modal');
+//   if (!m) return;
+//   m.classList.remove('aviso-hidden');
+//   document.body.style.overflow = 'hidden';
+//   m.addEventListener('click', function backdropClick(e) {
+//     if (e.target === m) { closeAvisoModal(); m.removeEventListener('click', backdropClick); }
+//   });
+// }
 
-function closeAvisoModal() {
-  const m = document.getElementById('aviso-modal');
-  if (!m) return;
-  m.classList.add('aviso-hidden');
-  document.body.style.overflow = '';
-}
+// function closeAvisoModal() {
+//   const m = document.getElementById('aviso-modal');
+//   if (!m) return;
+//   m.classList.add('aviso-hidden');
+//   document.body.style.overflow = '';
+// }
 
-// Abrir automáticamente al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  // Pequeño delay para que el hero cargue primero (opcional: quitar el setTimeout si se prefiere inmediato)
-  setTimeout(openAvisoModal, 600);
-   // Cuenta regresiva hacia el 5 de junio
-  function updateAvisoCountdown() {
-    var target = new Date('2026-06-05T23:59:59'), now = new Date(), diff = target - now;
-    if (diff <= 0) { ['d','h','m'].forEach(k => document.getElementById('aviso-cd-'+k).textContent = '0'); return; }
-    var d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4);
-    document.getElementById('aviso-cd-d').textContent = d;
-    document.getElementById('aviso-cd-h').textContent = h;
-    document.getElementById('aviso-cd-m').textContent = m;
-  }
-  updateAvisoCountdown();
-  setInterval(updateAvisoCountdown, 30000);
-});
+// // Abrir automáticamente al cargar la página
+// document.addEventListener('DOMContentLoaded', () => {
+//   // Pequeño delay para que el hero cargue primero (opcional: quitar el setTimeout si se prefiere inmediato)
+//   setTimeout(openAvisoModal, 600);
+//    // Cuenta regresiva hacia el 5 de junio
+//   function updateAvisoCountdown() {
+//     var target = new Date('2026-06-05T23:59:59'), now = new Date(), diff = target - now;
+//     if (diff <= 0) { ['d','h','m'].forEach(k => document.getElementById('aviso-cd-'+k).textContent = '0'); return; }
+//     var d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4);
+//     document.getElementById('aviso-cd-d').textContent = d;
+//     document.getElementById('aviso-cd-h').textContent = h;
+//     document.getElementById('aviso-cd-m').textContent = m;
+//   }
+//   updateAvisoCountdown();
+//   setInterval(updateAvisoCountdown, 30000);
+// });
 
-// Cerrar con Escape (se integra al listener ya existente en el sitio)
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeAvisoModal();
-});
+// // Cerrar con Escape (se integra al listener ya existente en el sitio)
+// document.addEventListener('keydown', e => {
+//   if (e.key === 'Escape') closeAvisoModal();
+// });
 
 /* ══ MODAL PRIMER ANUNCIO ══════════════════════════════════════ */
-function openAnuncioModal(e) {
-  if (e) e.preventDefault();
+// function openAnuncioModal(e) {
+//   if (e) e.preventDefault();
 
-  if (!document.getElementById('anuncio-modal-style')) {
-    const style = document.createElement('style');
-    style.id = 'anuncio-modal-style';
-    style.textContent = `
-      #anuncio-modal {
-        position: fixed; inset: 0; z-index: 9999;
-        background: rgba(5,20,5,0.88);
-        display: flex; align-items: center; justify-content: center;
-        padding: 20px; animation: afadeIn 0.25s ease;
-      }
-      @keyframes afadeIn { from{opacity:0} to{opacity:1} }
-      #anuncio-modal .am-box {
-        position: relative; max-width: 520px; width: 100%;
-        border-radius: 14px; overflow: hidden;
-        box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-        animation: aslideUp 0.28s ease; background: #0b2210;
-      }
-      @keyframes aslideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
-      #anuncio-modal .am-img { width:100%; display:block; max-height:80vh; object-fit:contain; }
-      #anuncio-modal .am-close {
-        position: absolute; top: 12px; right: 12px;
-        background: rgba(0,0,0,0.60); border: 1px solid rgba(255,255,255,0.20);
-        color: rgba(255,255,255,0.90); border-radius: 50%;
-        width: 36px; height: 36px; font-size: 15px; cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: background 0.2s; line-height: 1;
-      }
-      #anuncio-modal .am-close:hover { background: rgba(255,255,255,0.18); color: white; }
-      #anuncio-modal .am-footer {
-        padding: 14px 18px; background: #0e1f0a;
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 12px; border-top: 1px solid rgba(126,217,87,0.15);
-      }
-      #anuncio-modal .am-footer-text { font-size: 13px; color: rgba(255,255,255,0.55); }
-      #anuncio-modal .am-download {
-        font-size: 13px; font-weight: 700; color: #7ED957;
-        text-decoration: none; white-space: nowrap; transition: color 0.2s;
-      }
-      #anuncio-modal .am-download:hover { color: #9BE564; }
-    `;
-    document.head.appendChild(style);
+//   if (!document.getElementById('anuncio-modal-style')) {
+//     const style = document.createElement('style');
+//     style.id = 'anuncio-modal-style';
+//     style.textContent = `
+//       #anuncio-modal {
+//         position: fixed; inset: 0; z-index: 9999;
+//         background: rgba(5,20,5,0.88);
+//         display: flex; align-items: center; justify-content: center;
+//         padding: 20px; animation: afadeIn 0.25s ease;
+//       }
+//       @keyframes afadeIn { from{opacity:0} to{opacity:1} }
+//       #anuncio-modal .am-box {
+//         position: relative; max-width: 520px; width: 100%;
+//         border-radius: 14px; overflow: hidden;
+//         box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+//         animation: aslideUp 0.28s ease; background: #0b2210;
+//       }
+//       @keyframes aslideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+//       #anuncio-modal .am-img { width:100%; display:block; max-height:80vh; object-fit:contain; }
+//       #anuncio-modal .am-close {
+//         position: absolute; top: 12px; right: 12px;
+//         background: rgba(0,0,0,0.60); border: 1px solid rgba(255,255,255,0.20);
+//         color: rgba(255,255,255,0.90); border-radius: 50%;
+//         width: 36px; height: 36px; font-size: 15px; cursor: pointer;
+//         display: flex; align-items: center; justify-content: center;
+//         transition: background 0.2s; line-height: 1;
+//       }
+//       #anuncio-modal .am-close:hover { background: rgba(255,255,255,0.18); color: white; }
+//       #anuncio-modal .am-footer {
+//         padding: 14px 18px; background: #0e1f0a;
+//         display: flex; align-items: center; justify-content: space-between;
+//         gap: 12px; border-top: 1px solid rgba(126,217,87,0.15);
+//       }
+//       #anuncio-modal .am-footer-text { font-size: 13px; color: rgba(255,255,255,0.55); }
+//       #anuncio-modal .am-download {
+//         font-size: 13px; font-weight: 700; color: #7ED957;
+//         text-decoration: none; white-space: nowrap; transition: color 0.2s;
+//       }
+//       #anuncio-modal .am-download:hover { color: #9BE564; }
+//     `;
+//     document.head.appendChild(style);
+//   }
+
+//   const existing = document.getElementById('anuncio-modal');
+//   if (existing) existing.remove();
+
+//   const modal = document.createElement('div');
+//   modal.id = 'anuncio-modal';
+//   modal.innerHTML = `
+//     <div class="am-box">
+//       <img class="am-img" src="${posterFirtsAnuncio}" alt="Primer Anuncio ALTENCOA 11" />
+//       <button class="am-close" id="am-close-btn" aria-label="Cerrar">✕</button>
+//       <div class="am-footer">
+//         <span class="am-footer-text">First Announcement — ALTENCOA 11 · 2026</span>
+//         <a class="am-download" href="${posterFirtsAnuncio}" download target="_blank" rel="noopener">↓ Download</a>
+//       </div>
+//     </div>
+//   `;
+
+//   document.body.appendChild(modal);
+//   document.body.style.overflow = 'hidden';
+
+//   document.getElementById('am-close-btn').addEventListener('click', closeAnuncioModal);
+//   modal.addEventListener('click', e => { if (e.target === modal) closeAnuncioModal(); });
+//   modal._escHandler = e => { if (e.key === 'Escape') closeAnuncioModal(); };
+//   document.addEventListener('keydown', modal._escHandler);
+// }
+
+  function closeAnuncioModal() {
+    const modal = document.getElementById('anuncio-modal');
+    if (!modal) return;
+    if (modal._escHandler) document.removeEventListener('keydown', modal._escHandler);
+    modal.remove();
+    document.body.style.overflow = '';
   }
-
-  const existing = document.getElementById('anuncio-modal');
-  if (existing) existing.remove();
-
-  const modal = document.createElement('div');
-  modal.id = 'anuncio-modal';
-  modal.innerHTML = `
-    <div class="am-box">
-      <img class="am-img" src="${posterFirtsAnuncio}" alt="Primer Anuncio ALTENCOA 11" />
-      <button class="am-close" id="am-close-btn" aria-label="Cerrar">✕</button>
-      <div class="am-footer">
-        <span class="am-footer-text">First Announcement — ALTENCOA 11 · 2026</span>
-        <a class="am-download" href="${posterFirtsAnuncio}" download target="_blank" rel="noopener">↓ Download</a>
+  
+  /* ══ TABS COMITÉ CIENTÍFICO ════════════════════════════════════ */
+  function switchTab(btn, panelId) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('panel-' + panelId);
+    if (panel) panel.classList.add('active');
+  }
+  
+  /* ══ COMITÉ CIENTÍFICO ════════════════════════════════════════ */
+  const committees = [
+    {
+      id: 'algebra', label: 'Algebra',
+      members: [
+        { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
+        { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
+        { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'number', label: 'Number Theory',
+      members: [
+        { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
+        { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
+        { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'comb', label: 'Combinatorics',
+      members: [
+        { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
+        { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
+        { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'apps', label: 'Applications',
+      members: [
+        { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
+        { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'alg-geom', label: 'Algebraic Geometry',
+      members: [
+        { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
+        { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
+        { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
+      ]
+    },
+    {
+      id: 'data', label: 'Data Analysis and Complex Systems (Invited Area)',
+      members: [
+        { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
+        { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
+        { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'Francia' }
+      ]
+    }
+  ];
+  
+  /* ══ FLAGS (CSS FLAG ICONS) ═══════════════════════════════════ */
+  (function(){
+    const countryNameToCode = {
+      'brasil':'br','brazil':'br','colombia':'co','méxico':'mx','mexico':'mx',
+      'chile':'cl','estados unidos':'us','usa':'us','united states':'us',
+      'francia':'fr','france':'fr','argentina':'ar','perú':'pe','peru':'pe',
+      'ecuador':'ec','venezuela':'ve','uruguay':'uy','paraguay':'py','bolivia':'bo'
+    };
+  
+    window.getCountryCode = function(input) {
+      if (!input) return null;
+      const s = String(input).toLowerCase().trim();
+    
+      if (countryNameToCode[s]) return countryNameToCode[s];
+    
+      for (const name in countryNameToCode) {
+        if (s.includes(name)) return countryNameToCode[name];
+      }
+    
+      const parts = s.split(/[,\-\/]/).map(p => p.trim());
+      for (let i = parts.length - 1; i >= 0; --i) {
+        if (countryNameToCode[parts[i]]) return countryNameToCode[parts[i]];
+      }
+    
+      return null;
+    };
+  })();
+  
+  /* ══ CREATE MEMBER CARD ═══════════════════════════════════════ */
+  function createMemberCard(m) {
+    const card = document.createElement('div');
+    card.className = 'member-card';
+  
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+  
+    const code = getCountryCode(m.location || m.institution);
+  
+    if (code) {
+      avatar.innerHTML = `<span class="fi fi-${code}"></span>`;
+    } else {
+      avatar.textContent = m.initials || (m.name || '')
+        .split(' ')
+        .map(n => n[0])
+        .join('')
+        .slice(0, 2);
+    }
+  
+    card.appendChild(avatar);
+  
+    const name = document.createElement('div');
+    name.className = 'member-name';
+    name.textContent = m.name;
+    card.appendChild(name);
+  
+    const inst = document.createElement('div');
+    inst.className = 'member-institution';
+    inst.textContent = m.institution;
+    card.appendChild(inst);
+  
+    return card;
+  }
+  
+  /* ══ RENDER ═══════════════════════════════════════════════════ */
+  function renderCommittees() {
+    const tabs = document.getElementById('committee-tabs');
+    const panelsContainer = document.getElementById('committee-panels');
+  
+    if (!tabs || !panelsContainer) return;
+  
+    tabs.innerHTML = '';
+    panelsContainer.innerHTML = '';
+  
+    committees.forEach((c, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+      btn.textContent = c.label;
+    
+      btn.addEventListener('click', () => switchTab(btn, c.id));
+      tabs.appendChild(btn);
+    
+      const panel = document.createElement('div');
+      panel.id = 'panel-' + c.id;
+      panel.className = 'tab-panel' + (idx === 0 ? ' active' : '');
+    
+      c.members.forEach(m => panel.appendChild(createMemberCard(m)));
+    
+      panelsContainer.appendChild(panel);
+    });
+  }
+  
+  
+  /* ══ COMITÉ ORGANIZADOR ═══════════════════════════════════════ */
+  const COMMITTEE = [
+    { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" , class: "logo-ct-udenar" },
+    { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", class: "logo-ct-univalle" },
+    { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774224948/logo-unicaragena_batchedito-subir_xva0q1.webp", class: "logo-ct-unicar" },
+    { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", class: "logo-ct-unicauca" },
+    { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+    { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+    { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+    { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
+  ];
+  
+  function getInitials(name) {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0][0].toUpperCase();
+    return (parts[0][0] + parts[parts.length > 2 ? 2 : 1][0]).toUpperCase();
+  }
+  
+  function avatarHTML(member) {
+    if (member.photo && member.photo.trim() !== '') {
+      return `<div class="avatar-O ${member.class || ''}"><img src="${member.photo}" alt="${member.name}" /></div>`;
+    }
+    return `<div class="avatar-O">${getInitials(member.name)}</div>`;
+  }
+  
+  function renderCommittee() {
+    const grid = document.getElementById('members-grid');
+    if (!grid) return;
+    grid.innerHTML = COMMITTEE.map(member => `
+      <div class="member-card-O">
+        ${avatarHTML(member)}
+        <div class="member-name-O">${member.name}</div>
+        <div class="member-institution-O">${member.institution}</div>
       </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-  document.body.style.overflow = 'hidden';
-
-  document.getElementById('am-close-btn').addEventListener('click', closeAnuncioModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeAnuncioModal(); });
-  modal._escHandler = e => { if (e.key === 'Escape') closeAnuncioModal(); };
-  document.addEventListener('keydown', modal._escHandler);
-}
-
-function closeAnuncioModal() {
-  const modal = document.getElementById('anuncio-modal');
-  if (!modal) return;
-  if (modal._escHandler) document.removeEventListener('keydown', modal._escHandler);
-  modal.remove();
-  document.body.style.overflow = '';
-}
-
-/* ══ TABS COMITÉ CIENTÍFICO ════════════════════════════════════ */
-function switchTab(btn, panelId) {
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    b.classList.remove('active');
-    b.setAttribute('aria-selected', 'false');
-  });
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  btn.setAttribute('aria-selected', 'true');
-  const panel = document.getElementById('panel-' + panelId);
-  if (panel) panel.classList.add('active');
-}
-
-/* ══ COMITÉ CIENTÍFICO ════════════════════════════════════════ */
-const committees = [
-  {
-    id: 'algebra', label: 'Algebra',
-    members: [
-      { initials: 'PC', name: 'Paula Cadavid', institution: 'Universidade Federal Rural de Pernambuco, Brasil', location: 'Brasil' },
-      { initials: 'GB', name: 'German Benítez', institution: 'Universidade Federal do Amazonas, Brasil', location: 'Brasil' },
-      { initials: 'AH', name: 'Alexander Holguín Villa', institution: 'Universidad Industrial de Santander, Colombia', location: 'Colombia' }
-    ]
-  },
-  {
-    id: 'number', label: 'Number Theory',
-    members: [
-      { initials: 'MH', name: 'Mario Huicochea', institution: 'Universidad Autónoma de Zacatecas, México', location: 'México' },
-      { initials: 'AM', name: 'Amalia Pizarro Madariaga', institution: 'Universidad de Valparaiso, Chile', location: 'Chile' },
-      { initials: 'JJ', name: 'Jhon Jairo Bravo', institution: 'Universidad del Cauca, Colombia', location: 'Colombia' }
-    ]
-  },
-  {
-    id: 'comb', label: 'Combinatorics',
-    members: [
-      { initials: 'AM', name: 'Amanda Montejano Cantoral', institution: 'Universidad Nacional Autónoma de México, México', location: 'México' },
-      { initials: 'FC', name: 'Federico Castillo', institution: 'Pontificia Universidad Católica, Chile', location: 'Chile' },
-      { initials: 'JR', name: 'José Luis Ramírez', institution: 'Universidad Nacional de Colombia, Colombia', location: 'Colombia' }
-    ]
-  },
-  {
-    id: 'apps', label: 'Applications',
-    members: [
-      { initials: 'HL', name: 'Hiram H. López', institution: 'Department of Mathematics, Virginia Tech, USA', location: 'USA' },
-      { initials: 'DB', name: 'Diana H. Bueno', institution: 'Pontificia Universidad Javeriana Cali, Colombia', location: 'Colombia' }
-    ]
-  },
-  {
-    id: 'alg-geom', label: 'Algebraic Geometry',
-    members: [
-      { initials: 'LQ', name: 'Luciane Quoos', institution: 'Universidade Federal do Rio de Janeiro, Brasil', location: 'Brasil' },
-      { initials: 'AS', name: 'Alonso Sepúlveda Castellanos', institution: 'Universidade Federal de Uberlandia, Brasil', location: 'Brasil' },
-      { initials: 'HN', name: 'Horacio Navarro', institution: 'Universidad del Valle, Colombia', location: 'Colombia' }
-    ]
-  },
-  {
-    id: 'data', label: 'Data Analysis and Complex Systems (Invited Area)',
-    members: [
-      { initials: 'AR', name: 'Alejandra Rada', institution: 'Universidade Federal do ABC, Brasil', location: 'Brasil' },
-      { initials: 'PR', name: 'Pablo M. Rodríguez', institution: 'Universidade Federal de Pernambuco, Brasil', location: 'Brasil' },
-      { initials: 'SV', name: 'Santiago Velasco-Forero', institution: 'Centre for Mathematical Morphology (CMM), Mines Paris, PSL University, Francia', location: 'Francia' }
-    ]
+    `).join('');
   }
-];
+  
+  renderCommittee();
+  
+  /* ══ TARIFAS E INFO CARDS ════════════════════════════════════ */
+  const infoCards = [
+    {
+      id: 'fechas',
+      title: 'Important dates',
+      items: [
+        { label: 'Event', value: 'October 5–9, 2026' }
+      ]
+    },
+    {
+      id: 'costos-plazos',
+      title: 'Costs and Deadlines',
+      items: [
+        { label: 'Payment Deadline with Discount', value: 'August 21' },
+        { label: 'Payment Deadline for Attendees', value: 'September 18' }
+      ]
+    },
+    { id: 'tarifas', title: 'Fees', type: 'tarifas' }
+  ];
 
-/* ══ FLAGS (CSS FLAG ICONS) ═══════════════════════════════════ */
-(function(){
-  const countryNameToCode = {
-    'brasil':'br','brazil':'br','colombia':'co','méxico':'mx','mexico':'mx',
-    'chile':'cl','estados unidos':'us','usa':'us','united states':'us',
-    'francia':'fr','france':'fr','argentina':'ar','perú':'pe','peru':'pe',
-    'ecuador':'ec','venezuela':'ve','uruguay':'uy','paraguay':'py','bolivia':'bo'
+  const costos = {
+    asistentes: {
+      'Undergraduate Student (Udenar)': 50000,
+      'Postgraduate Student': 335000,
+      'Undergraduate Student': 100000,
+      'University Professor': 400000,
+      'Non-University Teacher': 120000,
+      'Other': 450000
+    },
+    // ponentes: {
+    //   'Undergraduate Student (Udenar)': 45000, 'Postgraduate Student': 301500,
+    //   'Undergraduate Student': 90000, 'University Professor': 360000,
+    //   'Non-University Teacher': 108000, 'Other': 405000
+    // },
+    sin_descuento: {
+      'Undergraduate Student (Udenar)': 100000, 'Postgraduate Student': 370000,
+      'Undergraduate Student': 120000, 'University Professor': 500000,
+      'Non-University Teacher': 140000, 'Other': 500000
+    }
   };
 
-  window.getCountryCode = function(input) {
-    if (!input) return null;
-    const s = String(input).toLowerCase().trim();
-
-    if (countryNameToCode[s]) return countryNameToCode[s];
-
-    for (const name in countryNameToCode) {
-      if (s.includes(name)) return countryNameToCode[name];
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+    }).format(value);
     }
-
-    const parts = s.split(/[,\-\/]/).map(p => p.trim());
-    for (let i = parts.length - 1; i >= 0; --i) {
-      if (countryNameToCode[parts[i]]) return countryNameToCode[parts[i]];
-    }
-
-    return null;
-  };
-})();
-
-/* ══ CREATE MEMBER CARD ═══════════════════════════════════════ */
-function createMemberCard(m) {
-  const card = document.createElement('div');
-  card.className = 'member-card';
-
-  const avatar = document.createElement('div');
-  avatar.className = 'avatar';
-
-  const code = getCountryCode(m.location || m.institution);
-
-  if (code) {
-    avatar.innerHTML = `<span class="fi fi-${code}"></span>`;
-  } else {
-    avatar.textContent = m.initials || (m.name || '')
-      .split(' ')
-      .map(n => n[0])
-      .join('')
-      .slice(0, 2);
-  }
-
-  card.appendChild(avatar);
-
-  const name = document.createElement('div');
-  name.className = 'member-name';
-  name.textContent = m.name;
-  card.appendChild(name);
-
-  const inst = document.createElement('div');
-  inst.className = 'member-institution';
-  inst.textContent = m.institution;
-  card.appendChild(inst);
-
-  return card;
-}
-
-/* ══ RENDER ═══════════════════════════════════════════════════ */
-function renderCommittees() {
-  const tabs = document.getElementById('committee-tabs');
-  const panelsContainer = document.getElementById('committee-panels');
-
-  if (!tabs || !panelsContainer) return;
-
-  tabs.innerHTML = '';
-  panelsContainer.innerHTML = '';
-
-  committees.forEach((c, idx) => {
-    const btn = document.createElement('button');
-    btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
-    btn.setAttribute('role', 'tab');
-    btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
-    btn.textContent = c.label;
-
-    btn.addEventListener('click', () => switchTab(btn, c.id));
-    tabs.appendChild(btn);
-
-    const panel = document.createElement('div');
-    panel.id = 'panel-' + c.id;
-    panel.className = 'tab-panel' + (idx === 0 ? ' active' : '');
-
-    c.members.forEach(m => panel.appendChild(createMemberCard(m)));
-
-    panelsContainer.appendChild(panel);
-  });
-}
-
-
-/* ══ COMITÉ ORGANIZADOR ═══════════════════════════════════════ */
-const COMMITTEE = [
-  { name: "John H. Castillo",          institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp" , class: "logo-ct-udenar" },
-  { name: "Carlos Alexis Gómez",       institution: "Universidad del Valle",    photo: "https://www.univalle.edu.co/images/Univalle/70_Rojo.jpg", class: "logo-ct-univalle" },
-  { name: "Julio César Hernández",     institution: "Universidad de Cartagena", photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774224948/logo-unicaragena_batchedito-subir_xva0q1.webp", class: "logo-ct-unicar" },
-  { name: "José Luis Herrera",         institution: "Universidad del Cauca",    photo: "https://www.unicauca.edu.co/wp-content/uploads/2024/08/Logo-Universidad-del-Cauca-vertical-1.png", class: "logo-ct-unicauca" },
-  { name: "Catalina M. Rúa-Alvarez",   institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
-  { name: "Fernando Andrés Benavides", institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
-  { name: "Wilson Fernando Mutis",     institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
-  { name: "Oscar Fernando Soto",       institution: "Universidad de Nariño",    photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1774355151/udenarLogoMejorado_batcheditor_fotor_cr0bcw.webp", class: "logo-ct-udenar" },
-];
-
-function getInitials(name) {
-  const parts = name.trim().split(/\s+/);
-  if (parts.length === 1) return parts[0][0].toUpperCase();
-  return (parts[0][0] + parts[parts.length > 2 ? 2 : 1][0]).toUpperCase();
-}
-
-function avatarHTML(member) {
-  if (member.photo && member.photo.trim() !== '') {
-    return `<div class="avatar-O ${member.class || ''}"><img src="${member.photo}" alt="${member.name}" /></div>`;
-  }
-  return `<div class="avatar-O">${getInitials(member.name)}</div>`;
-}
-
-function renderCommittee() {
-  const grid = document.getElementById('members-grid');
-  if (!grid) return;
-  grid.innerHTML = COMMITTEE.map(member => `
-    <div class="member-card-O">
-      ${avatarHTML(member)}
-      <div class="member-name-O">${member.name}</div>
-      <div class="member-institution-O">${member.institution}</div>
-    </div>
-  `).join('');
-}
-
-renderCommittee();
-
-/* ══ TARIFAS E INFO CARDS ════════════════════════════════════ */
-const infoCards = [
-  {
-    id: 'fechas',
-    title: 'Important dates',
-    items: [
-      { label: 'Submission of papers and posters / Proposal reception', value: 'February 16 to June 5' },
-      { label: 'Proposal acceptance', value: 'June 29' },
-      { label: 'Event', value: 'October 5–9, 2026' }
-    ]
-  },
-  {
-    id: 'costos-plazos',
-    title: 'Costs and Deadlines',
-    items: [
-      { label: 'Payment Deadline with Discount', value: 'August 21' },
-      { label: 'Payment Deadline for Speakers', value: 'September 4 ' },
-      { label: 'Payment Deadline for Attendees', value: 'September 18' }
-    ]
-  },
-  { id: 'tarifas', title: 'Fees', type: 'tarifas' }
-];
-
-const costos = {
-  asistentes: {
-    'Undergraduate Student (Udenar)': 50000,
-    'Postgraduate Student': 335000,
-    'Undergraduate Student': 100000,
-    'University Professor': 400000,
-    'Non-University Teacher': 120000,
-    'Other': 450000
-  },
-  ponentes: {
-    'Undergraduate Student (Udenar)': 45000, 'Postgraduate Student': 301500,
-    'Undergraduate Student': 90000, 'University Professor': 360000,
-    'Non-University Teacher': 108000, 'Other': 405000
-  },
-  sin_descuento: {
-    'Undergraduate Student (Udenar)': 100000, 'Postgraduate Student': 370000,
-    'Undergraduate Student': 120000, 'University Professor': 500000,
-    'Non-University Teacher': 140000, 'Other': 500000
-  }
-};
-
-function formatCurrency(n) {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
 
 function renderInfoCards() {
   const container = document.getElementById('info-cards');
   if (!container) return;
+ 
   container.innerHTML = '';
-  infoCards.forEach(card => {
+ 
+  infoCards.forEach((card) => {
     const box = document.createElement('div');
     box.className = 'info-box';
-    box.setAttribute('role', 'group');
-    box.setAttribute('aria-label', card.title);
+ 
     if (card.type === 'tarifas') {
+      // TARJETA COLAPABLE DE TARIFAS
       box.classList.add('info-box-collapsible');
       box.id = 'tarifas-box';
+ 
       const btn = document.createElement('button');
       btn.className = 'collapsible-toggle';
       btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-controls', 'tarifas-content');
-      btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev" aria-hidden="true">See more</span>`;
-      box.appendChild(btn);
+      btn.innerHTML = `<div class="dates-title">${card.title}</div><span class="chev">Ver más</span>`;
+ 
       const content = document.createElement('div');
-      content.id = 'tarifas-content';
       content.className = 'collapsible-content';
-      content.hidden = true;
+ 
+      const ul = document.createElement('ul');
+      ul.className = 'dates-list';
+ 
+      // Renderizar cada categoría con dos precios
+      Object.entries(costos.asistentes).forEach(([label, priceConDescuento]) => {
+        const priceSinDescuento = costos.sin_descuento[label];
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span class="tarif-label">${label}</span>
+          <span class="tarif-price">
+            <span style="color: #5C5C5C">${formatCurrency(priceSinDescuento)}</span>
+            <span style="text-decoration: underline; text-decoration-color: #7ED957; text-underline-offset: 3px; margin-left: 12px; color: #7ED957;">${formatCurrency(priceConDescuento)}</span>
+          </span>
+        `;
+        ul.appendChild(li);
+      });
+ 
+      content.appendChild(ul);
+      box.appendChild(btn);
       box.appendChild(content);
-      const mention = document.createElement('div');
-      mention.id = 'tarifas-mention';
-      mention.className = 'dates-list';
-      mention.hidden = true;
-      box.appendChild(mention);
+ 
+      // Event listener para expandir/contraer
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        box.classList.toggle('open');
+        btn.setAttribute('aria-expanded', box.classList.contains('open'));
+      });
+ 
     } else {
+      // TARJETAS SIMPLES (Fechas, Plazos)
       const title = document.createElement('div');
       title.className = 'dates-title';
       title.textContent = card.title;
-      box.appendChild(title);
+ 
       const ul = document.createElement('ul');
       ul.className = 'dates-list';
-      card.items.forEach(it => {
+ 
+      card.items.forEach(item => {
         const li = document.createElement('li');
-        li.innerHTML = `<span class="tarif-label">${it.label}</span><span class="tarif-price">${it.value}</span>`;
+        li.innerHTML = `<span class="tarif-label">${item.label}</span><span class="tarif-price">${item.value}</span>`;
         ul.appendChild(li);
       });
+ 
+      box.appendChild(title);
       box.appendChild(ul);
     }
+ 
     container.appendChild(box);
   });
-  document.dispatchEvent(new Event('infoCardsReady'));
+}
+  /* ══ EXPOSITORES PRINCIPALES - VISTA RÁPIDA ══ */
+
+    const speakers = [
+      {
+        name: "Germán Benítez Monsalve",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781299463/germanBenitesLast_nknyoc.webp",
+        photoAlt: "Germán Benítez Monsalve",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/BenitezGerman - German Alonso Benitez Monsalve.pdf",
+        affiliations: [
+          { name: "Universidade Federal do Amazonas", country: "Brasil" },
+        ],
+        topic: "Algebra",
+       },
+      {
+        name: "Javier Sánchez Serdà",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1780759894/2f16f741-7b00-48cb-bc8a-ad2fb9805487.png",
+        photoAlt: "Javier Sánchez Serdà",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/SanchezJavier%20-%20Javier%20Sanchez%20Serd%C3%A0.pdf",
+        affiliations: [
+          { name: "Universidad de Sao Paulo", country: "Brasil" },
+        ],
+        topic: "Algebra",
+      },
+
+      {
+        name: "Hiram López",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781275506/HiramLopez_lo3qoy.webp",
+        photoAlt: "Hiram López",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/HiramLopez.pdf",
+        affiliations: [
+          { name: "Virginia Tech", country: "USA" },
+        ],
+        topic: "Applications",
+      },
+      {
+        name: "Florian Luca",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735277/Florian-Luca_duzyai.png",
+        photoAlt: "Florian Luca",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/LucaFlorian - Florian Luca.pdf",
+        affiliations: [
+          { name: "Stellenbosch University", country: "South Africa" },
+          { name: "Max Planck Institute", country: "Germany" }
+        ],
+        topic: "Number Theory",
+      },
+      {
+        name: "Alonso Sepúlveda Castellanos",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1780760092/c2a8cadb-e280-4460-94e8-8aa2e19e4f52.png",
+        photoAlt: "Alonso Sepúlveda Castellanos",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/SepulvedaAlonso%20-%20Alonso%20Sep%C3%BAlveda.pdf",
+        affiliations: [
+          { name: "Universidade Federal de Uberlândia", country: "Brasil" },
+        ],
+        topic: "Algebraic Geometry",
+      },
+      {
+        name: "Alejandra Rada",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735371/AlejandraRada_dno8xj.jpg",
+        photoAlt: "Alejandra Rada",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/RadaAlejandra%20-%20Erika%20Alejandra%20Rada%20Mora.pdf",
+        affiliations: [
+          { name: "Universidade Federal do ABC", country: "Brasil" },
+        ],
+        topic: "Data Analysis and Complex Systems",
+      },
+      
+      
+      {
+        name: "Pablo Martín Rodríguez",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1780759679/WhatsApp_Image_2026-06-06_at_10.26.21_AM_ckkork.jpg",
+        photoAlt: "Pablo Martín Rodríguez",
+        confType: "Plenary Conference",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/RodriguezPablo%20-%20Pablo%20Martin%20Rodriguez.pdf",
+        affiliations: [
+          { name: "Universidade Federal de Pernambuco", country: "Brasil" },
+        ],
+        topic: "Data Analysis and Complex Systems",
+      },
+       
+    ];
+
+    const courses = [
+      {
+        name: "Mario Huicochea",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1780760227/f1a4d28f-2460-4601-bc93-958aba6aeeff.png",
+        photoAlt: "Mario Huicochea",
+        confType: "Minicourse",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/HuicocheaMario%20-%20Mario%20Huicochea%20Mason.pdf",
+        affiliations: [
+          { name: "SECIHTI/UAZ, Zacatecas", country: "México" },
+        ],
+        topic: "Combinatorics",
+      },
+      {
+        name: "Diana Bueno Carreño",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781298554/cfd07ebc-b0ce-403d-98f1-cdadd1880b02.png",
+        photoAlt: "Diana Bueno Carreño",
+        confType: "Minicourse",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/BuenoDiana - Diana H. Bueno - Carreño.pdf",
+        affiliations: [
+          { name: "Pontificia Universidad Javeriana, Cali", country: "Colombia" }
+        ],
+        topic: "Applications",
+     
+      },
+      {
+        name: "Yamidt Bermudez <br> Pedro Hernandez Rizzo",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781278539/Pedro_Yamidt_dushlo.webp",
+        photoAlt: "Yamidt Bermudez y Pedro Hernandez Rizzo",
+        confType: "Minicourse",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/introduccion al algebra de diferencias - YAMIDT BERMUDEZ TOBON.pdf",
+        affiliations: [
+          { name: "Universidad del Valle <br> Universidad de Antioquia", country: "Colombia" }, 
+        ],
+        topic: "Algebraic Geometry",
+       
+      },
+      {
+        name: "Sergio Troncoso",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779737636/SERGIOTRONCOSOIGUA_f9m3cx.jpg",
+        photoAlt: "Sergio Troncoso",
+        confType: "Minicourse",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/TroncosoSergio - SERGIO TRONCOSO IGUA.pdf",
+        affiliations: [
+          { name: "Universidad del Valle", country: "Colombia" },
+        ],
+        topic: "Algebraic Geometry",
+      },
+      
+      {
+        name: "Isabel García",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781645126/Foto_-_Isabel_Garcia_zyrri7.webp",
+        photoAlt: "Isabel García",
+        confType: "Minicourse",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/Resumen extendido - Isabel Garcia.pdf",
+        affiliations: [
+          { name: "Universidad del Valle", country: "Colombia" }
+        ],
+        topic: "Data Analysis and Complex Systems",
+    
+      },
+      {
+        name: "Henry Laniado",
+        photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781298696/HenryLaniado_viw7tx.webp",
+        photoAlt: "Henry Laniado",
+        confType: "Minicourse",
+        pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/Laniado_Henry - Henry Laniado.pdf",
+        affiliations: [
+          { name: "Universidad del Cauca", country: "Colombia" }
+        ],
+        topic: "Data Analysis and Complex Systems",
+      
+      },
+    ];
+
+    const allExpositores = [...speakers, ...courses];
+
+     function getTopic(expositor) {
+      return expositor.confType || '';
+    }
+
+    function getTopicUnique(expositor) {
+      return expositor.topic || '';
+    }
+
+    function getUniqueTopics() {
+      const topics = new Set(allExpositores.map(getTopic));
+      return Array.from(topics).sort();
+    }
+
+
+    function createExpositorCard(expositor) {
+    const countryNames = expositor.affiliations.map(a => a.country).join(', ');
+    const affiliationText = expositor.affiliations[0].name;
+
+  return `
+    <div class="expositor-card" data-topic="${getTopic(expositor)}" href="${expositor.pdfUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation(); window.open('${expositor.pdfUrl}', '_blank', 'noopener');">
+      <div class="expositor-photo-container">
+        <img src="${expositor.photo}" alt="${expositor.photoAlt}" class="expositor-photo" loading="lazy" />
+        <a  class="exp-learn-more"  >
+          ${getTopicUnique(expositor)} 
+        </a>
+      </div>
+      
+      <div class="expositor-content">
+        <span class="expositor-badge">${expositor.confType}</span>
+        
+        <h3 class="expositor-name">${expositor.name}</h3>
+        
+        <p class="expositor-affiliation">
+          ${affiliationText}
+          <div class="expositor-country">🌍 ${countryNames}</div>
+        </p>
+      </div>
+    </div>
+  `;
 }
 
-function renderTarifas() {
-  const container  = document.getElementById('tarifas-content');
-  const containerf = document.getElementById('tarifas-mention');
-  if (!container) return;
-  const createListFrom = (obj) => {
-    let html = '<ul class="dates-list">';
-    for (const key of Object.keys(obj)) {
-      html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong> COP</span></li>`;
+    function renderExpositores(filterTopic = 'all') {
+      const grid = document.getElementById('expositores-grid');
+      if (!grid) return;
+
+      let filtered = allExpositores;
+      if (filterTopic !== 'all') {
+        filtered = allExpositores.filter(e => getTopic(e) === filterTopic);
+      }
+
+      let html = filtered.map(createExpositorCard).join('');
+
+      // Agregar sección "Ver todos"
+      html += `
+    <div class="exp-view-all-section" style="grid-column: 1 / -1;">
+      <p class="exp-view-all-text">Do you want to know more details about the Plenaries and the Minicourses?</p>
+      <a href="https://sites.google.com/view/altencoa11-en/speakers" class="exp-view-all-btn">
+        See all the Speakers →
+      </a>
+    </div>
+  `;
+
+      grid.innerHTML = html;
     }
-    return html + '</ul>';
-  };
-  let html = '<div class="tarif-grid" style="min-height: 240px; ">';
-  html += `<div class="tarif-column"><div class="tarif-col-title">Discounted attendees</div>${createListFrom(costos.asistentes)}</div>`;
-  html += `<div class="tarif-column"><div class="tarif-col-title">Discounted speakers</div>${createListFrom(costos.ponentes)}</div>`;
-  html += `<div class="tarif-column"><div class="tarif-col-title">Regular prices</div>${createListFrom(costos.sin_descuento)}</div>`;
-  html += '</div>';
-  container.innerHTML = html;
-  const mentionText = 'Discounted prices apply for payments made before 21 August 2026. After this date, no discount rates will apply.';
-  if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
-}
+
+    function renderExpositorFilters() {
+      const container = document.getElementById('exp-filters');
+      if (!container) return;
+
+      const topics = getUniqueTopics();
+      let html = ``;
+
+      topics.forEach(topic => {
+  // Creamos una variable para el texto visual
+      let textoMostrar = topic;
+
+      // Si el texto es "Conferencia Plenaria" (validando minúsculas por seguridad), lo pluralizamos
+      if (topic.toLowerCase() === 'plenary conference') {
+        textoMostrar = 'Plenary Conferences';
+      }
+      if (topic.toLowerCase() === 'minicourse') {
+        textoMostrar = 'Minicourses';
+      }
+    
+      // Mantenemos 'topic' para la lógica interna y usamos 'textoMostrar' en el contenido del botón
+      html += `<button class="exp-filter-btn" data-filter="${topic}" onclick="filterExpositors('${topic}', event)">${textoMostrar}</button>`;
+    });
+
+      container.innerHTML = html;
+    }
+
+    function filterExpositors(topic, event) {
+      if (event) event.preventDefault();
+
+      document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      const activeBtn = document.querySelector(`[data-filter="${topic}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      renderExpositores(topic);
+    }
+
+    // Inicializar expositores
+    document.addEventListener('DOMContentLoaded', () => {
+      renderExpositorFilters();
+      renderExpositores('Plenary Conference');
+      
+      // Marcar el botón de "Conferencia Plenaria" como activo
+      const plenarioBtn = document.querySelector('[data-filter="Plenary Conference"]');
+      if (plenarioBtn) plenarioBtn.classList.add('active');
+    });
+
+    function renderTarifas() {
+      const container = document.getElementById('tarifas-content');
+      const containerf = document.getElementById('tarifas-mention');
+      if (!container) return;
+      const createListFrom = (obj) => {
+        let html = '<ul class="dates-list">';
+        for (const key of Object.keys(obj)) {
+          html += `<li><span class="tarif-label">${key}</span><span class="tarif-price"><strong>$${formatCurrency(obj[key])}</strong> COP</span></li>`;
+        }
+        return html + '</ul>';
+      };
+      let html = '<div class="tarif-grid" style="min-height: 240px; ">';
+      html += `<div class="tarif-column"><div class="tarif-col-title">Asistentes con descuento</div>${createListFrom(costos.asistentes)}</div>`;
+      // html += `<div class="tarif-column"><div class="tarif-col-title">Ponentes con descuento</div>${createListFrom(costos.ponentes)}</div>`;
+      html += `<div class="tarif-column"><div class="tarif-col-title">Precios sin descuento</div>${createListFrom(costos.sin_descuento)}</div>`;
+      html += '</div>';
+      container.innerHTML = html;
+      const mentionText = 'Los precios con descuento aplican para pagos realizados antes del 21 de agosto de 2026. Después de esta fecha, se aplicarán las tarifas sin descuento.';
+      if (containerf) { containerf.textContent = mentionText; containerf.hidden = false; }
+    }
 
 function initTarifasCollapsible() {
   const tarifasBox = document.getElementById('tarifas-box');
@@ -3851,6 +4908,72 @@ document.addEventListener('DOMContentLoaded', () => {
   addMessage("Hello! I am the ALTENCOA Bot. How can I help you?");
   renderOptions();
 
+});
+
+
+ // ══ COUNTDOWN TIMER ══
+  function updateCountdown() {
+  // Obtener hora actual en zona horaria colombiana
+  const colombianNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+  const now = colombianNow.getTime();
+  
+  // Fecha objetivo: 5 de octubre 2026 00:00:00 en Colombia
+  const targetDate = new Date('2026-10-05T00:00:00');
+  const colombianTarget = new Date(targetDate.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+  const eventDate = colombianTarget.getTime();
+  
+  const distance = eventDate - now;
+
+  if (distance > 0) {
+    // Calcular tiempo restante
+    const totalDays = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const months = Math.floor(totalDays / 30.44);
+    const days = Math.floor(totalDays % 30.44);
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('countdown-months').textContent = String(months).padStart(2, '0');
+    document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
+    document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+  } else {
+    document.getElementById('countdown-months').textContent = '00';
+    document.getElementById('countdown-days').textContent = '00';
+    document.getElementById('countdown-hours').textContent = '00';
+    document.getElementById('countdown-minutes').textContent = '00';
+    document.getElementById('countdown-seconds').textContent = '00';
+  }
+}
+
+  // Actualizar countdown al cargar la página
+  updateCountdown();
+  
+  // Actualizar cada segundo para que se vea en tiempo real
+  setInterval(updateCountdown, 1000);
+  
+  // Minimizar contador en móvil
+  const minimizeBtn = document.getElementById('minimize-btn');
+  const countdownClock = document.getElementById('countdown-clock');
+  const container = document.getElementById('countdown-container');
+  
+  if (minimizeBtn && window.innerWidth <= 480) {
+    minimizeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      countdownClock.classList.toggle('minimized');
+      minimizeBtn.textContent = countdownClock.classList.contains('minimized') ? '+' : '−';
+    });
+    container.style.pointerEvents = 'auto';
+  }
+  
+  // Restaurar estado al cambiar tamaño de ventana
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 480) {
+      countdownClock.classList.remove('minimized');
+      minimizeBtn.textContent = '−';
+    }
 });
 
   

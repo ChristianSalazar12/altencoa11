@@ -246,8 +246,7 @@
                 transform: translateY(0);
             }
         }
-
-        /* ── LEFT COLUMN – photo panel ───────────────────────── */
+ 
         /* ── LEFT COLUMN – photo panel ───────────────────────── */
         .card-photo-panel {
             flex-shrink: 0;
@@ -1062,12 +1061,27 @@
            DATA – all speaker data lives here
         ═══════════════════════════════════════════════════════ */
         const speakers = [
+             {
+                name: "Germán Benítez",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781299463/germanBenitesLast_nknyoc.webp",
+                photoAlt: "Germán Benítez",
+                confType: "Plenary conference",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/BenitezGerman - German Alonso Benitez Monsalve.pdf",
+                affiliations: [
+                    { name: "Universidade Federal do Amazonas", country: "Brasil" },
+
+                ],
+                topic: "Algebra",
+                eventTag: "ALTENCOA",
+                talkTitle: 'De la Categoría de Homotopia de módulos proyectivos sobre álgebras gentiles para la Categoria de Bondarenko',
+                abstract: `Bondarenko y Drozd presentaron una descripción de todos los objetos indescomponibles en una categoria de representaciones de posets, hoy en dia conocida como Categoria de Bondarenko. Esta categoria fué esencial en el trabajo de Bekkert y Merklen, en [1], para clasificar todos los objectos in-descomponibles de la categoria derivada de  ́algebras gentiles. En vista de esta conexión con la categoria derivada, la cual posee una estructura triangulada, en esta charla, presentaremos una estructura trian-gulada para cierto cociente de la categoria de Bondarenko asociada a un poset.`
+            },
             {
                 name: "Javier Sánchez Serdà",
                 photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779723110/Javier_Sanchez_Serd%C3%A0_wmaacw.jpg",
                 photoAlt: "Javier Sánchez Serdà",
                 confType: "Plenary conference",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/SanchezJavier - Javier Sanchez Serdà.pdf",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/SanchezJavier%20-%20Javier%20Sanchez%20Serd%C3%A0.pdf",
                 affiliations: [
                     { name: "Universidad de Sao Paulo", country: "Brasil" },
 
@@ -1089,8 +1103,7 @@
                 photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735277/Florian-Luca_duzyai.png",
                 photoAlt: "Florian Luca",
                 confType: "Plenary conference",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/LucaFlorian - Florian Luca.pdf",
-
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/LucaFlorian - Florian Luca.pdf",
                 affiliations: [
                     { name: "Stellenbosch University", country: "South Africa" },
                     { name: "Max Planck Institute for Software Systems", country: "Germany" }
@@ -1108,12 +1121,31 @@
                     of Moore and Sorenson from the preprint [1].
                     This work was funded in part by the 2024 ERC Synergy Grant “DynAMiCs”.`,
             },
+             {
+                name: "Hiram López",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781275506/HiramLopez_lo3qoy.webp",
+                photoAlt: "Hiram López",
+                confType: "Plenary conference",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/HiramLopez.pdf",
+                affiliations: [
+                    { name: "Virginia Tech", country: "USA" },
+
+                ],
+                topic: "Aplications",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Some applications of algebraic coding theory',
+                abstract: `In this talk, we present a wealth of interconnections between algebra, geometry, 
+                and combinatorics, and the areas of coding theory and its applications, such as quantum 
+                computation, distributed storage, matrix multiplication, and cryptography. We will see 
+                how properties of vanishing ideals, together with their properties like Grobner bases, 
+                Hilbert functions, footprints, degrees, being decreasing, or being Gorenstein; the study of curves, including Riemann-Roch space associated with special divisors; and the counting of lattice points, such as integer points inside of certain polyhedra, play roles in these applications.`
+            },
             {
                 name: "Alonso Sepúlveda Castellanos",
                 photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735338/AlonsoSepulvedaCastellanos_sqjl4z.jpg",
                 photoAlt: "Alonso Sepúlveda Castellanos",
                 confType: "Plenary conference",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/SepulvedaAlonso - Alonso Sepúlveda.pdf",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/SepulvedaAlonso%20-%20Alonso%20Sep%C3%BAlveda.pdf",
                 affiliations: [
                     { name: "Universidade Federal de Uberlândia", country: "Brasil" },
 
@@ -1130,7 +1162,7 @@
                 photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735371/AlejandraRada_dno8xj.jpg",
                 photoAlt: "Alejandra Rada",
                 confType: "Plenary conference",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/RadaAlejandra - Erika Alejandra Rada Mora.pdf",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/RadaAlejandra%20-%20Erika%20Alejandra%20Rada%20Mora.pdf",
                 affiliations: [
                     { name: "Universidade Federal do ABC", country: "Brasil" },
 
@@ -1153,7 +1185,7 @@
                 photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779735442/PabloMRodriguez_odfypy.jpg",
                 photoAlt: "Pablo Martín Rodríguez",
                 confType: "Plenary conference",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/RodriguezPablo - Pablo Martin Rodriguez.pdf",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/RodriguezPablo%20-%20Pablo%20Martin%20Rodriguez.pdf",
                 affiliations: [
                     { name: "Universidade Federal de Pernambuco", country: "Brasil" },
 
@@ -1161,24 +1193,26 @@
                 topic: "Data Analysis and <br> Complex Systems",
                 eventTag: "ALTENCOA",
                 talkTitle: 'La matemática de la desinformación: procesos estocásticos en grafos.',
-                abstract: `En esta conferencia mostraremos c ́omo los modelos matem ́aticos de naturaleza estoc ́astica
-                    definidos sobre grafos permiten describir la din ́amica de transmisi ́on de informaci ́on en poblaciones es-
-                    tructuradas. Veremos que el desarrollo de modelos simplificados, lejos de constituir una limitaci ́on,
+                abstract: `En esta conferencia mostraremos cómo los modelos matemáticos de naturaleza estocástica
+                    definidos sobre grafos permiten describir la dinámica de transmisión de información en poblaciones es-
+                    tructuradas. Veremos que el desarrollo de modelos simplificados, lejos de constituir una limitación,
 
-                    representa una estrategia eficaz para identificar principios universales en los procesos de difusi ́on. In-
-                    troduciremos formalmente un sistema de part ́ıculas interactuantes que constituye uno de los primeros
+                    representa una estrategia eficaz para identificar principios universales en los procesos de difusión. In-
+                    troduciremos formalmente un sistema de partículas interactuantes que constituye uno de los primeros
 
-                    enfoques anal ́ıticos para el estudio de rumores en poblaciones homog ́eneamente mezcladas.`
-            }
+                    enfoques analíticos para el estudio de rumores en poblaciones homogéneamente mezcladas.`
+            },
+            
+
         ];
 
         const courses = [
             {
                 name: "Mario Huicochea ",
-                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779737654/MarioHuicocheaMason_nultgi.jpg",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1780760227/f1a4d28f-2460-4601-bc93-958aba6aeeff.png",
                 photoAlt: "Mario Huicochea ",
-                confType: "Short course",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/HuicocheaMario - Mario Huicochea Mason.pdf",
+                confType: "Minicourse",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/HuicocheaMario%20-%20Mario%20Huicochea%20Mason.pdf",
                 affiliations: [
                     { name: "SECIHTI/UAZ, Zacatecas", country: "México" },
 
@@ -1186,18 +1220,33 @@
                 topic: "Combinatorics",
                 eventTag: "ALTENCOA",
                 talkTitle: 'Colores en la geometría combinatoria',
-                abstract: `La geometr ́ıa discreta es un  ́area muy extensa de las matem ́aticas que se destaca por presentar
-                    problemas muy sencillos de entender pero en algunas ocasiones muy dif ́ıciles de resolver. En particular,
-                    varios problemas en esta  ́area se pueden plantear en t ́erminos de colores, subconjuntos monocrom ́aticos,
-                    etc. En este minicurso daremos una breve introducci ́on a algunos de los resultados de esta  ́area. En
+                abstract: `La geometría discreta es un área muy extensa de las matemáticas que se destaca por presentar
+                    problemas muy sencillos de entender, pero en algunas ocasiones muy difíciles de resolver. En particular,
+                    varios problemas en esta área se pueden plantear en términos de colores, subconjuntos monocromáticos,
+                    etc. En este minicurso daremos una breve introducción a algunos de los resultados de esta área. En
                     algunos casos, veremos las ideas de sus demostraciones.`
+            },
+            {
+                name: "Diana Bueno Carreño",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781298554/cfd07ebc-b0ce-403d-98f1-cdadd1880b02.png",
+                photoAlt: "Diana Bueno Carreño",
+                confType: "Minicourse",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/BuenoDiana - Diana H. Bueno - Carreño.pdf",
+                affiliations: [
+                    { name: "Universidad del Valle", country: "Colombia" },
+
+                ],
+                topic: "Applications",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Introducción a la teoría de códigos ',
+                abstract: `La Teoría de códigos correctores de errores hace parte de la Teoría de la Información la cual fue introducida por C. E. Shannon en su trabajo “A mathematical theory of communications" de 1948 y aborda, desde un punto de vista matemático, el problema de la transmisión de un mensaje desde un emisor hasta un receptor a través de un canal de comunicación. En este proceso la Teoría de códigos se encarga de estudiar la fiabilidad de la comunicación y es por ello que se ha convertido en una disciplina intersección de matemáticas, ingeniería y ciencias.`,
             },
             {
                 name: "Sergio Troncoso",
                 photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1779737636/SERGIOTRONCOSOIGUA_f9m3cx.jpg",
                 photoAlt: "Sergio Troncoso",
-                confType: "Short course",
-                pdfUrl: "https://christiansalazar12.github.io/altencoa11/assets/pdf/abstracs/SergioTroncoso.pdf",
+                confType: "Minicourse",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/TroncosoSergio - SERGIO TRONCOSO IGUA.pdf",
                 affiliations: [
                     { name: "Universidad del Valle", country: "Colombia" },
 
@@ -1208,7 +1257,57 @@
                 abstract: `Linear complementary pairs (LCPs) of codes and linear complementary dual (LCD) codes
                     have gained significant attention due to their applications in coding theory and cryptography. In this
                     work, we construct explicit LCPs of codes and LCD codes from function fields of genus g ≥ 1.`,
-            }
+            },
+             {
+                name: "Yamidt Bermudez <br> Pedro Hernandez Rizzo",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781278539/Pedro_Yamidt_dushlo.webp",
+                photoAlt: "Yamidt Bermudez and Pedro Hernandez Rizzo",
+                confType: "Minicourse",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/introduccion al algebra de diferencias - YAMIDT BERMUDEZ TOBON.pdf",
+                affiliations: [
+                    { name: "Universidad del Valle", country: "Colombia" },
+                      { name: "Universidad de Antioquia", country: "Colombia" }
+
+                ],
+                topic: "Algebraic <br> Geometry",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Una introducción al algebra de diferencias',
+                abstract: `El presente mini-curso ofrece una introducción sistemática al álgebra de diferencia, disciplina dedicada al estudio algebraico de las ecuaciones en diferencia mediante anillos conmutativos equipados con un endomorfismo ϕ. El objetivo central es analizar cómo la estructura de diferencia permite modelar ecuaciones recursivas desde una perspectiva puramente algebraica, siguiendo la línea de investigación desarrollada por Ritt, Cohn y Wibmer.`,
+            },
+             
+            {
+                name: "Henry Laniado",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781298696/HenryLaniado_viw7tx.webp",
+                photoAlt: "Henry Laniado",
+                confType: "Minicourse",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/Laniado_Henry - Henry Laniado.pdf",
+                affiliations: [
+                    { name: "Universidad del Cauca", country: "Colombia" },
+
+                ],
+                topic: "Data Analysis and <br> Complex Systems",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Analítica de datos para muestras de funciones',
+                abstract: `En los últimos años, el análisis de datos funcionales (FDA) se ha convertido en un dominio muy activo de investigación en estadística, por su propio interés y también por sus aplicaciones en una serie de contextos como la ciencia médica, biología, química y ciencias sociales. En esencia, los objetos de estudio de FDA son funciones reales que se supone que se generan por medio de un proceso estocástico. Las funciones se observan en un cierto número de puntos fijos, por ejemplo instantes de tiempo, pero en lugar de ser tratados como datos multivariados, se suavizan utilizando herramientas del análisis numérico y funcional para ser estudiadas en espacios infinitodimensionales.`,
+            },
+            {
+                name: "Isabel García",
+                photo: "https://res.cloudinary.com/dspprxtpr/image/upload/v1781645126/Foto_-_Isabel_Garcia_zyrri7.webp",
+                photoAlt: "Isabel García",
+                confType: "Minicourse",
+                pdfUrl: "https://altenua.github.io/ALTENCOA11Repo/abstracts/Resumen extendido - Isabel Garcia.pdf",
+                affiliations: [
+                    { name: "Universidad del Valle", country: "Colombia" },
+
+                ],
+                topic: "Data Analysis and <br> Complex Systems",
+                eventTag: "ALTENCOA",
+                talkTitle: 'Matemáticas para el aprendizaje automático',
+                abstract: `Este curso intensivo ofrece una inmersión en los pilares matemáticos esenciales para comprender el Aprendizaje Automático, basado en el reconocido texto Mathematics for Machine Learning. En lugar de perderse en teoría abstracta, nos enfocaremos en la intuición práctica de tres áreas clave: Algebra Lineal (para la representación y transformación de datos), Cálculo Vectorial (el motor detrás de la optimización y el entrenamiento de modelos) y Probabilidad/Optimización (para la estimación y
+                funciones de pérdida). Al finalizar, los estudiantes entenderán la ”caja negra” de los algoritmos de ML
+                y tendrán las bases matemáticas necesarias para leer papers y entender arquitecturas avanzadas.`,
+            },
+
 
         ];
 
@@ -1235,19 +1334,31 @@
         }
 
 
-
-        /* ═══════════════════════════════════════════════════════
-           FILTER LOGIC
-        ═══════════════════════════════════════════════════════ */
+      /* ═══════════════════════════════════════════════════════
+             FILTER LOGIC
+          ═══════════════════════════════════════════════════════ */
         const allPeople = [...speakers, ...courses];
 
         // Get unique topics
         const uniqueTopics = [...new Set(allPeople.map(p => p.topic))];
 
+        // Definir el orden específico de los tópicos
+        const topicsOrder = [
+          'Algebra',
+          'Number Theory',
+          'Combinatorics',
+          'Applications',
+          'Algebraic <br> Geometry',
+          'Data Analysis and <br> Complex Systems'
+        ];
+
+        // Ordenar los tópicos según el orden definido
+        const orderedTopics = topicsOrder.filter(topic => uniqueTopics.includes(topic));
+
         // Populate topic filter
         const topicFilter = document.getElementById('topicFilter');
 
-        uniqueTopics.forEach(topic => {
+        orderedTopics.forEach(topic => {
             const option = document.createElement('option');
             option.value = topic;
             option.textContent = topic.replace(/<br>/g, ' ');
@@ -1257,13 +1368,13 @@
         // Filter function
         function applyFilters() {
             const selectedTopic = topicFilter.value;
-
+        
             const cards = document.querySelectorAll('.speaker-card');
-
+        
             cards.forEach(card => {
                 const cardTopic = card.dataset.topic;
                 const topicMatch = !selectedTopic || cardTopic === selectedTopic;
-
+            
                 if (topicMatch) {
                     card.style.display = '';
                 } else {
@@ -1289,7 +1400,7 @@
         function buildCardWithData(person) {
             return `
         <article class="speaker-card" data-confType="${person.confType}" data-topic="${person.topic}">
-
+        
           <!-- LEFT: photo panel -->
           <div class="card-photo-panel">
             <div class="photo-wrapper">
@@ -1297,36 +1408,36 @@
               <span class="topic-badge">${person.topic}</span>
             </div>
           </div>
-
+      
           <!-- RIGHT: all information -->
           <div class="card-info-panel">
-
+        
             <div class="card-topbar">
               <span class="conf-type-label">${person.confType}</span>
-              <h3 class="event-pill-container"><span class="event-pill">${person.eventTag} <span class="event-years">11 - 2026</span></span>
-                <span class="event-topics">  Algebra · Number Theory · Combinatorics · Applications <br>Algebraic Geometry · Data Analysis and Complex Systems</span></h3>
+              <h3 class="event-pill-container"><span class="event-pill">${person.eventTag} <span        class="event-years">11 - 2026</span></span>
+                <span class="event-topics">Álgebra · Teoría de Números · Combinatoria · Aplicaciones <br>Geometría      Algebraica · Análisis de Datos y Sistemas Complejos</span></h3>
             </div>
- 
+        
             <div class="card-header">
               <h2 class="speaker-name">${person.name}</h2>
               ${affiliationsHTML(person.affiliations)}
             </div>
-
+        
             <div class="card-talk">
               <div class="section-label">${iconMic} Título de la Conferencia</div>
               <div class="talk-box">
                 <p class="talk-title">${person.talkTitle}</p>
               </div>
             </div>
-
+        
             <div class="card-abstract">
               <div class="abstract-label">${iconDoc} Extracto del Abstract</div>
               <p class="abstract-text">${person.abstract}</p>
             </div>
-
+        
             <div class="card-pdf-footer">
               <a class="btn-pdf" href="${person.pdfUrl || '#'}" target="_blank" rel="noopener">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"       stroke-width="2"          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
                   <polyline points="14 2 14 8 20 8"/>
                   <line x1="16" y1="13" x2="8" y2="13"/>
@@ -1337,14 +1448,13 @@
             </div>
           </div>
         </article>
-      `;
+        `;
         }
 
         // Renderizar todos los speakers primero, luego todos los courses
-        const speakersHTML = '<h2 class="section-title">PLENARIAS</h2>' + speakers.map(buildCardWithData).join('');
-        const coursesHTML = '<h2 class="section-title">CURSILLOS</h2>' + courses.map(buildCardWithData).join('');
+        const speakersHTML = '<h2 class="section-title">PLENARYS</h2>' + speakers.map(buildCardWithData).join('');
+        const coursesHTML = '<h2 class="section-title">MINICOURSES</h2>' + courses.map(buildCardWithData).join('');
         document.getElementById('cards-grid').innerHTML = speakersHTML + coursesHTML;
-
 
         //FOOTER
         /* ══ SPONSORS CAROUSEL ════════════════════════════════════════ */
